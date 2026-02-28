@@ -25,11 +25,11 @@ Moltbox separates **control** (local) from **cognition** (optional cloud or opti
 
 Moltbox hosts the full Remram runtime stack:
 
-### 2.1 Core Remram Services
+### 2.1 Core Runtime Surfaces
 
-*   `remram-os` — orchestration + OpenClaw integration + skills
-*   `remram-recall` — RAM retrieval layer
-*   `remram-encode` — REM consolidation layer
+*   `openclaw gateway` - orchestration runtime and control plane
+*   `remram memory slot plugin` - RAM retrieval surface (`memory_search` / `memory_get`)
+*   `remram encode hooks and automation` - REM baseline encode + Dream Machine consolidation
 
 ### 2.2 Orchestration Runtime
 

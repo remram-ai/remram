@@ -405,7 +405,11 @@ Disk:
 
 *   raw artifacts
 
-OpenClaw uses a Memory Provider abstraction.
+OpenClaw integration model:
+
+*   Memory is exposed through a memory slot plugin (`plugins.slots.memory`)
+*   Recall is served through memory tools (`memory_search`, `memory_get`)
+*   Encode/consolidation is executed via lifecycle hooks + scheduled automation
 
 ---
 
@@ -427,8 +431,9 @@ OpenClaw uses a Memory Provider abstraction.
 
 Define:
 
-*   Memory Provider API
+*   Memory slot plugin contract and tool schemas
 *   Canonical Store schema
+*   Lifecycle hook contracts for Baseline Encode and transcript sanitization
 *   Consolidation thresholds
 *   Retrieval scoring weights
 *   Scope expansion policy

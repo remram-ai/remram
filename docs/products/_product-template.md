@@ -1,6 +1,6 @@
-# Feature Name
+# Product Name
 
-Feature Definition
+Product Definition
 
 ---
 

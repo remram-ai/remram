@@ -1,4 +1,3 @@
-
 # Moltbox (remram-edge) – Design
 
 Moltbox is an OpenClaw appliance.
@@ -7,13 +6,13 @@ It is a dedicated machine configured to run OpenClaw locally with a GPU-backed m
 
 A machine becomes a Moltbox when it has:
 
-- Purpose-built hardware sized for AI workloads
-- A stable operating system and GPU stack
-- OpenClaw installed and running natively
-- A local model providing routing and bounded reasoning
-- A local database layer for storage and future retrieval capabilities
-- Supporting services such as container runtime and local Git for extension and versioning
-- A client interface for interaction
+*   Purpose-built hardware sized for AI workloads
+*   A stable operating system and GPU stack
+*   OpenClaw installed and running natively
+*   A local model providing routing and bounded reasoning
+*   A local database layer for storage and future retrieval capabilities
+*   Supporting services such as container runtime and local Git for extension and versioning
+*   A client interface for interaction
 
 The core value of Moltbox is local capability.
 
@@ -23,8 +22,7 @@ Moltbox is the foundation for future phases. Additional layers—memory systems,
 
 This document defines the hardware envelope, host configuration, runtime decisions, model strategy, tooling posture, access patterns, and cloud integration choices that together make a machine a Moltbox.
 
-
-# 1. Hardware
+# 1\. Hardware
 
 Moltbox is a hardware appliance for OpenClaw.
 
@@ -37,7 +35,7 @@ This chapter walks through capability tiers to help you scale your Moltbox to yo
 These performance tiers provide target envelopes you can build toward based on your needs.
 
 | Class | CPU Cores | System RAM | GPU (VRAM) | Storage | Power Class |
-|-------|-----------|------------|------------|---------|-------------|
+| --- | --- | --- | --- | --- | --- |
 | **Appliance** | 8+ | 32–64GB | Integrated / 8–16GB | 1 NVMe | 100–250W |
 | **Solo** | 8–12 | 64–128GB | 16–24GB (Prosumer) | 1–2 NVMe | 200–350W |
 | **Family** | 16+ | 128–256GB | 24–32GB (Workstation) | 2–3 NVMe | 350–600W |
@@ -59,15 +57,15 @@ The CPU governs orchestration stability, database responsiveness, indexing throu
 
 **Guidance by Tier**
 
-- **Solo (8–12 cores):** 8 cores minimum. Supports routing, database services, and moderate indexing without saturation.
-- **Family (16+ cores):** 16 cores recommended for concurrent users and sustained indexing.
-- **Sovereign (24+ cores):** Supports heavy parallel workloads and multi-model coordination.
+*   **Solo (8–12 cores):** 8 cores minimum. Supports routing, database services, and moderate indexing without saturation.
+*   **Family (16+ cores):** 16 cores recommended for concurrent users and sustained indexing.
+*   **Sovereign (24+ cores):** Supports heavy parallel workloads and multi-model coordination.
 
 In practical terms:
 
-- More cores → better concurrency
-- Higher clocks → faster short-latency operations
-- Newer generation → stronger memory and PCIe support
+*   More cores → better concurrency
+*   Higher clocks → faster short-latency operations
+*   Newer generation → stronger memory and PCIe support
 
 ## 1.3 System Memory
 
@@ -83,15 +81,15 @@ System memory determines how much active database state, indexing data, embeddin
 
 **Guidance by Tier**
 
-- **Solo (64–128GB):** 64GB minimum; 128GB preferred.
-- **Family (128–256GB):** 128GB baseline; 256GB improves concurrency stability.
-- **Sovereign (256GB+):** Supports large-scale indexing and heavy workloads.
+*   **Solo (64–128GB):** 64GB minimum; 128GB preferred.
+*   **Family (128–256GB):** 128GB baseline; 256GB improves concurrency stability.
+*   **Sovereign (256GB+):** Supports large-scale indexing and heavy workloads.
 
 In practical terms:
 
-- More RAM → fewer disk stalls
-- Higher bandwidth → smoother indexing
-- More headroom → long-term scalability
+*   More RAM → fewer disk stalls
+*   Higher bandwidth → smoother indexing
+*   More headroom → long-term scalability
 
 ## 1.4 GPU
 
@@ -109,42 +107,41 @@ The GPU determines local intelligence capacity, usable context size, and escalat
 
 **Guidance by Tier**
 
-- **Solo (16–24GB):** 16GB minimum for stable 8B routing.
-- **Family (24–32GB):** Provides stronger sustained performance.
-- **Sovereign (48GB+ / Multi-GPU):** Enables larger reasoning models and specialization.
+*   **Solo (16–24GB):** 16GB minimum for stable 8B routing.
+*   **Family (24–32GB):** Provides stronger sustained performance.
+*   **Sovereign (48GB+ / Multi-GPU):** Enables larger reasoning models and specialization.
 
 In practical terms:
 
-- More VRAM → larger models and more context
-- Higher tier → lower latency
-- Multiple GPUs → specialization
+*   More VRAM → larger models and more context
+*   Higher tier → lower latency
+*   Multiple GPUs → specialization
 
 ## 1.8 Moltbox Prime (Creator Reference Build)
 
 Moltbox Prime aligns to a minimal Family-tier configuration.
 
-- 16-core CPU
-- 128GB RAM
-- 16GB Blackwell-class GPU
-- Two 2TB NVMe drives
-  - Drive 1: OS, OpenClaw runtime, local Git
-  - Drive 2: Database and persistent storage
+*   16-core CPU
+*   128GB RAM
+*   16GB Blackwell-class GPU
+*   Two 2TB NVMe drives
+    *   Drive 1: OS, OpenClaw runtime, local Git
+    *   Drive 2: Database and persistent storage
 
 The GPU was intentionally sized to the practical 16GB baseline to reduce initial cost while preserving routing stability.
 
-
-# 2. Operating System & Runtime Foundation
+# 2\. Operating System & Runtime Foundation
 
 Moltbox is a dedicated OpenClaw appliance. This chapter defines the operating system and runtime stack supporting stable GPU-accelerated containerized operation.
 
 Objectives:
 
-- Stable 24/7 operation
-- Clean service isolation
-- Full NVIDIA acceleration
-- Scriptable deployment via Docker Compose
-- LAN-only management exposure
-- Clear recovery posture
+*   Stable 24/7 operation
+*   Clean service isolation
+*   Full NVIDIA acceleration
+*   Scriptable deployment via Docker Compose
+*   LAN-only management exposure
+*   Clear recovery posture
 
 ## 2.1 Operating System
 
@@ -152,30 +149,27 @@ Moltbox runs **Ubuntu Server LTS**.
 
 Installation posture:
 
-- Minimal server install
-- OpenSSH enabled
-- Non-root administrative user created
-- Root login disabled
-- Static IP via DHCP reservation
+*   Minimal server install
+*   OpenSSH enabled
+*   Non-root administrative user created
+*   Root login disabled
+*   Static IP via DHCP reservation
 
-
-
-# 3. OpenClaw Runtime
+# 3\. OpenClaw Runtime
 
 OpenClaw is the orchestration core of Moltbox.
 
 It manages:
 
-- Session lifecycle
-- Tool routing and execution control
-- Sandbox lifecycle
-- Memory interaction with OpenSearch
-- Local model invocation
-- Cloud escalation when required
-- Primary developer interface
+*   Session lifecycle
+*   Tool routing and execution control
+*   Sandbox lifecycle
+*   Memory interaction with OpenSearch
+*   Local model invocation
+*   Cloud escalation when required
+*   Primary developer interface
 
-
-# 4. Cognition Architecture
+# 4\. Cognition Architecture
 
 Cognition in Moltbox is governed infrastructure. The appliance does not distribute intelligence indiscriminately; it allocates reasoning deliberately, under policy, and only when orchestration boundaries require it. Routing authority remains local. Planning and synthesis occur remotely. Execution authority always returns to the control plane.
 
@@ -194,12 +188,12 @@ This separation prevents hybrid drift. Moltbox does not partially reason and par
 The local control tier executes primary orchestration on Moltbox hardware. It handles intent extraction, structured output generation, and lightweight arbitration before escalation. These models must balance latency, VRAM headroom, and structured reliability within a 16GB GPU envelope.
 
 | Model | Class | Context | First-Token (sec) | Throughput (tok/sec) |
-|-------|-------|---------|-------------------|----------------------|
+| --- | --- | --- | --- | --- |
 | **Qwen3-4B-Instruct-2507** | 4B | 32k+ | ~0.4-0.8 | 160-260 |
 | **Qwen3-8B-Instruct** | 8B | 16-32k | ~0.9-1.8 | 90-160 |
 | **Qwen3-14B-Instruct** | 14B | 16k | ~1.8-3.5 | 45-95 |
 
-*Assumptions: instruction-tuned checkpoints (Instruct variants), single-user execution, no concurrent sessions, Q8 for 4B/8B, Q5 for 14B, moderate system prompt and tool definitions loaded, CUDA acceleration via llama.cpp-class runtime. Actual performance varies with prompt length and KV cache pressure. Performance scales non-linearly under concurrent sessions and larger KV cache utilization. Figures represent single-session routing under moderate prompt size.*
+_Assumptions: instruction-tuned checkpoints (Instruct variants), single-user execution, no concurrent sessions, Q8 for 4B/8B, Q5 for 14B, moderate system prompt and tool definitions loaded, CUDA acceleration via llama.cpp-class runtime. Actual performance varies with prompt length and KV cache pressure. Performance scales non-linearly under concurrent sessions and larger KV cache utilization. Figures represent single-session routing under moderate prompt size._
 
 **Qwen3-4B-Instruct-2507** is optimized for responsiveness and large context headroom. On a 16GB 5060 Ti, it comfortably supports 32k+ context while maintaining low first-token latency. It is best suited for intent parsing, schema-constrained JSON generation, lightweight routing, and UX-sensitive deployments. It trades arbitration depth for speed.
 
@@ -215,11 +209,11 @@ Escalation separates planning from execution. The reasoning model generates plan
 
 Escalation precedence is ordered and deterministic:
 
-1. Deterministic tool invocation
-2. User override
-3. Heuristic uncertainty (reasoning tier only)
-4. Budget gate
-5. Safety override
+1.  Deterministic tool invocation
+2.  User override
+3.  Heuristic uncertainty (reasoning tier only)
+4.  Budget gate
+5.  Safety override
 
 Deterministic invocation (coding agents, diffusion agents, think tool) bypasses heuristic uncertainty and is resolved locally.
 
@@ -245,8 +239,8 @@ In the reference configuration, the reasoning endpoint is defined as the default
 
 The reasoning tier handles most escalations. It generates plans, structured analyses, and multi-step reasoning outputs that return to the control plane for execution. These models must balance latency, cost, and structured reliability.
 
-| Model | Class | Context | Blended $/M Tokens* | Typical Throughput (tok/sec) |
-|-------|-------|---------|----------------------|------------------------------|
+| Model | Class | Context | Blended $/M Tokens\* | Typical Throughput (tok/sec) |
+| --- | --- | --- | --- | --- |
 | **MiniMax-M2-32B (2.5)** | 32B | 16k-32k | ~$0.40 | 80-120 |
 | **DeepSeek-V2.5-32B** | 32B | 16k-32k | ~$0.35 | 70-110 |
 | **Qwen2.5-32B-Instruct** | 32B | 16k-32k | ~$0.45 | 60-100 |
@@ -263,8 +257,8 @@ Choice within this tier should be guided by escalation frequency, tolerance for 
 
 Deep thinking models are invoked explicitly through the think tool or under strategic policy triggers. They are used for long-horizon reasoning, arbitration, and extended synthesis where the reasoning tier is insufficient.
 
-| Model | Class | Context | Blended $/M Tokens* | Typical Throughput (tok/sec) |
-|-------|-------|---------|----------------------|------------------------------|
+| Model | Class | Context | Blended $/M Tokens\* | Typical Throughput (tok/sec) |
+| --- | --- | --- | --- | --- |
 | **DeepSeek-R1** | ~70B | 32k+ | ~$0.90 | 40-70 |
 | **Qwen-70B** | 70B | 32k+ | ~$1.10 | 35-65 |
 | **Frontier reasoning models** | 70B+ | 64k+ | ~$4.00+ | 30-60 |
@@ -281,8 +275,8 @@ These models are slower and more expensive by design and are not part of heurist
 
 Coding models are invoked exclusively through deterministic tool calls. They do not participate in heuristic escalation and do not execute independently of control-plane validation.
 
-| Model | Class | Context | Blended $/M Tokens* | Typical Throughput (tok/sec) |
-|-------|-------|---------|----------------------|------------------------------|
+| Model | Class | Context | Blended $/M Tokens\* | Typical Throughput (tok/sec) |
+| --- | --- | --- | --- | --- |
 | **Qwen3-Coder-32B** | 32B | 16k-32k | ~$0.40 | 60-100 |
 | **DeepSeek-Coder-V2** | 16-32B | 16k-32k | ~$0.30 | 80-140 |
 | **Code Llama-34B-Instruct** | 34B | 16k-32k | ~$0.60 | 40-80 |
@@ -301,7 +295,7 @@ Cloud cognition is governed by per-request token ceilings, daily spend caps, and
 
 Cloud spend is expected and acceptable. Hardware acceleration is introduced only when sustained token usage justifies capital investment.
 
-*Blended pricing assumes a 70% input / 30% output token mix at time of writing and will vary by provider and over time.*
+_Blended pricing assumes a 70% input / 30% output token mix at time of writing and will vary by provider and over time._
 
 ## 4.10 Cognition Failure & Degradation
 
@@ -309,7 +303,7 @@ If the local routing model fails, the appliance halts. Authority is never delega
 
 If cloud cognition becomes unavailable, the appliance continues in bounded local-only mode. Strategic reasoning requests are deferred. Stability is prioritized over availability.
 
-## 5. Interaction & Access Model
+## 5\. Interaction & Access Model
 
 Moltbox exposes controlled interaction surfaces. Users interact through bounded chat interfaces, while full system authority remains local. Identity persists across channels, memory remains user-scoped, and administrative power is intentionally centralized. Transport surfaces may evolve, but identity, session discipline, and control boundaries remain constant.
 
@@ -321,10 +315,10 @@ Moltbox layers a stable internal identity mapping above this model to preserve c
 
 Each human interacting with Moltbox has:
 
-- A persistent internal User ID
-- A dedicated primary agent instance
-- A dedicated long-term memory namespace
-- One or more bound channel identities
+*   A persistent internal User ID
+*   A dedicated primary agent instance
+*   A dedicated long-term memory namespace
+*   One or more bound channel identities
 
 Channel identities (browser session, Signal number, future app credential) map deterministically to an internal User ID. A User may bind multiple channels. A channel may not bind to multiple users.
 
@@ -336,27 +330,27 @@ The primary non-privileged interaction surface for Moltbox is the OpenClaw Web C
 
 This interface:
 
-- Runs in a standard browser
-- Connects directly to the OpenClaw gateway
-- Operates entirely within the LAN boundary
-- Uses OpenClaw’s native session handling
-- Does not expose configuration controls
+*   Runs in a standard browser
+*   Connects directly to the OpenClaw gateway
+*   Operates entirely within the LAN boundary
+*   Uses OpenClaw’s native session handling
+*   Does not expose configuration controls
 
 This surface is suitable for:
 
-- Family members
-- Household users
-- Experimentation without console access
-- Local mobile browser access
+*   Family members
+*   Household users
+*   Experimentation without console access
+*   Local mobile browser access
 
 Users authenticate through the gateway’s configured authentication mechanism. Upon authentication, the browser session binds to a specific internal User ID.
 
 The Web Chat surface does not provide:
 
-- Configuration mutation
-- Escalation policy overrides
-- Infrastructure control
-- Direct access to container management
+*   Configuration mutation
+*   Escalation policy overrides
+*   Infrastructure control
+*   Direct access to container management
 
 It is a conversational surface only.
 
@@ -366,20 +360,20 @@ Signal provides a remote interaction surface operating in outbound polling mode.
 
 Characteristics:
 
-- Outbound polling only
-- No inbound webhook
-- No public port exposure
-- Secure DM isolation enabled
-- Speaker metadata used for identity mapping
+*   Outbound polling only
+*   No inbound webhook
+*   No public port exposure
+*   Secure DM isolation enabled
+*   Speaker metadata used for identity mapping
 
 Signal identities map deterministically to internal User IDs. Messages received from Signal are routed into OpenClaw sessions under the mapped user identity.
 
 Signal serves as:
 
-- A remote personal interface
-- A family collaboration channel
-- A long-term supported transport
-- A convenient mobile-first interaction layer
+*   A remote personal interface
+*   A family collaboration channel
+*   A long-term supported transport
+*   A convenient mobile-first interaction layer
 
 Signal does not grant elevated authority and does not bypass session isolation rules.
 
@@ -389,18 +383,18 @@ Group interactions are structured and identity-aware. Moltbox does not collapse 
 
 A group session contains:
 
-- Multiple participating internal User IDs
-- A shared conversational context
-- Explicit speaker attribution per message
+*   Multiple participating internal User IDs
+*   A shared conversational context
+*   Explicit speaker attribution per message
 
 Speaker attribution is derived from channel metadata and mapped to internal User IDs. If speaker identity cannot be resolved deterministically, execution is rejected.
 
 Memory discipline remains strict:
 
-- Shared conversational context is session-scoped
-- Long-term memory remains user-scoped
-- Each primary agent operates within its own memory namespace
-- No automatic cross-user long-term memory writes occur
+*   Shared conversational context is session-scoped
+*   Long-term memory remains user-scoped
+*   Each primary agent operates within its own memory namespace
+*   No automatic cross-user long-term memory writes occur
 
 Group collaboration is supported without compromising memory isolation.
 
@@ -414,11 +408,11 @@ The OpenClaw Console is the authoritative control surface of the appliance.
 
 Characteristics:
 
-- LAN-only access
-- Full orchestration visibility
-- Configuration mutation capability
-- Direct access to tool routing behavior
-- Escalation override authority
+*   LAN-only access
+*   Full orchestration visibility
+*   Configuration mutation capability
+*   Direct access to tool routing behavior
+*   Escalation override authority
 
 The console is not a general user interface. It is the owner’s maintenance hatch and operates directly against the control plane.
 
@@ -428,34 +422,34 @@ SSH provides infrastructure-level access.
 
 Characteristics:
 
-- Key-based authentication
-- LAN-only exposure
-- Used for maintenance, updates, and container management
-- Not exposed publicly
+*   Key-based authentication
+*   LAN-only exposure
+*   Used for maintenance, updates, and container management
+*   Not exposed publicly
 
 #### Remote Access Evolution
 
 Baseline posture:
 
-- LAN-only administrative access
-- No port forwarding
-- No embedded VPN services
+*   LAN-only administrative access
+*   No port forwarding
+*   No embedded VPN services
 
 Future posture:
 
-- Remote access provided through a network appliance (router-level VPN)
-- Moltbox does not host VPN services
+*   Remote access provided through a network appliance (router-level VPN)
+*   Moltbox does not host VPN services
 
 Conditional future:
 
-- A narrowly scoped application-layer endpoint may be exposed if a dedicated external application is introduced
-- Such exposure would include explicit authentication boundaries, rate limiting, and logging
+*   A narrowly scoped application-layer endpoint may be exposed if a dedicated external application is introduced
+*   Such exposure would include explicit authentication boundaries, rate limiting, and logging
 
 At no stage does Moltbox become a general-purpose externally managed server.
 
 Moltbox interaction surfaces are structured, identity-driven, and bounded. Conversational access is broad within the LAN and optionally remote through Signal. Administrative authority remains local. Identity persists across channels, and memory remains isolated per user. Transport surface does not imply privilege elevation.
 
-## 6. Operational Philosophy
+## 6\. Operational Philosophy
 
 Moltbox is an appliance built around authority, determinism, and local control. It does not attempt to be a distributed platform, a hosted SaaS product, or a framework seeking extensions. It is a single-host system that reasons deliberately and executes locally.
 
@@ -481,9 +475,9 @@ Every irreversible action passes through the local control plane. Logs exist for
 
 Moltbox evolves through controlled substitution, not architectural rewrites.
 
-- GPU upgrades increase local reasoning headroom without altering control structure.
-- Memory expansion increases retention and indexing capacity without changing session semantics.
-- Additional services attach through container boundaries without redefining authority.
+*   GPU upgrades increase local reasoning headroom without altering control structure.
+*   Memory expansion increases retention and indexing capacity without changing session semantics.
+*   Additional services attach through container boundaries without redefining authority.
 
 Future layers—reflection engines, sovereign cognition clusters, or external applications—extend the appliance but do not replace its foundation.
 

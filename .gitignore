@@ -1,0 +1,9 @@
+# Diagnostics / local workspace
+.tmp/
+
+# Moltbox debug bundles
+debug-bundle/
+moltbox-debug-*.tar.gz
+
+# Logs
+*.log

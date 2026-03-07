@@ -1,4 +1,0 @@
-Agents: main (default)
-Heartbeat interval: 30m (main)
-Session store (main): /home/node/.openclaw/agents/main/sessions/sessions.json (1 entries)
-- agent:main:main (10m ago)

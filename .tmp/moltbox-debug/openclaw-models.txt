@@ -1,0 +1,2 @@
+Model                                      Input      Ctx      Local Auth  Tags
+ollama/qwen3:8b                            -          -        -     -     default,missing

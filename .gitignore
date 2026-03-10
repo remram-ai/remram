@@ -7,3 +7,7 @@ moltbox-debug-*.tar.gz
 
 # Logs
 *.log
+
+# Local editor / Codex config
+.vscode/mcp.json
+.codex/config.toml

@@ -1,121 +1,84 @@
-# remram
+# Remram
 
-**Real, structured long-term memory for AI systems.**
+Remram is the vision and architecture hub for the Remram ecosystem.
 
-Remram gives your AI stack organized, persistent memory across users, domains, and time.
+This repository explains what Remram is, why it exists, how the ecosystem fits together, and where contributors should go next. It is the public front door for the project, not the primary home for implementation detail.
 
-You do not need to wait for foundation model labs to solve “infinite memory.”
+## What Problem Remram Solves
 
-Memory is not a model problem.
+AI systems still struggle with continuity.
 
-It is an orchestration problem.
+They lose important context across sessions, repeat corrected mistakes, depend on oversized prompts, and confuse transcript history with durable knowledge. Remram exists to turn that fragile memory posture into a more disciplined system: retrieval is deliberate, mutation is governed, and long-lived knowledge is treated as a first-class architectural concern.
 
-Remram solves it at the system layer, While keeping your context in your control!
+## High-Level Architecture
 
----
+Remram is easiest to understand as a small ecosystem of cooperating layers:
 
-## The Core Thesis
+```text
+People and clients
+        |
+        v
+   Remram App
+        |
+        v
+Remram Gateway / Moltbox
+        |
+        v
+  Remram Orchestration
+        |
+        v
+   Remram Cortex
+        |
+        v
+ Durable knowledge, artifacts,
+ and long-term memory behavior
 
-Large models are stateless.
+Remram Agents sit alongside the system as reusable skills,
+agent modules, and workflow building blocks.
+```
 
-Context windows are temporary.
+## Ecosystem Components
 
-Chat history is not memory.
+- **Remram**: vision, conceptual architecture, ecosystem map, contributor orientation
+- **Remram Gateway**: OpenClaw runtime configuration, gateway operations, and Moltbox appliance deployment
+- **Remram Cortex**: long-term knowledge system, retrieval, reflection, and memory services
+- **Remram App**: user-facing APIs and applications
+- **Remram Agents**: reusable skills, agent modules, and agent-facing building blocks
 
-Remram treats memory as engineered state:
+## Repository Links
 
-- Structured
-- Policy-driven
-- Continuously consolidated
-- Deterministically retrieved
+- [Remram](https://github.com/remram-ai/remram)
+- [Remram Gateway](https://github.com/remram-ai/remram-gateway)
+- [Remram Cortex](https://github.com/remram-ai/remram-cortex)
+- [Remram App](https://github.com/remram-ai/remram-app)
+- [Remram Agents](https://github.com/remram-ai/remram-agents)
 
-Models reason.
-Remram remembers.
+## Start Here
 
----
+- [What Is Remram?](docs/overview/what-is-remram.md)
+- [Project Charter](docs/overview/project-charter.md)
+- [System Architecture](docs/overview/system-architecture.md)
+- [Ecosystem Map](docs/overview/ecosystem-map.md)
+- [Projects](docs/ecosystem/projects.md)
+- [Repository Map](docs/ecosystem/repository-map.md)
 
-## System Architecture
+## Backlog Pipeline
 
-Remram is composed of four layers:
+This repository also preserves the project pipeline:
 
-- **remram-os** — orchestration and OpenClaw integration  
-- **remram-recall** — RAM (retrieval / read path)  
-- **remram-encode** — REM (consolidation / write path)  
-- **moltbox** — local hardware control plane  
+- `backlog/ideas/` for early concepts
+- `backlog/products/` for shaped product and system proposals
 
-Memory is never blindly appended.
-It is assembled and refined.
+Those documents are intentionally kept here because they explain how ideas mature before they become implementation work in domain repositories.
 
----
+## How To Get Started
 
-## The Memory Model
+- Want to understand the project: start with [docs/overview/what-is-remram.md](docs/overview/what-is-remram.md)
+- Want to run something real today: start with [docs/getting-started/run-remram.md](docs/getting-started/run-remram.md)
+- Want to contribute: start with [docs/getting-started/contribute.md](docs/getting-started/contribute.md)
 
-Remram operates on two coordinated paths:
+## How To Contribute
 
-### RAM — Recall
+If you are changing vision, ecosystem framing, conceptual architecture, onboarding, or backlog docs, this is the right repository.
 
-- Hybrid retrieval (filters + rank + vectors)
-- Deterministic context bundles
-- Confidence-aware selection
-- Policy-gated eligibility
-
-RAM retrieves memory.
-It does not mutate it.
-
----
-
-### REM — Encode
-
-REM operates as a two-layer system:
-
-**1. Baseline Encode**
-- Runs post-request
-- Updates relevant context chunks
-- Stages low-confidence changes
-
-**2. Dream Machine**
-- Nightly structured consolidation
-- Fact promotion
-- Artifact reconciliation
-- Pruning
-- User clarification loop
-
-REM refines memory.
-RAM recalls it.
-
----
-
-## Why Remram Exists
-
-Modern AI systems:
-
-- Repeat mistakes  
-- Lose corrections  
-- Drift across sessions  
-- Accumulate noisy state  
-
-They lack continuity.
-
-Remram enforces it.
-
----
-
-## Design Principles
-
-- Local-first ownership of context
-- Explicit read/write separation
-- Deterministic orchestration
-- Policy-driven mutation
-- Token-efficient cloud escalation
-
-Remram is not a chatbot.
-
-It is the memory substrate beneath intelligent systems.
-
----
-
-## Status
-
-Early-stage infrastructure.  
-Architecture-first.  
-Open to experimentation.
+If you are changing runtime behavior, deployment, storage, APIs, or implementation details, you probably want one of the domain repositories instead.

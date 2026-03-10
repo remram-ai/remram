@@ -1,0 +1,2 @@
+# Exclude archival reference material from git archive exports.
+archive/** export-ignore

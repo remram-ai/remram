@@ -15,6 +15,8 @@ It is the place where the system becomes locally real:
 - infrastructure is operated there
 - local-first control becomes concrete there
 
+It is also where the control-plane idea becomes tangible. Moltbox is the place where runtime authority, host services, and operator tooling have to stay stable enough for daily use while still leaving room for rapid iteration.
+
 ## What Belongs Here vs Elsewhere
 
 This repository keeps the conceptual explanation of Moltbox:
@@ -22,6 +24,7 @@ This repository keeps the conceptual explanation of Moltbox:
 - why the appliance boundary matters
 - how Moltbox fits into the ecosystem
 - why local-first authority is part of the design
+- why a local control plane matters more than just "having a model on a box"
 
 Detailed implementation guidance for Moltbox belongs in `remram-gateway`.
 
@@ -36,3 +39,8 @@ That repository owns the implementation details for:
 - operator tooling
 - appliance setup
 - runtime infrastructure
+
+See also:
+
+- [Control Plane](../concepts/control-plane.md)
+- [Prompt Compilation](../concepts/prompt-compilation.md)

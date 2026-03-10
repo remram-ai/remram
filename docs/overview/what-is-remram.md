@@ -14,6 +14,8 @@ Remram treats continuity as a systems problem. That means:
 - retrieval should be bounded
 - mutation should be governed
 - long-lived knowledge should be separate from ephemeral session state
+- local control should remain authoritative
+- external cognition should remain replaceable
 
 ## What Remram Is Not
 
@@ -35,10 +37,35 @@ Fewer can accumulate understanding without drifting.
 
 Remram is designed around the idea that durable behavior comes from a layered system:
 
-- a runtime that owns execution
-- a policy layer that shapes runs
+- a control plane that owns execution and live authority
+- an orchestration layer that interprets intent and shapes runs
 - a knowledge layer that decides what should endure
 - a user-facing layer that exposes the system without replacing its authority structure
+
+## Local Control, On-Demand Cognition, Structured Memory
+
+One useful shorthand for the project is:
+
+Local control. On-demand cognition. Structured memory.
+
+That means:
+
+- the local system should own runtime authority
+- stronger cognition should be invoked deliberately, not eagerly
+- memory should be external, governed, and inspectable
+
+## More Than Retrieval
+
+Remram is not just about storing and retrieving context.
+
+It is also about:
+
+- memory policy deciding what is eligible
+- similarity systems helping rank what is relevant
+- prompt compilation turning user intent into bounded machine-ready context
+- reflection and reconciliation deciding what should mature over time
+
+In other words, Remram is trying to turn prompting and memory into system functions instead of informal habits.
 
 ## Why This Repository Exists
 

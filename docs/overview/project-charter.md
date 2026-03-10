@@ -50,6 +50,18 @@ The system should distinguish clearly between the path that serves a live run an
 
 Execution belongs to the runtime layer. Long-term knowledge belongs to the memory layer.
 
+### Control and cognition should stay separate
+
+The local control plane should remain stable, inspectable, and authoritative. Stronger cognition should be invoked as a bounded expert tier, not allowed to become the runtime.
+
+### Prompt compilation should be systemic
+
+Users should not have to act like prompt engineers. The orchestration layer should interpret intent, shape context, and enforce output contracts on behalf of the system.
+
+### Memory policy should govern similarity
+
+Embeddings and ranking systems are useful signals, but they are not the authority on what is true, eligible, or safe to inject.
+
 ### Local-first matters
 
 The user should retain control over the durable knowledge layer, artifacts, and system posture.
@@ -57,6 +69,10 @@ The user should retain control over the durable knowledge layer, artifacts, and 
 ### Concepts should outlive implementation details
 
 This repository should describe what the ecosystem is trying to become, not just how one repo happens to implement it today.
+
+### Durable artifacts matter
+
+Not everything worth preserving should remain an internal memory object. Some knowledge should mature into human-readable artifacts, reusable skills, and other durable outputs.
 
 ## Non-Goals
 

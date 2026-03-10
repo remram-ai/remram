@@ -19,6 +19,13 @@ The orchestration layer determines how the run should proceed:
 - whether escalation is required
 - which agents or tools are relevant
 
+At this stage the system is acting less like a chatbot and more like a prompt compiler:
+
+- interpreting the request
+- choosing the right constraints
+- assembling a bounded context bundle
+- deciding whether to stay local or escalate
+
 ## 4. Cortex may provide knowledge
 
 If the run needs durable knowledge, Cortex provides a bounded retrieval bundle rather than a raw dump of history.

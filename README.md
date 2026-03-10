@@ -8,7 +8,7 @@ This repository explains what Remram is, why it exists, how the ecosystem fits t
 
 AI systems still struggle with continuity.
 
-They lose important context across sessions, repeat corrected mistakes, depend on oversized prompts, and confuse transcript history with durable knowledge. Remram exists to turn that fragile memory posture into a more disciplined system: retrieval is deliberate, mutation is governed, and long-lived knowledge is treated as a first-class architectural concern.
+They lose important context across sessions, repeat corrected mistakes, depend on oversized prompts, and confuse transcript history with durable knowledge. Remram exists to turn that fragile memory posture into a more disciplined system: local control remains authoritative, cognition is invoked deliberately, retrieval is bounded, mutation is governed, and long-lived knowledge is treated as a first-class architectural concern.
 
 ## High-Level Architecture
 
@@ -59,6 +59,9 @@ agent modules, and workflow building blocks.
 - [Project Charter](docs/overview/project-charter.md)
 - [System Architecture](docs/overview/system-architecture.md)
 - [Ecosystem Map](docs/overview/ecosystem-map.md)
+- [Strategic Direction](docs/overview/strategic-direction.md)
+- [Control Plane](docs/concepts/control-plane.md)
+- [Prompt Compilation](docs/concepts/prompt-compilation.md)
 - [Moltbox Community](moltbox/README.md)
 - [Projects](docs/ecosystem/projects.md)
 - [Repository Map](docs/ecosystem/repository-map.md)

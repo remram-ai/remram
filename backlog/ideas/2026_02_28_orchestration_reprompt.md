@@ -1,11 +1,11 @@
-# Prompt Assembler
+﻿# Prompt Assembler
 
 **Attributes**
 
-*   **Proposed Component Name (Marketing):** remram-reprompt
-*   **Layer:** Orchestration
-*   **Primary Surface / Agent:** before\_model\_resolve, before\_prompt\_build
-*   **Dependencies:** Intent Calibration, Provenance Lookup, Retrieval Layer
+- **Proposed Component Name (Marketing):** remram-reprompt
+- **Layer:** Orchestration
+- **Primary Surface / Agent:** before\_model\_resolve, before\_prompt\_build
+- **Dependencies:** Intent Calibration, Provenance Lookup, Retrieval Layer
 
 **Date:** 2026-02-28  
 **Status:** Shaping  
@@ -19,9 +19,9 @@ Even after Intent Calibration determines what the user likely means, escalation 
 
 Typical escalation behavior:
 
-*   Pass transcript
-*   Inject some retrieved context
-*   Let the higher model infer structure
+- Pass transcript
+- Inject some retrieved context
+- Let the higher model infer structure
 
 This wastes tokens and forces the model to reverse-engineer intent, constraints, and system context.
 
@@ -37,21 +37,21 @@ Prompt Assembler constructs a structured, escalation-ready prompt bundle before 
 
 It takes:
 
-*   Calibrated intent
-*   Relevant internal project context
-*   Retrieved memory artifacts
-*   Fresh external context (if needed)
-*   Known user response preferences
+- Calibrated intent
+- Relevant internal project context
+- Retrieved memory artifacts
+- Fresh external context (if needed)
+- Known user response preferences
 
 And assembles:
 
-*   Clear system framing
-*   Scoped project summary
-*   Identified affected component(s)
-*   Explicit task framing
-*   Defined output expectations
+- Clear system framing
+- Scoped project summary
+- Identified affected component(s)
+- Explicit task framing
+- Defined output expectations
 
-The user’s raw phrasing is transformed into a machine-optimized reasoning brief.
+The user's raw phrasing is transformed into a machine-optimized reasoning brief.
 
 ---
 
@@ -59,44 +59,44 @@ The user’s raw phrasing is transformed into a machine-optimized reasoning brie
 
 User says:
 
-> “I was watching a podcast about Obsidian and it says it’s like infinite memory for OpenClaw. Did someone already solve this for us?”
+> "I was watching a podcast about Obsidian and it says it's like infinite memory for OpenClaw. Did someone already solve this for us?"
 
-### Step 1 — Intent Calibration
+### Step 1 - Intent Calibration
 
 System infers:
 
-*   Domain: Remram
-*   Likely affected layer: memory / Cortex
-*   Confidence: moderate
-*   Requires quick confirmation
+- Domain: Remram
+- Likely affected layer: memory / Cortex
+- Confidence: moderate
+- Requires quick confirmation
 
 User confirms scope.
 
-### Step 2 — Prompt Assembler
+### Step 2 - Prompt Assembler
 
 The system:
 
 Searches local memory for:
 
-*   Remram memory architecture
-*   Cortex documentation
-*   Prior notes referencing Obsidian
+- Remram memory architecture
+- Cortex documentation
+- Prior notes referencing Obsidian
 
 Performs lightweight external retrieval:
 
-*   What Obsidian actually provides
-*   Core capabilities
-*   Architectural positioning
+- What Obsidian actually provides
+- Core capabilities
+- Architectural positioning
 
 Builds structured escalation bundle:
 
 Instead of sending a raw transcript plus context fragments, it assembles a clean reasoning frame:
 
-*   Defines Remram’s memory architecture in brief
-*   Defines Obsidian’s capabilities
-*   States the comparison objective
-*   Specifies evaluation criteria
-*   Constrains output format
+- Defines Remram's memory architecture in brief
+- Defines Obsidian's capabilities
+- States the comparison objective
+- Specifies evaluation criteria
+- Constrains output format
 
 The higher model receives a deliberate reasoning brief, not conversational noise.
 
@@ -119,22 +119,22 @@ Prompt Assembler curates and structures context. It does not perform deep reason
 
 ## Benefits
 
-*   Higher-quality escalations
-*   Reduced token waste
-*   Improved reasoning performance from advanced models
-*   More predictable output structures
-*   Lower hallucination risk
-*   Clear auditability of escalation bundles
+- Higher-quality escalations
+- Reduced token waste
+- Improved reasoning performance from advanced models
+- More predictable output structures
+- Lower hallucination risk
+- Clear auditability of escalation bundles
 
 ---
 
 ## Guardrails / Constraints
 
-*   Must not inject speculative or unvalidated memory
-*   Must respect session isolation boundaries
-*   Must obey token budget ceilings
-*   Must not override system prompt authority
-*   Must log assembled prompt bundles for audit and review
+- Must not inject speculative or unvalidated memory
+- Must respect session isolation boundaries
+- Must obey token budget ceilings
+- Must not override system prompt authority
+- Must log assembled prompt bundles for audit and review
 
 ---
 
@@ -157,10 +157,10 @@ They are sequential but independent.
 
 ## Links (Related Ideas)
 
-*   Intent Calibration (remram-intuition)
-*   Provenance Lookup
-*   Escalation Policy
-*   Reflection Layer
+- Intent Calibration (remram-intuition)
+- Provenance Lookup
+- Escalation Policy
+- Reflection Layer
 
 ---
 
@@ -168,9 +168,10 @@ They are sequential but independent.
 
 This idea may be promoted to formal architecture when:
 
-*   Hook integration points are finalized
-*   Retrieval dependencies are clearly defined
-*   Escalation policies are stable
-*   Token budget strategy is specified
+- Hook integration points are finalized
+- Retrieval dependencies are clearly defined
+- Escalation policies are stable
+- Token budget strategy is specified
 
 Until then, it remains an intake artifact.
+

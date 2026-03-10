@@ -37,7 +37,7 @@ The system should avoid drifting into a hybrid state where the local runtime hal
 Typical triggers include:
 
 - ambiguity that remains unresolved
-- task depth that exceeds the local control tier
+- task depth that exceeds the local orchestration tier
 - context pressure or bundle overflow
 - irreversible or high-impact action
 - repeated schema or tool failures

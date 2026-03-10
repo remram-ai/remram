@@ -37,5 +37,5 @@ Use products for more shaped proposals that describe a user-facing or system-fac
 
 1. Clarify the concept here.
 2. Identify the correct ecosystem repository.
-3. Move implementation detail into that repository.
+3. Move implementation details into that repository.
 4. Keep this repository aligned with the bigger picture.

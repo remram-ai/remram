@@ -1,4 +1,4 @@
-
+﻿
 > **Naming Convention (not part of the template content):**  
 > `YYYY-MM-DD__layer__short-slug.md`  
 > Example: `2026-02-28__orchestration__intent-calibration.md`  
@@ -25,7 +25,7 @@
 
 ## What It Does
 
-(Describe the behavior in plain language. Focus on capability, not implementation detail.)
+(Describe the behavior in plain language. Focus on capability, not implementation details.)
 
 ---
 

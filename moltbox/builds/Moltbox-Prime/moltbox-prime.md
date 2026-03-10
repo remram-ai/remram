@@ -101,7 +101,7 @@ The GPU was intentionally kept at the practical 16GB baseline to control cost wh
 ## Tradeoffs Captured By This Build
 
 - It was intentionally not a maximal local reasoning box.
-- It favored a strong local orchestration tier and governed appliance management over prestige hardware.
+- It favored a strong local orchestration tier and governed appliance management over status hardware.
 - It accepted moderate cloud escalation instead of trying to eliminate it with extreme GPU spend.
 - It treated appliance realism, noise, space, and cost as part of the architecture.
 
@@ -109,14 +109,14 @@ The GPU was intentionally kept at the practical 16GB baseline to control cost wh
 
 Prime sat in the middle on purpose.
 
-It was stronger than a light edge appliance, but it stopped short of the "buy a monster workstation and solve everything with hardware" instinct. The goal was to prove that a Moltbox could be local, tangible, and useful without becoming absurd.
+It was stronger than a light edge appliance, but it stopped short of the "buy an oversized workstation and solve everything with hardware" instinct. The goal was to prove that a Moltbox could be local, tangible, and useful without becoming unnecessary excess.
 
 ## What Should Survive From This Build
 
 - the idea of a Family-tier Moltbox as the default serious reference build
 - local-first authority with moderate cloud escalation
 - a split-storage posture that treats system/runtime and durable knowledge differently
-- cost-aware hardware choices instead of prestige hardware choices
+- cost-aware hardware choices instead of status-driven hardware choices
 
 ## What Is Still Missing
 

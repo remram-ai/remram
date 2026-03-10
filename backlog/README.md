@@ -8,11 +8,11 @@ The intended progression is:
 ideas -> products -> implementation in domain repositories
 ```
 
-## ideas
+## Ideas
 
 Early concepts, open questions, and rough system explorations.
 
-## products
+## Products
 
 More shaped proposals that describe a user-facing or system-facing capability clearly enough to guide future implementation work.
 

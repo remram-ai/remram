@@ -16,7 +16,7 @@ Start here:
 
 Start with `remram-gateway`.
 
-That repository is the implementation home for the runtime host, Moltbox appliance work, and gateway operations.
+That repository is the implementation home for the OpenClaw runtime, Moltbox control-plane tools, appliance deployment, and gateway operations.
 
 ## If You Want To Explore Long-Term Memory Internals
 

@@ -1,12 +1,12 @@
-# Artifact Ingestion (Cortex Import)
+﻿# Artifact Ingestion (Cortex Import)
 
 **Attributes**
 
-*   **Proposed Component Name (optional):** Cortex Import
-*   **Layer:** Cortex
-*   **Primary Surface / Agent:** Archivist Agent
-*   **Relevant Hook or Stage (if applicable):** Manual trigger via App or file tool event → `/ingest` endpoint
-*   **Dependencies (if any):** OpenSearch, Reflection pipeline, Dimension registry
+- **Proposed Component Name (optional):** Cortex Import
+- **Layer:** Cortex
+- **Primary Surface / Agent:** Archivist Agent
+- **Relevant Hook or Stage (if applicable):** Manual trigger via App or file tool event -> `/ingest` endpoint
+- **Dependencies (if any):** OpenSearch, Reflection pipeline, Dimension registry
 
 **Date:** 2026-03-01  
 **Status:** Shaping  
@@ -28,14 +28,14 @@ Cortex Import removes this friction by allowing the system to read first, extrac
 
 Cortex Import:
 
-*   Accepts an uploaded document (Markdown, PDF, text, or repository snapshot)
-*   Parses structure (headings, lists, sections)
-*   Extracts atomic knowledge candidates
-*   Detects entities, projects, constraints, and recurring themes
-*   Creates low-confidence knowledge objects in Cortex
-*   Registers candidate dimensions when appropriate
-*   Generates a structural summary for review
-*   Asks the user for clarification only after structural analysis
+- Accepts an uploaded document (Markdown, PDF, text, or repository snapshot)
+- Parses structure (headings, lists, sections)
+- Extracts atomic knowledge candidates
+- Detects entities, projects, constraints, and recurring themes
+- Creates low-confidence knowledge objects in Cortex
+- Registers candidate dimensions when appropriate
+- Generates a structural summary for review
+- Asks the user for clarification only after structural analysis
 
 The user does not need to pre-structure the input. The system performs first-pass distillation.
 
@@ -52,15 +52,15 @@ System performs:
 3.  Identification of project name and domain.
 4.  Creation of knowledge objects with source tag `external-artifact`.
 5.  Generation of a structured preview:
-    *   "Detected 4 constraints"
-    *   "Detected 3 decision statements"
-    *   "Detected new candidate dimension: procurement-model"
+    - "Detected 4 constraints"
+    - "Detected 3 decision statements"
+    - "Detected new candidate dimension: procurement-model"
 
 System then asks:
 
-*   Is this authoritative or exploratory?
-*   Should constraints override existing ones?
-*   Should this artifact be considered evergreen?
+- Is this authoritative or exploratory?
+- Should constraints override existing ones?
+- Should this artifact be considered evergreen?
 
 User framing modifies confidence, dimension tagging, and promotion eligibility.
 
@@ -81,11 +81,11 @@ Reflection and Dream cycles later reconcile imported knowledge with existing sys
 
 ## Benefits
 
-*   Eliminates cold-start friction for document-heavy users
-*   Converts static artifacts into structured knowledge
-*   Enables knowledge compounding across documents
-*   Avoids prompt-based manual summarization loops
-*   Maintains single knowledge authority in Cortex
+- Eliminates cold-start friction for document-heavy users
+- Converts static artifacts into structured knowledge
+- Enables knowledge compounding across documents
+- Avoids prompt-based manual summarization loops
+- Maintains single knowledge authority in Cortex
 
 ---
 
@@ -93,11 +93,11 @@ Reflection and Dream cycles later reconcile imported knowledge with existing sys
 
 This leverages existing infrastructure:
 
-*   `/ingest` endpoint for structured knowledge writes
-*   Knowledge object schema
-*   Dimension registry
-*   Reflection and Dream reconciliation
-*   OpenSearch indexing
+- `/ingest` endpoint for structured knowledge writes
+- Knowledge object schema
+- Dimension registry
+- Reflection and Dream reconciliation
+- OpenSearch indexing
 
 No modification to OpenClaw runtime is required. The process operates entirely within Cortex authority.
 
@@ -105,27 +105,27 @@ No modification to OpenClaw runtime is required. The process operates entirely w
 
 ## Guardrails / Constraints
 
-*   Imported knowledge starts with reduced confidence
-*   No transcript mutation
-*   No automatic artifact promotion without review
-*   Dimension candidates require Dream validation before canonical promotion
-*   Large artifacts must respect token and parsing limits
+- Imported knowledge starts with reduced confidence
+- No transcript mutation
+- No automatic artifact promotion without review
+- Dimension candidates require Dream validation before canonical promotion
+- Large artifacts must respect token and parsing limits
 
 ---
 
 ## Open Questions
 
-*   Should repository ingestion be recursive or shallow by default?
-*   Should imported artifacts maintain full-text searchable archive outside knowledge objects?
-*   How do we prevent duplication when similar artifacts are re-imported?
+- Should repository ingestion be recursive or shallow by default?
+- Should imported artifacts maintain full-text searchable archive outside knowledge objects?
+- How do we prevent duplication when similar artifacts are re-imported?
 
 ---
 
 ## Links (Related Ideas)
 
-*   Hydrate (historical session backfill)
-*   Reflection (REM-R)
-*   Dream Routine (REM-D)
+- Hydrate (historical session backfill)
+- Reflection (REM-R)
+- Dream Routine (REM-D)
 
 ---
 
@@ -133,9 +133,10 @@ No modification to OpenClaw runtime is required. The process operates entirely w
 
 This idea may be promoted when:
 
-*   Archivist Agent responsibilities are clearly scoped
-*   Confidence initialization policy is defined
-*   Artifact source tagging schema is finalized
-*   UI review workflow is specified
+- Archivist Agent responsibilities are clearly scoped
+- Confidence initialization policy is defined
+- Artifact source tagging schema is finalized
+- UI review workflow is specified
 
 Until then, it remains an intake artifact.
+

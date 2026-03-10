@@ -18,6 +18,7 @@ Within Gateway / Moltbox, two different concerns live side by side:
 - the Moltbox control plane, where the appliance is inspected, tested, deployed, promoted, and recovered
 
 That distinction matters. The runtime serves live work. The control plane manages Moltbox itself.
+These concerns are conceptually distinct even when the current implementation lives in the same repository.
 
 ### OpenClaw / Orchestration
 

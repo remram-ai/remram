@@ -12,7 +12,7 @@ Remram
 |
 |-- Remram Gateway
 |     OpenClaw runtime configuration, Moltbox appliance,
-|     deployment, operations
+|     control-plane tooling, deployment, operations
 |
 |-- Remram Cortex
 |     long-term knowledge, retrieval, reflection,

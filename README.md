@@ -2,7 +2,7 @@
 
 Remram is the vision and architecture hub for the Remram ecosystem.
 
-This repository explains what Remram is, why it exists, how the ecosystem fits together, and where contributors should go next. It is the public front door for the project, not the primary home for implementation detail.
+This repository explains what Remram is, why it exists, how the ecosystem fits together, and where contributors should go next. It is the public front door for the project, not the primary home for implementation details.
 
 ## What Problem Remram Solves
 

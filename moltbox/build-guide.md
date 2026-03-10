@@ -68,7 +68,7 @@ The GPU determines how capable your local routing layer can be before it has to 
 
 ### What matters less than people think
 
-- raw gaming prestige
+- gamer-prestige marketing
 - peak FPS-oriented marketing
 - buying the biggest possible card if the rest of the appliance is underbuilt
 
@@ -79,7 +79,7 @@ The GPU determines how capable your local routing layer can be before it has to 
 - `24-32GB VRAM`: stronger local headroom, lower escalation pressure, more comfortable with larger local models
 - `48GB+ / multi-GPU`: only when you are intentionally building a higher-end sovereign box
 
-For Moltbox, VRAM is usually more important than raw shader bragging rights. If a model only fits through aggressive compromise, the box is probably one tier too small for that workload.
+For Moltbox, VRAM is usually more important than shader throughput alone. If a model only fits through aggressive compromise, the box is probably one tier too small for that workload.
 
 ### Practical 16GB GPU Allocation
 
@@ -115,7 +115,7 @@ If you are forced into very aggressive quantization just to make the model fit, 
 
 ### Local Model Profiles For A 16GB Moltbox
 
-For most Moltbox builders, the real question is not "what is the best model in the abstract?" It is "what is the best local orchestration model for OpenClaw I can run on a `16GB` card without hating the latency or the drift?"
+For most Moltbox builders, the real question is not "what is the best model in the abstract?" It is "what is the best local orchestration model for OpenClaw I can run on a `16GB` card without unacceptable latency or drift?"
 
 These profiles assume the GPU is dedicated to one local orchestration model, not a pile of competing helpers.
 
@@ -287,7 +287,7 @@ The clean pattern is:
 - Put the OpenSearch drive in the fastest CPU-attached NVMe slot
 - Keep the OS/runtime drive separate if possible
 - Keep backups on a separate physical device
-- Do not treat the database drive as a casual overflow disk
+- Do not treat the database drive as an overflow disk
 
 This is not overengineering. It is basic appliance hygiene.
 
@@ -346,7 +346,7 @@ What actually matters:
 
 What usually matters less:
 
-- gamer branding
+- flashy branding
 - RGB features
 - decorative extras that do not improve reliability
 
@@ -363,7 +363,7 @@ Practical guidance:
 - prefer modern standards that match the GPU generation you are using
 - modular cables help in compact builds
 
-The goal is a quiet, stable system that does not become sketchy under sustained GPU load.
+The goal is a quiet, stable system that does not become unstable under sustained GPU load.
 
 ### Case And Cooling
 
@@ -377,7 +377,7 @@ Priorities:
 - radiator and GPU clearance
 - acceptable noise
 - room for the drives you actually plan to use
-- maintenance without hatred
+- maintenance without frustration
 
 Airflow beats aesthetics. A beautiful box that heat-soaks under continuous load is a bad Moltbox.
 
@@ -428,11 +428,11 @@ Judge the local orchestration model by the right metrics:
 - routing accuracy
 - escalation quality
 
-Those matter more than bragging about peak tokens per second.
+Those matter more than quoting peak tokens per second alone.
 
 ### Spend More Here
 
-- GPU VRAM, if you are constantly pinched by local model size
+- GPU VRAM, if local model size is consistently constraining the box
 - system RAM, if OpenSearch and containers are becoming the bottleneck
 - storage separation, if you care about retrieval stability and sane recovery
 - platform headroom, if you know the machine will grow into heavier multi-user use
@@ -458,7 +458,7 @@ That is not the final form of Moltbox. It is the point where the appliance start
 
 ### Common Mistakes
 
-- buying for gaming-tier prestige instead of VRAM and stability
+- buying for gaming-tier image instead of VRAM and stability
 - undersizing RAM because "the model is on the GPU anyway"
 - putting OS and database load on one drive when you do not have to
 - ignoring NVMe slot layout and lane sharing
@@ -471,7 +471,7 @@ Moltbox should be opinionated enough to be useful.
 
 The opinion is simple:
 
-- build for continuity, not hype
+- build for continuity, not headline specs
 - buy enough VRAM to route locally with confidence
 - buy enough RAM to keep the database and containers happy
 - separate storage roles

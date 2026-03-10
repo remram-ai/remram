@@ -1,69 +1,90 @@
-# Control Plane
+# Moltbox Control Plane
 
-The control plane is the local authority surface of the system.
+The Moltbox control plane is the governed management surface for the appliance itself.
 
-It is the part that must stay stable enough to own live execution while still being flexible enough to evolve.
+It is not the same thing as OpenClaw.
+
+OpenClaw shapes live work. The Moltbox control plane manages Moltbox.
 
 ## Why The Concept Matters
 
-A serious AI system needs more than "a model on a machine."
+A serious local AI appliance should not hand unrestricted machine access to its routing agent.
 
-It needs a governed local surface that can:
+If the system is allowed to change itself, install skills, edit services, or promote new features, that work needs to happen through bounded tools, staged environments, and approval gates instead of raw shell power.
 
-- receive requests
-- own sessions
-- invoke tools
-- gate escalation
-- expose operator controls
-- keep the appliance stable during iteration
+That is what the Moltbox control plane is for.
 
-That is what the control plane is for.
+## What The Moltbox Control Plane Owns
 
-## What The Control Plane Owns
+Conceptually, the Moltbox control plane owns:
 
-Conceptually, the control plane owns:
+- operator-facing CLI and management tools
+- inspection, diagnostics, and service status
+- controlled mutation surfaces for Moltbox itself
+- deploy, test, stage, promote, rollback, and recovery flows
+- virtual CI/CD-style workflows for appliance changes
+- human approval boundaries for live promotion
 
-- runtime authority
-- request intake
-- session and identity boundaries
-- tool invocation and validation
-- escalation gating
-- operator-facing mutation surfaces
+In practice, this is the layer that lets the system grow carefully instead of editing its own kernel, runtime, or host state directly.
 
-In the Moltbox world, this is why runtime environments, host services, and tooling need to remain distinct even when they live on the same appliance.
+## What The Moltbox Control Plane Does Not Own
 
-## What The Control Plane Does Not Own
+The Moltbox control plane does not own:
 
-The control plane does not own:
-
-- deep reasoning as a default behavior
+- end-user task handling
+- prompt compilation for live requests
+- ordinary user-facing tools
 - durable knowledge authority
-- the full user-facing product experience
-- the truth of long-term memory
+- deep reasoning as a default behavior
 
 Those concerns belong to other layers.
 
-## Control Plane vs Cognition Plane
+## Relationship To OpenClaw
 
-The control plane should remain local, inspectable, and boring in the best way.
+OpenClaw and control are related, but they are not the same.
 
-The cognition plane can be stronger, slower, and more replaceable.
+OpenClaw:
 
-That means:
+- interprets live requests
+- assembles context
+- chooses tools and model paths
+- decides when escalation is needed
 
-- the control plane owns execution
-- the cognition plane performs deeper reasoning when required
-- the control plane decides when escalation happens
-- the cognition plane does not become the runtime
+The Moltbox control plane:
+
+- manages Moltbox itself
+- exposes guarded management tools
+- tests and stages changes
+- prepares promotions for human review
+
+The important safety rule is simple:
+
+OpenClaw should never be treated like it has direct kernel or full-system authority just because it can ask the control plane to do work.
+
+## The Managed Mutation Loop
+
+One of the reasons this concept matters is that it allows the system to improve itself in a governed way.
+
+A healthy Moltbox control-plane loop can look like this:
+
+1. The system proposes a new skill, service change, or feature.
+2. It uses Moltbox tools to build, deploy, and test the change in a controlled environment.
+3. It moves the change into a UAT or staging surface instead of pushing directly to the live appliance.
+4. It stages a pull request or other review artifact.
+5. It notifies the human operator that the change is ready for review.
+6. The human approves promotion before the change reaches the live Moltbox.
+
+That is very different from giving OpenClaw unrestricted system access.
 
 ## Why This Helps Rapid Iteration
 
 The system needs to improve without destabilizing itself.
 
-A good control plane makes that possible by keeping authority surfaces explicit:
+A good Moltbox control plane makes that possible by keeping authority surfaces explicit:
 
-- runtime operation stays governed
-- shared services stay inspectable
-- tooling evolves without becoming the runtime itself
+- Moltbox tools stay bounded
+- appliance mutation stays inspectable
+- tests and staging happen before live promotion
+- human approval remains part of the final promotion path
 
-That is how you get both stability and iteration instead of constantly trading one for the other.
+That is how you get rapid iteration without turning the appliance into a self-modifying black box.

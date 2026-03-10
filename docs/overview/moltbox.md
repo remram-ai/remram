@@ -13,9 +13,11 @@ It is the place where the system becomes locally real:
 - the runtime lives there
 - sessions are owned there
 - infrastructure is operated there
-- local-first control becomes concrete there
+- local-first appliance authority becomes concrete there
 
-It is also where the control-plane idea becomes tangible. Moltbox is the place where runtime authority, host services, and operator tooling have to stay stable enough for daily use while still leaving room for rapid iteration.
+It is also where the control-plane idea becomes tangible. In this context, the control plane is not OpenClaw. It is the Moltbox management surface: the CLI tools and services that inspect, test, stage, deploy, and promote changes to Moltbox itself.
+
+That distinction matters because the system may be allowed to improve itself, but it should do so through governed Moltbox tools instead of unrestricted machine access.
 
 ## What Belongs Here vs Elsewhere
 
@@ -24,7 +26,8 @@ This repository keeps the conceptual explanation of Moltbox:
 - why the appliance boundary matters
 - how Moltbox fits into the ecosystem
 - why local-first authority is part of the design
-- why a local control plane matters more than just "having a model on a box"
+- why the Moltbox control plane is different from OpenClaw
+- why a managed appliance surface matters more than just "having a model on a box"
 
 Detailed implementation guidance for Moltbox belongs in `remram-gateway`.
 
@@ -36,11 +39,11 @@ That repository owns the implementation details for:
 
 - deployment
 - runtime configuration
-- operator tooling
+- Moltbox CLI and operator tooling
 - appliance setup
 - runtime infrastructure
 
 See also:
 
-- [Control Plane](../concepts/control-plane.md)
+- [Moltbox Control Plane](../concepts/control-plane.md)
 - [Prompt Compilation](../concepts/prompt-compilation.md)

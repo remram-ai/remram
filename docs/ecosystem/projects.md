@@ -16,6 +16,7 @@ It is the home for:
 
 - OpenClaw runtime configuration
 - Moltbox deployment and operations
+- Moltbox CLI and operator tooling
 - appliance control-plane implementation
 - gateway-side infrastructure
 - implementation-facing runtime documentation

@@ -10,9 +10,9 @@ The request typically originates from a person using an app, client, or connecte
 
 The runtime layer, centered on Gateway / Moltbox, receives the request and owns the live execution boundary.
 
-## 3. Orchestration shapes the run
+## 3. OpenClaw shapes the run
 
-The orchestration layer determines how the run should proceed:
+OpenClaw determines how the run should proceed:
 
 - what context is needed
 - what model path is appropriate

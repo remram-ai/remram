@@ -63,7 +63,7 @@ The backlog also points toward structured content-production workflows:
 - style learning
 - human review before publication
 
-These ideas matter because they show where the architecture wants to go once durable memory, orchestration, and artifact handling are mature.
+These ideas matter because they show where the architecture wants to go once durable memory, OpenClaw, and artifact handling are mature.
 
 ## Why This Matters
 

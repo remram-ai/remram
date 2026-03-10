@@ -10,15 +10,24 @@ The active shape is intentionally split so each layer can own a different kind o
 
 This layer runs the runtime and infrastructure.
 
-It is the local authority boundary for live execution. It owns sessions, routing, runtime operations, and the appliance posture around the system.
+It is where the local appliance becomes operational reality.
 
-This is also where the control-plane idea becomes concrete: the system needs a governed local surface for running the runtime, operating shared services, and iterating on tooling without blurring authority.
+Within Gateway / Moltbox, two different concerns live side by side:
 
-### Orchestration
+- the runtime surface, where live requests enter and execute
+- the Moltbox control plane, where the appliance is inspected, tested, deployed, promoted, and recovered
 
-This layer shapes how runs are executed.
+That distinction matters. The runtime serves live work. The control plane manages Moltbox itself.
+
+### OpenClaw
+
+This layer shapes how live runs are executed.
 
 It decides how context is assembled, when escalation is appropriate, how policies are enforced, and how the system uses its available models and tools.
+
+In the current ecosystem, this is where OpenClaw lives.
+
+It is not the same thing as the Moltbox control plane.
 
 It also acts as a prompt compiler:
 
@@ -52,17 +61,32 @@ This is the reusable agent and skill layer.
 
 It provides composable building blocks that can be used across the ecosystem instead of burying behavior inside a single runtime or app.
 
-## Control Plane vs Cognition Plane
+## Moltbox Control Plane vs OpenClaw
 
-One of the newer ways to understand the system is as a split between local control and on-demand cognition.
+The Moltbox control plane:
 
-The control plane:
+- manages Moltbox itself
+- exposes operator CLI and bounded management tools
+- governs deploy, test, staging, promotion, rollback, and recovery
+- keeps appliance mutation behind explicit approvals and review surfaces
 
-- owns execution
-- owns routing
-- owns tool invocation
-- gates escalation
-- remains local and inspectable
+OpenClaw:
+
+- handles live user and app requests
+- assembles context and output contracts
+- chooses tools and model paths
+- decides when escalation is appropriate
+- should not be treated as a raw machine-admin layer
+
+This distinction exists to keep the system both useful and safe. OpenClaw may be able to ask the control plane to do work, but it should not simply become the control plane.
+
+## OpenClaw vs Cognition
+
+OpenClaw:
+
+- owns live run shaping
+- remains bounded and policy-driven
+- prepares curated bundles for deeper work when needed
 
 The cognition plane:
 
@@ -76,8 +100,9 @@ This matters because the system should not collapse into a single opaque model l
 
 The architecture only works if a few boundaries stay clear:
 
-- the runtime owns execution
-- orchestration owns run-shaping policy
+- the Gateway runtime owns live execution
+- the Moltbox control plane owns appliance mutation and operator tooling
+- OpenClaw owns live run-shaping policy
 - Cortex owns long-term knowledge
 - the app owns presentation and interaction
 - agents provide reusable capability, not global authority

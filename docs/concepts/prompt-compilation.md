@@ -13,7 +13,7 @@ They do not naturally provide:
 - the right context bundle
 - the right output contract
 
-If a system expects users to provide all of that themselves, it pushes orchestration work back onto the human.
+If a system expects users to provide all of that themselves, it pushes OpenClaw's job back onto the human.
 
 ## What Prompt Compilation Does
 
@@ -27,6 +27,14 @@ Conceptually, prompt compilation includes:
 - preparing escalation payloads when needed
 
 The system is not just passing text through. It is compiling intent into a governed run.
+
+## Not The Same As The Moltbox Control Plane
+
+Prompt compilation belongs to OpenClaw in the community-facing architecture.
+
+It is about shaping live requests for work.
+
+The Moltbox control plane is different. It is about managing the appliance itself through bounded CLI tools, staged mutation flows, and human approval surfaces.
 
 ## Relationship To Escalation
 
@@ -56,7 +64,7 @@ Prompt compilation is a conceptual architecture idea, not just a prompting trick
 
 It explains how Remram thinks about:
 
-- orchestration
+- OpenClaw
 - bounded context
 - token efficiency
 - model replaceability

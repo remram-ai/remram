@@ -37,10 +37,13 @@ Fewer can accumulate understanding without drifting.
 
 Remram is designed around the idea that durable behavior comes from a layered system:
 
-- a control plane that owns execution and live authority
-- an orchestration layer that interprets intent and shapes runs
+- a Moltbox runtime that owns live execution
+- a Moltbox control plane that governs appliance mutation and operator tooling
+- an OpenClaw layer that interprets intent and shapes runs
 - a knowledge layer that decides what should endure
 - a user-facing layer that exposes the system without replacing its authority structure
+
+The control plane and OpenClaw are related, but they are not the same. One manages the appliance itself. The other manages live work.
 
 ## Local Control, On-Demand Cognition, Structured Memory
 
@@ -50,9 +53,11 @@ Local control. On-demand cognition. Structured memory.
 
 That means:
 
-- the local system should own runtime authority
+- the local system should own runtime and appliance authority
 - stronger cognition should be invoked deliberately, not eagerly
 - memory should be external, governed, and inspectable
+
+That local control does not mean OpenClaw should have unrestricted system access. Governed appliance changes should flow through the Moltbox control plane.
 
 ## More Than Retrieval
 

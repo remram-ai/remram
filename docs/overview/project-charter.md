@@ -38,7 +38,7 @@ The ecosystem as a whole focuses on:
 
 ## Principles
 
-### Memory is an orchestration problem
+### Memory is a systems problem
 
 Context windows are temporary. Durable continuity must be engineered.
 
@@ -50,13 +50,17 @@ The system should distinguish clearly between the path that serves a live run an
 
 Execution belongs to the runtime layer. Long-term knowledge belongs to the memory layer.
 
-### Control and cognition should stay separate
+### OpenClaw and Moltbox control should stay separate
 
-The local control plane should remain stable, inspectable, and authoritative. Stronger cognition should be invoked as a bounded expert tier, not allowed to become the runtime.
+OpenClaw shapes live runs for people and clients. The Moltbox control plane manages the appliance itself through CLI tools, tests, staged deployment, and approval gates. Those two layers should cooperate without collapsing into each other.
+
+### OpenClaw and cognition should stay separate
+
+OpenClaw should remain bounded and policy-driven. Stronger cognition should be invoked as a bounded expert tier, not allowed to become the runtime.
 
 ### Prompt compilation should be systemic
 
-Users should not have to act like prompt engineers. The orchestration layer should interpret intent, shape context, and enforce output contracts on behalf of the system.
+Users should not have to act like prompt engineers. OpenClaw should interpret intent, shape context, and enforce output contracts on behalf of the system.
 
 ### Memory policy should govern similarity
 

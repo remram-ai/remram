@@ -101,7 +101,7 @@ The GPU was intentionally kept at the practical 16GB baseline to control cost wh
 ## Tradeoffs Captured By This Build
 
 - It was intentionally not a maximal local reasoning box.
-- It favored a strong local control plane over prestige hardware.
+- It favored a strong local OpenClaw tier and governed appliance management over prestige hardware.
 - It accepted moderate cloud escalation instead of trying to eliminate it with extreme GPU spend.
 - It treated appliance realism, noise, space, and cost as part of the architecture.
 

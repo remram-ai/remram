@@ -59,6 +59,7 @@ agent modules, and workflow building blocks.
 - [Project Charter](docs/overview/project-charter.md)
 - [System Architecture](docs/overview/system-architecture.md)
 - [Ecosystem Map](docs/overview/ecosystem-map.md)
+- [Moltbox Community](moltbox/README.md)
 - [Projects](docs/ecosystem/projects.md)
 - [Repository Map](docs/ecosystem/repository-map.md)
 

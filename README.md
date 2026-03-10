@@ -24,7 +24,7 @@ People and clients
 Remram Gateway / Moltbox
         |
         v
-      OpenClaw
+OpenClaw / Orchestration
         |
         v
    Remram Cortex
@@ -37,7 +37,7 @@ Remram Agents sit alongside the system as reusable skills,
 agent modules, and workflow building blocks.
 ```
 
-Within Gateway / Moltbox, OpenClaw and operator control are separate concerns. OpenClaw shapes live runs. The Moltbox control plane manages the appliance itself through CLI tools, tests, staged promotion, and human approval.
+Within Gateway / Moltbox, orchestration via OpenClaw and operator control are separate concerns. OpenClaw shapes live runs. The Moltbox control plane manages the appliance itself through CLI tools, tests, staged promotion, and human approval.
 
 ## Ecosystem Components
 

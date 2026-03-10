@@ -19,13 +19,13 @@ Within Gateway / Moltbox, two different concerns live side by side:
 
 That distinction matters. The runtime serves live work. The control plane manages Moltbox itself.
 
-### OpenClaw
+### OpenClaw / Orchestration
 
-This layer shapes how live runs are executed.
+This is the live orchestration layer.
 
 It decides how context is assembled, when escalation is appropriate, how policies are enforced, and how the system uses its available models and tools.
 
-In the current ecosystem, this is where OpenClaw lives.
+In the current ecosystem, OpenClaw is the clearest name for it.
 
 It is not the same thing as the Moltbox control plane.
 
@@ -80,9 +80,9 @@ OpenClaw:
 
 This distinction exists to keep the system both useful and safe. OpenClaw may be able to ask the control plane to do work, but it should not simply become the control plane.
 
-## OpenClaw vs Cognition
+## Orchestration via OpenClaw vs Cognition
 
-OpenClaw:
+The orchestration layer, currently expressed through OpenClaw:
 
 - owns live run shaping
 - remains bounded and policy-driven
@@ -102,7 +102,7 @@ The architecture only works if a few boundaries stay clear:
 
 - the Gateway runtime owns live execution
 - the Moltbox control plane owns appliance mutation and operator tooling
-- OpenClaw owns live run-shaping policy
+- the orchestration layer, currently embodied in OpenClaw, owns live run-shaping policy
 - Cortex owns long-term knowledge
 - the app owns presentation and interaction
 - agents provide reusable capability, not global authority

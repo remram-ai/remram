@@ -2,9 +2,9 @@
 
 The Moltbox control plane is the governed management surface for the appliance itself.
 
-It is not the same thing as OpenClaw.
+It is not the same thing as the live orchestration layer.
 
-OpenClaw shapes live work. The Moltbox control plane manages Moltbox.
+In the current ecosystem, that orchestration is primarily implemented through OpenClaw. The Moltbox control plane manages Moltbox.
 
 ## Why The Concept Matters
 
@@ -39,11 +39,13 @@ The Moltbox control plane does not own:
 
 Those concerns belong to other layers.
 
-## Relationship To OpenClaw
+## Relationship To Orchestration
 
-OpenClaw and control are related, but they are not the same.
+The orchestration layer and the control plane are related, but they are not the same.
 
-OpenClaw:
+In the current ecosystem, OpenClaw is the clearest public expression of that live orchestration layer.
+
+Orchestration via OpenClaw:
 
 - interprets live requests
 - assembles context

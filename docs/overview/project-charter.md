@@ -38,7 +38,7 @@ The ecosystem as a whole focuses on:
 
 ## Principles
 
-### Memory is a systems problem
+### Memory is an orchestration problem
 
 Context windows are temporary. Durable continuity must be engineered.
 
@@ -60,7 +60,7 @@ OpenClaw should remain bounded and policy-driven. Stronger cognition should be i
 
 ### Prompt compilation should be systemic
 
-Users should not have to act like prompt engineers. OpenClaw should interpret intent, shape context, and enforce output contracts on behalf of the system.
+Users should not have to act like prompt engineers. The orchestration layer, currently expressed through OpenClaw, should interpret intent, shape context, and enforce output contracts on behalf of the system.
 
 ### Memory policy should govern similarity
 

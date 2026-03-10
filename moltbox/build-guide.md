@@ -47,7 +47,7 @@ Build for routing, storage, and continuity first.
 
 Do not overspend on deep local reasoning if:
 
-- your local model is mainly backing OpenClaw
+- your local model is mainly doing orchestration through OpenClaw
 - cloud escalation is still acceptable
 - your bigger pain point is memory, indexing, or multi-service stability
 
@@ -87,11 +87,11 @@ On a `16GB` Moltbox GPU, the healthy posture is to preserve reliability instead 
 
 A good mental allocation looks like:
 
-- `8-10GB`: local OpenClaw model plus KV headroom
+- `8-10GB`: local orchestration model plus KV headroom
 - `1-2GB`: optional embeddings workload if you insist on keeping it GPU-resident
 - `2-4GB`: safety margin for runtime overhead, prompt growth, and short spikes
 
-If the box is primarily an OpenClaw appliance, the local router should win every resource argument. Optional image jobs, embeddings, or side experiments should not be allowed to make the OpenClaw tier feel sluggish.
+If the box is primarily an OpenClaw appliance, the local router should win every resource argument. Optional image jobs, embeddings, or side experiments should not be allowed to make the orchestration tier feel sluggish.
 
 ### Quantization And Local Model Fit
 
@@ -115,9 +115,9 @@ If you are forced into very aggressive quantization just to make the model fit, 
 
 ### Local Model Profiles For A 16GB Moltbox
 
-For most Moltbox builders, the real question is not "what is the best model in the abstract?" It is "what is the best local OpenClaw model I can run on a `16GB` card without hating the latency or the drift?"
+For most Moltbox builders, the real question is not "what is the best model in the abstract?" It is "what is the best local orchestration model for OpenClaw I can run on a `16GB` card without hating the latency or the drift?"
 
-These profiles assume the GPU is dedicated to one local OpenClaw model, not a pile of competing helpers.
+These profiles assume the GPU is dedicated to one local orchestration model, not a pile of competing helpers.
 
 | Model | Class | Quantization | Usable context on 16GB | First token | Typical throughput | Personality |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -138,8 +138,8 @@ These numbers are design envelopes, not lab guarantees. Prompt size, KV pressure
 ### The Three Defensible Personalities
 
 - `4B Q8`: use this if responsiveness is the priority and the box mainly needs to parse intent, emit clean JSON, and route quickly
-- `8B Q8`: use this if you want the best overall balance of speed, schema discipline, and OpenClaw quality on a `16GB` card
-- `14B Q5`: use this if the `8B` model feels too shallow and you want the smartest dense local OpenClaw model that still fits responsibly
+- `8B Q8`: use this if you want the best overall balance of speed, schema discipline, and orchestration quality on a `16GB` card
+- `14B Q5`: use this if the `8B` model feels too shallow and you want the smartest dense local orchestration model that still fits responsibly
 
 The practical decision rule is simple:
 
@@ -148,7 +148,7 @@ The practical decision rule is simple:
 
 That is a better mental model than endlessly debating tiny family differences between nearby sizes.
 
-If the model family offers an explicit "thinking" mode, the local OpenClaw default should usually keep it disabled. Moltbox works best when the local model behaves like a router and prompt compiler, not a deep-thinking agent.
+If the model family offers an explicit "thinking" mode, the default local model for OpenClaw should usually keep it disabled. Moltbox works best when the local model behaves like a router and prompt compiler, not a deep-thinking agent.
 
 ### Why This Guide Uses A Qwen Ladder
 
@@ -160,7 +160,7 @@ If you have more GPU headroom, more budget, or more tolerance for experimentatio
 
 ### One Local Model Is Usually Better Than Several
 
-For a normal Moltbox, one local OpenClaw model is usually the right move.
+For a normal Moltbox, one local orchestration model is usually the right move.
 
 Running multiple local models on the same card sounds flexible, but it often creates:
 
@@ -171,7 +171,7 @@ Running multiple local models on the same card sounds flexible, but it often cre
 
 The clean pattern is:
 
-- one local OpenClaw model
+- one local orchestration model backing OpenClaw
 - deliberate escalation upward when the job is bigger than the box
 
 ### CPU
@@ -183,7 +183,7 @@ In a Moltbox, the CPU carries:
 - container concurrency
 - OpenSearch responsiveness
 - indexing and embeddings work
-- OpenClaw services
+- orchestration services
 - background jobs and future extensions
 
 ### Practical guidance
@@ -214,7 +214,7 @@ A Moltbox does not need huge RAM only because of the model. It needs RAM because
 - filesystem cache
 - embeddings and indexing work
 - multiple containers
-- OpenClaw services
+- orchestration services
 - background jobs
 - future memory growth
 
@@ -411,17 +411,17 @@ As a rule:
 - use a medium local model if you want the best balance
 - move higher only when you can afford the VRAM, latency, and context tradeoff
 
-Do not confuse "can technically run" with "should be the OpenClaw default."
+Do not confuse "can technically run" with "should be the default local orchestration choice."
 
 ### A Note On Terminology
 
-In this guide, the local model discussion is about OpenClaw.
+In this guide, the local model discussion is about the orchestration layer.
 
 That is different from the Moltbox control plane.
 
-The local OpenClaw model handles live runs, routing, and bounded prompt compilation. The Moltbox control plane is the separate Gateway / CLI / tooling surface that manages Moltbox itself.
+The local model handles live runs, routing, and bounded prompt compilation through OpenClaw. The Moltbox control plane is the separate Gateway / CLI / tooling surface that manages Moltbox itself.
 
-Judge the OpenClaw model by the right metrics:
+Judge the local orchestration model by the right metrics:
 
 - tool-schema retry rate
 - JSON validity

@@ -47,6 +47,10 @@ Within Gateway / Moltbox, orchestration via OpenClaw and operator control are se
 - **Remram App**: user-facing APIs and applications
 - **Remram Agents**: reusable skills, agent modules, and agent-facing building blocks
 
+## AI Context
+
+AI agents and automated contributors should consult the `AI-context` directory for a fast orientation to the Remram ecosystem and its architectural boundaries.
+
 ## Repository Links
 
 - [Remram](https://github.com/remram-ai/remram)

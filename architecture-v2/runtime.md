@@ -8,6 +8,8 @@ moltbox-runtime/<service>/
 
 The gateway must read runtime inputs through repository adapters.
 
+The current platform target is a Linux host appliance. Runtime containers share the host kernel and should be treated as Linux workloads running on that host, not as alternate host platforms.
+
 ## Runtime Operations
 
 Examples:
@@ -49,3 +51,10 @@ Runtime operations do not own:
 - service topology definition
 - product feature naming
 - generic service deployment policy
+
+Canonical appliance storage for runtime material:
+
+- runtime artifacts and synced component state under `/srv/moltbox-state/runtime/`
+- logs under `/srv/moltbox-logs/`
+
+User-home runtime paths should be treated as legacy current-state behavior until the appliance has been normalized onto the machine-scoped storage roots.

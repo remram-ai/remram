@@ -8,6 +8,8 @@ moltbox-services/services/<service>/
 
 The gateway must read these definitions through repository adapters.
 
+Host-side bootstrap and deployment should remain Git-backed. The authoritative service repo is pulled or seeded onto the appliance host first, then rendered and deployed from the checked-out host repository. Ad hoc file copying is not part of the deployment model.
+
 ## Service Identity
 
 Environments are encoded as distinct service names.
@@ -42,6 +44,8 @@ Canonical flow:
 6. remount persistent state
 7. run health checks
 8. rollback on failure
+
+Before deployment, the gateway must ensure the remote host has already been validated as Linux and that the durable appliance roots are available under the machine-scoped storage layout.
 
 ## Promotion Rules
 

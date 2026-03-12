@@ -22,11 +22,29 @@ Steady-state topology:
 Host OS
   -> Docker Engine
     -> gateway container
-    -> openclaw container
+    -> openclaw runtime containers
     -> opensearch container
     -> caddy container
     -> optional service containers
 ```
+
+## Container Naming Convention
+
+Steady-state container names should not use the `moltbox-` prefix.
+
+The appliance itself is already the namespace, so container identities should be simple and stable.
+
+Canonical examples:
+
+- `gateway`
+- `opensearch`
+- `ollama`
+- `openclaw-dev`
+- `openclaw-test`
+- `openclaw-prod`
+- `caddy`
+
+Legacy `moltbox-*` container names should be treated as transitional drift rather than target naming.
 
 ## Responsibilities
 
@@ -36,8 +54,10 @@ The gateway container owns:
 - orchestration logic
 - service deployment coordination
 - runtime configuration synchronization
+- skill and plugin deployment orchestration through native OpenClaw installation flows
 - Docker interaction
 - runtime monitoring
+- authoritative deployment-state writes for every deployment path
 
 The gateway does not own:
 
@@ -47,6 +67,26 @@ The gateway does not own:
 - skill implementation source
 
 Those concerns live in `remram`, `moltbox-services`, `moltbox-runtime`, and `remram-skills`.
+
+## Deployment Metadata Authority
+
+The gateway deployment pipeline is the authoritative writer of deployment state.
+
+That includes:
+
+- generic service deployment
+- gateway self-update
+- runtime-oriented deployment paths
+
+Canonical deployment metadata includes service-state records such as:
+
+- `last-success.json`
+- rollback and snapshot state
+- active render references
+
+All deployment paths must update those records consistently.
+
+If deployment metadata disagrees with the rendered artifact or running container state, that is an implementation defect in the deployment pipeline, not a change in architecture.
 
 ## Storage Layout
 
@@ -62,6 +102,7 @@ Subsystem layout beneath those roots:
 - `/srv/moltbox-state/gateway/`
 - `/srv/moltbox-state/deploy/`
 - `/srv/moltbox-state/runtime/`
+- `/srv/moltbox-state/runtime-baselines/`
 - `/srv/moltbox-state/services/`
 - `/srv/moltbox-state/upstream/`
 - `/srv/moltbox-state/repos/`
@@ -85,6 +126,8 @@ moltbox gateway status
 moltbox gateway update
 moltbox gateway repo refresh runtime
 
+moltbox runtime checkpoint openclaw-test
+
 moltbox service deploy openclaw-dev
 moltbox service restart caddy
 
@@ -98,6 +141,7 @@ Rules:
 
 - namespaces correspond to managed components or orchestration pipelines
 - the CLI must not mirror repository layers such as features
+- `runtime` may be used as an orchestration namespace for cross-runtime operations such as checkpoint management; it does not restore the old `moltbox runtime <env> ...` command family
 - `openclaw` is an alias for `openclaw-prod`
 
 ## Gateway-Specific Operations
@@ -131,3 +175,20 @@ Gateway bootstrap must remain Git-backed:
 4. render and deploy from those host-side Git checkouts
 
 If host-side Git credentials or storage prerequisites are missing, bootstrap should fail explicitly rather than falling back to local file copying.
+
+## Appliance Host Model
+
+The Moltbox appliance host should run minimal host-side services only.
+
+Host OS responsibilities are limited to:
+
+- container runtime
+- system services such as `systemd` and `ssh`
+- filesystem mounts and durable storage
+- the Moltbox operator CLI entrypoint
+
+Long-running application logic should run inside containers, not directly on the host OS.
+
+Normal operator interaction should happen through the Moltbox CLI rather than ad hoc Docker commands.
+
+The host CLI entrypoint may be implemented as a thin wrapper that invokes the gateway control plane inside the running `gateway` container.

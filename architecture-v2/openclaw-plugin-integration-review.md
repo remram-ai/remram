@@ -7,7 +7,7 @@ It does not change the current `architecture-v2` baseline.
 Current baseline remains:
 
 - skills live in `remram-skills`
-- runtime configuration lives in `moltbox-runtime`
+- baseline runtime configuration lives in `moltbox-runtime`
 - gateway remains the orchestration/control plane
 
 The question here is whether recent OpenClaw plugin and extension changes reduce the amount of custom deployment and integration logic we need around that baseline.
@@ -119,9 +119,9 @@ This is already visible in the current `semantic-router` package, which is imple
 
 ### `moltbox-runtime`
 
-The runtime repo should still own declarative runtime behavior, including:
+The runtime repo should still own declarative baseline runtime behavior, including:
 
-- which plugins are enabled
+- baseline plugin enablement
 - plugin config under runtime templates
 - plugin slot selection such as `plugins.slots.contextEngine`
 - environment-specific plugin wiring
@@ -134,7 +134,9 @@ Instead, it gives runtime configuration a stronger native target:
 - declare plugin settings in runtime config
 - declare slot selection in runtime config
 
-That is cleaner than encoding too much plugin behavior in gateway-side imperative logic.
+That is cleaner than encoding too much baseline plugin behavior in gateway-side imperative logic.
+
+Under the updated V2 model, live runtime state may still diverge from the baseline after native OpenClaw installation flows, checkpoints, or other runtime mutations.
 
 ### Gateway orchestration
 
@@ -162,15 +164,15 @@ Instead of custom per-capability wiring, gateway can focus on:
 
 ### 1. Reduce custom skill-deploy behavior
 
-Today, skill deployment is easy to drift into a special-case path because skill code, runtime config, and runtime mutation all meet at once.
+Today, skill deployment is easy to drift into a special-case path because skill code, baseline runtime config, and live runtime mutation all meet at once.
 
 OpenClaw's plugin lifecycle suggests a cleaner split:
 
 - `remram-skills` provides the plugin package
-- `moltbox-runtime` provides plugin activation and config
+- `moltbox-runtime` provides baseline plugin activation and config
 - gateway installs or updates the package, validates config, and reloads runtime
 
-That would reduce pressure to embed plugin-specific behavior inside gateway code.
+That would reduce pressure to embed plugin-specific baseline wiring inside gateway code while still allowing native OpenClaw mutation during install.
 
 ### 2. Replace ad hoc executable-extension patterns with native plugins
 
@@ -288,8 +290,8 @@ We need to choose whether the canonical gateway behavior should:
 The clean target would be:
 
 - package source in `remram-skills`
-- activation/config in `moltbox-runtime`
-- no hand-edited runtime mutation
+- baseline activation/config in `moltbox-runtime`
+- operational mutation captured through appliance runtime state, backups, and checkpoints
 
 We should verify how much install state OpenClaw keeps outside plain config and whether gateway needs to manage that state explicitly.
 

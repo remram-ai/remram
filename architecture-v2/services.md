@@ -24,6 +24,21 @@ Alias rule:
 
 - `openclaw` resolves to `openclaw-prod`
 
+## Container Naming Convention
+
+Steady-state container names should be simple, stable component names without the `moltbox-` prefix.
+
+Examples:
+
+- `gateway`
+- `opensearch`
+- `ollama`
+- `openclaw-dev`
+- `openclaw-test`
+- `openclaw-prod`
+
+Legacy `moltbox-*` container names should be treated as transitional drift rather than target service/container identity.
+
 ## Deployment Pipeline
 
 Command:

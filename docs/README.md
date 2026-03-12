@@ -1,6 +1,6 @@
 # Documentation
 
-Repository documentation is organized under `docs/`.
+Repository documentation is organized under `docs/`, with finalized target architecture captured separately under `architecture-v2/`.
 
 Primary sections:
 
@@ -9,6 +9,8 @@ Primary sections:
 - `system/` for system behavior and flow documents
 - `ecosystem/` for repository and project maps
 - `getting-started/` for onboarding and contribution guidance
+- `../architecture-v2/` for approved target architecture during the Moltbox refactor
+- `../features/` for product feature definitions
 
 ## Platform Standards
 

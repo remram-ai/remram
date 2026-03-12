@@ -4,6 +4,8 @@ Remram is the vision and architecture hub for the Remram ecosystem.
 
 This repository explains what Remram is, why it exists, how the ecosystem fits together, and where contributors should go next. It is the public front door for the project, not the primary home for implementation details.
 
+During the current Moltbox refactor, finalized target architecture is being captured under `architecture-v2/` so the implementation can move without rewriting the current architecture docs prematurely.
+
 ## What Problem Remram Solves
 
 AI systems still struggle with continuity.
@@ -67,6 +69,8 @@ Within Gateway / Moltbox, orchestration via OpenClaw and operator control are se
 - [Moltbox Community](moltbox/README.md)
 - [Projects](docs/ecosystem/projects.md)
 - [Repository Map](docs/ecosystem/repository-map.md)
+- [Architecture V2](architecture-v2/README.md)
+- [Features](features/README.md)
 
 ## AI Context
 

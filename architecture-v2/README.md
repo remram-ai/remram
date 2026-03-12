@@ -1,26 +1,20 @@
 # Architecture V2
 
-This directory records the finalized Moltbox / RemRam architecture for the CLI refactor and repository split.
+This directory records the finalized Moltbox architecture for the gateway refactor.
 
-It exists alongside the current documentation set so implementation can proceed against a stable target without rewriting the current-state architecture documents yet.
+It exists alongside the current documentation set so implementation can proceed against a stable target without rewriting the historical docs yet.
 
-Use this directory for:
+The structure here follows the finalized taxonomy and component model:
 
-- finalized control-plane architecture
-- finalized CLI design
-- repository taxonomy and responsibilities
-- deployment and runtime configuration model
-- environment and promotion rules
-- gateway refactor implementation plan
-
-Document map:
-
-- `control-plane.md`
-- `cli.md`
-- `repository-taxonomy.md`
-- `deployment-model.md`
-- `artifact-promotion.md`
+- `gateway.md`
+- `services.md`
+- `runtime.md`
+- `skills.md`
 - `gateway-refactor-plan.md`
+
+Feature descriptions live separately in:
+
+- `../features/`
 
 Status rule:
 

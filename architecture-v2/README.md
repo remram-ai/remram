@@ -11,6 +11,7 @@ The structure here follows the finalized taxonomy and component model:
 - `runtime.md`
 - `skills.md`
 - `gateway-refactor-plan.md`
+- `moltbox-runtime-snapshot.md`
 
 Feature descriptions live separately in:
 

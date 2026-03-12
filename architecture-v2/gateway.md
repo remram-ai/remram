@@ -83,6 +83,7 @@ Examples:
 ```text
 moltbox gateway status
 moltbox gateway update
+moltbox gateway repo refresh runtime
 
 moltbox service deploy openclaw-dev
 moltbox service restart caddy
@@ -110,6 +111,15 @@ moltbox gateway update
 ```
 
 That path exists because the gateway cannot deploy itself through the normal `service deploy` pipeline.
+
+The gateway also owns host-side upstream mirror maintenance for the external repositories it uses during deploy and runtime sync.
+
+Examples:
+
+```text
+moltbox gateway repo refresh
+moltbox gateway repo seed runtime --bundle /path/to/moltbox-runtime.bundle
+```
 
 ## Bootstrap Rule
 

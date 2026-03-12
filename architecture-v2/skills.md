@@ -26,6 +26,15 @@ It may coordinate:
 
 The gateway reads the deploy recipe for the skill from `remram-skills` and executes the required lower-level actions.
 
+Runtime targeting should be first-class.
+
+Examples:
+
+```text
+moltbox skill deploy semantic-router --runtime openclaw-test
+moltbox openclaw-test skill deploy semantic-router
+```
+
 ## Boundary Rule
 
 Skills are not feature docs and are not the same thing as services.

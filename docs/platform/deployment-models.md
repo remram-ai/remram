@@ -271,11 +271,15 @@ moltbox gateway update
 Self-update still has to satisfy the same rules as any other deployment path:
 
 - identify the target artifact
+- refresh the gateway source or build input
+- rebuild and replace the host `moltbox` CLI/tooling bundle
 - perform the update safely
 - validate the running gateway
 - write authoritative deployment metadata
 
 Inconsistent gateway provenance is an implementation defect, not an acceptable deployment mode.
+
+There is no separate active `moltbox tools update` lifecycle surface. `moltbox gateway update` is the canonical appliance self-update path for both the gateway container and the host CLI/tooling installed at `~/.local/bin/moltbox`.
 
 ## 8. Environment Promotion Workflow
 

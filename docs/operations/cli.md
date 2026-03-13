@@ -72,6 +72,8 @@ moltbox gateway logs
 moltbox gateway service deploy opensearch
 ```
 
+`moltbox gateway update` is the appliance self-update path. It refreshes the gateway and the host `moltbox` CLI/tooling together; there is no separate active `tools update` command.
+
 Runtime environments:
 
 ```text

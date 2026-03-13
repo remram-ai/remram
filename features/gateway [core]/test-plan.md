@@ -49,9 +49,13 @@ At minimum, validate against a stable shared service such as `opensearch`.
 
 Verify `moltbox gateway update`:
 
+- refreshes the gateway source or build input
+- rebuilds and replaces the host `moltbox` CLI binary without a manual operator `go build`
 - resolves a target artifact
 - updates the running gateway safely
 - writes authoritative deployment metadata
+
+After update, verify newly added CLI surfaces are available from the appliance host binary.
 
 ### 5. Environment Lifecycle Validation
 

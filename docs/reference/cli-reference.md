@@ -92,6 +92,7 @@ Legacy commands should fail rather than redirect.
 Exception:
 
 - `moltbox service secrets ...` is valid because `service` is a secret scope, not the retired lifecycle namespace
+- `tools update` is not an active command; use `moltbox gateway update`
 
 ## Environment Mapping
 
@@ -112,6 +113,12 @@ moltbox gateway status
 moltbox gateway logs
 moltbox gateway update
 ```
+
+`moltbox gateway update` refreshes the appliance self-managed control-plane tooling:
+
+- the running `gateway` container
+- the host `moltbox` CLI binary
+- the host-side CLI config used by local gateway-owned commands such as scoped secrets
 
 Service lifecycle operations:
 

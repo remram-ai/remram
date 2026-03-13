@@ -139,6 +139,8 @@ moltbox gateway service deploy opensearch
 
 Container deployment and service lifecycle actions are routed through the gateway service pipeline.
 
+`moltbox gateway update` is also the canonical self-update path for the host `moltbox` CLI/tooling. There is no separate active `tools update` namespace in the Architecture V2 contract.
+
 Secrets are also gateway-owned, but they do not use a network secrets API. The CLI invokes local gateway command handlers that read and write the encrypted appliance secret store at `/var/lib/moltbox/secrets/<scope>/`.
 
 ### Runtime Checkpoint Behavior
@@ -215,6 +217,7 @@ Legacy commands should fail rather than redirect.
 Exception:
 
 - `moltbox service secrets ...` is part of the active CLI because `service` acts as a secret scope, not as the retired lifecycle namespace
+- `tools update` remains retired; gateway self-update owns CLI/tooling refresh
 
 ## Related Documents
 

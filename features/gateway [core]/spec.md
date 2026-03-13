@@ -54,6 +54,11 @@ moltbox gateway update
 moltbox gateway logs
 ```
 
+`moltbox gateway update` is the active self-update surface for both:
+
+- the running gateway container
+- the host `moltbox` CLI/tooling installed on the appliance
+
 ### Gateway Service Pipeline
 
 Container lifecycle is primarily handled through:
@@ -223,6 +228,7 @@ Gateway orchestrates other repositories but should not absorb their ownership:
 - internal runtime identifiers such as `openclaw-dev` are implementation details, not public CLI namespaces
 - gateway must preserve native OpenClaw lifecycle where the runtime already provides it
 - gateway provenance must stay reconcilable across running artifact, rendered artifact, and deployment metadata
+- there is no separate active `tools update` namespace; gateway self-update owns host CLI/tooling refresh
 
 ## TODO
 

@@ -13,6 +13,8 @@ Deployment events provide the event history needed to reconstruct current runtim
 
 That means deployment events are part of the replay path used during rebuild and recovery.
 
+In the current runtime model, that replay path includes the install commands or replay scripts needed to reconstruct skill and plugin installs since the last full runtime container deploy.
+
 ## Where Deployment Events Live
 
 Deployment replay history is:
@@ -28,6 +30,8 @@ Examples of runtime-affecting deployment events include:
 
 - skill deployment into a runtime
 - plugin-backed capability installation
+- plugin enable, disable, uninstall, or update operations when they change replayable runtime state
+- runtime container redeploy events that reset the replay baseline
 - runtime baseline promotions that reset the replay chain
 
 The exact event schema belongs to the platform architecture, but the concept is stable.

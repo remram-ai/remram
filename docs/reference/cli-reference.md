@@ -148,10 +148,32 @@ Stable documented examples include:
 - `opensearch`
 - `ollama`
 - `caddy`
+- `dev`
+- `test`
+- `prod`
 
-TODO:
+For runtime deployment through the gateway service pipeline, the public identifiers remain the environment names. The underlying container names such as `openclaw-dev` are implementation details.
 
-- document the exact public service identifiers used for runtime service deployment if the gateway service pipeline will expose them directly
+## OpenClaw Passthrough Notes
+
+Current upstream OpenClaw command families that Moltbox should preserve under `moltbox <env> openclaw ...` include:
+
+```text
+openclaw plugins list
+openclaw plugins info <id>
+openclaw plugins enable <id>
+openclaw plugins disable <id>
+openclaw plugins install <path-or-spec>
+openclaw plugins uninstall <id>
+openclaw plugins doctor
+openclaw plugins update <id>
+openclaw plugins update --all
+
+openclaw skills list
+openclaw skills list --eligible
+openclaw skills info <name>
+openclaw skills check
+```
 
 ## Checkpoint Notes
 

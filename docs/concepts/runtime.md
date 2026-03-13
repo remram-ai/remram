@@ -23,6 +23,7 @@ The current runtime model is:
 ```text
 baseline runtime configuration
   + skill and plugin deployments
+  + deployment-event replay scripts
   + runtime mutations
   = current runtime state
 ```
@@ -54,19 +55,38 @@ moltbox test reload
 moltbox test openclaw <command>
 ```
 
+Current upstream OpenClaw passthrough families that should remain reachable include:
+
+```text
+openclaw plugins list
+openclaw plugins info <id>
+openclaw plugins enable <id>
+openclaw plugins disable <id>
+openclaw plugins install <path-or-spec>
+openclaw plugins uninstall <id>
+openclaw plugins doctor
+openclaw plugins update <id>
+openclaw plugins update --all
+
+openclaw skills list
+openclaw skills list --eligible
+openclaw skills info <name>
+openclaw skills check
+```
+
 ## Runtime Rebuild Model
 
-If a runtime must be rebuilt, the system restores the baseline configuration and then replays recorded [Deployment Events](deployment-event.md).
+If a runtime must be rebuilt or redeployed as a container, the system restores the baseline configuration and then replays recorded [Deployment Events](deployment-event.md), including skill and plugin install replay scripts since the last full runtime container deploy.
 
 That replay history is maintained by the gateway control plane in appliance state.
 
 TODO:
 
-- confirm the exact stable OpenClaw passthrough command set exposed under `moltbox <env> openclaw <command>`
 - confirm how runtime checkpoint promotion is reflected back into baseline source control and whether that promotion always resets the replay chain
 
 ## Related Concepts
 
+- [Plugin](plugin.md)
 - [Service](service.md)
 - [Gateway](gateway.md)
 - [Snapshot](snapshot.md)

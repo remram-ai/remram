@@ -39,6 +39,7 @@ Purpose:
 
 Owns:
 
+- plugin source
 - skill source
 - packaging metadata
 - skill-local helper modules
@@ -142,6 +143,7 @@ Another useful way to read the flow is:
 
 ```text
 Feature
+  -> Plugin if needed
   -> Skill
   -> Runtime baseline
   -> Service topology if needed

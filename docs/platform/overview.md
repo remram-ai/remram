@@ -58,6 +58,7 @@ The gateway owns:
 - CLI behavior
 - deployment orchestration
 - service lifecycle coordination
+- plugin and skill deployment orchestration
 - deployment metadata writes
 - runtime deployment-event history
 
@@ -81,6 +82,12 @@ moltbox gateway service deploy <service>
 moltbox gateway service restart <service>
 moltbox gateway service status <service>
 ```
+
+That pipeline is valid for both shared appliance services and the public runtime service targets:
+
+- `dev`
+- `test`
+- `prod`
 
 Gateway self-lifecycle:
 
@@ -112,6 +119,7 @@ The runtime state model is:
 ```text
 baseline runtime configuration
   + skill and plugin deployments
+  + deployment-event replay scripts
   + runtime mutations
   = current runtime state
 ```
@@ -120,7 +128,7 @@ baseline runtime configuration
 
 The live appliance state is larger than that baseline. Native OpenClaw installation flows may change runtime configuration, plugin inventory, and extension state after deployment.
 
-If a runtime must be rebuilt, the system restores the baseline and replays recorded deployment events for that environment.
+If a runtime must be rebuilt or redeployed as a container, the system restores the baseline and replays recorded deployment events for that environment, including replayable skill and plugin installs since the last full runtime container deploy.
 
 Operator-facing runtime environments are limited to:
 

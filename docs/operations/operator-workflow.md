@@ -53,6 +53,16 @@ moltbox gateway service restart caddy
 moltbox gateway service status ollama
 ```
 
+Runtime containers can also be deployed through the same service pipeline:
+
+```text
+moltbox gateway service deploy dev
+moltbox gateway service deploy test
+moltbox gateway service deploy prod
+```
+
+When this path is used, the runtime baseline must be restored and recorded skill or plugin deployment events must be replayed before the environment is treated as healthy.
+
 ### 4. Use native service CLIs when needed
 
 Service namespaces are passthrough interfaces to the native service CLIs:
@@ -74,7 +84,20 @@ moltbox test checkpoint
 
 Checkpointing is environment-scoped and stays under the environment namespaces, not under `gateway`.
 
-### 6. Investigate with CLI-first diagnostics
+### 6. Promote across environments deliberately
+
+Expected promotion posture:
+
+1. build and iterate in `dev`
+2. run the relevant feature `test-plan.md` in `dev`
+3. promote to `test` through the CLI only
+4. run the same test plan in `test`
+5. stop for UAT readiness review
+6. deploy to `prod` only after approval
+
+If `dev` to `test` promotion fails, fix the deployment process before treating the feature as ready.
+
+### 7. Investigate with CLI-first diagnostics
 
 Use the CLI namespaces first:
 

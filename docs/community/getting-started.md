@@ -19,10 +19,11 @@ Read in this order:
 
 1. [Documentation Map](../README.md)
 2. [Feature](../concepts/feature.md)
-3. [Skill](../concepts/skill.md)
-4. [Service](../concepts/service.md)
-5. [Runtime](../concepts/runtime.md)
-6. [Gateway](../concepts/gateway.md)
+3. [Plugin](../concepts/plugin.md)
+4. [Skill](../concepts/skill.md)
+5. [Service](../concepts/service.md)
+6. [Runtime](../concepts/runtime.md)
+7. [Gateway](../concepts/gateway.md)
 
 If you want implemented capability docs, then continue into:
 

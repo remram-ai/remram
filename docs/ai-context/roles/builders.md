@@ -21,8 +21,20 @@ If the task touches appliance services, gateway orchestration, runtime mutation,
 - [Gateway](../../concepts/gateway.md)
 - [Service](../../concepts/service.md)
 - [Features](../features.md)
+- [Feature Type Recipes](../recipes/README.md)
 - the relevant feature `README.md`, `spec.md`, and `test-plan.md`
 - [gateway [core] spec](../../../features/gateway%20%5Bcore%5D/spec.md) for service lifecycle and deployment-pipeline work
+
+Pick the primary recipe before implementation:
+
+- [Plugin Recipe](../recipes/plugin.md)
+- [Skill Recipe](../recipes/skill.md)
+- [Service Recipe](../recipes/service.md)
+- [Gateway/Core Recipe](../recipes/gateway-core.md)
+
+Review unresolved contracts before treating a recipe as final guidance:
+
+- [Review Questions](../recipes/review-questions.md)
 
 ## What To Know First
 

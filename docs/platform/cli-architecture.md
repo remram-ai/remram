@@ -149,9 +149,22 @@ moltbox gateway service status <service>
 
 This pipeline manages appliance services as deployment units.
 
-TODO:
+Documented shared-service identifiers include:
 
-- document the exact public service identifiers for runtime service deployment if they will be exposed directly through `gateway service ...`
+- `gateway`
+- `opensearch`
+- `ollama`
+- `caddy`
+
+Runtime container deployment is also valid through this pipeline.
+
+Documented public runtime service identifiers are:
+
+- `dev`
+- `test`
+- `prod`
+
+Those environment identifiers still map internally to runtime container identities such as `openclaw-dev`, `openclaw-test`, and `openclaw-prod`.
 
 ## Retired CLI Forms
 

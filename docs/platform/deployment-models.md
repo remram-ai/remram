@@ -93,9 +93,21 @@ Typical flow:
 
 This model applies to shared services such as `gateway`, `opensearch`, `ollama`, and `caddy`.
 
-TODO:
+It also applies to the runtime containers themselves.
 
-- document the exact public service identifiers for runtime-container deployment if they remain part of the `gateway service ...` surface
+Public runtime service targets are:
+
+- `dev`
+- `test`
+- `prod`
+
+When the gateway deploys one of those runtime containers as a service target, it must:
+
+1. deploy the target runtime container artifact
+2. restore the baseline runtime configuration
+3. replay recorded runtime deployment events, including skill and plugin install replay scripts since the last full runtime container deploy
+4. validate runtime health
+5. write authoritative deployment metadata
 
 ## 2. Runtime Baseline Update
 
@@ -152,9 +164,24 @@ Expected behavior:
 
 This is why `moltbox-runtime` is baseline-only rather than a complete record of live runtime state.
 
-TODO:
+Minimum current passthrough command families that should remain supported through `moltbox <env> openclaw ...` are:
 
-- document the exact supported OpenClaw passthrough command set for skill installation, plugin installation, removal, and inspection
+```text
+openclaw plugins list
+openclaw plugins info <id>
+openclaw plugins enable <id>
+openclaw plugins disable <id>
+openclaw plugins install <path-or-spec>
+openclaw plugins uninstall <id>
+openclaw plugins doctor
+openclaw plugins update <id>
+openclaw plugins update --all
+
+openclaw skills list
+openclaw skills list --eligible
+openclaw skills info <name>
+openclaw skills check
+```
 
 ## 4. Snapshot Types
 
@@ -254,6 +281,29 @@ Self-update still has to satisfy the same rules as any other deployment path:
 - write authoritative deployment metadata
 
 Inconsistent gateway provenance is an implementation defect, not an acceptable deployment mode.
+
+## 8. Environment Promotion Workflow
+
+Environment promotion is intentionally asymmetric.
+
+Expected workflow:
+
+1. build and iterate in a feature branch
+2. commit and test freely in `dev`, where shell access is available
+3. run unit tests and the relevant feature `test-plan.md` in `dev`
+4. promote to `test` through the Moltbox CLI only
+5. run the same feature test plan again in `test`
+6. validate that the promotion path itself worked correctly
+7. stop for UAT readiness review
+8. after approval, merge through the normal Git path and deploy to `prod`
+
+This means:
+
+- `dev` is the implementation environment
+- `test` is the CLI-gated promotion and pre-UAT validation environment
+- `prod` is reached only after approval steps and mainline integration
+
+If promotion to `test` fails, the deployment process is defective and should be fixed before the feature is treated as ready.
 
 ## Runtime State Versus Container Lifecycle
 

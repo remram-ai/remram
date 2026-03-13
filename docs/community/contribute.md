@@ -52,6 +52,7 @@ Check these first:
 If the change affects system behavior, also review:
 
 - [Gateway](../concepts/gateway.md)
+- [Plugin](../concepts/plugin.md)
 - [Runtime](../concepts/runtime.md)
 - [Service](../concepts/service.md)
 - [Skill](../concepts/skill.md)

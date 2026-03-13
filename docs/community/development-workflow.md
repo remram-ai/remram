@@ -29,6 +29,20 @@ Use this sequence for architecture work:
 
 This repository is the place to stabilize the language and structure before downstream implementation changes spread across the other repositories.
 
+## Implementation Promotion Workflow
+
+When architecture work turns into implementation work in the domain repositories, the expected promotion model is:
+
+1. work on your own branch
+2. iterate in `dev`
+3. run unit tests and the relevant feature `test-plan.md` in `dev`
+4. promote to `test` through the CLI only
+5. run the same test plan in `test`
+6. stop when the change is ready for UAT
+7. after approval, merge and deploy to `prod`
+
+This workflow exists to test both the feature and the deployment path itself.
+
 ## Documentation Quality Checklist
 
 Before closing a documentation change, verify:

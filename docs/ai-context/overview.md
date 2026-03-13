@@ -21,6 +21,7 @@ Core orientation:
 - the gateway is the only control-plane entrypoint for appliance lifecycle and deployment
 - service definitions live in `moltbox-services`
 - baseline runtime configuration lives in `moltbox-runtime`
+- plugin and skill packages live in `remram-skills`
 - the gateway consumes those inputs and renders or deploys the running appliance
 - operators should reason from the gateway and CLI model first, not from direct Docker commands
 

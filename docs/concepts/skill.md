@@ -16,6 +16,7 @@ remram-skills
 
 A skill may include:
 
+- a `SKILL.md` skill definition
 - capability code
 - plugin-backed runtime behavior
 - packaging metadata
@@ -39,9 +40,33 @@ moltbox test openclaw <command>
 
 The gateway may use native OpenClaw installation behavior as part of skill deployment.
 
-TODO:
+Current OpenClaw skill-inspection commands that should remain reachable through passthrough are:
 
-- document the exact public skill-install command forms once the environment-scoped OpenClaw contract is written down in platform documentation
+```text
+openclaw skills list
+openclaw skills list --eligible
+openclaw skills info <name>
+openclaw skills check
+```
+
+Workspace and managed skill layout is defined by current OpenClaw docs:
+
+- skills are directories containing `SKILL.md`
+- workspace skills live under `<workspace>/skills`
+- managed or local skills live under `~/.openclaw/skills`
+- plugins may also ship skills directories from the plugin root
+
+Current OpenClaw skill config lives under `skills` in `~/.openclaw/openclaw.json`.
+
+Important config surfaces include:
+
+- `skills.allowBundled`
+- `skills.load.extraDirs`
+- `skills.load.watch`
+- `skills.install.*`
+- `skills.entries.<name>.enabled`
+- `skills.entries.<name>.env`
+- `skills.entries.<name>.apiKey`
 
 ## Skill Versus Feature
 
@@ -55,8 +80,15 @@ A [Service](service.md) is a long-running containerized process on the appliance
 
 A skill is a reusable capability package deployed into a runtime. It is not automatically a separate service.
 
+## Skill Versus Plugin
+
+A [Plugin](plugin.md) is executable extension code running in the OpenClaw process.
+
+A skill is the broader portable capability package. It may be pure `SKILL.md` content, plugin-backed, or a mixture of prompts, manifests, helper modules, and runtime policy.
+
 ## Related Concepts
 
 - [Feature](feature.md)
+- [Plugin](plugin.md)
 - [Runtime](runtime.md)
 - [Gateway](gateway.md)

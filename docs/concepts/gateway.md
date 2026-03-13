@@ -12,6 +12,7 @@ The gateway owns:
 - deployment orchestration
 - service deployment coordination
 - runtime lifecycle orchestration
+- plugin deployment orchestration
 - skill deployment orchestration
 - deployment metadata writes
 - deployment replay history
@@ -24,6 +25,7 @@ The gateway does not own:
 - product feature definitions
 - service definitions as source material
 - baseline runtime configuration as source material
+- plugin implementation source
 - skill implementation source
 
 Those concerns live in other repositories and are orchestrated by the gateway rather than authored there.
@@ -57,10 +59,12 @@ moltbox gateway status
 moltbox gateway update
 moltbox gateway logs
 moltbox gateway service deploy opensearch
+moltbox gateway service deploy dev
 ```
 
 ## Related Concepts
 
+- [Plugin](plugin.md)
 - [Service](service.md)
 - [Runtime](runtime.md)
 - [Skill](skill.md)

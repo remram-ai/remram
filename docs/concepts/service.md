@@ -42,6 +42,12 @@ moltbox opensearch <native command>
 moltbox ollama <native command>
 ```
 
+The runtime containers are also deployable through the same `gateway service ...` pipeline, using the public service targets:
+
+- `dev`
+- `test`
+- `prod`
+
 ## Service Versus Runtime
 
 A [Runtime](runtime.md) is the configuration and execution environment for managed runtime behavior.
@@ -56,8 +62,15 @@ A [Skill](skill.md) is a reusable capability package deployed into a runtime.
 
 A service is a long-running process with its own lifecycle on the appliance.
 
+## Service Versus Plugin
+
+A [Plugin](plugin.md) is executable extension code running inside the OpenClaw gateway process.
+
+A service is a containerized appliance process. If OpenClaw needs to consume that service, the runtime still needs a plugin, skill, or runtime-config surface that points at it.
+
 ## Related Concepts
 
+- [Plugin](plugin.md)
 - [Runtime](runtime.md)
 - [Gateway](gateway.md)
 - [Skill](skill.md)

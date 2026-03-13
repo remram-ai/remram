@@ -5,6 +5,7 @@ This folder defines the canonical vocabulary used across the RemRam and Moltbox 
 Documents in this folder:
 
 - [Feature](feature.md)
+- [Plugin](plugin.md)
 - [Skill](skill.md)
 - [Service](service.md)
 - [Runtime](runtime.md)

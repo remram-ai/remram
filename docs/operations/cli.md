@@ -79,6 +79,7 @@ moltbox caddy <native command>
 - use the CLI as the normal control surface
 - use `dev`, `test`, and `prod` for runtime operations
 - use `gateway service ...` for appliance deployment and service lifecycle work
+- use `gateway service deploy dev|test|prod` when redeploying runtime containers through the control plane
 - use native service passthrough namespaces instead of reimplementing service-specific commands in Moltbox
 - treat Docker commands as internal implementation details
 

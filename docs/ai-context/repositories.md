@@ -39,6 +39,7 @@ Canonical sources:
 - [Topology](../platform/topology.md)
 - [Deployment Models](../platform/deployment-models.md)
 - [Feature](../concepts/feature.md)
+- [Plugin](../concepts/plugin.md)
 - [Skill](../concepts/skill.md)
 - [Service](../concepts/service.md)
 - [Runtime](../concepts/runtime.md)

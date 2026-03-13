@@ -90,6 +90,7 @@ Define the canonical vocabulary used throughout the project.
 Typical topics:
 
 - Feature
+- Plugin
 - Skill
 - Service
 - Runtime

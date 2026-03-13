@@ -12,6 +12,11 @@ Core summaries:
 - [Repositories](repositories.md)
 - [Features](features.md)
 
+Implementation recipes:
+
+- [Feature Type Recipes](recipes/README.md)
+- [Review Questions](recipes/review-questions.md)
+
 Role guides:
 
 - [Roles](roles/README.md)

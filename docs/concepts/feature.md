@@ -16,6 +16,7 @@ features/<feature-name>/
 
 A feature may be implemented through:
 
+- one or more [Plugins](plugin.md)
 - one or more [Skills](skill.md)
 - one or more [Services](service.md)
 - [Runtime](runtime.md) configuration
@@ -40,6 +41,7 @@ Use `backlog/ideas/` for concepts that are not yet implemented or not yet stable
 
 ## Related Concepts
 
+- [Plugin](plugin.md)
 - [Skill](skill.md)
 - [Service](service.md)
 - [Runtime](runtime.md)

@@ -41,6 +41,24 @@ Confirm diagnostics are enabled in the runtime config before treating the featur
 
 Installed plugins are enabled by default in current OpenClaw builds, but runtime config should still be checked if the environment keeps an explicit `plugins.entries` record.
 
+## Confirm Runtime Telemetry Visibility
+
+Before validating telemetry output, confirm the runtime is using the expected observability posture:
+
+```text
+/thinking auto
+/usage full
+```
+
+Expected posture:
+
+- `thinking: auto`
+- `usage: full`
+
+These settings ensure token usage and runtime metadata appear in response telemetry and diagnostics output.
+
+They do not change routing or escalation policy. Moltbox Telemetry does not control model reasoning behavior. This posture only makes the runtime's telemetry surfaces fully visible to operators.
+
 ## Verify Telemetry Output
 
 Run a simple chat request through the runtime.

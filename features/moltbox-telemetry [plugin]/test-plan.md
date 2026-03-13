@@ -31,7 +31,23 @@ Expected config posture:
 
 If the runtime exposes diagnostics state through a command surface, verify that state directly before continuing.
 
-### 3. Chat Response Validation
+### 3. Runtime Usage Posture Validation
+
+Confirm the target runtime is using the expected observability posture:
+
+- `thinking: auto`
+- `usage: full`
+
+Equivalent runtime commands:
+
+```text
+/thinking auto
+/usage full
+```
+
+After confirming that posture, continue to chat validation.
+
+### 4. Chat Response Validation
 
 Use the OpenClaw CLI chat path against the target runtime.
 
@@ -51,7 +67,7 @@ Verify the response metadata includes:
 - `context_pct`
 - `provider_latency_ms`
 
-### 4. Diagnostics Output Validation
+### 5. Diagnostics Output Validation
 
 Verify telemetry also appears in diagnostics output.
 
@@ -63,7 +79,7 @@ Expected evidence:
 - duration is present
 - native `/status` or `/usage` surfaces remain consistent with the same underlying usage data
 
-### 5. Latency Validation
+### 6. Latency Validation
 
 Verify `provider_latency_ms` is populated for a normal chat response.
 
@@ -72,7 +88,7 @@ Expected result:
 - latency is visible in response-side telemetry
 - latency is visible in diagnostics output
 
-### 6. UI Surface Validation
+### 7. UI Surface Validation
 
 If the target UI build consumes the standardized telemetry contract, verify the gray statistics line beneath the response includes latency.
 
@@ -80,7 +96,7 @@ If the target UI build does not yet consume `provider_latency_ms`, treat that as
 
 If OpenClaw's native `/usage tokens` or `/usage full` footer is in use, confirm the plugin does not break that built-in footer behavior.
 
-### 7. Environment Promotion Validation
+### 8. Environment Promotion Validation
 
 Validate the feature independently in:
 

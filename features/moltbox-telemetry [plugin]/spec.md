@@ -252,6 +252,29 @@ Moltbox Telemetry should align with those surfaces instead of replacing them.
 
 The gray statistics line beneath chat responses is a UI consumer concern. OpenClaw already supports usage footers through `/usage`. This feature only requires that latency and the rest of the standardized fields are present in the telemetry contract so the UI or usage footer layer can render them once that surface consumes the field.
 
+## Runtime Observability Defaults
+
+Moltbox runtimes using this feature should operate with the following observability posture:
+
+- `thinking: auto`
+- `usage: full`
+
+Equivalent runtime commands:
+
+```text
+/thinking auto
+/usage full
+```
+
+These defaults exist so the telemetry contract is fully observable to operators.
+
+- `thinking: auto` allows reasoning-capable models to use internal reasoning when appropriate
+- `usage: full` ensures the runtime emits the complete usage footer and metadata
+
+Moltbox Telemetry does not control model reasoning behavior. These settings are documented here because they ensure the standardized telemetry fields are visible in normal runtime operation.
+
+When validating telemetry output, Moltbox Telemetry assumes this runtime posture is active.
+
 ## Lifecycle
 
 ### Install

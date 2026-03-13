@@ -1,0 +1,53 @@
+# Contribute
+
+The easiest way to contribute well is to change the right artifact in the right repository.
+
+## Contribute Here When The Change Is About
+
+- architecture
+- terminology
+- documentation structure
+- feature definitions in `features/`
+- idea capture in `backlog/ideas/`
+- contributor orientation
+
+## Contribute Elsewhere When The Change Is About
+
+- gateway or CLI implementation
+- runtime configuration implementation
+- service definitions or container topology
+- skill packages or plugin-backed capability code
+- application code
+- Cortex implementation
+
+## Contribution Rules
+
+- Use the current canonical vocabulary from [Concepts](../concepts/README.md).
+- Use the current CLI grammar from [CLI](../operations/cli.md) and [CLI Reference](../reference/cli-reference.md).
+- Do not edit files in `archive/` in place.
+- Put implemented capability docs in `features/`, not in `backlog/`.
+- Put unimplemented ideas in `backlog/ideas/`, not in the active architecture docs.
+- Keep architecture descriptions separate from implementation details when a domain repository should own the code-level contract.
+
+## Good Contribution Pattern
+
+1. Clarify the concept or architecture change here.
+2. Confirm the owning repository or documentation layer.
+3. Update the active document set using the current structure.
+4. Keep examples, terminology, and links aligned with the rest of the docs.
+5. Move implementation changes into the owning repository when documentation is stable.
+
+## Before You Open A Change
+
+Check these first:
+
+- [Documentation Map](../README.md)
+- [Development Workflow](development-workflow.md)
+- [Repo Setup](repo-setup.md)
+
+If the change affects system behavior, also review:
+
+- [Gateway](../concepts/gateway.md)
+- [Runtime](../concepts/runtime.md)
+- [Service](../concepts/service.md)
+- [Skill](../concepts/skill.md)

@@ -4,7 +4,7 @@ Remram is the vision and architecture hub for the Remram ecosystem.
 
 This repository explains what Remram is, why it exists, how the ecosystem fits together, and where contributors should go next. It is the public front door for the project, not the primary home for implementation details.
 
-During the current Moltbox refactor, finalized target architecture is being captured under `architecture-v2/` so the implementation can move without rewriting the current architecture docs prematurely.
+During the current documentation refactor, active repository documentation lives under `docs/`, implemented capability docs live under `features/`, idea backlog lives under `backlog/`, and historical material lives under `archive/`.
 
 ## What Problem Remram Solves
 
@@ -59,37 +59,24 @@ Within Gateway / Moltbox, orchestration via OpenClaw and operator control are se
 
 ## Start Here
 
-- [What Is Remram?](docs/overview/what-is-remram.md)
-- [Project Charter](docs/overview/project-charter.md)
-- [System Architecture](docs/overview/system-architecture.md)
-- [Ecosystem Map](docs/overview/ecosystem-map.md)
-- [Strategic Direction](docs/overview/strategic-direction.md)
-- [Moltbox Control Plane](docs/concepts/control-plane.md)
-- [Prompt Compilation](docs/concepts/prompt-compilation.md)
-- [Moltbox Community](moltbox/README.md)
-- [Projects](docs/ecosystem/projects.md)
-- [Repository Map](docs/ecosystem/repository-map.md)
-- [Architecture V2](architecture-v2/README.md)
+- [Documentation Map](docs/README.md)
 - [Features](features/README.md)
-
-## AI Context
-
-Hey Claws: there are docs for you too. Check `/ai-context/` for a fast orientation to the Remram ecosystem and its architectural boundaries.
+- `backlog/ideas/` for unimplemented ideas and proposed capabilities
+- `archive/` for historical documentation
 
 ## Backlog Pipeline
 
-This repository also preserves the project pipeline:
+This repository preserves early ideas under:
 
-- `backlog/ideas/` for early concepts
-- `backlog/products/` for shaped product and system proposals
+- `backlog/ideas/`
 
-Those documents are intentionally kept here because they explain how ideas mature before they become implementation work in domain repositories.
+Historical context and superseded planning material remain in `archive/`.
 
 ## How To Get Started
 
-- Want to understand the project: start with [docs/overview/what-is-remram.md](docs/overview/what-is-remram.md)
-- Want to run something real today: start with [docs/getting-started/run-remram.md](docs/getting-started/run-remram.md)
-- Want to contribute: start with [docs/getting-started/contribute.md](docs/getting-started/contribute.md)
+- Want to understand the current documentation system: start with [docs/README.md](docs/README.md)
+- Want to understand implemented capabilities: start with [features/README.md](features/README.md)
+- Want to review earlier material: use `archive/`
 
 ## How To Contribute
 

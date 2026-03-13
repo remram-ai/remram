@@ -1,4 +1,4 @@
-# CLI Architecture Summary
+# CLI
 
 The Moltbox CLI is resource-oriented.
 

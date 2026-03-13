@@ -4,16 +4,20 @@ This folder provides fast, high-signal bootstrap material for AI assistants work
 
 Use these files as orientation summaries, not as replacements for the canonical docs.
 
-Contents:
+Core summaries:
 
-- [System Overview](system-overview.md)
-- [CLI Architecture Summary](cli-architecture-summary.md)
-- [Platform Topology Summary](platform-topology-summary.md)
-- [Repository Taxonomy](repository-taxonomy.md)
-- [Feature Index](feature-index.md)
-- [Builders](builders.md)
-- [Testers](testers.md)
-- [Designers](designers.md)
+- [Overview](overview.md)
+- [CLI](cli.md)
+- [Topology](topology.md)
+- [Repositories](repositories.md)
+- [Features](features.md)
+
+Role guides:
+
+- [Roles](roles/README.md)
+- [Builders](roles/builders.md)
+- [Testers](roles/testers.md)
+- [Architects](roles/architects.md)
 
 Canonical sources:
 

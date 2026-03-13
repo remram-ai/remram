@@ -1,4 +1,4 @@
-# Platform Topology Summary
+# Topology
 
 Steady-state appliance topology:
 

@@ -4,9 +4,9 @@ Use this file as a quick bootstrap if you are implementing code or changing runt
 
 Start with:
 
-- [Repository Taxonomy](repository-taxonomy.md)
-- [System Overview](system-overview.md)
-- [CLI Architecture Summary](cli-architecture-summary.md)
+- [Repositories](../repositories.md)
+- [Overview](../overview.md)
+- [CLI](../cli.md)
 
 What to know first:
 
@@ -32,8 +32,8 @@ CLI model:
 
 Canonical docs:
 
-- [Platform Overview](../platform/overview.md)
-- [Deployment Models](../platform/deployment-models.md)
-- [CLI Architecture](../platform/cli-architecture.md)
-- [Repositories](../platform/repositories.md)
-- [Features](../../features/README.md)
+- [Platform Overview](../../platform/overview.md)
+- [Deployment Models](../../platform/deployment-models.md)
+- [CLI Architecture](../../platform/cli-architecture.md)
+- [Repositories](../../platform/repositories.md)
+- [Features](../../../features/README.md)

@@ -1,4 +1,4 @@
-# Repository Taxonomy
+# Repositories
 
 Core repository ownership:
 

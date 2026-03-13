@@ -1,4 +1,4 @@
-# Designers
+# Architects
 
 Use this file as a quick bootstrap if you are shaping architecture, documentation structure, or new feature definitions.
 
@@ -28,8 +28,8 @@ When documenting a new feature:
 
 Canonical docs:
 
-- [Documentation Map](../README.md)
-- [Platform Overview](../platform/overview.md)
-- [Repositories](../platform/repositories.md)
-- [CLI Architecture](../platform/cli-architecture.md)
-- [Features](../../features/README.md)
+- [Documentation Map](../../README.md)
+- [Platform Overview](../../platform/overview.md)
+- [Repositories](../../platform/repositories.md)
+- [CLI Architecture](../../platform/cli-architecture.md)
+- [Features](../../../features/README.md)

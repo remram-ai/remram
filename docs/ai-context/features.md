@@ -1,4 +1,4 @@
-# Feature Index
+# Features
 
 Active documented feature bundles:
 

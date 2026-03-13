@@ -15,6 +15,7 @@ Inside `docs/`, the material is organized into four primary areas:
 - system concepts
 - reference material
 - community and contributor documentation
+- AI bootstrap context
 
 Operational documentation also lives under `docs/` as its own layer so operator workflows and CLI usage stay separate from architecture and concepts.
 
@@ -30,6 +31,7 @@ docs/
   concepts/      Core system vocabulary and definitions
   reference/     Technical reference documentation
   community/     Contributor and community documentation
+  ai-context/    High-signal AI bootstrap summaries and role guides
 
 archive/         Historical documentation
 ```
@@ -135,6 +137,27 @@ Typical topics:
 - development workflow
 - repository setup
 
+### AI Context
+
+Location:
+
+```text
+docs/ai-context/
+```
+
+Purpose:
+
+Fast-start context for AI assistants working in or around the repository.
+
+Typical topics:
+
+- system overview
+- CLI model summary
+- topology summary
+- repository taxonomy
+- feature index
+- role-specific AI guidance
+
 ### Features
 
 Location:
@@ -174,3 +197,10 @@ archive/
 Purpose:
 
 Stores historical documentation and frozen reference material that should not be edited in place.
+
+## 4. Quick Entry Points
+
+- New contributor: [Community](community/README.md)
+- Operator: [Operations](operations/README.md)
+- Architecture/design work: [Platform](platform/overview.md)
+- AI assistant bootstrap: [AI Context](ai-context/README.md)

@@ -23,7 +23,7 @@ People and clients
    Remram App
         |
         v
-Remram Gateway / Moltbox
+   Moltbox Gateway
         |
         v
 OpenClaw / Orchestration
@@ -35,8 +35,8 @@ OpenClaw / Orchestration
  Durable knowledge, artifacts,
  and long-term memory behavior
 
-Remram Agents sit alongside the system as reusable skills,
-agent modules, and workflow building blocks.
+Remram Skills sit alongside the system as reusable skills,
+plugin packages, and workflow building blocks.
 ```
 
 Within Gateway / Moltbox, orchestration via OpenClaw and operator control are separate concerns. OpenClaw shapes live runs. The Moltbox control plane manages the appliance itself through CLI tools, tests, staged promotion, and human approval.
@@ -44,22 +44,23 @@ Within Gateway / Moltbox, orchestration via OpenClaw and operator control are se
 ## Ecosystem Components
 
 - **Remram**: vision, conceptual architecture, ecosystem map, contributor orientation
-- **Remram Gateway**: OpenClaw runtime configuration, gateway operations, Moltbox CLI tooling, and appliance control-plane implementation
+- **Moltbox Gateway**: control-plane implementation, Moltbox CLI tooling, deployment orchestration, and appliance operations
 - **Remram Cortex**: long-term knowledge system, retrieval, reflection, and memory services
 - **Remram App**: user-facing APIs and applications
-- **Remram Agents**: reusable skills, agent modules, and agent-facing building blocks
+- **Remram Skills**: reusable skills, plugin packages, and portable capability building blocks
 
 ## Repository Links
 
 - [Remram](https://github.com/remram-ai/remram)
-- [Remram Gateway](https://github.com/remram-ai/remram-gateway)
+- [Moltbox Gateway](https://github.com/remram-ai/moltbox-gateway)
 - [Remram Cortex](https://github.com/remram-ai/remram-cortex)
 - [Remram App](https://github.com/remram-ai/remram-app)
-- [Remram Agents](https://github.com/remram-ai/remram-agents)
+- [Remram Skills](https://github.com/remram-ai/remram-skills)
 
 ## Start Here
 
 - [Documentation Map](docs/README.md)
+- [AI Context](docs/ai-context/README.md)
 - [Features](features/README.md)
 - `backlog/ideas/` for unimplemented ideas and proposed capabilities
 - `archive/` for historical documentation
@@ -75,6 +76,7 @@ Historical context and superseded planning material remain in `archive/`.
 ## How To Get Started
 
 - Want to understand the current documentation system: start with [docs/README.md](docs/README.md)
+- Want a fast AI-assistant bootstrap: start with [docs/ai-context/README.md](docs/ai-context/README.md)
 - Want to understand implemented capabilities: start with [features/README.md](features/README.md)
 - Want to review earlier material: use `archive/`
 

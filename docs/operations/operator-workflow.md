@@ -72,7 +72,7 @@ moltbox dev checkpoint
 moltbox test checkpoint
 ```
 
-Checkpointing is environment-scoped and stays under the runtime namespace, not under `gateway`.
+Checkpointing is environment-scoped and stays under the environment namespaces, not under `gateway`.
 
 ### 6. Investigate with CLI-first diagnostics
 

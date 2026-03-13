@@ -2,6 +2,8 @@
 
 The easiest way to contribute well is to change the right artifact in the right repository.
 
+This repository is intentionally open to contributors who are still getting oriented. If you can improve clarity, terminology, structure, or feature documentation, that is useful work.
+
 ## Contribute Here When The Change Is About
 
 - architecture
@@ -37,6 +39,8 @@ The easiest way to contribute well is to change the right artifact in the right 
 4. Keep examples, terminology, and links aligned with the rest of the docs.
 5. Move implementation changes into the owning repository when documentation is stable.
 
+Small clarification, wording, and traceability improvements are worth making. You do not need to wait for a large architecture rewrite to improve the docs.
+
 ## Before You Open A Change
 
 Check these first:
@@ -51,3 +55,5 @@ If the change affects system behavior, also review:
 - [Runtime](../concepts/runtime.md)
 - [Service](../concepts/service.md)
 - [Skill](../concepts/skill.md)
+
+If you are helping an AI assistant or another contributor get oriented quickly, also point them at [AI Context](../ai-context/README.md).

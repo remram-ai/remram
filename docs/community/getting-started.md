@@ -11,6 +11,8 @@ It is the right place to start if you want to understand:
 
 It is not the primary implementation home for appliance code, runtime code, or service deployment logic.
 
+If you are arriving with an AI assistant or want a faster bootstrap pass before reading the full docs set, start with [AI Context](../ai-context/README.md).
+
 ## Start Here
 
 Read in this order:

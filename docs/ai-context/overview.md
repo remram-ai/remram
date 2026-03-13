@@ -15,6 +15,15 @@ Primary operator path:
 Visual Studio -> MCP plugin -> Moltbox CLI -> gateway
 ```
 
+Core orientation:
+
+- the host stays minimal and primarily provides Docker, storage, and system services
+- the gateway is the only control-plane entrypoint for appliance lifecycle and deployment
+- service definitions live in `moltbox-services`
+- baseline runtime configuration lives in `moltbox-runtime`
+- the gateway consumes those inputs and renders or deploys the running appliance
+- operators should reason from the gateway and CLI model first, not from direct Docker commands
+
 Host bootstrap note:
 
 - Moltbox hosts pull Git-backed platform inputs with GitHub App installation tokens
@@ -25,4 +34,7 @@ Canonical sources:
 
 - [Platform Overview](../platform/overview.md)
 - [Topology](../platform/topology.md)
+- [Repositories](../platform/repositories.md)
+- [Deployment Models](../platform/deployment-models.md)
 - [Gateway](../concepts/gateway.md)
+- [Service](../concepts/service.md)

@@ -28,8 +28,17 @@ Storage roots:
 Key model:
 
 - the host stays minimal
+- Docker Engine is host infrastructure, not the primary operator surface
 - long-running application logic runs in containers
+- the gateway is the control plane that coordinates service deployment and runtime lifecycle
 - runtime state is mutable and may outlive individual container instances
+
+Service relationship model:
+
+- service definitions and compose templates live in `moltbox-services`
+- the gateway consumes those definitions and deploys them onto the host Docker engine
+- operators and builders should reason through `moltbox gateway ...` and `moltbox gateway service ...` before dropping to Docker details
+- direct Docker commands are break-glass diagnostics, not the normal management path
 
 Host Git model:
 
@@ -40,4 +49,7 @@ Host Git model:
 Canonical sources:
 
 - [Topology](../platform/topology.md)
+- [Repositories](../platform/repositories.md)
 - [Deployment Models](../platform/deployment-models.md)
+- [Gateway](../concepts/gateway.md)
+- [Service](../concepts/service.md)

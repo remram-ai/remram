@@ -16,6 +16,13 @@ Use feature docs for:
 - operator guidance
 - definition-of-done test plans
 
+Builder guidance:
+
+- feature docs are not a substitute for the architecture bootstrap in `overview.md`, `topology.md`, `repositories.md`, `cli.md`, and `roles/builders.md`
+- read the relevant feature docs after the architecture bootstrap, not instead of it
+- if a task touches service lifecycle, deployment orchestration, or rendered service state, read [gateway [core]](../../features/gateway%20%5Bcore%5D/README.md) and its `spec.md`
+- for service-specific work, also read the matching service feature bundle and confirm the repository boundary with `moltbox-services` and `moltbox-gateway`
+
 Canonical source:
 
 - [Features](../../features/README.md)

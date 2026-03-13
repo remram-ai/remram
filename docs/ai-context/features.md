@@ -3,6 +3,7 @@
 Active documented feature bundles:
 
 - [semantic-router [plugin]](../../features/semantic-router%20%5Bplugin%5D/README.md)
+- [moltbox-telemetry [plugin]](../../features/moltbox-telemetry%20%5Bplugin%5D/README.md)
 - [together-escalation [skill]](../../features/together-escalation%20%5Bskill%5D/README.md)
 - [discord-channel [skill]](../../features/discord-channel%20%5Bskill%5D/README.md)
 - [gateway [core]](../../features/gateway%20%5Bcore%5D/README.md)

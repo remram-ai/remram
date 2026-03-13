@@ -6,7 +6,7 @@ Use this recipe when the feature is primarily a portable RemRam capability bundl
 
 - the capability should be reusable across environments or future runtimes
 - the feature needs more than one local implementation surface
-- the package combines plugin-backed behavior with runtime policy, manifests, helper modules, prompts, or deploy recipe material
+- the package combines runtime policy, manifests, helper modules, prompts, or deploy recipe material
 - the feature is best described as a portable capability rather than as one container or one gateway command
 
 Current repo examples:
@@ -31,7 +31,7 @@ Local ownership usually splits like this:
 - `moltbox-runtime`: baseline config and policy files the skill depends on
 - `moltbox-gateway`: runtime deployment orchestration, snapshots, and deployment-event tracking
 
-In the current architecture, a skill may be plugin-backed, but the skill is the broader RemRam packaging unit.
+In the current architecture, a skill may be pure `SKILL.md` content, plugin-backed, or a mixture of both, but the skill is the broader RemRam packaging unit.
 
 ## OpenClaw Source Of Record
 
@@ -73,14 +73,14 @@ Assume these limits unless the architecture changes:
 
 1. Define the capability in operator language first: what the runtime can do after install that it could not do before.
 2. Identify the exact OpenClaw surfaces the skill depends on and verify them in current upstream docs.
-3. Decide whether the runtime-facing unit is one plugin, several plugins, or pure config plus manifests.
+3. Decide whether the runtime-facing unit is pure skill content, one plugin, several plugins, or pure config plus manifests.
 4. Implement the portable package in `remram-skills` using current OpenClaw skill rules:
    - a skill is a directory containing `SKILL.md`
    - optional scripts or resources can live beside it
    - workspace skills live under `<workspace>/skills`
    - managed or local skills live under `~/.openclaw/skills`
    - plugin-shipped skills can be declared from `openclaw.plugin.json`
-5. Add only the stable baseline policy to `moltbox-runtime`; keep live install state out of Git unless it is being promoted intentionally.
+5. Add only the stable baseline policy to `moltbox-runtime`; keep live runtime state out of Git unless it is being promoted intentionally.
    - skill config lives under `skills` in `openclaw.json`
    - common surfaces include `skills.allowBundled`, `skills.load.extraDirs`, `skills.install.*`, and `skills.entries.<name>.enabled|env|apiKey`
    - `skills.entries.<name>.env` and `apiKey` apply to host runs only; sandboxed skill processes need sandbox env wiring
@@ -90,19 +90,21 @@ Assume these limits unless the architecture changes:
 
 ## Deployment Method
 
-Skills currently reach the appliance through environment-scoped runtime operations and native OpenClaw behavior.
+Baseline-managed skills reach the appliance through the gateway-managed runtime deploy and reload paths.
 
 Typical path:
 
 ```text
-moltbox <env> openclaw <native install command>
+moltbox gateway service deploy <env>
 ```
 
-In many current feature docs, that concrete path is:
+or:
 
 ```text
-moltbox <env> openclaw plugins install <skill-or-plugin-id>
+moltbox <env> reload
 ```
+
+In the current Moltbox runtime model, the gateway stages skill folders from `remram-skills/skills/` into the runtime's managed OpenClaw state under `~/.openclaw/skills`.
 
 Current upstream skill inspection commands that should remain reachable through passthrough are:
 
@@ -125,14 +127,16 @@ clawhub publish <path>
 clawhub sync --all
 ```
 
-Treat the gateway as the orchestrator around that native install path:
+Treat the gateway as the orchestrator around that deployment path:
 
 - capture pre-deploy snapshots
 - apply required runtime config
-- perform the install
+- stage the required `SKILL.md` package into the runtime state
 - reload or restart when required
 - record deployment events and recovery metadata
-- replay recorded install events when the runtime container itself is redeployed
+- replay recorded deployment state when the runtime container itself is redeployed
+
+If a specific skill also depends on native OpenClaw plugin install behavior, call that out explicitly in the feature spec instead of assuming it for all skills.
 
 ## Testing Surfaces
 

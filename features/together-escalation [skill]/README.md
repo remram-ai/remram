@@ -17,11 +17,11 @@ Together Escalation defines that policy so the runtime can:
 
 ## What It Does
 
-The feature is implemented as an OpenClaw plugin-backed skill.
+The feature is implemented as an OpenClaw skill folder plus runtime baseline policy.
 
 At a high level it:
 
-- installs into a target runtime through the native OpenClaw plugin lifecycle
+- stages the `together-escalation` skill folder into the target runtime's managed OpenClaw state
 - configures Together-backed model refs for the default agent and tool-driven role paths
 - establishes ordered fallback chains per role
 - depends on Together provider auth and runtime-visible model catalog entries
@@ -30,19 +30,25 @@ At a high level it:
 
 - the `together-escalation` skill package in `remram-skills`
 - runtime baseline config in `moltbox-runtime`
-- runtime-local OpenClaw plugin install state
+- runtime-local OpenClaw skill state under `~/.openclaw/skills`
 - OpenClaw model catalog and provider auth for Together
 - local `ollama` connectivity for the primary chat model
 
 ## Operator View
 
-Operators install and inspect the feature through environment-scoped OpenClaw passthrough commands such as:
+Operators deploy the feature by redeploying or reloading the target runtime so the gateway can stage the skill folder and inject the required auth:
 
 ```text
-moltbox dev openclaw plugins install together-escalation
+moltbox gateway service deploy dev
 ```
 
-The feature is runtime-specific. `dev`, `test`, and `prod` can carry different install state, credentials, or promotion timing.
+Then inspect it through environment-scoped OpenClaw passthrough commands such as:
+
+```text
+moltbox dev openclaw skills list
+```
+
+The feature is runtime-specific. `dev`, `test`, and `prod` can carry different credentials or promotion timing.
 
 ## Related Documents
 

@@ -176,15 +176,15 @@ Per current OpenClaw docs, fallback is expected for auth failures, rate limits, 
 
 ### Install
 
-The feature is installed into a runtime through the native OpenClaw plugin lifecycle.
+The feature is delivered into a runtime through the gateway-managed runtime deploy or reload flow.
 
 Example direction:
 
 ```text
-moltbox dev openclaw plugins install together-escalation
+moltbox gateway service deploy dev
 ```
 
-The install writes runtime-local plugin state and may require explicit trust or allowlisting in OpenClaw config.
+The gateway stages the `together-escalation` skill folder into the runtime's managed OpenClaw state under `~/.openclaw/skills/together-escalation`.
 
 ### Configure
 
@@ -207,7 +207,7 @@ At runtime:
 
 ### Persist
 
-The feature persists runtime-local install state inside the target environment rather than back into Git automatically.
+The feature persists runtime-local skill state inside the target environment rather than back into Git automatically.
 
 ## Deployment Implications
 
@@ -220,7 +220,7 @@ Its deployment affects:
 - runtime snapshots before mutation
 - environment-scoped secret management
 
-Because it installs through native OpenClaw behavior, a live runtime may differ from the Git baseline after install until a later checkpoint promotes that state intentionally.
+Because it is staged into live runtime state during deploy or reload, a runtime may differ from the Git baseline until a later checkpoint promotes that state intentionally.
 
 ## Constraints And Edge Cases
 
@@ -228,7 +228,7 @@ Because it installs through native OpenClaw behavior, a live runtime may differ 
 - if `agents.defaults.models` omits one of the fallback models, the runtime can stop with a model-allowlist error instead of recovering
 - if the runtime build does not expose Together as the provider id `together`, the feature is misconfigured
 - if the role-specific reasoning and coding policy drifts from the OpenClaw model catalog, operators can see inconsistent selection behavior
-- `dev`, `test`, and `prod` do not automatically share Together credentials or install state
+- `dev`, `test`, and `prod` do not automatically share Together credentials or staged runtime state
 
 ## TODO
 

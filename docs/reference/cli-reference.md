@@ -16,6 +16,7 @@ Canonical resource namespaces:
 - `dev`
 - `test`
 - `prod`
+- `service` for scoped secrets only
 - `ollama`
 - `caddy`
 - `opensearch`
@@ -38,16 +39,30 @@ moltbox
     openclaw <command>
     checkpoint
     reload
+    secrets set <NAME>
+    secrets list
+    secrets delete <NAME>
 
   test
     openclaw <command>
     checkpoint
     reload
+    secrets set <NAME>
+    secrets list
+    secrets delete <NAME>
 
   prod
     openclaw <command>
     checkpoint
     reload
+    secrets set <NAME>
+    secrets list
+    secrets delete <NAME>
+
+  service
+    secrets set <NAME>
+    secrets list
+    secrets delete <NAME>
 
   ollama
     <native ollama command>
@@ -73,6 +88,10 @@ These namespaces are retired:
 - `host`
 
 Legacy commands should fail rather than redirect.
+
+Exception:
+
+- `moltbox service secrets ...` is valid because `service` is a secret scope, not the retired lifecycle namespace
 
 ## Environment Mapping
 
@@ -128,6 +147,15 @@ moltbox prod checkpoint
 moltbox prod openclaw <command>
 ```
 
+Scoped secrets also use the environment namespaces:
+
+```text
+moltbox dev secrets set TOGETHER_API_KEY
+moltbox test secrets list
+moltbox prod secrets delete TOGETHER_API_KEY
+moltbox service secrets set POSTGRES_PASSWORD
+```
+
 ## Native Service Passthrough
 
 ```text
@@ -174,6 +202,19 @@ openclaw skills list --eligible
 openclaw skills info <name>
 openclaw skills check
 ```
+
+## Scoped Secrets
+
+Secrets are gateway-owned local appliance state.
+
+Rules:
+
+- valid scopes are `dev`, `test`, `prod`, and `service`
+- the CLI surface is `moltbox <scope> secrets <set|list|delete>`
+- the CLI invokes local gateway command handlers; there is no network secrets API
+- the gateway stores encrypted secret files under `/var/lib/moltbox/secrets/<scope>/`
+- secret values are not printed in normal CLI output
+- gateway-managed deploy or reload operations inject scoped secrets into the target container environment
 
 ## Checkpoint Notes
 

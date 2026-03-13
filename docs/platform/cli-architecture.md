@@ -6,6 +6,7 @@ The CLI is a resource-oriented operator surface. Top-level namespaces represent 
 
 - the gateway control plane
 - runtime environments
+- scoped secret targets
 - managed service CLIs
 
 Canonical grammar:
@@ -30,16 +31,30 @@ moltbox
     openclaw <command>
     checkpoint
     reload
+    secrets set <NAME>
+    secrets list
+    secrets delete <NAME>
 
   test
     openclaw <command>
     checkpoint
     reload
+    secrets set <NAME>
+    secrets list
+    secrets delete <NAME>
 
   prod
     openclaw <command>
     checkpoint
     reload
+    secrets set <NAME>
+    secrets list
+    secrets delete <NAME>
+
+  service
+    secrets set <NAME>
+    secrets list
+    secrets delete <NAME>
 
   ollama
     <native ollama command>
@@ -60,6 +75,7 @@ Top-level commands represent operator-facing resources rather than internal soft
 Examples:
 
 - `dev`, `test`, and `prod` represent runtime environments
+- `service` is a shared-service secret scope used only for `moltbox service secrets ...`
 - `ollama`, `opensearch`, and `caddy` represent managed services
 - `gateway` represents the appliance control plane
 
@@ -82,6 +98,20 @@ Internally, those environment names map to runtime service identities:
 - `prod` -> `openclaw-prod`
 
 Those internal identifiers remain implementation details and must not appear as top-level CLI namespaces.
+
+Scoped secrets also follow the environment-first model:
+
+```text
+moltbox dev secrets set TOGETHER_API_KEY
+moltbox test secrets list
+moltbox prod secrets delete TOGETHER_API_KEY
+```
+
+Shared-service secrets use:
+
+```text
+moltbox service secrets set POSTGRES_PASSWORD
+```
 
 ### Native CLI Passthrough
 
@@ -108,6 +138,8 @@ moltbox gateway service deploy opensearch
 ```
 
 Container deployment and service lifecycle actions are routed through the gateway service pipeline.
+
+Secrets are also gateway-owned, but they do not use a network secrets API. The CLI invokes local gateway command handlers that read and write the encrypted appliance secret store at `/var/lib/moltbox/secrets/<scope>/`.
 
 ### Runtime Checkpoint Behavior
 
@@ -171,7 +203,6 @@ Those environment identifiers still map internally to runtime container identiti
 These forms are not part of the Architecture V2 CLI contract:
 
 - `runtime` as a top-level namespace
-- top-level `service`
 - top-level `skill`
 - top-level `openclaw-dev`
 - top-level `openclaw-test`
@@ -180,6 +211,10 @@ These forms are not part of the Architecture V2 CLI contract:
 - `host`
 
 Legacy commands should fail rather than redirect.
+
+Exception:
+
+- `moltbox service secrets ...` is part of the active CLI because `service` acts as a secret scope, not as the retired lifecycle namespace
 
 ## Related Documents
 

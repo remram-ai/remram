@@ -26,16 +26,30 @@ moltbox
     openclaw <command>
     checkpoint
     reload
+    secrets set <NAME>
+    secrets list
+    secrets delete <NAME>
 
   test
     openclaw <command>
     checkpoint
     reload
+    secrets set <NAME>
+    secrets list
+    secrets delete <NAME>
 
   prod
     openclaw <command>
     checkpoint
     reload
+    secrets set <NAME>
+    secrets list
+    secrets delete <NAME>
+
+  service
+    secrets set <NAME>
+    secrets list
+    secrets delete <NAME>
 
   ollama
     <native ollama command>
@@ -64,6 +78,16 @@ Runtime environments:
 moltbox dev reload
 moltbox test checkpoint
 moltbox prod openclaw <command>
+moltbox dev secrets set TOGETHER_API_KEY
+```
+
+Scoped secrets:
+
+```text
+moltbox dev secrets list
+moltbox test secrets set TOGETHER_API_KEY
+moltbox prod secrets delete TOGETHER_API_KEY
+moltbox service secrets set POSTGRES_PASSWORD
 ```
 
 Native service passthrough:
@@ -78,8 +102,11 @@ moltbox caddy <native command>
 
 - use the CLI as the normal control surface
 - use `dev`, `test`, and `prod` for runtime operations
+- use `dev`, `test`, `prod`, and `service` as the valid scopes for `moltbox <scope> secrets ...`
 - use `gateway service ...` for appliance deployment and service lifecycle work
 - use `gateway service deploy dev|test|prod` when redeploying runtime containers through the control plane
+- secrets are gateway-owned appliance state stored locally under `/var/lib/moltbox/secrets/<scope>/`
+- secrets are encrypted at rest and injected into container environments during gateway-managed deploy or reload
 - use native service passthrough namespaces instead of reimplementing service-specific commands in Moltbox
 - treat Docker commands as internal implementation details
 
@@ -113,6 +140,10 @@ The following namespaces are retired:
 - `host`
 
 Legacy commands should fail rather than redirect.
+
+Exception:
+
+- `moltbox service secrets ...` is valid because `service` acts as a secret scope, not as the retired lifecycle namespace
 
 ## See Also
 

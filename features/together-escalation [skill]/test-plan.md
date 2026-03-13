@@ -4,8 +4,8 @@
 
 Together Escalation is done for an environment when:
 
-- the plugin installs successfully into the target runtime
-- the runtime recognizes the plugin and the skill as eligible
+- the skill is staged successfully into the target runtime
+- the runtime recognizes the skill as eligible
 - Together-backed models are resolvable to the runtime
 - chat can recover from local-model failure to Maverick
 - reasoning work uses Kimi K2.5 and can fall back to Qwen 3.5 397B
@@ -18,9 +18,9 @@ Together Escalation is done for an environment when:
 
 Verify:
 
-- `moltbox <env> openclaw plugins install together-escalation` succeeds
-- `moltbox <env> openclaw plugins list` shows `together-escalation`
-- `moltbox <env> openclaw plugins info together-escalation` resolves correctly
+- `moltbox gateway service deploy <env>` or `moltbox <env> reload` succeeds
+- `moltbox <env> openclaw skills list` shows `together-escalation`
+- `moltbox <env> openclaw skills info together-escalation` resolves correctly
 
 ### 2. Config Validation
 
@@ -69,7 +69,7 @@ Verify at least one operator-visible surface exposes the effective model path.
 Examples:
 
 - runtime logs
-- plugin diagnostics
+- skill diagnostics
 - OpenClaw model status or equivalent runtime model-selection output
 
 ### 7. Environment Promotion Validation
@@ -82,23 +82,23 @@ Validate the feature independently in:
 
 Each environment should have:
 
-- the plugin installed
+- the skill staged
 - Together credentials present
 - the same documented fallback chains
 
 ## Failure Cases To Test
 
-- plugin install fails because the package path is wrong or the plugin is not trusted
+- runtime deploy fails to stage the skill folder from `remram-skills`
 - `TOGETHER_API_KEY` is missing in the target environment
 - the Together provider is present but one or more required model refs are not in the allowlist
 - chat falls back to the wrong Together model
 - reasoning or coding paths bypass their documented fallback order
 - provider failure occurs in a way that is not fallback-eligible under current OpenClaw rules
-- the feature is installed in `dev` but missing in `test` or `prod`
+- the feature is present in `dev` but missing in `test` or `prod`
 
 ## Operator-Visible Success Criteria
 
-- operators can confirm install state with native OpenClaw plugin commands through Moltbox
+- operators can confirm staged skill state with native OpenClaw skill commands through Moltbox
 - operators can see Together-backed models in the runtime's model surfaces
 - chat, reasoning, and coding paths all use the documented model order
 - failures point to a specific auth, allowlist, or provider problem
@@ -106,6 +106,6 @@ Each environment should have:
 ## Deployment And Runtime Checks
 
 - verify a pre-deploy snapshot exists before runtime mutation
-- verify the runtime remains healthy after plugin install
+- verify the runtime remains healthy after runtime deploy or reload
 - verify deployment events are captured if runtime deployment-event recording is enabled
 - verify environment-specific secrets are present before promotion

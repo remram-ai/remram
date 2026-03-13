@@ -10,6 +10,7 @@ The gateway owns:
 
 - the `moltbox` CLI
 - deployment orchestration
+- the local encrypted secret store under `/var/lib/moltbox/secrets/`
 - service deployment coordination
 - runtime lifecycle orchestration
 - plugin deployment orchestration
@@ -44,6 +45,17 @@ Visual Studio
 Operators should interact with the appliance through the Moltbox CLI.
 
 Docker commands are an internal implementation detail and should not be the normal operator interface.
+
+For secrets, the control path is local:
+
+```text
+CLI
+  -> gateway command handler
+    -> local secret store
+      -> runtime or service env injection
+```
+
+There is no network API for secrets. The gateway process reads and writes the secret store directly from the appliance filesystem.
 
 TODO:
 

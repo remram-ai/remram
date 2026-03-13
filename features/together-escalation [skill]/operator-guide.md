@@ -24,17 +24,17 @@ Before enabling it, confirm:
 
 ## Install
 
-Install the plugin through the environment-scoped OpenClaw passthrough:
+Deploy or reload the target runtime so the gateway stages the skill folder and injects the required secret:
 
 ```text
-moltbox dev openclaw plugins install together-escalation
+moltbox gateway service deploy dev
 ```
 
 Then verify:
 
 ```text
-moltbox dev openclaw plugins list
-moltbox dev openclaw plugins info together-escalation
+moltbox dev openclaw skills list
+moltbox dev openclaw skills info together-escalation
 ```
 
 If the active gateway build exposes native model inspection through the same passthrough surface, also verify the resolved model state:
@@ -62,14 +62,13 @@ Use `dev` first, then promote deliberately:
 2. install and validate in `test`
 3. install and validate in `prod`
 
-Promotion means repeating the runtime install and verification steps in each environment. It does not automatically copy Together credentials or live plugin state across environments.
+Promotion means repeating the runtime deploy and verification steps in each environment. It does not automatically copy Together credentials or live runtime state across environments.
 
 ## What To Check
 
 If the feature is not working:
 
-- confirm the plugin is installed
-- confirm the plugin is trusted and allowed if the runtime enforces plugin allowlists
+- confirm the skill is present under the runtime's skill inventory
 - confirm `TOGETHER_API_KEY` is present in the target environment
 - confirm all required Together model refs are present in the runtime model catalog
 - confirm the chat, reasoning, and coding role chains match the documented order
@@ -83,7 +82,7 @@ Common problems:
 - a Together model is missing from `agents.defaults.models`, causing a model-allowlist failure instead of recovery
 - reasoning or coding policy points at the wrong model id
 - the provider is configured under the wrong name instead of `together`
-- `dev` works but `test` or `prod` is missing the required key or plugin install
+- `dev` works but `test` or `prod` is missing the required key or runtime deploy
 
 ## TODO
 

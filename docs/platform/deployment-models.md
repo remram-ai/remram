@@ -42,10 +42,10 @@ moltbox dev checkpoint
 Native OpenClaw passthrough lifecycle:
 
 ```text
-moltbox dev openclaw plugins install semantic-router
+moltbox dev openclaw skills list
 ```
 
-Moltbox intentionally uses the native OpenClaw lifecycle for skill and plugin deployment rather than redefining those operations as a separate public lifecycle model.
+Moltbox preserves native OpenClaw passthrough for runtime inspection and debugging, but baseline-managed skill delivery happens through gateway-managed runtime deploy and reload.
 
 ## Deployment Metadata
 
@@ -139,26 +139,29 @@ This model updates the baseline starting point for a runtime. It does not claim 
 
 ## 3. Runtime Skill and Plugin Deployment
 
-Runtime capability deployment installs skills and plugins into a live runtime.
+Runtime capability deployment makes skills and plugins available inside a live runtime.
 
 This model is different from baseline sync.
 
 Primary inputs:
 
 - skill packages and recipes from `remram-skills`
-- native OpenClaw installation mechanisms
+- the runtime's managed OpenClaw state under `~/.openclaw`
 - the target runtime environment
 
-Typical operator surface:
+Typical operator surfaces:
 
 ```text
-moltbox dev openclaw plugins install semantic-router
+moltbox gateway service deploy dev
+moltbox dev reload
+moltbox dev openclaw skills list
 ```
 
 Expected behavior:
 
 - gateway drives the deployment flow
-- OpenClaw-native installation may mutate live runtime state
+- gateway stages managed skill folders into the runtime state before the container is treated as healthy
+- OpenClaw loads those skills from its normal local skill locations
 - deployment events are recorded by the gateway per runtime
 - resulting live state is operational state, not an automatic Git mirror
 
@@ -167,21 +170,13 @@ This is why `moltbox-runtime` is baseline-only rather than a complete record of 
 Minimum current passthrough command families that should remain supported through `moltbox <env> openclaw ...` are:
 
 ```text
-openclaw plugins list
-openclaw plugins info <id>
-openclaw plugins enable <id>
-openclaw plugins disable <id>
-openclaw plugins install <path-or-spec>
-openclaw plugins uninstall <id>
-openclaw plugins doctor
-openclaw plugins update <id>
-openclaw plugins update --all
-
 openclaw skills list
 openclaw skills list --eligible
 openclaw skills info <name>
 openclaw skills check
 ```
+
+If a specific feature genuinely needs OpenClaw-native plugin lifecycle commands, document that feature as a plugin-backed exception rather than treating plugin install as the default skill path.
 
 ## 4. Snapshot Types
 

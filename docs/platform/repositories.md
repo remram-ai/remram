@@ -148,6 +148,28 @@ Feature
   -> Gateway deployment and orchestration
 ```
 
+## Host Repository Access
+
+Moltbox hosts pull private platform repositories with GitHub App installation tokens.
+
+The host-side model is:
+
+- do not use SSH deploy keys for private repository access
+- keep the GitHub App private key on the host at `/home/jpekovitch/.ssh/remram_deploy.pem`
+- let bootstrap tooling or the gateway exchange that key for a short-lived installation token
+- use HTTPS Git URLs in the form `https://x-access-token:<installation_token>@github.com/remram-ai/<repo>.git`
+
+The required private repositories for the bootstrap and deployment path are:
+
+- `remram-ai/moltbox-gateway`
+- `remram-ai/moltbox-services`
+- `remram-ai/moltbox-runtime`
+
+Current GitHub App metadata for this host bootstrap path:
+
+- App ID `3071584`
+- Installation ID `115774577`
+
 ## Ownership Boundaries
 
 The most important repository boundaries are:

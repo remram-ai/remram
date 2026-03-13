@@ -15,6 +15,12 @@ Primary operator path:
 Visual Studio -> MCP plugin -> Moltbox CLI -> gateway
 ```
 
+Host bootstrap note:
+
+- Moltbox hosts pull Git-backed platform inputs with GitHub App installation tokens
+- the private key stays on the host at `/home/jpekovitch/.ssh/remram_deploy.pem`
+- gateway or bootstrap tooling performs the token exchange; SSH deploy keys are intentionally not used
+
 Canonical sources:
 
 - [Platform Overview](../platform/overview.md)

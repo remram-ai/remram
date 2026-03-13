@@ -23,6 +23,14 @@ Platform model:
 - pre-deploy snapshots live under `/srv/moltbox-state/runtime-snapshots/`
 - checkpointing rebases runtime state into a new baseline
 
+Host Git access model:
+
+- Moltbox hosts authenticate to GitHub with a GitHub App, not SSH deploy keys
+- the host stores the GitHub App private key at `/home/jpekovitch/.ssh/remram_deploy.pem`
+- bootstrap tooling exchanges that key for short-lived installation tokens using App ID `3071584` and Installation ID `115774577`
+- Git operations use HTTPS with the installation token, for example `https://x-access-token:<installation_token>@github.com/remram-ai/<repo>.git`
+- the gateway or bootstrap tooling owns the token exchange step; do not hard-code tokens into repos or host config
+
 CLI model:
 
 - `moltbox gateway ...` for control-plane work

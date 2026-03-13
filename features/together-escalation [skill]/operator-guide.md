@@ -1,0 +1,90 @@
+# Together Escalation Operator Guide
+
+## Purpose
+
+Use this feature when you want a Moltbox runtime to keep default chat local while recovering to stronger Together-hosted models for chat, reasoning, and coding when fallback is needed.
+
+## Where It Runs
+
+Together Escalation is installed per environment:
+
+- `dev`
+- `test`
+- `prod`
+
+## Prerequisites
+
+Before enabling it, confirm:
+
+- the target runtime is healthy
+- `ollama` is reachable for the local chat primary
+- `TOGETHER_API_KEY` is present for the target environment
+- the runtime model catalog includes the required Together model refs
+- the runtime baseline contains the role-policy files that describe reasoning and coding behavior
+
+## Install
+
+Install the plugin through the environment-scoped OpenClaw passthrough:
+
+```text
+moltbox dev openclaw plugins install together-escalation
+```
+
+Then verify:
+
+```text
+moltbox dev openclaw plugins list
+moltbox dev openclaw plugins info together-escalation
+```
+
+If the active gateway build exposes native model inspection through the same passthrough surface, also verify the resolved model state:
+
+```text
+moltbox dev openclaw models status
+moltbox dev openclaw models list
+```
+
+If the runtime requires explicit trust or allowlisting, apply the required OpenClaw config changes before treating the feature as active.
+
+## Use In Practice
+
+Once installed, the feature changes model recovery behavior inside the existing runtime.
+
+Normal chat should begin on `ollama/qwen3:8b`. If the local model fails through a fallback-eligible path, the runtime should recover to Maverick. Reasoning and coding work should use their Together chains automatically when those role paths are invoked.
+
+The feature does not create a new operator-facing chat endpoint and it does not introduce a separate Together service container.
+
+## Promote To Test And Prod
+
+Use `dev` first, then promote deliberately:
+
+1. install and validate in `dev`
+2. install and validate in `test`
+3. install and validate in `prod`
+
+Promotion means repeating the runtime install and verification steps in each environment. It does not automatically copy Together credentials or live plugin state across environments.
+
+## What To Check
+
+If the feature is not working:
+
+- confirm the plugin is installed
+- confirm the plugin is trusted and allowed if the runtime enforces plugin allowlists
+- confirm `TOGETHER_API_KEY` is present in the target environment
+- confirm all required Together model refs are present in the runtime model catalog
+- confirm the chat, reasoning, and coding role chains match the documented order
+- confirm runtime logs show the expected selected model or fallback path
+
+## Troubleshooting Basics
+
+Common problems:
+
+- local chat never reaches Maverick because the chat fallback chain was not written to the default-agent model config
+- a Together model is missing from `agents.defaults.models`, causing a model-allowlist failure instead of recovery
+- reasoning or coding policy points at the wrong model id
+- the provider is configured under the wrong name instead of `together`
+- `dev` works but `test` or `prod` is missing the required key or plugin install
+
+## TODO
+
+- document the exact preferred Moltbox-wrapped commands for inspecting effective model chains once the gateway's OpenClaw passthrough surface is finalized

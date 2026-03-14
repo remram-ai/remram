@@ -1,6 +1,6 @@
 # Media Publishing Agent
 
-Platform Item Definition
+Epic
 
 ---
 
@@ -118,7 +118,7 @@ Pipeline execution may run overnight.
 
 ---
 
-## 5. Feature Scope
+## 5. Epic Scope
 
 Core capabilities:
 

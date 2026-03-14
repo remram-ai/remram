@@ -1,12 +1,12 @@
 # Coding Companion
 
-Platform Item Definition
+Epic
 
 ---
 
 ## 1. Overview
 
-Coding Companion is a guided development feature that helps users (especially young coders) build software step-by-step with enforced workflow discipline, structured context management, and a mixture-of-experts pipeline for code, assets, and reusable patterns. It integrates directly with the Remram memory architecture so projects accumulate reusable components, templates, walkthrough guidance, and learned patterns over time - eliminating "sliding context window" frustration by keeping durable project knowledge in structured memory.
+Coding Companion is a guided development initiative that helps users (especially young coders) build software step-by-step with enforced workflow discipline, structured context management, and a mixture-of-experts pipeline for code, assets, and reusable patterns. It integrates directly with the Remram memory architecture so projects accumulate reusable components, templates, walkthrough guidance, and learned patterns over time - eliminating "sliding context window" frustration by keeping durable project knowledge in structured memory.
 
 ---
 
@@ -36,7 +36,7 @@ Coding Companion turns coding into a guided, compounding learning and building l
 - Provides an educational experience that makes progress legible to young builders (explain-as-we-go, follow-along).
 - Reduces wasted tokens by enforcing discipline and using persistent memory instead of relying on a transient window.
 
-Strategically, this feature converts projects into lasting capability: code reuse, pattern libraries, and a growing "family dev studio" knowledge base.
+Strategically, this initiative converts projects into lasting capability: code reuse, pattern libraries, and a growing "family dev studio" knowledge base.
 
 ---
 
@@ -98,7 +98,7 @@ When confidence is low or ambiguity is detected:
 
 ---
 
-## 5. Feature Scope
+## 5. Epic Scope
 
 ### In Scope
 
@@ -202,8 +202,4 @@ Mitigations:
 - How should asset consistency be maintained across revisions?
 - What is the best UX for the follow-up question queue (per-project vs global inbox)?
 - How should MyFeed signals be scoped so they are helpful without becoming noisy?
-
----
-
-End of Platform Item Definition.
 

@@ -1,6 +1,6 @@
-# Semantic Expansion Agent
+# Semantic Expansion
 
-Platform Item Definition
+Epic
 
 ---
 
@@ -70,8 +70,8 @@ Flow:
 4. Router re-routes expanded concepts through OpenSearch
 5. Expanded results evaluated for relevance before inclusion
 
-User does not directly interact with the feature.
-It operates silently and conservatively.
+This initiative is not intended as a direct user-facing surface.
+It is expected to operate silently and conservatively.
 
 ---
 
@@ -96,7 +96,7 @@ Expansion signals are evaluated before any memory mutation.
 
 ---
 
-## 5. Feature Scope
+## 5. Epic Scope
 
 Core capabilities:
 
@@ -189,7 +189,7 @@ Expansion must always respect memory policy filters.
 - Stable or reduced token-per-task average
 - No increase in unintended escalation events
 
-If expansion increases noise more than recall, feature is pruned.
+If expansion increases noise more than recall, the initiative should be reduced in scope or stopped.
 
 ---
 

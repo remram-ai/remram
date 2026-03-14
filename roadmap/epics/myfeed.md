@@ -1,12 +1,12 @@
 # MyFeed
 
-Platform Item Definition
+Epic
 
 ---
 
 ## 1. Overview
 
-MyFeed is a memory-aligned content briefing feature that aggregates information across platforms and transforms it into structured, trustworthy, and perspective-balanced briefings. It replaces engagement-driven social feeds with a system that users can tune explicitly, grounded in their own memory profile, trust preferences, and strategic interests.
+MyFeed is a memory-aligned content briefing initiative that aggregates information across platforms and transforms it into structured, trustworthy, and perspective-balanced briefings. It replaces engagement-driven social feeds with a system that users can tune explicitly, grounded in their own memory profile, trust preferences, and strategic interests.
 
 ---
 
@@ -64,7 +64,7 @@ MyFeed adapts to time budget and cognitive load preferences.
 
 ---
 
-## 5. Feature Scope
+## 5. Epic Scope
 
 ### In Scope
 
@@ -150,8 +150,4 @@ Mitigations:
 - Should perspective balancing always run or be conditional?
 - What exploration bias is acceptable to prevent narrowing?
 - Which domains auto-trigger research enrichment (AI, governance, hardware)?
-
----
-
-End of Platform Item Definition.
 

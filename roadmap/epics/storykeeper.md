@@ -1,12 +1,12 @@
 # Storykeeper
 
-Platform Item Definition
+Epic
 
 ---
 
 ## 1. Overview
 
-Storykeeper is a voice-first storytelling feature that transforms spontaneous personal stories into structured, enriched narrative artifacts for the family vault. It enables individuals to record memories naturally, refine them through assisted authorship, and publish them in multiple formats - written, narrated, or multimedia slideshow - for shared legacy and intergenerational access. Storykeeper is designed to operate within a linked Family AI network, allowing stories to evolve collaboratively over time.
+Storykeeper is a voice-first storytelling initiative that transforms spontaneous personal stories into structured, enriched narrative artifacts for the family vault. It enables individuals to record memories naturally, refine them through assisted authorship, and publish them in multiple formats - written, narrated, or multimedia slideshow - for shared legacy and intergenerational access. Storykeeper is designed to operate within a linked Family AI network, allowing stories to evolve collaboratively over time.
 
 ---
 
@@ -77,7 +77,7 @@ Publishing Model:
 
 ---
 
-## 5. Feature Scope
+## 5. Epic Scope
 
 ### In Scope
 
@@ -95,7 +95,7 @@ Publishing Model:
 
 - Public social sharing.
 - Automatic publishing without review.
-- Automatic extraction of structured wisdom fragments (handled by Family AI feature).
+- Automatic extraction of structured wisdom fragments (handled elsewhere in Family AI).
 - Full genealogical modeling.
 
 ---
@@ -167,8 +167,4 @@ Mitigations:
 - Should contributors require approval before merging narrative changes?
 - How visible should revision history be to younger family members?
 - What triggers notification of story updates across the family network?
-
----
-
-End of Platform Item Definition.
 

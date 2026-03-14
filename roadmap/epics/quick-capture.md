@@ -1,12 +1,12 @@
-# Write That Down
+# Quick Capture
 
-Platform Item Definition
+Epic
 
 ---
 
 ## 1. Overview
 
-Write That Down is a low-friction idea capture and structuring feature that converts spontaneous thoughts into organized, analyzed, and connected artifacts inside the Idea Vault. It allows ideas to be captured instantly, primarily via voice, refined through structured feedback, linked to related concepts, and revisited over time as technologies, signals, or strategic context evolve.
+Quick Capture is a low-friction idea capture and structuring initiative that converts spontaneous thoughts into organized, analyzed, and connected artifacts inside the Idea Vault. It allows ideas to be captured instantly, primarily via voice, refined through structured feedback, linked to related concepts, and revisited over time as technologies, signals, or strategic context evolve.
 
 ---
 
@@ -33,7 +33,7 @@ The result is idea entropy rather than idea leverage.
 
 ## 3. Value Proposition
 
-Write That Down transforms inspiration into structured intellectual capital.
+Quick Capture transforms inspiration into structured intellectual capital.
 
 - Capture instantly via voice without breaking flow
 - Convert raw thought into outline, definitions, and clarified assumptions
@@ -42,7 +42,7 @@ Write That Down transforms inspiration into structured intellectual capital.
 - Update existing ideas rather than duplicate them
 - Periodically resurface dormant ideas when context shifts
 
-Strategically, this feature turns the Idea Vault into a living system rather than a static archive. Ideas compound, evolve, and interconnect over time.
+Strategically, this initiative turns the Idea Vault into a living system rather than a static archive. Ideas compound, evolve, and interconnect over time.
 
 ---
 
@@ -72,7 +72,7 @@ Ideas appear as nodes in the primary brain-map interface.
 
 ---
 
-## 5. Feature Scope
+## 5. Epic Scope
 
 ### In Scope
 
@@ -153,8 +153,4 @@ Mitigations:
 - How aggressive should dormant idea resurfacing be?
 - Should ideas auto-promote into projects when refined enough?
 - What defines an "unlocking technology" trigger?
-
----
-
-End of Platform Item Definition.
 

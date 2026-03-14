@@ -1,6 +1,6 @@
 # Lineage
 
-Platform Item Definition
+Epic
 
 ---
 
@@ -64,7 +64,7 @@ Governed Visibility:
 
 ---
 
-## 5. Feature Scope
+## 5. Epic Scope
 
 ### In Scope
 

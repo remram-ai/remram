@@ -14,12 +14,25 @@ $script:tempSkillName = "cli-validation-$script:timestamp"
 $script:tempSkillRoot = "/srv/moltbox-state/upstream/remram-skills/skills"
 $script:tempSkillPath = "$script:tempSkillRoot/$script:tempSkillName"
 $script:baseSkillPath = "$script:tempSkillRoot/$BaseSkill"
+$script:pluginCandidates = @(
+    [pscustomobject]@{
+        Name       = "moltbox-telemetry"
+        SourcePath = "$script:tempSkillRoot/moltbox-telemetry"
+    },
+    [pscustomobject]@{
+        Name       = "semantic-router"
+        SourcePath = "$script:tempSkillRoot/semantic-router"
+    }
+)
+$script:pluginName = $null
+$script:pluginSourcePath = $null
 $script:tempTokenName = "cli-validation-$script:timestamp"
 $script:dockerRunContainer = "hello-world"
 
 $script:results = New-Object System.Collections.ArrayList
 $script:tempSkillCreated = $false
 $script:tempSkillDeployed = $false
+$script:tempPluginDeployed = $false
 $script:tempTokenCreated = $false
 
 function Add-Result {
@@ -187,6 +200,15 @@ function Run-Step {
 }
 
 function Cleanup-State {
+    Run-Step -Group "cleanup" -Command "plugin remove $script:pluginName" -ContinueOnFailure -Action {
+        if (-not $script:tempPluginDeployed -or [string]::IsNullOrWhiteSpace($script:pluginName)) {
+            return "no replay-installed temp plugin to remove"
+        }
+        $remove = Invoke-MoltboxJson -Args @($Environment, "plugin", "remove", $script:pluginName) -AllowFailure
+        $script:tempPluginDeployed = $false
+        return $remove.Output
+    } | Out-Null
+
     Run-Step -Group "cleanup" -Command "skill remove $script:tempSkillName" -ContinueOnFailure -Action {
         if (-not $script:tempSkillDeployed) {
             return "no replay-installed temp skill to remove"
@@ -274,11 +296,15 @@ try {
         Run-Step -Group "gateway" -Command "gateway update" -Action {
             Invoke-MoltboxJson -Args @("gateway", "update") | Out-Null
             Wait-GatewayReady
-            $historyCheck = Invoke-RemoteShell -Script "test -s /var/lib/moltbox/history.jsonl"
-            if ($historyCheck.ExitCode -ne 0) {
+            $hostHistoryCheck = Invoke-RemoteShell -Script "test -s /var/lib/moltbox/history.jsonl"
+            if ($hostHistoryCheck.ExitCode -ne 0) {
                 throw "gateway update did not leave a non-empty /var/lib/moltbox/history.jsonl"
             }
-            return "update completed"
+            $deployHistoryCheck = Invoke-RemoteShell -Script "test -s /srv/moltbox-state/deploy/history.jsonl"
+            if ($deployHistoryCheck.ExitCode -ne 0) {
+                throw "gateway update did not leave a non-empty /srv/moltbox-state/deploy/history.jsonl"
+            }
+            return "update completed with both provenance ledgers present"
         } | Out-Null
     } else {
         Add-Result -Group "gateway" -Command "gateway update" -Status "SKIP" -Details "skipped by default; rerun with -IncludeGatewayUpdate for full self-update validation"
@@ -328,6 +354,81 @@ try {
             throw "temp skill still present after remove: $($list.Output)"
         }
         return "temp skill absent"
+    } | Out-Null
+
+    Run-Step -Group "plugin" -Command "select plugin candidate" -Action {
+        $list = Invoke-MoltboxJson -Args @($Environment, "plugin", "list")
+        $installed = @()
+        if ($null -ne $list.Json.plugins) {
+            $installed = @($list.Json.plugins | ForEach-Object { $_.plugin })
+        }
+
+        foreach ($candidate in $script:pluginCandidates) {
+            if ($installed -notcontains $candidate.Name) {
+                $script:pluginName = $candidate.Name
+                $script:pluginSourcePath = $candidate.SourcePath
+                return "$($candidate.Name) from $($candidate.SourcePath)"
+            }
+        }
+
+        throw "no unused plugin candidate available; installed plugins: $($installed -join ',')"
+    } | Out-Null
+
+    Run-Step -Group "plugin" -Command "$Environment plugin install $script:pluginSourcePath" -Action {
+        if ([string]::IsNullOrWhiteSpace($script:pluginSourcePath) -or [string]::IsNullOrWhiteSpace($script:pluginName)) {
+            throw "plugin candidate was not selected"
+        }
+        $install = Invoke-MoltboxJson -Args @($Environment, "plugin", "install", $script:pluginSourcePath)
+        if ($install.Json.action -ne "install") {
+            throw "unexpected plugin install payload: $($install.Output)"
+        }
+        if ([string]$install.Json.plugin -ne $script:pluginName) {
+            throw "installed plugin mismatch: $($install.Output)"
+        }
+        $script:tempPluginDeployed = $true
+        return "plugin=$($install.Json.plugin) event=$($install.Json.event_id)"
+    } | Out-Null
+
+    Run-Step -Group "plugin" -Command "$Environment plugin list" -Action {
+        if ([string]::IsNullOrWhiteSpace($script:pluginName)) {
+            throw "plugin candidate was not selected"
+        }
+        $list = Invoke-MoltboxJson -Args @($Environment, "plugin", "list")
+        $plugins = @()
+        if ($null -ne $list.Json.plugins) {
+            $plugins = @($list.Json.plugins | ForEach-Object { $_.plugin })
+        }
+        if ($plugins -notcontains $script:pluginName) {
+            throw "temp plugin missing from plugin list: $($list.Output)"
+        }
+        return "listed $script:pluginName"
+    } | Out-Null
+
+    Run-Step -Group "plugin" -Command "$Environment plugin remove $script:pluginName" -Action {
+        if ([string]::IsNullOrWhiteSpace($script:pluginName)) {
+            throw "plugin candidate was not selected"
+        }
+        $remove = Invoke-MoltboxJson -Args @($Environment, "plugin", "remove", $script:pluginName)
+        if ($remove.Json.action -ne "remove") {
+            throw "unexpected plugin remove payload: $($remove.Output)"
+        }
+        $script:tempPluginDeployed = $false
+        return "plugin=$($remove.Json.plugin) event=$($remove.Json.event_id)"
+    } | Out-Null
+
+    Run-Step -Group "plugin" -Command "$Environment plugin list (post-remove)" -Action {
+        if ([string]::IsNullOrWhiteSpace($script:pluginName)) {
+            throw "plugin candidate was not selected"
+        }
+        $list = Invoke-MoltboxJson -Args @($Environment, "plugin", "list")
+        $plugins = @()
+        if ($null -ne $list.Json.plugins) {
+            $plugins = @($list.Json.plugins | ForEach-Object { $_.plugin })
+        }
+        if ($plugins -contains $script:pluginName) {
+            throw "temp plugin still present after remove: $($list.Output)"
+        }
+        return "temp plugin absent"
     } | Out-Null
 }
 finally {

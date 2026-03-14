@@ -1,0 +1,31 @@
+# Visual Mockup Generator
+
+## Purpose
+
+Generate conceptual UI or workflow mockups for designer-led review flows.
+
+## Typical Usage
+
+- concept wireframes during stage 1
+- higher-fidelity UI concepts during stage 2
+- interaction diagrams when experience communication needs them
+
+## Outputs
+
+- wireframes
+- UI concept images
+- interaction diagrams
+
+## Artifact Example
+
+- `/backlog/ideas/<feature>/concept/`
+
+## Candidate Implementations
+
+- Excalidraw
+- Penpot
+- image-model wireframe generation
+
+## Status
+
+Pending research decision. See [decision-log.md](../decision-log.md).

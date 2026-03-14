@@ -42,5 +42,5 @@ Each environment can have its own Discord bot identity and policy.
 - [Specification](spec.md)
 - [Test Plan](test-plan.md)
 - [Operator Guide](operator-guide.md)
-- [Runtime Concept](../../docs/concepts/runtime.md)
+- [Runtime Concept](../../../docs/concepts/runtime.md)
 - [Platform Topology](../../../docs/overview/topology.md)

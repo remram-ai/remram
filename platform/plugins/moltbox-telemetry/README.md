@@ -57,4 +57,4 @@ After install, operators should be able to verify telemetry through chat respons
 - [Test Plan](test-plan.md)
 - [Operator Guide](operator-guide.md)
 - [Deployment Models](../../../docs/overview/deployment-models.md)
-- [Runtime Concept](../../docs/concepts/runtime.md)
+- [Runtime Concept](../../../docs/concepts/runtime.md)

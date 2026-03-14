@@ -14,7 +14,7 @@ Core summaries:
 
 Implementation recipes:
 
-- [Feature Type Recipes](recipes/README.md)
+- [Platform Item Type Recipes](recipes/README.md)
 - [Review Questions](recipes/review-questions.md)
 
 Role guides:
@@ -30,4 +30,10 @@ Canonical sources:
 - [Overview](../overview/overview.md)
 - [CLI Architecture](../overview/cli-architecture.md)
 - [Repositories](../overview/repositories.md)
-- [Platform Registry](../../overview/README.md)
+- [Platform Registry](../../platform/README.md)
+
+Recommended order:
+
+1. Read [Overview](overview.md), [Topology](topology.md), and [Repositories](repositories.md).
+2. Use [Platform Items](features.md) once you need active registry entries.
+3. Use [Roles](roles/README.md) and [Platform Item Type Recipes](recipes/README.md) for task-specific guidance.

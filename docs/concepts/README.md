@@ -17,3 +17,9 @@ Documents in this folder:
 These documents are intentionally short and conceptual.
 
 Use them to align terminology before reading deeper operations, platform, or reference material.
+
+Go next:
+
+- Start with [Overview](../overview/README.md) if you have not read the system architecture yet.
+- Continue to [Operations](../operations/README.md) once the vocabulary is clear.
+- Continue to [AI Context](../ai-context/README.md) if you are bootstrapping an assistant after reading the core docs.

@@ -18,16 +18,23 @@ If you are arriving with an AI assistant or want a faster bootstrap pass before 
 Read in this order:
 
 1. [Documentation Map](../README.md)
-2. [Feature](../concepts/feature.md)
-3. [Plugin](../concepts/plugin.md)
-4. [Skill](../concepts/skill.md)
-5. [Service](../concepts/service.md)
-6. [Runtime](../concepts/runtime.md)
-7. [Gateway](../concepts/gateway.md)
+2. [Overview](../overview/README.md)
+3. [Concepts](../concepts/README.md)
+4. [Operations](../operations/README.md)
+5. [AI Context](../ai-context/README.md)
+
+Then deepen as needed:
+
+- [Feature](../concepts/feature.md)
+- [Plugin](../concepts/plugin.md)
+- [Skill](../concepts/skill.md)
+- [Service](../concepts/service.md)
+- [Runtime](../concepts/runtime.md)
+- [Gateway](../concepts/gateway.md)
 
 If you want active capability docs, then continue into:
 
-- [platform/](../../overview/)
+- [platform/](../../platform/)
 
 If you want active ideas and larger initiatives, then continue into:
 

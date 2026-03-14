@@ -56,4 +56,4 @@ The feature is runtime-specific. `dev`, `test`, and `prod` can carry different c
 - [Test Plan](test-plan.md)
 - [Operator Guide](operator-guide.md)
 - [Deployment Models](../../../docs/overview/deployment-models.md)
-- [Runtime Concept](../../docs/concepts/runtime.md)
+- [Runtime Concept](../../../docs/concepts/runtime.md)

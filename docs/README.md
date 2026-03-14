@@ -9,9 +9,9 @@ This repository uses a simple documentation split:
 - `platform/` contains the living capability registry
 - `archive/` contains historical documentation
 
-Inside `docs/`, the material is organized into four primary areas:
+Inside `docs/`, the material is organized into several primary areas:
 
-- platform documentation
+- overview documentation
 - system concepts
 - reference material
 - community and contributor documentation
@@ -156,7 +156,7 @@ Typical topics:
 - CLI model summary
 - topology summary
 - repository taxonomy
-- feature index
+- platform item index
 - role-specific AI guidance
 
 ### Roadmap
@@ -198,6 +198,15 @@ Stores historical documentation and frozen reference material that should not be
 ## 4. Quick Entry Points
 
 - New contributor: [Community](community/README.md)
-- Operator: [Operations](operations/README.md)
 - Architecture/design work: [Overview](overview/overview.md)
+- Vocabulary and definitions: [Concepts](concepts/README.md)
+- Operator: [Operations](operations/README.md)
 - AI assistant bootstrap: [AI Context](ai-context/README.md)
+
+Recommended reading path:
+
+1. [Community](community/README.md)
+2. [Overview](overview/README.md)
+3. [Concepts](concepts/README.md)
+4. [Operations](operations/README.md)
+5. [AI Context](ai-context/README.md)

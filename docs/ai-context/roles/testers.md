@@ -29,4 +29,4 @@ Canonical docs:
 - [CLI Reference](../../reference/cli-reference.md)
 - [Snapshot](../../concepts/snapshot.md)
 - [Checkpoint](../../concepts/checkpoint.md)
-- [Platform Registry](../../../overview/README.md)
+- [Platform Registry](../../../platform/README.md)

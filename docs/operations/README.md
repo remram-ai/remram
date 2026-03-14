@@ -8,3 +8,9 @@ Documents in this folder:
 - [CLI](cli.md) for the operational command model
 
 Use this folder when you need to understand how the appliance is operated rather than how it is architected internally.
+
+Go next:
+
+- Start with [Overview](../overview/README.md) and [Concepts](../concepts/README.md) if you need the architecture and vocabulary first.
+- Continue to [AI Context](../ai-context/README.md) for agent bootstrap after the human-facing docs.
+- Use [Reference](../reference/README.md) when you need command details after reading the workflow docs.

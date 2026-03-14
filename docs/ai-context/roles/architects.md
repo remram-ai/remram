@@ -32,4 +32,4 @@ Canonical docs:
 - [Overview](../../overview/overview.md)
 - [Repositories](../../overview/repositories.md)
 - [CLI Architecture](../../overview/cli-architecture.md)
-- [Platform Registry](../../../overview/README.md)
+- [Platform Registry](../../../platform/README.md)

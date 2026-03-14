@@ -22,6 +22,8 @@ Core orientation:
 - service definitions live in `moltbox-services`
 - baseline runtime configuration lives in `moltbox-runtime`
 - plugin and skill packages live in `remram-skills`
+- roadmap planning lives in `remram/roadmap/ideas/` and `remram/roadmap/features/`
+- active platform items live in `remram/platform/`, with intake starting in `remram/platform/backlog/`
 - the gateway consumes those inputs and renders or deploys the running appliance
 - operators should reason from the gateway and CLI model first, not from direct Docker commands
 

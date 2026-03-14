@@ -1,14 +1,14 @@
 # Storykeeper
 
-Epic
+Feature
 
 Status: Proposed
 Owner: TBD
 Platform Targets: TBD
 
-Planned Platform Features:
+Planned Platform Deliverables:
 
-- TBD - define candidate platform item(s) as the epic is shaped
+- TBD - define candidate platform item(s) as the feature is shaped
 
 ---
 
@@ -85,7 +85,7 @@ Publishing Model:
 
 ---
 
-## 5. Epic Scope
+## 5. Feature Scope
 
 ### In Scope
 

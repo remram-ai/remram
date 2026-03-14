@@ -30,4 +30,4 @@ Describe the user, system, or strategic value if the idea proves worthwhile.
 
 - What still needs to be clarified?
 - What constraints or assumptions need validation?
-- What would determine whether this should become an epic?
+- What would determine whether this should become a feature?

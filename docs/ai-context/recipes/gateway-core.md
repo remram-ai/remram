@@ -1,6 +1,6 @@
 # Gateway/Core Recipe
 
-Use this recipe when the feature is primarily a Moltbox control-plane change rather than a runtime-local extension or one service alone.
+Use this recipe when the deliverable is primarily a Moltbox control-plane change rather than a runtime-local extension or one service alone.
 
 ## Use This Type When
 
@@ -8,7 +8,7 @@ Use this recipe when the feature is primarily a Moltbox control-plane change rat
 - deployment orchestration changes
 - service lifecycle policy changes
 - runtime snapshot, replay, checkpoint, or metadata behavior changes
-- the feature affects how the appliance is managed as a whole
+- the deliverable affects how the appliance is managed as a whole
 
 Current repo example:
 
@@ -50,7 +50,7 @@ Do not freeze upstream gateway semantics into this repo without a local note tha
 
 ## Capabilities
 
-Gateway/core is a good fit when the feature needs to define or change:
+Gateway/core is a good fit when the deliverable needs to define or change:
 
 - `moltbox` command surfaces
 - service deployment flow
@@ -75,7 +75,7 @@ Assume these limits unless the architecture changes:
 3. Define the deployment metadata and reconciliation behavior the change requires.
 4. Define snapshot, rollback, replay, and health-validation implications before writing implementation details.
 5. Keep the CLI resource-oriented and avoid leaking container names or Docker-first workflows into the public contract.
-6. Document the platform item in `remram/platform/core/<name>/` with `README.md`, `spec.md`, `operator-guide.md`, and `test-plan.md`.
+6. Document the platform item in `remram/platform/core/<name>/` with `README.md`, `spec.md`, `design.md`, `operator-guide.md`, and `test-plan.md`.
 7. Update the platform docs if the change alters the canonical operator model.
 
 ## Deployment Method
@@ -96,7 +96,7 @@ Gateway/core work often affects more than one deployment path:
 - runtime mutation tracking
 - gateway self-update
 
-Treat provenance and metadata consistency as part of the feature, not as follow-up cleanup.
+Treat provenance and metadata consistency as part of the deliverable, not as follow-up cleanup.
 
 Runtime containers are also valid `gateway service` deployment targets in the current architecture. When that path is used, replay of recorded skill and plugin deployment events is part of the deploy contract.
 
@@ -114,4 +114,4 @@ Always test these surfaces:
 
 ## Common Combination Pattern
 
-Gateway/core work often coordinates [Service](service.md), [Skill](skill.md), and [Plugin](plugin.md) features without changing their ownership. If the main change is orchestration or operator contract, gateway/core remains the primary type.
+Gateway/core work often coordinates [Service](service.md), [Skill](skill.md), and [Plugin](plugin.md) deliverables without changing their ownership. If the main change is orchestration or operator contract, gateway/core remains the primary type.

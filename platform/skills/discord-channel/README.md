@@ -1,6 +1,6 @@
 # Discord Channel
 
-Discord Channel is the feature that lets a runtime participate in Discord without a separate bridge service.
+Discord Channel is the skill that lets a runtime participate in Discord without a separate bridge service.
 
 It turns a target environment into a Discord-facing entrypoint for direct messages and allowlisted guild channels.
 
@@ -12,14 +12,14 @@ Discord Channel provides that ingress while keeping the runtime itself authorita
 
 ## What It Does
 
-At a high level the feature:
+At a high level the skill:
 
 - assigns a Discord bot identity to an environment
 - configures Discord policy in runtime channel config
 - lets the runtime connect outbound to the Discord gateway
 - routes Discord traffic through the normal OpenClaw lifecycle
 
-There is no dedicated Discord service container in this feature model.
+There is no dedicated Discord service container in this skill model.
 
 ## Main Moving Parts
 
@@ -30,7 +30,7 @@ There is no dedicated Discord service container in this feature model.
 
 ## Operator View
 
-Operators enable the feature per environment, then interact with the runtime through:
+Operators enable the skill per environment, then interact with the runtime through:
 
 - direct messages to the environment bot
 - allowlisted Discord guild channels

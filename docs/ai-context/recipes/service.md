@@ -1,6 +1,6 @@
 # Service Recipe
 
-Use this recipe when the feature is primarily a containerized appliance process with its own lifecycle on the Moltbox host.
+Use this recipe when the deliverable is primarily a containerized appliance process with its own lifecycle on the Moltbox host.
 
 ## Use This Type When
 
@@ -49,7 +49,7 @@ Do not assume one generic upstream page is enough. The relevant OpenClaw source 
 
 ## Capabilities
 
-A service is a good fit when the feature needs:
+A service is a good fit when the deliverable needs:
 
 - a stable network identity on the appliance
 - its own durability and storage posture
@@ -75,7 +75,7 @@ Assume these limits unless the platform changes:
 3. Define how gateway deploys, restarts, validates, and reports the service.
 4. Add runtime-facing configuration in `moltbox-runtime` for any clients that depend on the service.
 5. If the service has a native CLI, preserve that through a thin `moltbox <service> <native command>` passthrough instead of inventing a second abstraction.
-6. Document the platform item in `remram/platform/services/<name>/` with `README.md`, `spec.md`, `operator-guide.md`, and `test-plan.md`.
+6. Document the platform item in `remram/platform/services/<name>/` with `README.md`, `spec.md`, `design.md`, `operator-guide.md`, and `test-plan.md`.
 7. State the network endpoint, health model, persistence needs, and upgrade or rollback posture explicitly.
 8. If the service feeds OpenClaw, define the plugin, skill, or runtime-config surface that exposes it to the runtime.
 
@@ -114,4 +114,4 @@ Always test these surfaces:
 
 ## Common Combination Pattern
 
-A feature often combines a service with either a skill or runtime config. For example, a model host or retrieval backend is a service, while the runtime policy that selects or calls it belongs to `moltbox-runtime` and sometimes to a [Skill](skill.md).
+A deliverable often combines a service with either a skill or runtime config. For example, a model host or retrieval backend is a service, while the runtime policy that selects or calls it belongs to `moltbox-runtime` and sometimes to a [Skill](skill.md).

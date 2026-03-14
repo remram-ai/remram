@@ -2,9 +2,9 @@
 
 ## Purpose
 
-Together Escalation is the runtime feature that gives Moltbox environments an explicit Together AI fallback policy for the default agent's chat, reasoning, and coding paths.
+Together Escalation is the runtime skill that gives Moltbox environments an explicit Together AI fallback policy for the default agent's chat, reasoning, and coding paths.
 
-It is a feature because it changes how the runtime recovers from model failure and how stronger cloud models are introduced into live execution, not just how credentials are stored.
+It is a skill because it changes how the runtime recovers from model failure and how stronger cloud models are introduced into live execution, not just how credentials are stored.
 
 ## Implementation Surfaces
 
@@ -34,13 +34,13 @@ OpenClaw's current provider documentation establishes the following assumptions:
 - Together authentication is based on `TOGETHER_API_KEY`
 - Together is treated as an OpenAI-compatible provider
 
-The feature must preserve that provider identity instead of introducing a second alias such as `together-ai` or `cloud-together`.
+The skill must preserve that provider identity instead of introducing a second alias such as `together-ai` or `cloud-together`.
 
-Depending on the exact runtime build, Together may be resolved through built-in provider handling plus `TOGETHER_API_KEY`, or through an explicit provider entry written into runtime config. The feature definition only requires that the runtime can resolve the `together/...` model refs consistently.
+Depending on the exact runtime build, Together may be resolved through built-in provider handling plus `TOGETHER_API_KEY`, or through an explicit provider entry written into runtime config. The skill definition only requires that the runtime can resolve the `together/...` model refs consistently.
 
 ## Model Role Configuration
 
-The feature defines three role-specific chains.
+The skill defines three role-specific chains.
 
 ### Chat Role
 
@@ -149,7 +149,7 @@ The runtime may also need `apiKey` or auth-profile-backed provider resolution, d
 
 `model-runtime.yml` remains the Moltbox-owned policy surface for describing why a role exists and what it is for.
 
-For this feature, that file should make the role intent explicit for:
+For this skill, that file should make the role intent explicit for:
 
 - local chat recovery from Ollama to Maverick
 - reasoning escalation from Kimi K2.5 to Qwen 3.5 397B
@@ -164,7 +164,7 @@ OpenClaw's documented model-failover behavior works in two stages:
 1. auth profile rotation inside the current provider
 2. model fallback to the next entry in `agents.defaults.model.fallbacks`
 
-For this feature, that means:
+For this skill, that means:
 
 - chat should move from `ollama/qwen3:8b` to Maverick when the local primary fails through a fallback-eligible path
 - reasoning should move from Kimi K2.5 to Qwen 3.5 397B when the reasoning primary fails through the same class of conditions
@@ -176,7 +176,7 @@ Per current OpenClaw docs, fallback is expected for auth failures, rate limits, 
 
 ### Install
 
-The feature is delivered into a runtime through the gateway-managed runtime deploy or reload flow.
+The skill is delivered into a runtime through the gateway-managed runtime deploy or reload flow.
 
 Example direction:
 
@@ -188,7 +188,7 @@ The gateway stages the `together-escalation` skill folder into the runtime's man
 
 ### Configure
 
-The feature expects baseline config from the runtime repo, including:
+The skill expects baseline config from the runtime repo, including:
 
 - default-agent model policy in `openclaw.json.template`
 - Together role policy in `model-runtime.yml`
@@ -207,7 +207,7 @@ At runtime:
 
 ### Persist
 
-The feature persists runtime-local skill state inside the target environment rather than back into Git automatically.
+The skill persists runtime-local skill state inside the target environment rather than back into Git automatically.
 
 ## Deployment Implications
 
@@ -226,7 +226,7 @@ Because it is staged into live runtime state during deploy or reload, a runtime 
 
 - if `TOGETHER_API_KEY` is missing, Together-backed fallbacks cannot be used
 - if `agents.defaults.models` omits one of the fallback models, the runtime can stop with a model-allowlist error instead of recovering
-- if the runtime build does not expose Together as the provider id `together`, the feature is misconfigured
+- if the runtime build does not expose Together as the provider id `together`, the skill is misconfigured
 - if the role-specific reasoning and coding policy drifts from the OpenClaw model catalog, operators can see inconsistent selection behavior
 - `dev`, `test`, and `prod` do not automatically share Together credentials or staged runtime state
 

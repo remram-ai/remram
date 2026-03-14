@@ -4,7 +4,7 @@
 
 Moltbox Telemetry is the runtime telemetry plugin that enables and standardizes the model-level diagnostics fields Moltbox expects from OpenClaw runtimes.
 
-It is a feature because it defines the observable telemetry contract for live runtime execution, not just an implementation detail of one plugin package.
+It is a plugin because it defines the observable telemetry contract for live runtime execution, not just an implementation detail of one plugin package.
 
 ## Scope
 
@@ -52,7 +52,7 @@ Current OpenClaw documentation establishes the following relevant behavior:
 - plugin config lives under `plugins.entries.<id>`
 - plugin config changes require a gateway restart
 
-That means this feature should behave as a thin telemetry-normalization layer on top of OpenClaw diagnostics rather than as a second telemetry system or a replacement for the built-in usage footer.
+That means this plugin should behave as a thin telemetry-normalization layer on top of OpenClaw diagnostics rather than as a second telemetry system or a replacement for the built-in usage footer.
 
 ## Telemetry Fields
 
@@ -237,7 +237,7 @@ If the final package introduces a plugin-defined config object, it belongs under
 plugins.entries.moltbox-telemetry.config
 ```
 
-No telemetry feature requirement currently depends on prompt injection, routing hooks, or provider overrides.
+No telemetry plugin requirement currently depends on prompt injection, routing hooks, or provider overrides.
 
 ### Usage Surface Expectations
 
@@ -250,11 +250,11 @@ Current OpenClaw docs already expose usage-oriented surfaces such as:
 
 Moltbox Telemetry should align with those surfaces instead of replacing them.
 
-The gray statistics line beneath chat responses is a UI consumer concern. OpenClaw already supports usage footers through `/usage`. This feature only requires that latency and the rest of the standardized fields are present in the telemetry contract so the UI or usage footer layer can render them once that surface consumes the field.
+The gray statistics line beneath chat responses is a UI consumer concern. OpenClaw already supports usage footers through `/usage`. This plugin only requires that latency and the rest of the standardized fields are present in the telemetry contract so the UI or usage footer layer can render them once that surface consumes the field.
 
 ## Runtime Observability Defaults
 
-Moltbox runtimes using this feature should operate with the following observability posture:
+Moltbox runtimes using this plugin should operate with the following observability posture:
 
 - `thinking: auto`
 - `usage: full`
@@ -279,7 +279,7 @@ When validating telemetry output, Moltbox Telemetry assumes this runtime posture
 
 ### Install
 
-The feature is installed into a runtime through the native OpenClaw plugin lifecycle.
+The plugin is installed into a runtime through the native OpenClaw plugin lifecycle.
 
 Example direction:
 
@@ -291,7 +291,7 @@ Because OpenClaw plugin changes are restart-required, the runtime may need a res
 
 ### Configure
 
-The feature expects:
+The plugin expects:
 
 - diagnostics enabled in `openclaw.json.template`
 - plugin enablement through `plugins.entries.moltbox-telemetry`
@@ -308,18 +308,18 @@ At runtime:
 
 ### Persist
 
-The feature persists runtime-local plugin install state inside the target environment rather than back into Git automatically.
+The plugin persists runtime-local plugin install state inside the target environment rather than back into Git automatically.
 
 ## Runtime Behavior Assumptions
 
-This feature assumes:
+This plugin assumes:
 
 - normal model calls already emit `model.usage` events when diagnostics are enabled
 - the runtime can observe provider/model identity, usage counts, context-used data, and duration
 - the plugin can standardize those values without changing model execution flow
 - OpenClaw's native `/status` and `/usage` surfaces remain available to operators
 
-This feature does not assume:
+This plugin does not assume:
 
 - custom routing stages
 - special provider-specific telemetry exporters
@@ -345,7 +345,7 @@ Because it installs through native OpenClaw behavior, a live runtime may differ 
 - if the runtime cannot resolve the effective context window, `context_pct` cannot be computed reliably
 - if logs are over-redacted or suppressed through logging policy, diagnostics visibility can degrade even when telemetry exists internally
 - if OTLP export is required, operators still need the separate `diagnostics-otel` plugin
-- this feature must not modify routing or model fallback behavior while standardizing telemetry
+- this plugin must not modify routing or model fallback behavior while standardizing telemetry
 
 ## TODO
 

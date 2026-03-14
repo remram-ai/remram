@@ -6,6 +6,13 @@ This repository explains what Remram is, why it exists, how the ecosystem fits t
 
 Active repository documentation lives under `docs/`, strategic planning lives under `roadmap/`, the living capability registry lives under `platform/`, and historical material lives under `archive/`.
 
+## Repository Structure
+
+- [roadmap/](roadmap/README.md): planning artifacts, including ideas and features
+- [platform/](platform/README.md): the registry of active platform items
+- [docs/](docs/README.md): system documentation, architecture explanation, operations, and AI context
+- [archive/](archive/): preserved historical material
+
 ## What Problem Remram Solves
 
 AI systems still struggle with continuity.
@@ -70,7 +77,7 @@ Within Gateway / Moltbox, orchestration via OpenClaw and operator control are se
 This repository preserves active planning artifacts under:
 
 - `roadmap/ideas/`
-- `roadmap/epics/`
+- `roadmap/features/`
 
 Historical context and superseded planning material remain in `archive/`.
 

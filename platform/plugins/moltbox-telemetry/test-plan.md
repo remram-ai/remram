@@ -98,7 +98,7 @@ If OpenClaw's native `/usage tokens` or `/usage full` footer is in use, confirm 
 
 ### 8. Environment Promotion Validation
 
-Validate the feature independently in:
+Validate the plugin independently in:
 
 - `dev`
 - `test`

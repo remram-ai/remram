@@ -21,8 +21,9 @@ If the task touches appliance services, gateway orchestration, runtime mutation,
 - [Gateway](../../concepts/gateway.md)
 - [Service](../../concepts/service.md)
 - [Platform Items](../features.md)
-- [Feature Type Recipes](../recipes/README.md)
-- the relevant platform item `README.md`, `spec.md`, and `test-plan.md`
+- [Roadmap](../../../roadmap/README.md)
+- [Platform Item Type Recipes](../recipes/README.md)
+- the relevant platform item `README.md`, `spec.md`, `design.md`, and `test-plan.md`
 - [gateway spec](../../../platform/core/gateway/spec.md) for service lifecycle and deployment-pipeline work
 
 Pick the primary recipe before implementation:
@@ -87,4 +88,5 @@ Review unresolved contracts before treating a recipe as final guidance:
 - [Repositories](../../overview/repositories.md)
 - [Gateway](../../concepts/gateway.md)
 - [Service](../../concepts/service.md)
+- [Roadmap](../../../roadmap/README.md)
 - [Platform Registry](../../../platform/README.md)

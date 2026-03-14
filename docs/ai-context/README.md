@@ -4,6 +4,16 @@ This folder provides fast, high-signal bootstrap material for AI assistants work
 
 Use these files as orientation summaries, not as replacements for the canonical docs.
 
+Repository structure and lifecycle:
+
+```text
+roadmap/   -> ideas and features
+platform/  -> backlog plus active platform items
+docs/      -> architecture, concepts, operations, reference, and AI bootstrap
+
+Idea -> Feature -> platform/backlog -> platform item
+```
+
 Core summaries:
 
 - [Overview](overview.md)
@@ -30,7 +40,9 @@ Canonical sources:
 - [Overview](../overview/overview.md)
 - [CLI Architecture](../overview/cli-architecture.md)
 - [Repositories](../overview/repositories.md)
+- [Roadmap](../../roadmap/README.md)
 - [Platform Registry](../../platform/README.md)
+- [Platform Backlog](../../platform/backlog/README.md)
 
 Recommended order:
 

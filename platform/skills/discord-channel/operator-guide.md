@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Use this feature when you want an environment to receive and answer Discord messages.
+Use this skill when you want an environment to receive and answer Discord messages.
 
 ## Environment Model
 

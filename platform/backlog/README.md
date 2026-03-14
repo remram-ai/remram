@@ -22,6 +22,6 @@ Optional tagging is allowed if the intended type is already known, but classific
 
 Go next:
 
-- Use [Roadmap](../../roadmap/README.md) if the work is still an idea or epic.
+- Use [Roadmap](../../roadmap/README.md) if the work is still an idea or feature.
 - Use [Platform Registry](../README.md) for the active capability lifecycle.
 - Use [Platform Template](../_template/README.md) once the item is ready to become a full platform bundle.

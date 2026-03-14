@@ -70,9 +70,9 @@ Important config surfaces include:
 
 ## Skill Versus Feature
 
-A [Feature](feature.md) is a product-level capability definition.
+A [Feature](feature.md) is an initiative-level capability definition.
 
-A skill is one implementation building block that a feature may depend on.
+A skill is one implementation building block that a feature may produce or depend on.
 
 ## Skill Versus Service
 

@@ -1,13 +1,13 @@
 # Skill Recipe
 
-Use this recipe when the feature is primarily a portable RemRam capability bundle deployed into a runtime.
+Use this recipe when the deliverable is primarily a portable RemRam capability bundle deployed into a runtime.
 
 ## Use This Type When
 
 - the capability should be reusable across environments or future runtimes
-- the feature needs more than one local implementation surface
+- the deliverable needs more than one local implementation surface
 - the package combines runtime policy, manifests, helper modules, prompts, or deploy recipe material
-- the feature is best described as a portable capability rather than as one container or one gateway command
+- the deliverable is best described as a portable capability rather than as one container or one gateway command
 
 Current repo examples:
 
@@ -16,9 +16,9 @@ Current repo examples:
 
 ## Do Not Use This Type When
 
-- the feature is just a single runtime extension and the plugin boundary is the main thing that matters
-- the feature needs a dedicated appliance container with its own lifecycle
-- the feature changes gateway or CLI ownership rather than runtime capability
+- the deliverable is just a single runtime extension and the plugin boundary is the main thing that matters
+- the deliverable needs a dedicated appliance container with its own lifecycle
+- the deliverable changes gateway or CLI ownership rather than runtime capability
 
 In those cases, use [Plugin](plugin.md), [Service](service.md), or [Gateway/Core](gateway-core.md).
 
@@ -47,11 +47,11 @@ If the skill affects model selection or failover, also read:
 
 - [Model Failover](https://docs.openclaw.ai/concepts/model-failover)
 
-If it affects channels, tools, or another subsystem, add the matching current upstream pages to the feature spec instead of copying those docs into this repo.
+If it affects channels, tools, or another subsystem, add the matching current upstream pages to the skill spec instead of copying those docs into this repo.
 
 ## Capabilities
 
-A skill is a good fit when the feature needs to bundle:
+A skill is a good fit when the deliverable needs to bundle:
 
 - one or more plugin-backed behaviors
 - runtime policy across files such as `openclaw.json.template`, `model-runtime.yml`, `tools.yaml`, or `channels.yaml.template`
@@ -84,8 +84,8 @@ Assume these limits unless the architecture changes:
    - skill config lives under `skills` in `openclaw.json`
    - common surfaces include `skills.allowBundled`, `skills.load.extraDirs`, `skills.install.*`, and `skills.entries.<name>.enabled|env|apiKey`
    - `skills.entries.<name>.env` and `apiKey` apply to host runs only; sandboxed skill processes need sandbox env wiring
-6. Record required secrets, model refs, channel policy, tool policy, or allowlists explicitly in the feature spec.
-7. Document the platform item in `remram/platform/skills/<name>/` with `README.md`, `spec.md`, `operator-guide.md`, and `test-plan.md`.
+6. Record required secrets, model refs, channel policy, tool policy, or allowlists explicitly in the skill spec.
+7. Document the platform item in `remram/platform/skills/<name>/` with `README.md`, `spec.md`, `design.md`, `operator-guide.md`, and `test-plan.md`.
 8. Call out what is environment-specific and what is expected to promote cleanly from `dev` to `test` to `prod`.
 
 ## Deployment Method
@@ -136,7 +136,7 @@ Treat the gateway as the orchestrator around that deployment path:
 - record deployment events and recovery metadata
 - replay recorded deployment state when the runtime container itself is redeployed
 
-If a specific skill also depends on native OpenClaw plugin install behavior, call that out explicitly in the feature spec instead of assuming it for all skills.
+If a specific skill also depends on native OpenClaw plugin install behavior, call that out explicitly in the skill spec instead of assuming it for all skills.
 
 ## Testing Surfaces
 

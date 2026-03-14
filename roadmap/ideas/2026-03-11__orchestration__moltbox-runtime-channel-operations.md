@@ -157,7 +157,7 @@ Conceptually:
 
 Important design principle:
 
-- native channels remain runtime features
+- native channels remain runtime capabilities
 - the CLI manages runtime channel configuration and operations
 - no new execution stack is introduced
 - no SSH is required for routine channel bring-up

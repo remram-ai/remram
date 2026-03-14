@@ -2,7 +2,7 @@
 
 A Plugin is an OpenClaw extension module that runs inside the OpenClaw gateway process.
 
-Plugins are the runtime-extension layer for OpenClaw-backed features.
+Plugins are the runtime-extension layer for OpenClaw-backed deliverables.
 
 ## Where Plugins Live
 

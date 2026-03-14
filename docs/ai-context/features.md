@@ -14,8 +14,17 @@ Use platform item docs for:
 
 - high-level capability intent
 - technical specs
+- design intent
 - operator guidance
 - definition-of-done test plans
+
+Registry rules:
+
+- ideas live under `roadmap/ideas/`
+- features live under `roadmap/features/`
+- new platform deliverables begin in `platform/backlog/`
+- once the type is known, the item moves to `platform/core/`, `platform/services/`, `platform/skills/`, or `platform/plugins/`
+- new platform bundles should include `README.md`, `spec.md`, `design.md`, `operator-guide.md`, and `test-plan.md`
 
 Builder guidance:
 
@@ -26,4 +35,6 @@ Builder guidance:
 
 Canonical source:
 
+- [Roadmap](../../roadmap/README.md)
 - [Platform Registry](../../platform/README.md)
+- [Platform Backlog](../../platform/backlog/README.md)

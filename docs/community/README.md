@@ -12,3 +12,11 @@ Documents in this folder:
 - [Repo Setup](repo-setup.md) for local repository setup and adjacent-repo orientation
 
 Use this folder when you need to understand how to work with the repository and the broader RemRam ecosystem as a contributor.
+
+Go next:
+
+- Start with [Getting Started](getting-started.md) for the recommended reading order.
+- Continue to [Overview](../overview/README.md) for system architecture.
+- Continue to [Concepts](../concepts/README.md) for terminology.
+- Continue to [Operations](../operations/README.md) for operator behavior.
+- Continue to [AI Context](../ai-context/README.md) for agent bootstrap after the human-facing docs.

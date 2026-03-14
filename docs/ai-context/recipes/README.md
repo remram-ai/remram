@@ -1,4 +1,4 @@
-# Feature Type Recipes
+# Platform Item Type Recipes
 
 Use this folder after the architecture bootstrap in [Builders](../roles/builders.md).
 
@@ -8,6 +8,8 @@ These recipes answer a narrower question:
 - which repository owns each part
 - how does it deploy
 - what should I test
+
+Use this layer after a roadmap feature has produced a candidate platform deliverable and you need to classify the correct platform item type.
 
 The current architecture exposes four implementation shapes in active platform item docs:
 

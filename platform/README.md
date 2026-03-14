@@ -8,7 +8,7 @@ Conceptual work stays in [roadmap/](../roadmap/README.md).
 The lifecycle is:
 
 ```text
-Idea -> Epic -> platform/backlog -> platform/<type>/<name>
+Idea -> Feature -> platform/backlog -> platform/<type>/<name>
 ```
 
 New capabilities begin in [platform/backlog/](./backlog/README.md).

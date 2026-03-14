@@ -17,7 +17,7 @@ Together Escalation defines that policy so the runtime can:
 
 ## What It Does
 
-The feature is implemented as an OpenClaw skill folder plus runtime baseline policy.
+The skill is implemented as an OpenClaw skill folder plus runtime baseline policy.
 
 At a high level it:
 
@@ -36,7 +36,7 @@ At a high level it:
 
 ## Operator View
 
-Operators deploy the feature by redeploying or reloading the target runtime so the gateway can stage the skill folder and inject the required auth:
+Operators deploy the skill by redeploying or reloading the target runtime so the gateway can stage the skill folder and inject the required auth:
 
 ```text
 moltbox gateway service deploy dev
@@ -48,7 +48,7 @@ Then inspect it through environment-scoped OpenClaw passthrough commands such as
 moltbox dev openclaw skills list
 ```
 
-The feature is runtime-specific. `dev`, `test`, and `prod` can carry different credentials or promotion timing.
+The skill is runtime-specific. `dev`, `test`, and `prod` can carry different credentials or promotion timing.
 
 ## Related Documents
 

@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Use this feature when you want a Moltbox runtime to emit consistent model telemetry that operators, diagnostics tools, and UI surfaces can consume without custom per-runtime interpretation.
+Use this plugin when you want a Moltbox runtime to emit consistent model telemetry that operators, diagnostics tools, and UI surfaces can consume without custom per-runtime interpretation.
 
 ## Where It Runs
 
@@ -37,7 +37,7 @@ moltbox dev openclaw plugins list
 moltbox dev openclaw plugins info moltbox-telemetry
 ```
 
-Confirm diagnostics are enabled in the runtime config before treating the feature as active.
+Confirm diagnostics are enabled in the runtime config before treating the plugin as active.
 
 Installed plugins are enabled by default in current OpenClaw builds, but runtime config should still be checked if the environment keeps an explicit `plugins.entries` record.
 
@@ -110,7 +110,7 @@ Promotion means repeating the runtime install and verification steps in each env
 
 ## What To Check
 
-If the feature is not working:
+If the plugin is not working:
 
 - confirm the plugin is installed
 - confirm the plugin is enabled in runtime config if the runtime tracks explicit plugin entries

@@ -74,7 +74,7 @@ Examples:
 
 ### 7. Environment Promotion Validation
 
-Validate the feature independently in:
+Validate the skill independently in:
 
 - `dev`
 - `test`
@@ -94,7 +94,7 @@ Each environment should have:
 - chat falls back to the wrong Together model
 - reasoning or coding paths bypass their documented fallback order
 - provider failure occurs in a way that is not fallback-eligible under current OpenClaw rules
-- the feature is present in `dev` but missing in `test` or `prod`
+- the skill is present in `dev` but missing in `test` or `prod`
 
 ## Operator-Visible Success Criteria
 

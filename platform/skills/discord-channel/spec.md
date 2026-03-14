@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Discord Channel is the runtime-ingress feature that exposes an environment through the built-in OpenClaw Discord channel.
+Discord Channel is the runtime-ingress skill that exposes an environment through the built-in OpenClaw Discord channel.
 
 It is environment-owned behavior, not a shared standalone appliance service.
 
@@ -17,7 +17,7 @@ Primary evidence:
 
 ## Architecture Components
 
-The feature depends on:
+The skill depends on:
 
 1. runtime channel policy
 2. agent channel exposure
@@ -28,7 +28,7 @@ The feature depends on:
 
 ### Configure
 
-The feature is configured per environment.
+The skill is configured per environment.
 
 Important configuration surfaces include:
 
@@ -84,7 +84,7 @@ The runtime remains authoritative for:
 
 ## Deployment Implications
 
-This feature does not create a separate Discord service deployment.
+This skill does not create a separate Discord service deployment.
 
 Operational touchpoints are:
 

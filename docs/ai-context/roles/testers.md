@@ -13,6 +13,7 @@ How to read platform item test plans:
 
 - `README.md` explains what the platform item is
 - `spec.md` explains technical behavior and dependencies
+- `design.md` explains the intended structure and tradeoffs
 - `test-plan.md` defines the expected validation surface
 - `operator-guide.md` explains real operational touchpoints
 
@@ -29,4 +30,5 @@ Canonical docs:
 - [CLI Reference](../../reference/cli-reference.md)
 - [Snapshot](../../concepts/snapshot.md)
 - [Checkpoint](../../concepts/checkpoint.md)
+- [Roadmap](../../../roadmap/README.md)
 - [Platform Registry](../../../platform/README.md)

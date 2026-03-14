@@ -10,7 +10,7 @@ This repository is intentionally open to contributors who are still getting orie
 - terminology
 - documentation structure
 - platform item definitions in `platform/`
-- idea and epic planning in `roadmap/`
+- idea and feature planning in `roadmap/`
 - contributor orientation
 
 ## Contribute Elsewhere When The Change Is About
@@ -28,7 +28,7 @@ This repository is intentionally open to contributors who are still getting orie
 - Use the current CLI grammar from [CLI](../operations/cli.md) and [CLI Reference](../reference/cli-reference.md).
 - Do not edit files in `archive/` in place.
 - Put active capability docs in `platform/`, not in `roadmap/`.
-- Put unimplemented ideas and epics in `roadmap/`, not in the active architecture docs.
+- Put unimplemented ideas and features in `roadmap/`, not in the active architecture docs.
 - Keep architecture descriptions separate from implementation details when a domain repository should own the code-level contract.
 
 ## Good Contribution Pattern

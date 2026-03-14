@@ -176,7 +176,7 @@ openclaw skills info <name>
 openclaw skills check
 ```
 
-If a specific feature genuinely needs OpenClaw-native plugin lifecycle commands, document that feature as a plugin-backed exception rather than treating plugin install as the default skill path.
+If a specific deliverable genuinely needs OpenClaw-native plugin lifecycle commands, document that deliverable as a plugin-backed exception rather than treating plugin install as the default skill path.
 
 ## 4. Snapshot Types
 
@@ -287,11 +287,11 @@ Environment promotion is intentionally asymmetric.
 
 Expected workflow:
 
-1. build and iterate in a feature branch
+1. build and iterate in a working branch
 2. commit and test freely in `dev`, where shell access is available
-3. run unit tests and the relevant feature `test-plan.md` in `dev`
+3. run unit tests and the relevant platform item `test-plan.md` in `dev`
 4. promote to `test` through the Moltbox CLI only
-5. run the same feature test plan again in `test`
+5. run the same platform item test plan again in `test`
 6. validate that the promotion path itself worked correctly
 7. stop for UAT readiness review
 8. after approval, merge through the normal Git path and deploy to `prod`
@@ -302,7 +302,7 @@ This means:
 - `test` is the CLI-gated promotion and pre-UAT validation environment
 - `prod` is reached only after approval steps and mainline integration
 
-If promotion to `test` fails, the deployment process is defective and should be fixed before the feature is treated as ready.
+If promotion to `test` fails, the deployment process is defective and should be fixed before the platform item is treated as ready.
 
 ## Runtime State Versus Container Lifecycle
 

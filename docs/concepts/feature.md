@@ -1,52 +1,51 @@
 # Feature
 
-A Feature is a product-level capability definition.
+A Feature is an initiative-level capability definition in the roadmap.
 
-Feature documentation describes what the system should be able to do, not how a specific repository happens to implement it.
+Feature documentation describes what a coordinated initiative is intended to create or enable before individual platform items are introduced.
 
 ## Where Features Live
 
-Implemented capability documentation belongs under:
+Feature documents live under:
 
 ```text
-platform/<type>/<name>/
+roadmap/features/<name>.md
 ```
 
-Typical types are:
+## What A Feature Can Produce
+
+A feature may produce one or more platform deliverables through the active delivery pipeline:
+
+```text
+Idea -> Feature -> platform/backlog -> platform/<type>/<name>
+```
+
+Typical platform item types are:
 
 - `core`
 - `services`
 - `skills`
 - `plugins`
 
-## What A Feature Can Depend On
-
-A feature may be implemented through:
-
-- one or more [Plugins](plugin.md)
-- one or more [Skills](skill.md)
-- one or more [Services](service.md)
-- [Runtime](runtime.md) configuration
-- any combination of those
-
 ## What A Feature Is Not
 
 A feature is not:
 
-- a container
-- a CLI namespace
-- a runtime environment
-- a repository boundary
+- a platform item
+- a service
+- a skill
+- a plugin
+- a core component
 
-Those belong to other concepts.
+Those are deliverables or implementation types that can emerge from a feature.
 
-## Feature Versus Backlog Idea
+## Feature Versus Platform Item
 
-Use `platform/` for active or committed capabilities.
+Use `roadmap/features/` for initiative-level capability planning.
 
-Use `roadmap/ideas/` for concepts that are not yet implemented or not yet stable enough to be treated as active capability documentation.
+Use `platform/backlog/` when the initiative has produced a candidate platform deliverable but the type is not yet finalized.
 
-Use `roadmap/epics/` when one planning document groups multiple capabilities or workstreams.
+Use `platform/` for active or committed platform items.
 
 ## Related Concepts
 

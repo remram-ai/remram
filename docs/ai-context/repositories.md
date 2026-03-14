@@ -10,7 +10,7 @@ Core repository ownership:
 
 Boundary rules:
 
-- platform item definitions live in `remram`
+- feature definitions and platform item docs live in `remram`
 - implementation lives in the owning domain repo
 - service definitions and compose templates live in `moltbox-services`
 - gateway orchestration consumes those service definitions rather than redefining them
@@ -35,6 +35,7 @@ Host repository access:
 
 Canonical sources:
 
+- [Roadmap](../../roadmap/README.md)
 - [Repositories](../overview/repositories.md)
 - [Topology](../overview/topology.md)
 - [Deployment Models](../overview/deployment-models.md)

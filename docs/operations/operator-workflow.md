@@ -89,13 +89,13 @@ Checkpointing is environment-scoped and stays under the environment namespaces, 
 Expected promotion posture:
 
 1. build and iterate in `dev`
-2. run the relevant feature `test-plan.md` in `dev`
+2. run the relevant platform item `test-plan.md` in `dev`
 3. promote to `test` through the CLI only
 4. run the same test plan in `test`
 5. stop for UAT readiness review
 6. deploy to `prod` only after approval
 
-If `dev` to `test` promotion fails, fix the deployment process before treating the feature as ready.
+If `dev` to `test` promotion fails, fix the deployment process before treating the platform item as ready.
 
 ### 7. Investigate with CLI-first diagnostics
 

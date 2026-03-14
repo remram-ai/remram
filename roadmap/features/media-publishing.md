@@ -1,14 +1,14 @@
 # Media Publishing Agent
 
-Epic
+Feature
 
 Status: Proposed
 Owner: TBD
 Platform Targets: TBD
 
-Planned Platform Features:
+Planned Platform Deliverables:
 
-- TBD - define candidate platform item(s) as the epic is shaped
+- TBD - define candidate platform item(s) as the feature is shaped
 
 ---
 
@@ -126,7 +126,7 @@ Pipeline execution may run overnight.
 
 ---
 
-## 5. Epic Scope
+## 5. Feature Scope
 
 Core capabilities:
 

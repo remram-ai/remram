@@ -19,7 +19,7 @@ Primary evidence:
 
 ## Architecture Components
 
-The feature depends on:
+The service depends on:
 
 1. the `opensearch` service definition
 2. service-local config files and environment files

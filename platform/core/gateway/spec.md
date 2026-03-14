@@ -6,7 +6,7 @@ Moltbox Gateway is the appliance control plane.
 
 It owns the operator-facing command surface and coordinates the lifecycle of the appliance as a whole.
 
-This spec is intentionally more detailed than the other feature specs because the gateway is the integration point for the rest of the platform.
+This spec is intentionally more detailed than the other platform item specs because the gateway is the integration point for the rest of the platform.
 
 ## Scope
 

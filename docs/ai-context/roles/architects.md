@@ -9,22 +9,27 @@ Documentation layout:
 - `docs/operations/` explains operator workflows and CLI usage
 - `docs/reference/` holds concise technical reference
 - `platform/` holds the living platform registry
-- `roadmap/ideas/` and `roadmap/epics/` hold active planning artifacts
+- `roadmap/ideas/` and `roadmap/features/` hold active planning artifacts
+- `platform/backlog/` is the intake queue before a platform item type is finalized
 
 How to work:
 
 - overview documents describe the shared appliance model
+- ideas are exploratory concepts
+- features are initiative-level capabilities
 - platform items describe active capabilities
 - specifications belong either in platform item `spec.md` files or in the owning implementation repo, depending on scope
 - archive material is reference input, not the active source of truth
 
 When documenting a new platform item:
 
-1. create a folder under the correct `platform/<type>/` category
-2. add `README.md`, `spec.md`, `test-plan.md`, and `operator-guide.md`
-3. align vocabulary with `docs/concepts/`
-4. align command examples with the CLI architecture
-5. link back to the relevant overview docs
+1. start in `roadmap/ideas/` or `roadmap/features/` if the work is still conceptual
+2. use `platform/backlog/` when the initiative has produced a candidate platform deliverable but the type is not yet finalized
+3. create a folder under the correct `platform/<type>/` category once the type is known
+4. add `README.md`, `spec.md`, `design.md`, `test-plan.md`, and `operator-guide.md`
+5. align vocabulary with `docs/concepts/`
+6. align command examples with the CLI architecture
+7. link back to the relevant overview docs
 
 Canonical docs:
 
@@ -32,4 +37,5 @@ Canonical docs:
 - [Overview](../../overview/overview.md)
 - [Repositories](../../overview/repositories.md)
 - [CLI Architecture](../../overview/cli-architecture.md)
+- [Roadmap](../../../roadmap/README.md)
 - [Platform Registry](../../../platform/README.md)

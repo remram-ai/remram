@@ -88,7 +88,7 @@ Desired future loop:
 
 ## Core Mechanism (High-Level)
 
-This does not require turning runtime features into management CLI features.
+This does not require turning runtime capabilities into management CLI surfaces.
 
 Instead, it suggests a better remote execution path for the existing runtime-facing commands.
 
@@ -109,7 +109,7 @@ Important principle:
 
 ## Benefits
 
-- Faster development loop for runtime features
+- Faster development loop for runtime capabilities
 - Less dependence on host shell access
 - Fewer manual SSH and file-copy steps
 - Better reproducibility for validation and debugging
@@ -186,7 +186,7 @@ This should be one command, not a shell investigation.
 
 ### 4. Runtime logs are accessible, but not task-oriented
 
-The built-in logs path is useful, but the CLI does not yet give a tight operator loop for runtime-feature bring-up.
+The built-in logs path is useful, but the CLI does not yet give a tight operator loop for runtime-capability bring-up.
 
 Needed during this milestone:
 
@@ -276,7 +276,7 @@ Add explicit debug flags to `moltbox runtime <env> chat`, for example:
 
 These should be individually selectable so debug output is intentional and not always noisy.
 
-### C. Runtime smoke command for orchestration features
+### C. Runtime smoke command for orchestration deliverables
 
 Add a dedicated smoke surface for runtime bring-up.
 
@@ -413,14 +413,14 @@ This is one possible surface area, meant to make the request concrete rather tha
 
 ## Acceptance Criteria
 
-This feature request should be considered satisfied when all of the following are true:
+This deliverable request should be considered satisfied when all of the following are true:
 
-1. A developer can validate a runtime-only feature from the workstation without manual SSH.
+1. A developer can validate a runtime-only deliverable from the workstation without manual SSH.
 2. `moltbox runtime <env> chat` can show stage path and telemetry directly when requested.
 3. A developer can fetch the matching runtime debug artifact for a turn without shell access.
 4. A developer can inspect resolved runtime config and deployment provenance from one CLI command.
 5. Runtime logs can be filtered by target/session/turn without dropping to `docker`.
-6. A developer can run a named runtime smoke check for orchestration features.
+6. A developer can run a named runtime smoke check for orchestration deliverables.
 7. A developer can tell whether runtime diagnostics/exporters are enabled and healthy without shell investigation.
 8. Remote deploy from local source no longer depends on ad hoc `scp`.
 
@@ -428,7 +428,7 @@ This feature request should be considered satisfied when all of the following ar
 
 ## Priority Assessment
 
-This should be treated as a high-value developer productivity feature for any runtime feature work, especially:
+This should be treated as a high-value developer productivity deliverable for any runtime-capability work, especially:
 
 - Semantic Router
 - runtime telemetry

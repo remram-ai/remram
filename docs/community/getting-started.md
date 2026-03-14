@@ -53,7 +53,7 @@ Work in this repository when the change is primarily about:
 - documentation structure
 - contributor orientation
 - platform item definitions
-- roadmap ideas and epics
+- roadmap ideas and features
 
 ## When Another Repository Is The Right Place
 

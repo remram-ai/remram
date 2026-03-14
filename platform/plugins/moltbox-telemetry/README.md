@@ -12,7 +12,7 @@ Moltbox Telemetry solves that by ensuring the runtime exposes the same expected 
 
 ## What It Does
 
-The feature is implemented as an OpenClaw plugin.
+The plugin is implemented as an OpenClaw plugin.
 
 At a high level it:
 
@@ -43,7 +43,7 @@ The plugin standardizes:
 
 ## Operator View
 
-Operators install and inspect the feature through environment-scoped OpenClaw passthrough commands such as:
+Operators install and inspect the plugin through environment-scoped OpenClaw passthrough commands such as:
 
 ```text
 moltbox dev openclaw plugins install moltbox-telemetry

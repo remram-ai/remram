@@ -1,21 +1,21 @@
-# Epic Template
+# Feature Template
 
-Epic
+Feature
 
 Status: Proposed | Active | Paused | Completed
 Owner: TBD
 Platform Targets: TBD
 
-Planned Platform Features:
+Planned Platform Deliverables:
 
-- <feature-name> - <purpose>
+- <deliverable-name> - <purpose>
 
 ---
 
 ## 1. Overview
 
 Describe the initiative at a narrative level.
-Preserve the conceptual depth of the epic and explain what it is intended to create or enable.
+Preserve the conceptual depth of the feature and explain what it is intended to create or enable.
 
 ---
 
@@ -37,7 +37,7 @@ Explain how the initiative is expected to behave from the user, operator, or sys
 
 ---
 
-## 5. Epic Scope
+## 5. Feature Scope
 
 Describe what is in scope and out of scope for the initiative.
 

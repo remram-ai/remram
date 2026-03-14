@@ -21,4 +21,5 @@ Go next:
 - Return to [Community Getting Started](../community/getting-started.md) if you need the contributor path.
 - Continue to [Concepts](../concepts/README.md) for vocabulary.
 - Continue to [Operations](../operations/README.md) for operator-facing behavior.
+- Continue to [AI Context](../ai-context/README.md) after the human-facing docs if an agent needs the synchronized bootstrap layer.
 - Use [Platform Registry](../../platform/README.md) for active capability entries.

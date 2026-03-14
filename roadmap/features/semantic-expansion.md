@@ -1,14 +1,14 @@
 # Semantic Expansion
 
-Epic
+Feature
 
 Status: Proposed
 Owner: TBD
 Platform Targets: TBD
 
-Planned Platform Features:
+Planned Platform Deliverables:
 
-- TBD - define candidate platform item(s) as the epic is shaped
+- TBD - define candidate platform item(s) as the feature is shaped
 
 ---
 
@@ -104,7 +104,7 @@ Expansion signals are evaluated before any memory mutation.
 
 ---
 
-## 5. Epic Scope
+## 5. Feature Scope
 
 Core capabilities:
 

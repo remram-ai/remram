@@ -22,7 +22,7 @@ Operational documentation also lives under `docs/` as its own layer so operator 
 ## 2. Documentation Folder Map
 
 ```text
-roadmap/         Ideas and epics
+roadmap/         Ideas and features
 platform/        Living platform registry
 
 docs/
@@ -169,7 +169,7 @@ roadmap/
 
 Purpose:
 
-Strategic planning artifacts, including ideas and epics.
+Strategic planning artifacts, including ideas and features.
 
 ### Platform Registry
 

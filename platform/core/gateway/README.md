@@ -1,6 +1,6 @@
 # Moltbox Gateway
 
-Moltbox Gateway is the control-plane feature of the appliance.
+Moltbox Gateway is the control-plane core component of the appliance.
 
 It is the part of the system that turns Git-backed configuration and service definitions into a running, manageable appliance.
 

@@ -18,7 +18,7 @@ Primary evidence:
 
 ## Architecture Components
 
-The feature depends on:
+The service depends on:
 
 1. runtime provider config that points OpenClaw at `http://ollama:11434`
 2. runtime model policy that treats Ollama as the local routing provider

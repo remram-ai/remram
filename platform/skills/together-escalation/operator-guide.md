@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Use this feature when you want a Moltbox runtime to keep default chat local while recovering to stronger Together-hosted models for chat, reasoning, and coding when fallback is needed.
+Use this skill when you want a Moltbox runtime to keep default chat local while recovering to stronger Together-hosted models for chat, reasoning, and coding when fallback is needed.
 
 ## Where It Runs
 
@@ -44,15 +44,15 @@ moltbox dev openclaw models status
 moltbox dev openclaw models list
 ```
 
-If the runtime requires explicit trust or allowlisting, apply the required OpenClaw config changes before treating the feature as active.
+If the runtime requires explicit trust or allowlisting, apply the required OpenClaw config changes before treating the skill as active.
 
 ## Use In Practice
 
-Once installed, the feature changes model recovery behavior inside the existing runtime.
+Once installed, the skill changes model recovery behavior inside the existing runtime.
 
 Normal chat should begin on `ollama/qwen3:8b`. If the local model fails through a fallback-eligible path, the runtime should recover to Maverick. Reasoning and coding work should use their Together chains automatically when those role paths are invoked.
 
-The feature does not create a new operator-facing chat endpoint and it does not introduce a separate Together service container.
+The skill does not create a new operator-facing chat endpoint and it does not introduce a separate Together service container.
 
 ## Promote To Test And Prod
 
@@ -66,7 +66,7 @@ Promotion means repeating the runtime deploy and verification steps in each envi
 
 ## What To Check
 
-If the feature is not working:
+If the skill is not working:
 
 - confirm the skill is present under the runtime's skill inventory
 - confirm `TOGETHER_API_KEY` is present in the target environment

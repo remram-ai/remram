@@ -109,7 +109,7 @@ Owns:
 
 Does not own:
 
-- feature documentation
+- roadmap feature documentation
 - skill packages
 - runtime deployment-event history
 

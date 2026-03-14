@@ -30,7 +30,7 @@ Verify the target runtime:
 
 - starts or reloads successfully
 - can establish the outbound Discord connection
-- remains healthy after the feature is enabled
+- remains healthy after the skill is enabled
 
 ### 4. DM Validation
 

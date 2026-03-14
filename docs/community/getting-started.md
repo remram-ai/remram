@@ -6,7 +6,7 @@ It is the right place to start if you want to understand:
 
 - what the system is
 - how the ecosystem is divided across repositories
-- how features are documented
+- how platform items are documented
 - how architectural decisions are recorded
 
 It is not the primary implementation home for appliance code, runtime code, or service deployment logic.
@@ -25,13 +25,13 @@ Read in this order:
 6. [Runtime](../concepts/runtime.md)
 7. [Gateway](../concepts/gateway.md)
 
-If you want implemented capability docs, then continue into:
+If you want active capability docs, then continue into:
 
-- [features/](../../features/)
+- [platform/](../../overview/)
 
-If you want unimplemented ideas and proposed capabilities, then continue into:
+If you want active ideas and larger initiatives, then continue into:
 
-- [backlog/ideas/](../../backlog/ideas/)
+- [roadmap/](../../roadmap/)
 
 If you want historical material, use:
 
@@ -45,8 +45,8 @@ Work in this repository when the change is primarily about:
 - system vocabulary
 - documentation structure
 - contributor orientation
-- feature definitions
-- backlog ideas
+- platform item definitions
+- roadmap ideas and epics
 
 ## When Another Repository Is The Right Place
 

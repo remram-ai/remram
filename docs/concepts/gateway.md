@@ -23,7 +23,7 @@ The gateway owns:
 
 The gateway does not own:
 
-- product feature definitions
+- product and platform item definitions
 - service definitions as source material
 - baseline runtime configuration as source material
 - plugin implementation source
@@ -81,4 +81,4 @@ moltbox gateway service deploy dev
 - [Runtime](runtime.md)
 - [Skill](skill.md)
 - [Deployment Event](deployment-event.md)
-- [CLI Architecture](../platform/cli-architecture.md)
+- [CLI Architecture](../overview/cli-architecture.md)

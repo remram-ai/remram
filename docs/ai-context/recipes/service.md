@@ -11,9 +11,9 @@ Use this recipe when the feature is primarily a containerized appliance process 
 
 Current repo examples:
 
-- `ollama [service]`
-- `opensearch [service]`
-- `caddy [service]`
+- `ollama`
+- `opensearch`
+- `caddy`
 
 ## Do Not Use This Type When
 
@@ -27,7 +27,7 @@ In those cases, use [Plugin](plugin.md), [Skill](skill.md), or [Gateway/Core](ga
 
 Local ownership usually splits like this:
 
-- `remram`: feature docs and capability contract
+- `remram`: platform item docs and capability contract
 - `moltbox-services`: service definition, container topology, and service metadata
 - `moltbox-gateway`: service deployment pipeline, status, restart, rollback posture, and deployment metadata
 - `moltbox-runtime`: runtime config that points clients at the service
@@ -61,7 +61,7 @@ A service is a good fit when the feature needs:
 
 Assume these limits unless the platform changes:
 
-- services are appliance deployment units, not feature definitions
+- services are appliance deployment units, not standalone platform definitions
 - services should not be managed by direct Docker commands during normal operations
 - runtime health and service health are related but separate
 - a service can be healthy while runtime config that points at it is wrong
@@ -75,7 +75,7 @@ Assume these limits unless the platform changes:
 3. Define how gateway deploys, restarts, validates, and reports the service.
 4. Add runtime-facing configuration in `moltbox-runtime` for any clients that depend on the service.
 5. If the service has a native CLI, preserve that through a thin `moltbox <service> <native command>` passthrough instead of inventing a second abstraction.
-6. Document the feature in `remram/features/<name> [service]/` with `README.md`, `spec.md`, `operator-guide.md`, and `test-plan.md`.
+6. Document the platform item in `remram/platform/services/<name>/` with `README.md`, `spec.md`, `operator-guide.md`, and `test-plan.md`.
 7. State the network endpoint, health model, persistence needs, and upgrade or rollback posture explicitly.
 8. If the service feeds OpenClaw, define the plugin, skill, or runtime-config surface that exposes it to the runtime.
 

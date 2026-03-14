@@ -2,7 +2,7 @@
 
 Core repository ownership:
 
-- `remram`: architecture, shared docs, feature docs, backlog
+- `remram`: architecture, shared docs, roadmap docs, and platform registry docs
 - `remram-skills`: reusable skills and plugin packages
 - `moltbox-gateway`: control plane, CLI, deployment orchestration, and Docker interaction on the appliance
 - `moltbox-runtime`: baseline runtime configuration and promoted runtime baselines
@@ -10,7 +10,7 @@ Core repository ownership:
 
 Boundary rules:
 
-- feature definitions live in `remram`
+- platform item definitions live in `remram`
 - implementation lives in the owning domain repo
 - service definitions and compose templates live in `moltbox-services`
 - gateway orchestration consumes those service definitions rather than redefining them
@@ -35,9 +35,9 @@ Host repository access:
 
 Canonical sources:
 
-- [Repositories](../platform/repositories.md)
-- [Topology](../platform/topology.md)
-- [Deployment Models](../platform/deployment-models.md)
+- [Repositories](../overview/repositories.md)
+- [Topology](../overview/topology.md)
+- [Deployment Models](../overview/deployment-models.md)
 - [Feature](../concepts/feature.md)
 - [Plugin](../concepts/plugin.md)
 - [Skill](../concepts/skill.md)

@@ -1,17 +1,16 @@
-# Features
+# Platform Items
 
-Active documented feature bundles:
+Active documented platform items:
 
-- [semantic-router [plugin]](../../features/semantic-router%20%5Bplugin%5D/README.md)
-- [moltbox-telemetry [plugin]](../../features/moltbox-telemetry%20%5Bplugin%5D/README.md)
-- [together-escalation [skill]](../../features/together-escalation%20%5Bskill%5D/README.md)
-- [discord-channel [skill]](../../features/discord-channel%20%5Bskill%5D/README.md)
-- [gateway [core]](../../features/gateway%20%5Bcore%5D/README.md)
-- [caddy [service]](../../features/caddy%20%5Bservice%5D/README.md)
-- [ollama [service]](../../features/ollama%20%5Bservice%5D/README.md)
-- [opensearch [service]](../../features/opensearch%20%5Bservice%5D/README.md)
+- [gateway](../../overview/core/gateway/README.md)
+- [caddy](../../overview/services/caddy/README.md)
+- [ollama](../../overview/services/ollama/README.md)
+- [opensearch](../../overview/services/opensearch/README.md)
+- [discord-channel](../../overview/skills/discord-channel/README.md)
+- [together-escalation](../../overview/skills/together-escalation/README.md)
+- [moltbox-telemetry](../../overview/plugins/moltbox-telemetry/README.md)
 
-Use feature docs for:
+Use platform item docs for:
 
 - high-level capability intent
 - technical specs
@@ -20,11 +19,11 @@ Use feature docs for:
 
 Builder guidance:
 
-- feature docs are not a substitute for the architecture bootstrap in `overview.md`, `topology.md`, `repositories.md`, `cli.md`, and `roles/builders.md`
-- read the relevant feature docs after the architecture bootstrap, not instead of it
-- if a task touches service lifecycle, deployment orchestration, or rendered service state, read [gateway [core]](../../features/gateway%20%5Bcore%5D/README.md) and its `spec.md`
-- for service-specific work, also read the matching service feature bundle and confirm the repository boundary with `moltbox-services` and `moltbox-gateway`
+- platform item docs are not a substitute for the architecture bootstrap in `overview.md`, `topology.md`, `repositories.md`, `cli.md`, and `roles/builders.md`
+- read the relevant platform item docs after the architecture bootstrap, not instead of it
+- if a task touches service lifecycle, deployment orchestration, or rendered service state, read [gateway](../../overview/core/gateway/README.md) and its `spec.md`
+- for service-specific work, also read the matching service item and confirm the repository boundary with `moltbox-services` and `moltbox-gateway`
 
 Canonical source:
 
-- [Features](../../features/README.md)
+- [Platform Registry](../../overview/README.md)

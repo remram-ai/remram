@@ -33,9 +33,9 @@ Host bootstrap note:
 
 Canonical sources:
 
-- [Platform Overview](../platform/overview.md)
-- [Topology](../platform/topology.md)
-- [Repositories](../platform/repositories.md)
-- [Deployment Models](../platform/deployment-models.md)
+- [Overview](../overview/overview.md)
+- [Topology](../overview/topology.md)
+- [Repositories](../overview/repositories.md)
+- [Deployment Models](../overview/deployment-models.md)
 - [Gateway](../concepts/gateway.md)
 - [Service](../concepts/service.md)

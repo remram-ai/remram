@@ -143,4 +143,4 @@ The following are retired:
 Legacy commands should fail rather than redirect.
 
 For the detailed command catalog, use [CLI Reference](../reference/cli-reference.md).
-For the architecture behind the command tree, use [CLI Architecture](../platform/cli-architecture.md).
+For the architecture behind the command tree, use [CLI Architecture](../overview/cli-architecture.md).

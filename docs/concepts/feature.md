@@ -6,11 +6,18 @@ Feature documentation describes what the system should be able to do, not how a 
 
 ## Where Features Live
 
-Implemented feature documentation belongs under:
+Implemented capability documentation belongs under:
 
 ```text
-features/<feature-name>/
+platform/<type>/<name>/
 ```
+
+Typical types are:
+
+- `core`
+- `services`
+- `skills`
+- `plugins`
 
 ## What A Feature Can Depend On
 
@@ -35,9 +42,11 @@ Those belong to other concepts.
 
 ## Feature Versus Backlog Idea
 
-Use `features/` for implemented or committed capabilities.
+Use `platform/` for active or committed capabilities.
 
-Use `backlog/ideas/` for concepts that are not yet implemented or not yet stable enough to be treated as active capability documentation.
+Use `roadmap/ideas/` for concepts that are not yet implemented or not yet stable enough to be treated as active capability documentation.
+
+Use `roadmap/epics/` when one planning document groups multiple capabilities or workstreams.
 
 ## Related Concepts
 

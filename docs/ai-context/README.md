@@ -10,7 +10,7 @@ Core summaries:
 - [CLI](cli.md)
 - [Topology](topology.md)
 - [Repositories](repositories.md)
-- [Features](features.md)
+- [Platform Items](features.md)
 
 Implementation recipes:
 
@@ -27,7 +27,7 @@ Role guides:
 Canonical sources:
 
 - [Documentation Map](../README.md)
-- [Platform Overview](../platform/overview.md)
-- [CLI Architecture](../platform/cli-architecture.md)
-- [Repositories](../platform/repositories.md)
-- [Features](../../features/README.md)
+- [Overview](../overview/overview.md)
+- [CLI Architecture](../overview/cli-architecture.md)
+- [Repositories](../overview/repositories.md)
+- [Platform Registry](../../overview/README.md)

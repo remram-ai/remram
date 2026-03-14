@@ -8,7 +8,7 @@ You do not need a full appliance environment just to work on the documentation s
 
 1. Clone `remram`.
 2. Open the repository in your editor.
-3. Use the active docs under `docs/`, `features/`, and `backlog/ideas/`.
+3. Use the active docs under `docs/`, `platform/`, and `roadmap/`.
 4. Use `archive/` only as historical source material.
 
 ## Adjacent Repositories
@@ -35,8 +35,8 @@ If your change crosses from documentation into implementation, you will usually 
 ## Repository Layout To Know
 
 - `docs/` for shared documentation
-- `features/` for implemented capability documentation
-- `backlog/ideas/` for unimplemented ideas
+- `platform/` for active capability documentation
+- `roadmap/` for ideas and epics
 - `archive/` for frozen historical material
 
 ## Next Step

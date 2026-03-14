@@ -4,7 +4,7 @@ Remram is the vision and architecture hub for the Remram ecosystem.
 
 This repository explains what Remram is, why it exists, how the ecosystem fits together, and where contributors should go next. It is the public front door for the project, not the primary home for implementation details.
 
-During the current documentation refactor, active repository documentation lives under `docs/`, implemented capability docs live under `features/`, idea backlog lives under `backlog/`, and historical material lives under `archive/`.
+Active repository documentation lives under `docs/`, strategic planning lives under `roadmap/`, the living capability registry lives under `platform/`, and historical material lives under `archive/`.
 
 ## What Problem Remram Solves
 
@@ -60,16 +60,17 @@ Within Gateway / Moltbox, orchestration via OpenClaw and operator control are se
 ## Start Here
 
 - [Documentation Map](docs/README.md)
+- [Roadmap](roadmap/README.md)
+- [Platform Registry](platform/README.md)
 - [AI Context](docs/ai-context/README.md)
-- [Features](features/README.md)
-- `backlog/ideas/` for unimplemented ideas and proposed capabilities
 - `archive/` for historical documentation
 
-## Backlog Pipeline
+## Planning Pipeline
 
-This repository preserves early ideas under:
+This repository preserves active planning artifacts under:
 
-- `backlog/ideas/`
+- `roadmap/ideas/`
+- `roadmap/epics/`
 
 Historical context and superseded planning material remain in `archive/`.
 
@@ -77,11 +78,11 @@ Historical context and superseded planning material remain in `archive/`.
 
 - Want to understand the current documentation system: start with [docs/README.md](docs/README.md)
 - Want a fast AI-assistant bootstrap: start with [docs/ai-context/README.md](docs/ai-context/README.md)
-- Want to understand implemented capabilities: start with [features/README.md](features/README.md)
+- Want to understand planning and capability layout: start with [roadmap/README.md](roadmap/README.md) and [platform/README.md](platform/README.md)
 - Want to review earlier material: use `archive/`
 
 ## How To Contribute
 
-If you are changing vision, ecosystem framing, conceptual architecture, onboarding, or backlog docs, this is the right repository.
+If you are changing vision, ecosystem framing, conceptual architecture, onboarding, roadmap docs, or platform registry docs, this is the right repository.
 
 If you are changing runtime behavior, deployment, storage, APIs, or implementation details, you probably want one of the domain repositories instead.

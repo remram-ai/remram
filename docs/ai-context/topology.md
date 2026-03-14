@@ -48,8 +48,8 @@ Host Git model:
 
 Canonical sources:
 
-- [Topology](../platform/topology.md)
-- [Repositories](../platform/repositories.md)
-- [Deployment Models](../platform/deployment-models.md)
+- [Topology](../overview/topology.md)
+- [Repositories](../overview/repositories.md)
+- [Deployment Models](../overview/deployment-models.md)
 - [Gateway](../concepts/gateway.md)
 - [Service](../concepts/service.md)

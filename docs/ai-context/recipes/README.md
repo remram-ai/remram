@@ -9,7 +9,7 @@ These recipes answer a narrower question:
 - how does it deploy
 - what should I test
 
-The current architecture exposes four implementation shapes in active feature docs:
+The current architecture exposes four implementation shapes in active platform item docs:
 
 - [Plugin](plugin.md)
 - [Skill](skill.md)
@@ -19,16 +19,16 @@ The current architecture exposes four implementation shapes in active feature do
 ## How To Use This Set
 
 1. Read the platform bootstrap first.
-2. Pick the primary feature type.
+2. Pick the primary platform item type.
 3. Read the matching recipe.
-4. If the feature spans multiple types, keep one primary type and treat the others as dependencies.
+4. If the capability spans multiple types, keep one primary type and treat the others as dependencies.
 
 Examples from the current repo:
 
-- `moltbox-telemetry [plugin]` is primarily a plugin feature
-- `together-escalation [skill]` is primarily a skill feature
-- `ollama [service]` is primarily a service feature
-- `gateway [core]` is the control-plane feature
+- `moltbox-telemetry` is primarily a plugin platform item
+- `together-escalation` is primarily a skill platform item
+- `ollama` is primarily a service platform item
+- `gateway` is the control-plane platform item
 
 ## Selection Heuristic
 
@@ -49,7 +49,7 @@ Keep in this repo:
 - RemRam and Moltbox ownership boundaries
 - build and deployment recipes
 - local assumptions and gaps
-- feature-specific policy
+- platform-item-specific policy
 
 Do not try to mirror all OpenClaw docs here. Link to the current upstream pages and update the local assumptions when upstream contracts change.
 

@@ -149,6 +149,6 @@ Exception:
 
 ## See Also
 
-- [CLI Architecture](../platform/cli-architecture.md)
+- [CLI Architecture](../overview/cli-architecture.md)
 - [Operator Workflow](operator-workflow.md)
 - [CLI Reference](../reference/cli-reference.md)

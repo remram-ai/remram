@@ -92,4 +92,4 @@ TODO:
 - [Snapshot](snapshot.md)
 - [Checkpoint](checkpoint.md)
 - [Deployment Event](deployment-event.md)
-- [CLI Architecture](../platform/cli-architecture.md)
+- [CLI Architecture](../overview/cli-architecture.md)

@@ -253,7 +253,7 @@ Useful fields include:
 
 ## Related Documents
 
-- [CLI Architecture](../platform/cli-architecture.md)
+- [CLI Architecture](../overview/cli-architecture.md)
 - [CLI](../operations/cli.md)
 - [Operator Workflow](../operations/operator-workflow.md)
 - [Gateway](../concepts/gateway.md)

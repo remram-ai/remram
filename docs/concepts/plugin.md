@@ -8,7 +8,7 @@ Plugins are the runtime-extension layer for OpenClaw-backed features.
 
 In the current RemRam repository model:
 
-- plugin feature definitions live under `remram/features/`
+- plugin capability definitions live under `remram/platform/plugins/`
 - plugin package source lives in `remram-skills`
 - runtime config that enables a plugin belongs in `moltbox-runtime`
 - deployment orchestration and replay tracking belong in `moltbox-gateway`

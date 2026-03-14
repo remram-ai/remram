@@ -40,8 +40,8 @@ Important rules:
 
 Canonical sources:
 
-- [CLI Architecture](../platform/cli-architecture.md)
-- [Deployment Models](../platform/deployment-models.md)
+- [CLI Architecture](../overview/cli-architecture.md)
+- [Deployment Models](../overview/deployment-models.md)
 - [Gateway](../concepts/gateway.md)
 - [Service](../concepts/service.md)
 - [CLI](../operations/cli.md)

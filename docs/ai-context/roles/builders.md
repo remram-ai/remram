@@ -10,7 +10,7 @@ Read these documents in order before you write code, diagnose runtime behavior, 
 2. [Topology](../topology.md)
 3. [Repositories](../repositories.md)
 4. [CLI](../cli.md)
-5. [Deployment Models](../../platform/deployment-models.md)
+5. [Deployment Models](../../overview/deployment-models.md)
 
 Do not begin implementation or debugging until you have read the documents above.
 
@@ -20,10 +20,10 @@ If the task touches appliance services, gateway orchestration, runtime mutation,
 
 - [Gateway](../../concepts/gateway.md)
 - [Service](../../concepts/service.md)
-- [Features](../features.md)
+- [Platform Items](../features.md)
 - [Feature Type Recipes](../recipes/README.md)
-- the relevant feature `README.md`, `spec.md`, and `test-plan.md`
-- [gateway [core] spec](../../../features/gateway%20%5Bcore%5D/spec.md) for service lifecycle and deployment-pipeline work
+- the relevant platform item `README.md`, `spec.md`, and `test-plan.md`
+- [gateway spec](../../../overview/core/gateway/spec.md) for service lifecycle and deployment-pipeline work
 
 Pick the primary recipe before implementation:
 
@@ -38,7 +38,7 @@ Review unresolved contracts before treating a recipe as final guidance:
 
 ## What To Know First
 
-- `remram` owns architecture and feature docs
+- `remram` owns architecture, roadmap, and platform registry docs
 - `moltbox-gateway` owns the control plane, `moltbox` CLI, deployment orchestration, and Docker interaction on the appliance
 - `moltbox-runtime` owns baseline runtime config, not full live runtime state
 - `moltbox-services` owns service definitions and steady-state service topology
@@ -80,11 +80,11 @@ Review unresolved contracts before treating a recipe as final guidance:
 
 ## Canonical Docs
 
-- [Platform Overview](../../platform/overview.md)
-- [Topology](../../platform/topology.md)
-- [Deployment Models](../../platform/deployment-models.md)
-- [CLI Architecture](../../platform/cli-architecture.md)
-- [Repositories](../../platform/repositories.md)
+- [Overview](../../overview/overview.md)
+- [Topology](../../overview/topology.md)
+- [Deployment Models](../../overview/deployment-models.md)
+- [CLI Architecture](../../overview/cli-architecture.md)
+- [Repositories](../../overview/repositories.md)
 - [Gateway](../../concepts/gateway.md)
 - [Service](../../concepts/service.md)
-- [Features](../../../features/README.md)
+- [Platform Registry](../../../overview/README.md)

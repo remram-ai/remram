@@ -5,7 +5,7 @@ This repository uses a documentation-first workflow for architecture changes.
 ## Normal Workflow
 
 1. Identify the change.
-2. Decide whether it is a concept, operations, reference, platform, feature, or backlog change.
+2. Decide whether it is an overview, concept, operations, reference, platform, or roadmap change.
 3. Update the active documentation in the correct location.
 4. Keep terminology and CLI examples aligned with the current architecture baseline.
 5. Use archive material as reference input, not as the active source of truth.
@@ -13,7 +13,7 @@ This repository uses a documentation-first workflow for architecture changes.
 
 ## Working Rules
 
-- Active docs live under `docs/`, `features/`, and `backlog/ideas/`.
+- Active docs live under `docs/`, `platform/`, and `roadmap/`.
 - Historical docs live under `archive/`.
 - Active docs should not depend on transitional terminology or legacy command surfaces.
 - If a document is obsolete, archive it instead of editing history in place.
@@ -35,13 +35,13 @@ When architecture work turns into implementation work in the domain repositories
 
 1. work on your own branch
 2. iterate in `dev`
-3. run unit tests and the relevant feature `test-plan.md` in `dev`
+3. run unit tests and the relevant platform item `test-plan.md` in `dev`
 4. promote to `test` through the CLI only
 5. run the same test plan in `test`
 6. stop when the change is ready for UAT
 7. after approval, merge and deploy to `prod`
 
-This workflow exists to test both the feature and the deployment path itself.
+This workflow exists to test both the platform item and the deployment path itself.
 
 ## Documentation Quality Checklist
 

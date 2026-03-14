@@ -11,7 +11,7 @@ Use this recipe when the feature is primarily an OpenClaw runtime extension inst
 
 Current repo example:
 
-- `moltbox-telemetry [plugin]`
+- `moltbox-telemetry`
 
 ## Do Not Use This Type When
 
@@ -25,7 +25,7 @@ In those cases, use [Service](service.md), [Skill](skill.md), or [Gateway/Core](
 
 Local ownership usually splits like this:
 
-- `remram`: feature docs and capability contract
+- `remram`: platform item docs and capability contract
 - `remram-skills`: plugin package source and packaging metadata
 - `moltbox-runtime`: baseline config that enables or configures the plugin
 - `moltbox-gateway`: deployment orchestration, snapshots, deployment events, and environment passthrough
@@ -74,7 +74,7 @@ Assume these limits unless upstream docs say otherwise:
    - required manifest keys are `id` and `configSchema`
    - use manifest fields such as `skills`, `channels`, `providers`, `kind`, and `uiHints` only when the plugin really needs them
 4. Add only the baseline config needed in `moltbox-runtime`, usually under `openclaw.json.template` or another runtime policy file.
-5. Document the feature in `remram/features/<name> [plugin]/` with `README.md`, `spec.md`, `operator-guide.md`, and `test-plan.md`.
+5. Document the platform item in `remram/platform/plugins/<name>/` with `README.md`, `spec.md`, `operator-guide.md`, and `test-plan.md`.
 6. State the runtime mutation impact explicitly: snapshots, deployment events, reload or restart requirements, and checkpoint implications.
 7. Keep the feature thin around native OpenClaw behavior rather than rebuilding a parallel plugin framework in Moltbox.
 

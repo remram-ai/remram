@@ -57,4 +57,4 @@ Checkpointing gives the system a way to promote a known-good runtime state into 
 - [Runtime](runtime.md)
 - [Snapshot](snapshot.md)
 - [Deployment Event](deployment-event.md)
-- [CLI Architecture](../platform/cli-architecture.md)
+- [CLI Architecture](../overview/cli-architecture.md)

@@ -11,8 +11,8 @@ Use this recipe when the feature is primarily a portable RemRam capability bundl
 
 Current repo examples:
 
-- `together-escalation [skill]`
-- `discord-channel [skill]`
+- `together-escalation`
+- `discord-channel`
 
 ## Do Not Use This Type When
 
@@ -26,7 +26,7 @@ In those cases, use [Plugin](plugin.md), [Service](service.md), or [Gateway/Core
 
 Local ownership usually splits like this:
 
-- `remram`: feature docs and capability contract
+- `remram`: platform item docs and capability contract
 - `remram-skills`: skill package source, packaging metadata, manifests, helpers, and plugin-backed code
 - `moltbox-runtime`: baseline config and policy files the skill depends on
 - `moltbox-gateway`: runtime deployment orchestration, snapshots, and deployment-event tracking
@@ -85,7 +85,7 @@ Assume these limits unless the architecture changes:
    - common surfaces include `skills.allowBundled`, `skills.load.extraDirs`, `skills.install.*`, and `skills.entries.<name>.enabled|env|apiKey`
    - `skills.entries.<name>.env` and `apiKey` apply to host runs only; sandboxed skill processes need sandbox env wiring
 6. Record required secrets, model refs, channel policy, tool policy, or allowlists explicitly in the feature spec.
-7. Document the feature in `remram/features/<name> [skill]/` with `README.md`, `spec.md`, `operator-guide.md`, and `test-plan.md`.
+7. Document the platform item in `remram/platform/skills/<name>/` with `README.md`, `spec.md`, `operator-guide.md`, and `test-plan.md`.
 8. Call out what is environment-specific and what is expected to promote cleanly from `dev` to `test` to `prod`.
 
 ## Deployment Method

@@ -74,4 +74,4 @@ A service is a containerized appliance process. If OpenClaw needs to consume tha
 - [Runtime](runtime.md)
 - [Gateway](gateway.md)
 - [Skill](skill.md)
-- [CLI Architecture](../platform/cli-architecture.md)
+- [CLI Architecture](../overview/cli-architecture.md)

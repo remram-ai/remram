@@ -12,7 +12,7 @@ Use this recipe when the feature is primarily a Moltbox control-plane change rat
 
 Current repo example:
 
-- `gateway [core]`
+- `gateway`
 
 ## Do Not Use This Type When
 
@@ -26,7 +26,7 @@ In those cases, use [Plugin](plugin.md), [Skill](skill.md), or [Service](service
 
 Local ownership usually splits like this:
 
-- `remram`: feature docs and architecture contract
+- `remram`: platform item docs and architecture contract
 - `moltbox-gateway`: CLI, orchestration logic, deployment metadata, snapshots, and appliance control-plane behavior
 - `moltbox-services`: service definitions consumed by the gateway
 - `moltbox-runtime`: baseline runtime inputs consumed by the gateway
@@ -75,7 +75,7 @@ Assume these limits unless the architecture changes:
 3. Define the deployment metadata and reconciliation behavior the change requires.
 4. Define snapshot, rollback, replay, and health-validation implications before writing implementation details.
 5. Keep the CLI resource-oriented and avoid leaking container names or Docker-first workflows into the public contract.
-6. Document the feature in `remram/features/<name> [core]/` with `README.md`, `spec.md`, `operator-guide.md`, and `test-plan.md`.
+6. Document the platform item in `remram/platform/core/<name>/` with `README.md`, `spec.md`, `operator-guide.md`, and `test-plan.md`.
 7. Update the platform docs if the change alters the canonical operator model.
 
 ## Deployment Method

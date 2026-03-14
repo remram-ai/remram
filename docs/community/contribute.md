@@ -2,15 +2,15 @@
 
 The easiest way to contribute well is to change the right artifact in the right repository.
 
-This repository is intentionally open to contributors who are still getting oriented. If you can improve clarity, terminology, structure, or feature documentation, that is useful work.
+This repository is intentionally open to contributors who are still getting oriented. If you can improve clarity, terminology, structure, or platform documentation, that is useful work.
 
 ## Contribute Here When The Change Is About
 
 - architecture
 - terminology
 - documentation structure
-- feature definitions in `features/`
-- idea capture in `backlog/ideas/`
+- platform item definitions in `platform/`
+- idea and epic planning in `roadmap/`
 - contributor orientation
 
 ## Contribute Elsewhere When The Change Is About
@@ -27,8 +27,8 @@ This repository is intentionally open to contributors who are still getting orie
 - Use the current canonical vocabulary from [Concepts](../concepts/README.md).
 - Use the current CLI grammar from [CLI](../operations/cli.md) and [CLI Reference](../reference/cli-reference.md).
 - Do not edit files in `archive/` in place.
-- Put implemented capability docs in `features/`, not in `backlog/`.
-- Put unimplemented ideas in `backlog/ideas/`, not in the active architecture docs.
+- Put active capability docs in `platform/`, not in `roadmap/`.
+- Put unimplemented ideas and epics in `roadmap/`, not in the active architecture docs.
 - Keep architecture descriptions separate from implementation details when a domain repository should own the code-level contract.
 
 ## Good Contribution Pattern

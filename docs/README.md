@@ -5,8 +5,8 @@
 This repository uses a simple documentation split:
 
 - `docs/` contains shared system documentation
-- `features/` contains documentation for implemented capabilities
-- `backlog/` contains ideas and proposed capabilities
+- `roadmap/` contains planning artifacts
+- `platform/` contains the living capability registry
 - `archive/` contains historical documentation
 
 Inside `docs/`, the material is organized into four primary areas:
@@ -22,11 +22,11 @@ Operational documentation also lives under `docs/` as its own layer so operator 
 ## 2. Documentation Folder Map
 
 ```text
-features/        Implemented product capabilities
-backlog/         Idea backlog and proposed features
+roadmap/         Ideas and epics
+platform/        Living platform registry
 
 docs/
-  platform/      System architecture and platform rules
+  overview/      High-level system architecture and overview docs
   operations/    Operator workflows and CLI usage
   concepts/      Core system vocabulary and definitions
   reference/     Technical reference documentation
@@ -38,17 +38,17 @@ archive/         Historical documentation
 
 ## 3. Documentation Layers
 
-### Platform Documentation
+### Overview
 
 Location:
 
 ```text
-docs/platform/
+docs/overview/
 ```
 
 Purpose:
 
-Describe the Moltbox platform architecture and system rules.
+Describe the Moltbox and RemRam architecture at a high level.
 
 Typical topics:
 
@@ -159,33 +159,29 @@ Typical topics:
 - feature index
 - role-specific AI guidance
 
-### Features
+### Roadmap
 
 Location:
 
 ```text
-features/
+roadmap/
 ```
 
 Purpose:
 
-Documentation for implemented system capabilities.
+Strategic planning artifacts, including ideas and epics.
 
-Each feature should have its own folder.
-
-### Backlog
+### Platform Registry
 
 Location:
 
 ```text
-backlog/
+platform/
 ```
 
 Purpose:
 
-Contains ideas and proposed features that have not yet been implemented.
-
-The backlog exists so ideas are preserved without cluttering the active architecture documentation.
+Documentation for active platform items and capability bundles.
 
 ### Archive
 
@@ -203,5 +199,5 @@ Stores historical documentation and frozen reference material that should not be
 
 - New contributor: [Community](community/README.md)
 - Operator: [Operations](operations/README.md)
-- Architecture/design work: [Platform](platform/overview.md)
+- Architecture/design work: [Overview](overview/overview.md)
 - AI assistant bootstrap: [AI Context](ai-context/README.md)

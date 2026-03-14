@@ -20,6 +20,10 @@ Use the template when creating a new feature document:
 
 - [Feature Documentation Template](./_template.md)
 
+Current feature documents:
+
+- [Together AI Escalation](./together-escalation.md)
+
 Go next:
 
 - Start with [Roadmap](../../roadmap/README.md) if the capability is still being shaped.

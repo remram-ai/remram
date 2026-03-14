@@ -11,6 +11,7 @@ Core repository ownership:
 Boundary rules:
 
 - feature definitions and platform item docs live in `remram`
+- user-facing feature documentation lives in `remram/docs/features/`
 - implementation lives in the owning domain repo
 - service definitions and compose templates live in `moltbox-services`
 - gateway orchestration consumes those service definitions rather than redefining them

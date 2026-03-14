@@ -25,6 +25,7 @@ Registry rules:
 - new platform deliverables begin in `platform/backlog/`
 - once the type is known, the item moves to `platform/core/`, `platform/services/`, `platform/skills/`, or `platform/plugins/`
 - new platform bundles should include `README.md`, `spec.md`, `design.md`, `operator-guide.md`, and `test-plan.md`
+- user-facing feature documentation belongs under `docs/features/` once the capability is complete enough to document as one coherent feature
 
 Builder guidance:
 
@@ -38,3 +39,4 @@ Canonical source:
 - [Roadmap](../../roadmap/README.md)
 - [Platform Registry](../../platform/README.md)
 - [Platform Backlog](../../platform/backlog/README.md)
+- [Feature Documentation](../features/README.md)

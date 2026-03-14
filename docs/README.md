@@ -9,9 +9,22 @@ This repository uses a simple documentation split:
 - `platform/` contains the living capability registry
 - `archive/` contains historical documentation
 
+The delivery lifecycle is:
+
+```text
+Idea
+  -> Feature (initiative in roadmap/)
+  -> Platform deliverables (services, skills, plugins, core)
+  -> Feature documentation (docs/features/)
+```
+
+Platform items are technical deliverables.
+Feature documentation describes the user-facing capability built from those deliverables.
+
 Inside `docs/`, the material is organized into several primary areas:
 
 - overview documentation
+- feature documentation
 - system concepts
 - reference material
 - community and contributor documentation
@@ -26,6 +39,7 @@ roadmap/         Ideas and features
 platform/        Living platform registry
 
 docs/
+  features/      User-facing feature documentation built from platform deliverables
   overview/      High-level system architecture and overview docs
   operations/    Operator workflows and CLI usage
   concepts/      Core system vocabulary and definitions
@@ -56,6 +70,27 @@ Typical topics:
 - repository taxonomy
 - deployment models
 - service topology
+
+### Feature Documentation
+
+Location:
+
+```text
+docs/features/
+```
+
+Purpose:
+
+Describe completed or usable user-facing capabilities assembled from multiple platform deliverables.
+
+Typical topics:
+
+- what a feature does
+- how it is enabled
+- which platform items it depends on
+- deployment steps
+- user workflow
+- operational notes
 
 ### Operations
 
@@ -199,6 +234,7 @@ Stores historical documentation and frozen reference material that should not be
 
 - New contributor: [Community](community/README.md)
 - Architecture/design work: [Overview](overview/overview.md)
+- User-facing capability docs: [Feature Documentation](features/README.md)
 - Vocabulary and definitions: [Concepts](concepts/README.md)
 - Operator: [Operations](operations/README.md)
 - AI assistant bootstrap: [AI Context](ai-context/README.md)

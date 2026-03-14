@@ -36,6 +36,10 @@ If you want active capability docs, then continue into:
 
 - [platform/](../../platform/)
 
+If you want completed user-facing capability documentation assembled from those platform items, then continue into:
+
+- [docs/features/](../features/README.md)
+
 If you want active ideas and larger initiatives, then continue into:
 
 - [roadmap/](../../roadmap/)

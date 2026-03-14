@@ -9,9 +9,9 @@ Repository structure and lifecycle:
 ```text
 roadmap/   -> ideas and features
 platform/  -> backlog plus active platform items
-docs/      -> architecture, concepts, operations, reference, and AI bootstrap
+docs/      -> architecture, feature docs, concepts, operations, reference, and AI bootstrap
 
-Idea -> Feature -> platform/backlog -> platform item
+Idea -> Feature -> platform/backlog -> platform item -> docs/features/<name>.md
 ```
 
 Core summaries:
@@ -40,6 +40,7 @@ Canonical sources:
 - [Overview](../overview/overview.md)
 - [CLI Architecture](../overview/cli-architecture.md)
 - [Repositories](../overview/repositories.md)
+- [Feature Documentation](../features/README.md)
 - [Roadmap](../../roadmap/README.md)
 - [Platform Registry](../../platform/README.md)
 - [Platform Backlog](../../platform/backlog/README.md)

@@ -10,8 +10,20 @@ Active repository documentation lives under `docs/`, strategic planning lives un
 
 - [roadmap/](roadmap/README.md): planning artifacts, including ideas and features
 - [platform/](platform/README.md): the registry of active platform items
-- [docs/](docs/README.md): system documentation, architecture explanation, operations, and AI context
+- [docs/](docs/README.md): system documentation, architecture explanation, feature documentation, operations, and AI context
 - [archive/](archive/): preserved historical material
+
+## Delivery Lifecycle
+
+```text
+Idea
+  -> Feature (initiative in roadmap/)
+  -> Platform deliverables (services, skills, plugins, core)
+  -> Feature documentation (docs/features/)
+```
+
+Platform items are technical deliverables.
+Feature documentation describes the user-facing capability built from those deliverables.
 
 ## What Problem Remram Solves
 
@@ -69,6 +81,7 @@ Within Gateway / Moltbox, orchestration via OpenClaw and operator control are se
 - [Documentation Map](docs/README.md)
 - [Roadmap](roadmap/README.md)
 - [Platform Registry](platform/README.md)
+- [Feature Documentation](docs/features/README.md)
 - [AI Context](docs/ai-context/README.md)
 - `archive/` for historical documentation
 
@@ -86,6 +99,7 @@ Historical context and superseded planning material remain in `archive/`.
 - Want to understand the current documentation system: start with [docs/README.md](docs/README.md)
 - Want a fast AI-assistant bootstrap: start with [docs/ai-context/README.md](docs/ai-context/README.md)
 - Want to understand planning and capability layout: start with [roadmap/README.md](roadmap/README.md) and [platform/README.md](platform/README.md)
+- Want user-facing capability docs once the deliverables exist: use [docs/features/README.md](docs/features/README.md)
 - Want to review earlier material: use `archive/`
 
 ## How To Contribute

@@ -69,9 +69,37 @@ function Invoke-RemoteShell {
         [switch]$AllowFailure
     )
 
-    $output = & ssh $SshHost "sh -lc $(Quote-RemoteToken $Script)" 2>&1 | Out-String
-    $exitCode = $LASTEXITCODE
-    $trimmed = $output.TrimEnd("`r", "`n")
+    $startInfo = New-Object System.Diagnostics.ProcessStartInfo
+    $startInfo.FileName = "ssh"
+    $startInfo.Arguments = "$SshHost sh -se"
+    $startInfo.UseShellExecute = $false
+    $startInfo.RedirectStandardInput = $true
+    $startInfo.RedirectStandardOutput = $true
+    $startInfo.RedirectStandardError = $true
+
+    $process = New-Object System.Diagnostics.Process
+    $process.StartInfo = $startInfo
+    [void]$process.Start()
+    $normalizedScript = $Script -replace "`r`n", "`n" -replace "`r", "`n"
+    $process.StandardInput.Write($normalizedScript)
+    if (-not $normalizedScript.EndsWith("`n")) {
+        $process.StandardInput.Write("`n")
+    }
+    $process.StandardInput.Close()
+
+    $stdout = $process.StandardOutput.ReadToEnd()
+    $stderr = $process.StandardError.ReadToEnd()
+    $process.WaitForExit()
+
+    $combined = if ($stdout -and $stderr) {
+        $stdout + $stderr
+    } elseif ($stdout) {
+        $stdout
+    } else {
+        $stderr
+    }
+    $trimmed = $combined.TrimEnd("`r", "`n")
+    $exitCode = $process.ExitCode
 
     if (-not $AllowFailure -and $exitCode -ne 0) {
         throw "remote command failed ($exitCode): $Script`n$trimmed"
@@ -85,31 +113,31 @@ function Invoke-RemoteShell {
 
 function Invoke-Moltbox {
     param(
-        [string[]]$Args,
+        [string[]]$Tokens,
         [switch]$AllowFailure
     )
 
-    return Invoke-RemoteShell -Script ("moltbox " + (Join-RemoteCommand $Args)) -AllowFailure:$AllowFailure
+    return Invoke-RemoteShell -Script ("moltbox " + (Join-RemoteCommand $Tokens)) -AllowFailure:$AllowFailure
 }
 
 function Invoke-MoltboxJson {
     param(
-        [string[]]$Args,
+        [string[]]$Tokens,
         [switch]$AllowFailure
     )
 
-    $result = Invoke-Moltbox -Args $Args -AllowFailure:$AllowFailure
+    $result = Invoke-Moltbox -Tokens $Tokens -AllowFailure:$AllowFailure
     $payload = $null
     if ($result.Output -ne "") {
         try {
-            $payload = $result.Output | ConvertFrom-Json -Depth 32
+            $payload = Convert-JsonText -Text $result.Output
         } catch {
-            throw "failed to parse JSON for 'moltbox $($Args -join ' ')': $($result.Output)"
+            throw "failed to parse JSON for 'moltbox $($Tokens -join ' ')': $($result.Output)"
         }
     }
 
     if (-not $AllowFailure -and $null -ne $payload -and $payload.ok -eq $false) {
-        throw "moltbox $($Args -join ' ') returned an error: $($result.Output)"
+        throw "moltbox $($Tokens -join ' ') returned an error: $($result.Output)"
     }
 
     return [pscustomobject]@{
@@ -117,6 +145,32 @@ function Invoke-MoltboxJson {
         Output   = $result.Output
         Json     = $payload
     }
+}
+
+function Convert-JsonText {
+    param([string]$Text)
+
+    $convertCommand = Get-Command ConvertFrom-Json
+    if ($convertCommand.Parameters.ContainsKey("Depth")) {
+        return $Text | ConvertFrom-Json -Depth 32
+    }
+    return $Text | ConvertFrom-Json
+}
+
+function Get-JsonPropertyValue {
+    param(
+        [object]$Object,
+        [string]$Name
+    )
+
+    if ($null -eq $Object) {
+        return $null
+    }
+    $property = $Object.PSObject.Properties[$Name]
+    if ($null -eq $property) {
+        return $null
+    }
+    return $property.Value
 }
 
 function Invoke-McpStdioToolsList {
@@ -151,7 +205,7 @@ function Invoke-McpStdioToolsList {
     }
 
     try {
-        return ($parts[1] | ConvertFrom-Json -Depth 32)
+        return (Convert-JsonText -Text $parts[1])
     } catch {
         throw "failed to parse mcp-stdio body: $($parts[1])"
     }
@@ -163,7 +217,7 @@ function Wait-GatewayReady {
     $deadline = (Get-Date).AddSeconds($TimeoutSeconds)
     while ((Get-Date) -lt $deadline) {
         try {
-            $status = Invoke-MoltboxJson -Args @("gateway", "status")
+            $status = Invoke-MoltboxJson -Tokens @("gateway", "status")
             if ($status.Json.ok -eq $true) {
                 return
             }
@@ -173,6 +227,22 @@ function Wait-GatewayReady {
     }
 
     throw "gateway did not return to ready state within $TimeoutSeconds seconds"
+}
+
+function Wait-GatewayUpdateSettled {
+    param([int]$TimeoutSeconds = 180)
+
+    $deadline = (Get-Date).AddSeconds($TimeoutSeconds)
+    while ((Get-Date) -lt $deadline) {
+        $updaterCheck = Invoke-RemoteShell -Script "docker ps --format '{{.Names}}' | grep '^gateway-updater-' >/dev/null 2>&1" -AllowFailure
+        if ($updaterCheck.ExitCode -ne 0) {
+            Wait-GatewayReady -TimeoutSeconds 30
+            return
+        }
+        Start-Sleep -Seconds 3
+    }
+
+    throw "gateway updater container still running after $TimeoutSeconds seconds"
 }
 
 function Run-Step {
@@ -204,7 +274,7 @@ function Cleanup-State {
         if (-not $script:tempPluginDeployed -or [string]::IsNullOrWhiteSpace($script:pluginName)) {
             return "no replay-installed temp plugin to remove"
         }
-        $remove = Invoke-MoltboxJson -Args @($Environment, "plugin", "remove", $script:pluginName) -AllowFailure
+        $remove = Invoke-MoltboxJson -Tokens @($Environment, "plugin", "remove", $script:pluginName) -AllowFailure
         $script:tempPluginDeployed = $false
         return $remove.Output
     } | Out-Null
@@ -213,7 +283,7 @@ function Cleanup-State {
         if (-not $script:tempSkillDeployed) {
             return "no replay-installed temp skill to remove"
         }
-        $remove = Invoke-MoltboxJson -Args @($Environment, "skill", "remove", $script:tempSkillName) -AllowFailure
+        $remove = Invoke-MoltboxJson -Tokens @($Environment, "skill", "remove", $script:tempSkillName) -AllowFailure
         $script:tempSkillDeployed = $false
         return $remove.Output
     } | Out-Null
@@ -231,7 +301,7 @@ function Cleanup-State {
         if (-not $script:tempTokenCreated) {
             return "no temp token to delete"
         }
-        Invoke-MoltboxJson -Args @("gateway", "token", "delete", $script:tempTokenName) -AllowFailure | Out-Null
+        Invoke-MoltboxJson -Tokens @("gateway", "token", "delete", $script:tempTokenName) -AllowFailure | Out-Null
         $script:tempTokenCreated = $false
         return $script:tempTokenName
     } | Out-Null
@@ -244,7 +314,7 @@ function Cleanup-State {
 
 try {
     Run-Step -Group "gateway" -Command "gateway status" -Action {
-        $status = Invoke-MoltboxJson -Args @("gateway", "status")
+        $status = Invoke-MoltboxJson -Tokens @("gateway", "status")
         if ($status.Json.service -ne "gateway") {
             throw "unexpected gateway service payload: $($status.Output)"
         }
@@ -252,7 +322,7 @@ try {
     } | Out-Null
 
     Run-Step -Group "gateway" -Command "gateway docker ping" -Action {
-        $ping = Invoke-MoltboxJson -Args @("gateway", "docker", "ping")
+        $ping = Invoke-MoltboxJson -Tokens @("gateway", "docker", "ping")
         if ([string]::IsNullOrWhiteSpace([string]$ping.Json.docker_version)) {
             throw "docker version missing: $($ping.Output)"
         }
@@ -260,7 +330,7 @@ try {
     } | Out-Null
 
     Run-Step -Group "gateway" -Command "gateway docker run hello-world" -Action {
-        $run = Invoke-MoltboxJson -Args @("gateway", "docker", "run", "hello-world")
+        $run = Invoke-MoltboxJson -Tokens @("gateway", "docker", "run", "hello-world")
         if ([string]::IsNullOrWhiteSpace([string]$run.Json.container_name)) {
             throw "container name missing: $($run.Output)"
         }
@@ -268,13 +338,13 @@ try {
     } | Out-Null
 
     Run-Step -Group "gateway" -Command "gateway token create/list/delete" -Action {
-        $create = Invoke-MoltboxJson -Args @("gateway", "token", "create", $script:tempTokenName)
+        $create = Invoke-MoltboxJson -Tokens @("gateway", "token", "create", $script:tempTokenName)
         if ([string]::IsNullOrWhiteSpace([string]$create.Json.token)) {
             throw "token value missing: $($create.Output)"
         }
         $script:tempTokenCreated = $true
 
-        $list = Invoke-MoltboxJson -Args @("gateway", "token", "list")
+        $list = Invoke-MoltboxJson -Tokens @("gateway", "token", "list")
         $names = @($list.Json.tokens | ForEach-Object { $_.name })
         if ($names -notcontains $script:tempTokenName) {
             throw "temp token missing from list: $($list.Output)"
@@ -294,8 +364,8 @@ try {
 
     if ($IncludeGatewayUpdate) {
         Run-Step -Group "gateway" -Command "gateway update" -Action {
-            Invoke-MoltboxJson -Args @("gateway", "update") | Out-Null
-            Wait-GatewayReady
+            Invoke-MoltboxJson -Tokens @("gateway", "update") | Out-Null
+            Wait-GatewayUpdateSettled
             $hostHistoryCheck = Invoke-RemoteShell -Script "test -s /var/lib/moltbox/history.jsonl"
             if ($hostHistoryCheck.ExitCode -ne 0) {
                 throw "gateway update did not leave a non-empty /var/lib/moltbox/history.jsonl"
@@ -311,11 +381,16 @@ try {
     }
 
     Run-Step -Group "skill" -Command "prepare temp skill package" -Action {
-        Invoke-RemoteShell -Script "rm -rf $(Quote-RemoteToken $script:tempSkillPath)" | Out-Null
+        $pythonRewrite =
+            'import re; from pathlib import Path; ' +
+            'path = Path("' + $script:tempSkillPath + '/SKILL.md"); ' +
+            'text = path.read_text(); ' +
+            'path.write_text(re.sub(r"^name: .*$", "name: ' + $script:tempSkillName + '", text, count=1, flags=re.M))'
         $prepare = @(
             "set -eu",
+            "rm -rf $(Quote-RemoteToken $script:tempSkillPath)",
             "cp -R $(Quote-RemoteToken $script:baseSkillPath) $(Quote-RemoteToken $script:tempSkillPath)",
-            "sed -i '0,/^name: /s//name: $script:tempSkillName/' $(Quote-RemoteToken "$script:tempSkillPath/SKILL.md")"
+            "python3 -c $(Quote-RemoteToken $pythonRewrite)"
         ) -join "; "
         Invoke-RemoteShell -Script $prepare | Out-Null
         $script:tempSkillCreated = $true
@@ -323,7 +398,7 @@ try {
     } | Out-Null
 
     Run-Step -Group "skill" -Command "$Environment skill deploy $script:tempSkillName" -Action {
-        $deploy = Invoke-MoltboxJson -Args @($Environment, "skill", "deploy", $script:tempSkillName)
+        $deploy = Invoke-MoltboxJson -Tokens @($Environment, "skill", "deploy", $script:tempSkillName)
         if ($deploy.Json.action -ne "deploy") {
             throw "unexpected deploy action payload: $($deploy.Output)"
         }
@@ -332,7 +407,7 @@ try {
     } | Out-Null
 
     Run-Step -Group "skill" -Command "$Environment skill list" -Action {
-        $list = Invoke-MoltboxJson -Args @($Environment, "skill", "list")
+        $list = Invoke-MoltboxJson -Tokens @($Environment, "skill", "list")
         if ([string]$list.Json.stdout -notmatch [regex]::Escape($script:tempSkillName)) {
             throw "temp skill missing from skill list: $($list.Output)"
         }
@@ -340,7 +415,7 @@ try {
     } | Out-Null
 
     Run-Step -Group "skill" -Command "$Environment skill remove $script:tempSkillName" -Action {
-        $remove = Invoke-MoltboxJson -Args @($Environment, "skill", "remove", $script:tempSkillName)
+        $remove = Invoke-MoltboxJson -Tokens @($Environment, "skill", "remove", $script:tempSkillName)
         if ($remove.Json.action -ne "remove") {
             throw "unexpected remove action payload: $($remove.Output)"
         }
@@ -349,7 +424,7 @@ try {
     } | Out-Null
 
     Run-Step -Group "skill" -Command "$Environment skill list (post-remove)" -Action {
-        $list = Invoke-MoltboxJson -Args @($Environment, "skill", "list")
+        $list = Invoke-MoltboxJson -Tokens @($Environment, "skill", "list")
         if ([string]$list.Json.stdout -match [regex]::Escape($script:tempSkillName)) {
             throw "temp skill still present after remove: $($list.Output)"
         }
@@ -357,13 +432,20 @@ try {
     } | Out-Null
 
     Run-Step -Group "plugin" -Command "select plugin candidate" -Action {
-        $list = Invoke-MoltboxJson -Args @($Environment, "plugin", "list")
+        $list = Invoke-MoltboxJson -Tokens @($Environment, "plugin", "list")
         $installed = @()
-        if ($null -ne $list.Json.plugins) {
-            $installed = @($list.Json.plugins | ForEach-Object { $_.plugin })
+        $plugins = Get-JsonPropertyValue -Object $list.Json -Name "plugins"
+        if ($null -ne $plugins) {
+            $installed = @($plugins | ForEach-Object { $_.plugin })
         }
+        $missing = @()
 
         foreach ($candidate in $script:pluginCandidates) {
+            $pathCheck = Invoke-RemoteShell -Script ("test -d " + (Quote-RemoteToken $candidate.SourcePath)) -AllowFailure
+            if ($pathCheck.ExitCode -ne 0) {
+                $missing += $candidate.Name
+                continue
+            }
             if ($installed -notcontains $candidate.Name) {
                 $script:pluginName = $candidate.Name
                 $script:pluginSourcePath = $candidate.SourcePath
@@ -371,14 +453,14 @@ try {
             }
         }
 
-        throw "no unused plugin candidate available; installed plugins: $($installed -join ',')"
+        throw "no usable plugin candidate available; installed plugins: $($installed -join ','); missing source paths: $($missing -join ',')"
     } | Out-Null
 
     Run-Step -Group "plugin" -Command "$Environment plugin install $script:pluginSourcePath" -Action {
         if ([string]::IsNullOrWhiteSpace($script:pluginSourcePath) -or [string]::IsNullOrWhiteSpace($script:pluginName)) {
             throw "plugin candidate was not selected"
         }
-        $install = Invoke-MoltboxJson -Args @($Environment, "plugin", "install", $script:pluginSourcePath)
+        $install = Invoke-MoltboxJson -Tokens @($Environment, "plugin", "install", $script:pluginSourcePath)
         if ($install.Json.action -ne "install") {
             throw "unexpected plugin install payload: $($install.Output)"
         }
@@ -393,10 +475,11 @@ try {
         if ([string]::IsNullOrWhiteSpace($script:pluginName)) {
             throw "plugin candidate was not selected"
         }
-        $list = Invoke-MoltboxJson -Args @($Environment, "plugin", "list")
+        $list = Invoke-MoltboxJson -Tokens @($Environment, "plugin", "list")
         $plugins = @()
-        if ($null -ne $list.Json.plugins) {
-            $plugins = @($list.Json.plugins | ForEach-Object { $_.plugin })
+        $pluginItems = Get-JsonPropertyValue -Object $list.Json -Name "plugins"
+        if ($null -ne $pluginItems) {
+            $plugins = @($pluginItems | ForEach-Object { $_.plugin })
         }
         if ($plugins -notcontains $script:pluginName) {
             throw "temp plugin missing from plugin list: $($list.Output)"
@@ -408,7 +491,7 @@ try {
         if ([string]::IsNullOrWhiteSpace($script:pluginName)) {
             throw "plugin candidate was not selected"
         }
-        $remove = Invoke-MoltboxJson -Args @($Environment, "plugin", "remove", $script:pluginName)
+        $remove = Invoke-MoltboxJson -Tokens @($Environment, "plugin", "remove", $script:pluginName)
         if ($remove.Json.action -ne "remove") {
             throw "unexpected plugin remove payload: $($remove.Output)"
         }
@@ -420,10 +503,11 @@ try {
         if ([string]::IsNullOrWhiteSpace($script:pluginName)) {
             throw "plugin candidate was not selected"
         }
-        $list = Invoke-MoltboxJson -Args @($Environment, "plugin", "list")
+        $list = Invoke-MoltboxJson -Tokens @($Environment, "plugin", "list")
         $plugins = @()
-        if ($null -ne $list.Json.plugins) {
-            $plugins = @($list.Json.plugins | ForEach-Object { $_.plugin })
+        $pluginItems = Get-JsonPropertyValue -Object $list.Json -Name "plugins"
+        if ($null -ne $pluginItems) {
+            $plugins = @($pluginItems | ForEach-Object { $_.plugin })
         }
         if ($plugins -contains $script:pluginName) {
             throw "temp plugin still present after remove: $($list.Output)"
@@ -436,7 +520,7 @@ finally {
 
     ""
     "CLI validation summary:"
-    $script:results | Format-Table -AutoSize
+    $script:results | Format-Table -Wrap -AutoSize | Out-String -Width 240
 
     $failed = @($script:results | Where-Object { $_.Status -eq "FAIL" })
     if ($failed.Count -gt 0) {

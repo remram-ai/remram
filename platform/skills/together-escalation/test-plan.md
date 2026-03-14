@@ -41,6 +41,7 @@ Expected result:
 - the request begins on `ollama/qwen3:8b`
 - the runtime advances to `together/meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8`
 - logs or model-selection output make that fallback visible
+- the response envelope remains the standard OpenClaw JSON shape with `payloads` and `meta`
 
 ### 4. Reasoning Validation
 
@@ -72,6 +73,12 @@ Examples:
 - skill diagnostics
 - OpenClaw model status or equivalent runtime model-selection output
 
+Also verify logs do not leak:
+
+- `TOGETHER_API_KEY`
+- Together bearer-token material
+- secret-file contents
+
 ### 7. Environment Promotion Validation
 
 Validate the skill independently in:
@@ -95,6 +102,7 @@ Each environment should have:
 - reasoning or coding paths bypass their documented fallback order
 - provider failure occurs in a way that is not fallback-eligible under current OpenClaw rules
 - the skill is present in `dev` but missing in `test` or `prod`
+- deprecated `semantic-router` artifacts reappear in runtime startup, skill inventory, or staged runtime state
 
 ## Operator-Visible Success Criteria
 

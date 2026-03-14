@@ -22,6 +22,12 @@ Before enabling it, confirm:
 - the runtime model catalog includes the required Together model refs
 - the runtime baseline contains the role-policy files that describe reasoning and coding behavior
 
+Set the environment-scoped secret through the gateway-owned CLI flow:
+
+```text
+moltbox dev secrets set TOGETHER_API_KEY
+```
+
 ## Install
 
 Deploy or reload the target runtime so the gateway stages the skill folder and injects the required secret:
@@ -45,6 +51,38 @@ moltbox dev openclaw models list
 ```
 
 If the runtime requires explicit trust or allowlisting, apply the required OpenClaw config changes before treating the skill as active.
+
+## Validation Commands
+
+Use the runtime passthrough surface to verify the active configuration:
+
+```text
+moltbox dev openclaw models status
+moltbox dev openclaw agent --agent main --local --thinking off --message hello --json
+```
+
+Expected normal result:
+
+- provider: `ollama`
+- model: `qwen3:8b`
+
+To validate chat fallback recovery, induce a local-model outage and rerun the same request:
+
+```text
+docker stop ollama
+moltbox dev openclaw agent --agent main --local --thinking off --message hello --json
+moltbox gateway service deploy ollama
+```
+
+Expected fallback result:
+
+- provider: `together`
+- model: `meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8`
+
+Expected log evidence:
+
+- `candidate_failed` for `ollama/qwen3:8b`
+- `candidate_succeeded` for `together/meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8`
 
 ## Use In Practice
 
@@ -83,7 +121,4 @@ Common problems:
 - reasoning or coding policy points at the wrong model id
 - the provider is configured under the wrong name instead of `together`
 - `dev` works but `test` or `prod` is missing the required key or runtime deploy
-
-## TODO
-
-- document the exact preferred Moltbox-wrapped commands for inspecting effective model chains once the gateway's OpenClaw passthrough surface is finalized
+- startup logs still mention `semantic-router`, which indicates stale runtime state survived the last deploy and needs a clean redeploy

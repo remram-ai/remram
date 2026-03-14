@@ -14,7 +14,7 @@ Primary evidence and owning inputs:
 - `moltbox-runtime/openclaw-*/openclaw.json.template`
 - `moltbox-runtime/openclaw-*/model-runtime.yml`
 - `moltbox-runtime/openclaw-*/tools.yaml`
-- `moltbox-runtime/openclaw-*/agents.yaml`
+- `moltbox-services/services/openclaw-*/compose.yml.template`
 
 ## Architecture Components
 
@@ -36,7 +36,7 @@ OpenClaw's current provider documentation establishes the following assumptions:
 
 The skill must preserve that provider identity instead of introducing a second alias such as `together-ai` or `cloud-together`.
 
-Depending on the exact runtime build, Together may be resolved through built-in provider handling plus `TOGETHER_API_KEY`, or through an explicit provider entry written into runtime config. The skill definition only requires that the runtime can resolve the `together/...` model refs consistently.
+The current Moltbox runtime uses OpenClaw's built-in Together handling plus `TOGETHER_API_KEY`. No alternate provider alias is introduced, and no explicit `models.providers.together` entry is required in the validated baseline.
 
 ## Model Role Configuration
 
@@ -126,24 +126,7 @@ As with reasoning, this is expected to be represented through skill-owned runtim
 - any explicit `models.providers` entries required by the runtime build
 - plugin allowance and install metadata if the runtime requires explicit plugin config
 
-If the runtime uses an explicit provider entry, the shape must stay within the documented `models.providers` schema.
-
-Illustrative explicit provider form:
-
-```json
-{
-  "models": {
-    "providers": {
-      "together": {
-        "api": "openai-completions",
-        "models": []
-      }
-    }
-  }
-}
-```
-
-The runtime may also need `apiKey` or auth-profile-backed provider resolution, depending on how the target OpenClaw build materializes Together authentication.
+Together auth is injected into the runtime container by the gateway-managed scoped secret system and is resolved by OpenClaw from the `TOGETHER_API_KEY` environment variable.
 
 ### Runtime Policy Files
 
@@ -205,6 +188,8 @@ At runtime:
 4. reasoning and coding operations resolve their role-specific Together chains
 5. runtime logs or model-selection surfaces expose the chosen model path
 
+Validated runtime output shows the same `payloads` + `meta` response envelope for both the local Ollama path and the Together fallback path.
+
 ### Persist
 
 The skill persists runtime-local skill state inside the target environment rather than back into Git automatically.
@@ -229,8 +214,4 @@ Because it is staged into live runtime state during deploy or reload, a runtime 
 - if the runtime build does not expose Together as the provider id `together`, the skill is misconfigured
 - if the role-specific reasoning and coding policy drifts from the OpenClaw model catalog, operators can see inconsistent selection behavior
 - `dev`, `test`, and `prod` do not automatically share Together credentials or staged runtime state
-
-## TODO
-
-- document the exact `remram-skills/skills/together-escalation/` package layout once the skill package lands
-- document the final role-policy file shape for reasoning and coding fallback chains once that package schema is committed
+- legacy `semantic-router` runtime artifacts must stay removed from templates and staged runtime state to avoid stale plugin noise during startup

@@ -8,7 +8,7 @@ These are reference values for the current appliance model.
 
 Gateway health:
 
-- appliance-local: `http://127.0.0.1:7474/health`
+- appliance-local: `http://127.0.0.1:7460/health`
 - ingress: `https://moltbox-cli/health`
 
 Gateway is the control-plane endpoint surfaced through the CLI and operator tooling.

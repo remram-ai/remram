@@ -2,6 +2,14 @@
 
 Epic
 
+Status: Proposed
+Owner: TBD
+Platform Targets: TBD
+
+Planned Platform Features:
+
+- TBD - define candidate platform item(s) as the epic is shaped
+
 ---
 
 ## 1. Overview

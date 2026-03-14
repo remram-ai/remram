@@ -2,6 +2,14 @@
 
 Epic
 
+Status: Proposed
+Owner: TBD
+Platform Targets: TBD
+
+Planned Platform Features:
+
+- TBD - define candidate platform item(s) as the epic is shaped
+
 ---
 
 ## 1. Overview
@@ -180,4 +188,3 @@ Mitigations:
 - What is the optimal supervisor architecture?
 - How should project context be persisted?
 - How should notifications be delivered?
-

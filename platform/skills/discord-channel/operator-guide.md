@@ -1,8 +1,12 @@
 # Discord Channel Operator Guide
 
+Status: in flight
+
 ## Purpose
 
 Use this skill when you want an environment to receive and answer Discord messages.
+
+This guide describes the intended next-release operator posture on `main`. Discord Channel is not yet part of the current tagged appliance release.
 
 ## Environment Model
 
@@ -66,7 +70,6 @@ Common failure cases:
 - runtime not reloaded after config change
 - bot not invited with the right permissions
 
-## TODO
+Current `main` gap:
 
-- document the exact current Moltbox CLI path for setting Discord render inputs once the configuration write surface is standardized
-- document the preferred native OpenClaw passthrough commands for channel diagnostics once that operator path is locked
+- the architecture and operator model are defined, but the concrete config write surface and runtime wiring are still in flight

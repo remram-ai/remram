@@ -53,6 +53,9 @@ Gateway lifecycle and status:
 moltbox gateway status
 moltbox gateway update
 moltbox gateway logs
+moltbox gateway mcp-stdio
+moltbox gateway docker ping
+moltbox gateway docker run <image>
 moltbox gateway token create <NAME>
 moltbox gateway token list
 ```
@@ -61,6 +64,7 @@ moltbox gateway token list
 
 - the running gateway container
 - the host `moltbox` CLI/tooling installed on the appliance
+- the host-level appliance history ledger at `/var/lib/moltbox/history.jsonl`
 
 ### Gateway Service Pipeline
 
@@ -83,6 +87,12 @@ Runtime lifecycle is environment-scoped:
 ```text
 moltbox dev reload
 moltbox dev checkpoint
+moltbox dev skill deploy together
+moltbox dev skill list
+moltbox dev skill remove together
+moltbox dev plugin install semantic-router
+moltbox dev plugin list
+moltbox dev plugin remove semantic-router
 ```
 
 ### Native OpenClaw Passthrough
@@ -157,8 +167,8 @@ Runtime lifecycle concerns:
 
 - baseline config sync
 - plugin and skill deployment events
-- snapshots before mutation
 - checkpoint and rebase orchestration
+- replay-driven recovery
 
 The gateway keeps these models separate because a runtime can be healthy as a container while still carrying important mutable state.
 
@@ -185,7 +195,23 @@ Typical environment lifecycle flow:
 4. validate runtime health
 5. record deployment events or metadata where required
 
-Plugin and skill deployment then continue through native OpenClaw lifecycle commands rather than a reimplemented gateway-only plugin API.
+Skill deployment uses the environment-scoped managed lifecycle:
+
+```text
+moltbox <env> skill deploy <skill>
+moltbox <env> skill list
+moltbox <env> skill remove <skill>
+```
+
+Plugin deployment also remains environment-scoped on `main`:
+
+```text
+moltbox <env> plugin install <package>
+moltbox <env> plugin list
+moltbox <env> plugin remove <plugin>
+```
+
+Managed `skill deploy` currently stages pure skill packages only. Plugin-backed packages remain outside that managed path until a separate contract is implemented.
 
 ## Snapshot, Replay, And Checkpoint Model
 
@@ -193,14 +219,11 @@ Gateway owns the orchestration of runtime recovery artifacts.
 
 ### Snapshots
 
-Before runtime-mutating operations, the gateway should capture:
+The durable runtime-state capture implemented on `main` is checkpoint snapshotting under:
 
-- container-level snapshots
-- runtime-state snapshots
+- `/srv/moltbox-state/runtime-baselines/<runtime>/<checkpoint_id>/snapshot/`
 
-Canonical root:
-
-- `/srv/moltbox-state/runtime-snapshots/`
+A separate standalone `/srv/moltbox-state/runtime-snapshots/` contract is still in flight.
 
 ### Deployment Events
 
@@ -245,8 +268,3 @@ Gateway orchestrates other repositories but should not absorb their ownership:
 - there is no separate active `tools update` namespace; gateway self-update owns host CLI/tooling refresh
 - public HTTPS ingress does not expose gateway or MCP routes
 - MCP HTTP requests require `Authorization: Bearer <token>` and tokens are stored through the existing encrypted gateway secret store
-
-## TODO
-
-- document the exact runtime service identifiers exposed through `gateway service ...` once that operator contract is finalized
-- document the final checkpoint promotion workflow once rebased runtime images have a stable Git representation

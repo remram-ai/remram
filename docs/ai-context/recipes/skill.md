@@ -29,9 +29,9 @@ Local ownership usually splits like this:
 - `remram`: platform item docs and capability contract
 - `remram-skills`: skill package source, packaging metadata, manifests, helpers, and plugin-backed code
 - `moltbox-runtime`: baseline config and policy files the skill depends on
-- `moltbox-gateway`: runtime deployment orchestration, snapshots, and deployment-event tracking
+- `moltbox-gateway`: runtime deployment orchestration, replay, checkpointing, and deployment-event tracking
 
-In the current architecture, a skill may be pure `SKILL.md` content, plugin-backed, or a mixture of both, but the skill is the broader RemRam packaging unit.
+In the current architecture, a skill may be pure `SKILL.md` content, plugin-backed, or a mixture of both, but the skill is the broader RemRam packaging unit. On `main`, managed `moltbox <env> skill deploy` stages pure skill packages only.
 
 ## OpenClaw Source Of Record
 
@@ -90,21 +90,26 @@ Assume these limits unless the architecture changes:
 
 ## Deployment Method
 
-Baseline-managed skills reach the appliance through the gateway-managed runtime deploy and reload paths.
+Managed skills reach the appliance through the gateway-owned environment skill surface:
 
-Typical path:
+```text
+moltbox <env> skill deploy <skill>
+moltbox <env> skill list
+moltbox <env> skill remove <skill>
+```
+
+The gateway also replays those events during:
 
 ```text
 moltbox gateway service deploy <env>
 ```
 
-or:
-
-```text
-moltbox <env> reload
-```
-
 In the current Moltbox runtime model, the gateway stages skill folders from `remram-skills/skills/` into the runtime's managed OpenClaw state under `~/.openclaw/skills`.
+
+Current limitation on `main`:
+
+- managed `skill deploy` supports pure skill packages only
+- packages that include `openclaw.plugin.json` remain outside that managed path until a separate plugin-backed deploy contract is implemented
 
 Current upstream skill inspection commands that should remain reachable through passthrough are:
 
@@ -129,7 +134,6 @@ clawhub sync --all
 
 Treat the gateway as the orchestrator around that deployment path:
 
-- capture pre-deploy snapshots
 - apply required runtime config
 - stage the required `SKILL.md` package into the runtime state
 - reload or restart when required

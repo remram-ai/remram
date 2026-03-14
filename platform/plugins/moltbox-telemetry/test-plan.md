@@ -1,5 +1,7 @@
 # Moltbox Telemetry Test Plan
 
+Status: in flight
+
 ## Definition Of Done
 
 Moltbox Telemetry is done for an environment when:
@@ -11,14 +13,16 @@ Moltbox Telemetry is done for an environment when:
 - `provider_latency_ms` is present for normal model responses
 - the runtime remains behaviorally unchanged apart from telemetry visibility
 
+This test plan is the acceptance target for the next-release line on `main`. It is not the current tagged-appliance validation matrix.
+
 ## Core Validation
 
 ### 1. Install Validation
 
 Verify:
 
-- `moltbox <env> openclaw plugins install moltbox-telemetry` succeeds
-- `moltbox <env> openclaw plugins list` shows `moltbox-telemetry`
+- `moltbox <env> plugin install moltbox-telemetry` succeeds
+- `moltbox <env> plugin list` shows `moltbox-telemetry`
 - `moltbox <env> openclaw plugins info moltbox-telemetry` resolves correctly
 
 ### 2. Diagnostics Enablement Validation
@@ -129,7 +133,7 @@ Each environment should have:
 
 ## Deployment And Runtime Checks
 
-- verify a pre-deploy snapshot exists before runtime mutation
+- verify checkpoint metadata and replay state reconcile after the mutation
 - verify the runtime remains healthy after plugin install
 - verify deployment events are captured if runtime deployment-event recording is enabled
 - verify diagnostics logs remain accessible after install

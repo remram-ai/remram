@@ -202,7 +202,7 @@ Its deployment affects:
 
 - runtime mutable state
 - runtime deployment-event history
-- runtime snapshots before mutation
+- checkpoint and replay metadata
 - environment-scoped secret management
 
 Because it is staged into live runtime state during deploy or reload, a runtime may differ from the Git baseline until a later checkpoint promotes that state intentionally.

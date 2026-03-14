@@ -23,6 +23,9 @@ Gateway status and logs:
 ```text
 moltbox gateway status
 moltbox gateway logs
+moltbox gateway mcp-stdio
+moltbox gateway docker ping
+moltbox gateway docker run hello-world
 moltbox gateway token list
 ```
 
@@ -31,6 +34,8 @@ Gateway update:
 ```text
 moltbox gateway update
 ```
+
+`moltbox gateway update` writes the control-plane deployment record under `/srv/moltbox-state/deploy/history.jsonl` and appends a host-level appliance history entry to `/var/lib/moltbox/history.jsonl`.
 
 Service lifecycle:
 
@@ -47,6 +52,9 @@ Environment lifecycle:
 ```text
 moltbox dev reload
 moltbox dev checkpoint
+moltbox dev skill deploy together
+moltbox dev skill list
+moltbox dev skill remove together
 ```
 
 Native runtime passthrough:
@@ -101,3 +109,13 @@ Supported restricted identities:
 
 - `jason-codex` for CLI-only automation
 - `codex-bootstrap` for break-glass diagnostics
+
+## Validation Script
+
+The repeatable CLI validation script lives at:
+
+```text
+scripts/validate-moltbox-cli.ps1
+```
+
+It creates temporary runtime artifacts, exercises the documented command groups, and cleans up afterward. `gateway update` remains opt-in because it intentionally mutates appliance release state.

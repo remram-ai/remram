@@ -31,6 +31,9 @@ moltbox
     status
     update
     logs
+    mcp-stdio
+    docker ping
+    docker run <image>
     token create <NAME>
     token list
     token delete <NAME>
@@ -44,7 +47,11 @@ moltbox
     checkpoint
     reload
     skill deploy <skill>
-    skill rollback <skill>
+    skill list
+    skill remove <skill>
+    plugin install <package>
+    plugin list
+    plugin remove <plugin>
     secrets set <NAME> [VALUE]
     secrets list
     secrets delete <NAME>
@@ -54,7 +61,11 @@ moltbox
     checkpoint
     reload
     skill deploy <skill>
-    skill rollback <skill>
+    skill list
+    skill remove <skill>
+    plugin install <package>
+    plugin list
+    plugin remove <plugin>
     secrets set <NAME> [VALUE]
     secrets list
     secrets delete <NAME>
@@ -64,7 +75,11 @@ moltbox
     checkpoint
     reload
     skill deploy <skill>
-    skill rollback <skill>
+    skill list
+    skill remove <skill>
+    plugin install <package>
+    plugin list
+    plugin remove <plugin>
     secrets set <NAME> [VALUE]
     secrets list
     secrets delete <NAME>
@@ -122,6 +137,9 @@ Control-plane operations:
 moltbox gateway status
 moltbox gateway logs
 moltbox gateway update
+moltbox gateway mcp-stdio
+moltbox gateway docker ping
+moltbox gateway docker run hello-world
 moltbox gateway token create search-agent
 ```
 
@@ -130,6 +148,7 @@ moltbox gateway token create search-agent
 - the running `gateway` container
 - the host `moltbox` CLI binary
 - the host-side CLI config used by local gateway-owned commands such as scoped secrets
+- the host-level self-update ledger at `/var/lib/moltbox/history.jsonl`
 
 Gateway token operations manage the bearer tokens used by the internal MCP HTTP surface:
 
@@ -168,25 +187,49 @@ Runtime orchestration stays under the environment namespaces:
 moltbox dev reload
 moltbox dev checkpoint
 moltbox dev skill deploy together
-moltbox dev skill rollback together
+moltbox dev skill list
+moltbox dev skill remove together
+moltbox dev plugin install semantic-router
+moltbox dev plugin list
+moltbox dev plugin remove semantic-router
 moltbox dev openclaw <command>
 
 moltbox test reload
 moltbox test checkpoint
 moltbox test skill deploy together
-moltbox test skill rollback together
+moltbox test skill list
+moltbox test skill remove together
+moltbox test plugin install semantic-router
+moltbox test plugin list
+moltbox test plugin remove semantic-router
 moltbox test openclaw <command>
 
 moltbox prod reload
 moltbox prod checkpoint
 moltbox prod skill deploy together
-moltbox prod skill rollback together
+moltbox prod skill list
+moltbox prod skill remove together
+moltbox prod plugin install semantic-router
+moltbox prod plugin list
+moltbox prod plugin remove semantic-router
 moltbox prod openclaw <command>
 ```
 
 `moltbox <env> skill deploy <skill>` records gateway-owned deploy state, stages a replay package under `/srv/moltbox-state`, and redeploys the runtime through the control plane.
 
-`moltbox <env> skill rollback <skill>` removes the matching replay entry and redeploys the runtime from the baseline plus any remaining replay events.
+`moltbox <env> skill list` reports runtime-visible skill inventory through the gateway-owned runtime surface.
+
+`moltbox <env> skill remove <skill>` removes the matching replay entry and redeploys the runtime from the baseline plus any remaining replay events.
+
+Managed `skill deploy` on `main` stages pure skill packages only. Plugin-backed packages are not yet supported by that managed path.
+
+Gateway-managed plugin lifecycle is also environment-scoped:
+
+```text
+moltbox <env> plugin install <package>
+moltbox <env> plugin list
+moltbox <env> plugin remove <plugin>
+```
 
 Scoped secrets also use the environment namespaces:
 

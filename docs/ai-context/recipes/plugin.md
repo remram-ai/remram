@@ -83,7 +83,9 @@ Assume these limits unless upstream docs say otherwise:
 Primary deployment path:
 
 ```text
-moltbox <env> openclaw plugins install <plugin>
+moltbox <env> plugin install <package>
+moltbox <env> plugin list
+moltbox <env> plugin remove <plugin>
 ```
 
 Current upstream plugin command family to preserve through passthrough:
@@ -100,11 +102,11 @@ openclaw plugins update <id>
 openclaw plugins update --all
 ```
 
-OpenClaw community plugins are expected to be installable via npm specs, so Moltbox should preserve that install form through passthrough as well.
+OpenClaw community plugins are expected to be installable via npm specs, so Moltbox should preserve that install form through passthrough as well when operators need native inspection or debugging.
 
 Expected lifecycle posture:
 
-- gateway captures a pre-deploy snapshot
+- gateway records replay and checkpoint metadata around the mutation
 - OpenClaw performs the native plugin install
 - plugin config changes are restart-required in current OpenClaw docs; `hybrid` reload mode restarts automatically for critical changes
 - gateway records deployment events for replay and recovery

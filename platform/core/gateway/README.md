@@ -24,6 +24,7 @@ At a high level, Gateway:
 - mediates native OpenClaw passthrough operations
 - records deployment events and deployment metadata
 - coordinates snapshots, replay history, and checkpoint-related lifecycle
+- appends host-level self-update provenance to `/var/lib/moltbox/history.jsonl`
 
 ## Main Moving Parts
 
@@ -41,8 +42,12 @@ Operators interact with the gateway through resource-oriented commands such as:
 ```text
 moltbox gateway status
 moltbox gateway update
+moltbox gateway mcp-stdio
+moltbox gateway docker ping
+moltbox gateway docker run hello-world
 moltbox gateway service deploy opensearch
 moltbox dev reload
+moltbox dev skill deploy together
 ```
 
 The gateway is also the path through which environment-scoped native OpenClaw operations are reached.

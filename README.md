@@ -25,6 +25,18 @@ Idea
 Platform items are technical deliverables.
 Feature documentation describes the user-facing capability built from those deliverables.
 
+## Release Posture
+
+For the appliance repositories, `main` describes the next appliance release.
+
+Tagged revisions are the release inputs that an appliance should run in steady state.
+
+In practice:
+
+- repository `main` is the next-release integration line
+- an appliance host is a tagged release until it is intentionally updated
+- `moltbox gateway update` applies whatever revision the configured host checkout points at, so release appliances should pin that checkout to the intended tag or release branch
+
 ## What Problem Remram Solves
 
 AI systems still struggle with continuity.

@@ -65,13 +65,16 @@ The gateway owns:
 - plugin and skill deployment orchestration
 - deployment metadata writes
 - runtime deployment-event history
+- checkpoint metadata
+- gateway self-update provenance
 
 The runtime environments own:
 
 - live OpenClaw execution
 - runtime-local mutable state
-- plugin and skill installation state
 - runtime-specific operational health
+
+The gateway remains the authoritative source of truth for managed deploy state, replay history, and checkpoint metadata even when the runtime container is executing the installs.
 
 This boundary matters because live runtime behavior is allowed to mutate, while appliance-wide deployment and recovery remain governed by the control plane.
 
@@ -167,19 +170,15 @@ Canonical roots:
 Important state areas include:
 
 - `/srv/moltbox-state/runtime/`
-- `/srv/moltbox-state/runtime-snapshots/`
 - `/srv/moltbox-state/runtime-baselines/`
 - `/srv/moltbox-state/services/`
 - `/srv/moltbox-state/deploy/`
+- `/var/lib/moltbox/history.jsonl`
+- `/var/lib/moltbox/secrets/`
 
 These locations hold operational state and recovery artifacts. They are not interchangeable with the Git-backed architecture repositories.
 
-Runtime snapshots exist at more than one level:
-
-- container-level snapshots
-- runtime-state snapshots
-
-Those snapshots are operational safety artifacts taken before runtime-mutating operations.
+On `main`, the durable runtime-state capture is the checkpoint snapshot stored under `/srv/moltbox-state/runtime-baselines/`. A separate per-mutation runtime snapshot root is still in flight and is not part of the implemented contract today.
 
 ## Operator Model
 

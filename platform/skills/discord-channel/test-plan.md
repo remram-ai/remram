@@ -1,5 +1,7 @@
 # Discord Channel Test Plan
 
+Status: in flight
+
 ## Definition Of Done
 
 Discord Channel is done for an environment when:
@@ -9,6 +11,8 @@ Discord Channel is done for an environment when:
 - direct-message interaction works
 - allowlisted guild interaction works when configured
 - blocked or disallowed traffic is rejected as expected
+
+This test plan is the acceptance target for the next-release line on `main`. It is not the current tagged-appliance validation matrix.
 
 ## Core Validation
 

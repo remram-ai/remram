@@ -18,6 +18,9 @@ moltbox
     status
     update
     logs
+    mcp-stdio
+    docker ping
+    docker run <image>
     token create <NAME>
     token list
     token delete <NAME>
@@ -30,6 +33,12 @@ moltbox
     openclaw <command>
     checkpoint
     reload
+    skill deploy <skill>
+    skill list
+    skill remove <skill>
+    plugin install <package>
+    plugin list
+    plugin remove <plugin>
     secrets set <NAME> [VALUE]
     secrets list
     secrets delete <NAME>
@@ -38,6 +47,12 @@ moltbox
     openclaw <command>
     checkpoint
     reload
+    skill deploy <skill>
+    skill list
+    skill remove <skill>
+    plugin install <package>
+    plugin list
+    plugin remove <plugin>
     secrets set <NAME> [VALUE]
     secrets list
     secrets delete <NAME>
@@ -46,6 +61,12 @@ moltbox
     openclaw <command>
     checkpoint
     reload
+    skill deploy <skill>
+    skill list
+    skill remove <skill>
+    plugin install <package>
+    plugin list
+    plugin remove <plugin>
     secrets set <NAME> [VALUE]
     secrets list
     secrets delete <NAME>
@@ -73,11 +94,14 @@ Gateway:
 moltbox gateway status
 moltbox gateway update
 moltbox gateway logs
+moltbox gateway mcp-stdio
+moltbox gateway docker ping
+moltbox gateway docker run hello-world
 moltbox gateway service deploy opensearch
 moltbox gateway token create search-agent
 ```
 
-`moltbox gateway update` is the appliance self-update path. It refreshes the gateway and the host `moltbox` CLI/tooling together; there is no separate active `tools update` command.
+`moltbox gateway update` is the appliance self-update path. It refreshes the gateway and the host `moltbox` CLI/tooling together, writes the control-plane deployment record to `/srv/moltbox-state/deploy/history.jsonl`, and appends a host-level self-update record to `/var/lib/moltbox/history.jsonl`. There is no separate active `tools update` command.
 
 Workstation operators and automation reach the CLI over SSH. Internal agents use the token-authenticated MCP HTTP endpoint instead of SSH.
 
@@ -86,9 +110,17 @@ Runtime environments:
 ```text
 moltbox dev reload
 moltbox test checkpoint
+moltbox dev skill deploy together
+moltbox dev skill list
+moltbox dev skill remove together
+moltbox dev plugin install semantic-router
+moltbox dev plugin list
+moltbox dev plugin remove semantic-router
 moltbox prod openclaw <command>
 moltbox dev secrets set TOGETHER_API_KEY "tgp_v1_..."
 ```
+
+`moltbox <env> skill deploy <skill>` is the managed skill deploy path on `main`, but it currently stages pure skill packages only. Plugin-backed packages are not yet supported by the managed skill deploy path.
 
 Scoped secrets:
 

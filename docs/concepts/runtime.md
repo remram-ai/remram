@@ -4,7 +4,7 @@ A Runtime is the configuration and execution environment for managed runtime beh
 
 In the current architecture, the primary runtime family is the OpenClaw runtime set.
 
-Operators address those runtimes through environment namespaces:
+Operators address those runtimes through the environment namespaces:
 
 - `dev`
 - `test`
@@ -28,22 +28,11 @@ checkpoint baseline image
 
 `moltbox-runtime` defines the baseline runtime configuration only.
 
-It does not define the full live runtime state after skill deployment and runtime mutation.
+It does not define the full live runtime state after skill and plugin mutation.
 
 The gateway owns the replay log, staged replay artifacts, and checkpoint metadata under `/srv/moltbox-state`.
 
-The runtime container is a stateless executor for:
-
-- normal startup from the selected baseline image
-- replayed installs during runtime redeploy
-
-## Why The Runtime Concept Matters
-
-The runtime concept separates:
-
-- baseline configuration in `moltbox-runtime`
-- live mutable runtime state on the appliance
-- runtime lifecycle operations such as reload, snapshot, and checkpoint
+The runtime container executes the selected baseline plus replayed installs. It is not the source of truth for managed deployment state.
 
 ## Runtime Operations
 
@@ -55,13 +44,12 @@ Examples:
 moltbox dev reload
 moltbox dev checkpoint
 moltbox dev skill deploy together
-moltbox dev skill rollback together
+moltbox dev skill list
+moltbox dev skill remove together
+moltbox dev plugin install semantic-router
+moltbox dev plugin list
+moltbox dev plugin remove semantic-router
 moltbox dev openclaw <command>
-
-moltbox test reload
-moltbox test checkpoint
-moltbox test skill deploy together
-moltbox test openclaw <command>
 ```
 
 Current upstream OpenClaw passthrough families that should remain reachable include:
@@ -95,7 +83,7 @@ The replay-aware redeploy path is:
 moltbox gateway service deploy <env>
 ```
 
-Skill deploys follow the same control-plane model:
+Managed skill deploys follow the same control-plane model:
 
 1. the gateway stages the package in appliance state
 2. the gateway appends a replay event
@@ -103,6 +91,26 @@ Skill deploys follow the same control-plane model:
 4. the runtime executes the install from gateway state
 
 If the exact skill digest is already present in the current checkpoint metadata, `skill deploy` returns a no-op result instead of creating a duplicate replay entry.
+
+Managed `skill deploy` currently stages pure skill packages only. Plugin-backed packages remain outside that path on `main`.
+
+## Snapshot And Checkpoint Posture
+
+Checkpoint is the durable runtime-state capture that currently exists on `main`.
+
+The active checkpoint metadata path is:
+
+```text
+/srv/moltbox-state/runtime-baselines/<runtime>/current.json
+```
+
+Checkpoint snapshot directories live under:
+
+```text
+/srv/moltbox-state/runtime-baselines/<runtime>/<checkpoint_id>/snapshot/
+```
+
+A separate per-mutation runtime snapshot root is still in flight and is not part of the implemented `main` contract today.
 
 ## Related Concepts
 

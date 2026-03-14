@@ -39,6 +39,7 @@ roadmap/         Ideas and features
 platform/        Living platform registry
 
 docs/
+  audits/        Audit reports and unresolved architecture notes
   features/      User-facing feature documentation built from platform deliverables
   overview/      High-level system architecture and overview docs
   operations/    Operator workflows and CLI usage
@@ -63,6 +64,18 @@ docs/overview/
 Purpose:
 
 Describe the Moltbox and RemRam architecture at a high level.
+
+### Audits
+
+Location:
+
+```text
+docs/audits/
+```
+
+Purpose:
+
+Capture architecture audits, unresolved drift, and follow-up decisions that should not be guessed into the canonical docs.
 
 Typical topics:
 
@@ -238,6 +251,7 @@ Stores historical documentation and frozen reference material that should not be
 - Vocabulary and definitions: [Concepts](concepts/README.md)
 - Operator: [Operations](operations/README.md)
 - AI assistant bootstrap: [AI Context](ai-context/README.md)
+- architecture audit and unresolved drift: `audits/`
 
 Recommended reading path:
 

@@ -16,57 +16,43 @@ remram-skills
 
 A skill may include:
 
-- a `SKILL.md` skill definition
-- capability code
-- plugin-backed runtime behavior
+- a `SKILL.md` definition
+- prompts, manifests, or helper modules
 - packaging metadata
-- deploy recipes
-- helper modules and manifests
+- runtime policy inputs
+- optional plugin-backed behavior
 
-## How Skills Reach The Appliance
+## Public CLI Model
 
-Skills are deployed through the gateway control plane into runtime environments.
-
-The active CLI does not expose a top-level `skill` namespace.
-
-Instead, skill installation is expected to flow through environment-scoped runtime operations and native OpenClaw installation behavior.
-
-Typical operator direction is:
+The active public CLI keeps skill lifecycle under the environment resources:
 
 ```text
-moltbox dev openclaw <command>
-moltbox test openclaw <command>
+moltbox <env> skill deploy <skill>
+moltbox <env> skill list
+moltbox <env> skill remove <skill>
 ```
 
-The gateway may use native OpenClaw installation behavior as part of skill deployment.
+There is no active top-level `moltbox skill ...` namespace.
 
-Current OpenClaw skill-inspection commands that should remain reachable through passthrough are:
+`moltbox <env> skill list` is the gateway-owned convenience surface for runtime skill inventory.
+
+Native OpenClaw skill inspection remains reachable through passthrough when needed:
 
 ```text
-openclaw skills list
-openclaw skills list --eligible
-openclaw skills info <name>
-openclaw skills check
+moltbox <env> openclaw skills list
+moltbox <env> openclaw skills info <name>
 ```
 
-Workspace and managed skill layout is defined by current OpenClaw docs:
+## Managed Deploy Scope On Main
 
-- skills are directories containing `SKILL.md`
-- workspace skills live under `<workspace>/skills`
-- managed or local skills live under `~/.openclaw/skills`
-- plugins may also ship skills directories from the plugin root
+On `main`, managed `skill deploy` stages pure skill packages only.
 
-Current OpenClaw skill config lives under `skills` in `~/.openclaw/openclaw.json`.
+Current rule:
 
-Important config surfaces include:
+- packages with `SKILL.md` and no `openclaw.plugin.json` are supported by `moltbox <env> skill deploy`
+- packages that rely on `openclaw.plugin.json` are not yet supported by the managed skill deploy path on `main`
 
-- `skills.allowBundled`
-- `skills.load.extraDirs`
-- `skills.load.watch`
-- `skills.install.*`
-- `skills.entries.<name>.enabled`
-- `skills.entries.<name>.env`
-- `skills.entries.<name>.apiKey`
+Plugin-backed packages remain future capability for managed skill deploy. Until that contract is implemented, use the documented plugin lifecycle for those deliverables instead of assuming `skill deploy` will stage them.
 
 ## Skill Versus Feature
 
@@ -84,7 +70,7 @@ A skill is a reusable capability package deployed into a runtime. It is not auto
 
 A [Plugin](plugin.md) is executable extension code running in the OpenClaw process.
 
-A skill is the broader portable capability package. It may be pure `SKILL.md` content, plugin-backed, or a mixture of prompts, manifests, helper modules, and runtime policy.
+A skill is the broader portable capability package. It may be pure `SKILL.md` content, plugin-backed, or a mixture of prompts, manifests, helper modules, and runtime policy, even though the current managed `skill deploy` path only stages pure skills on `main`.
 
 ## Related Concepts
 

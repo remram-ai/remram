@@ -1,8 +1,12 @@
 # Moltbox Telemetry Operator Guide
 
+Status: in flight
+
 ## Purpose
 
 Use this plugin when you want a Moltbox runtime to emit consistent model telemetry that operators, diagnostics tools, and UI surfaces can consume without custom per-runtime interpretation.
+
+This guide describes the intended next-release operator posture on `main`. Moltbox Telemetry is not yet part of the current tagged appliance release.
 
 ## Where It Runs
 
@@ -27,13 +31,13 @@ Before enabling it, confirm:
 Install the plugin through the environment-scoped OpenClaw passthrough:
 
 ```text
-moltbox dev openclaw plugins install moltbox-telemetry
+moltbox dev plugin install moltbox-telemetry
 ```
 
 Then verify:
 
 ```text
-moltbox dev openclaw plugins list
+moltbox dev plugin list
 moltbox dev openclaw plugins info moltbox-telemetry
 ```
 
@@ -113,6 +117,7 @@ Promotion means repeating the runtime install and verification steps in each env
 If the plugin is not working:
 
 - confirm the plugin is installed
+- confirm `moltbox <env> plugin list` reports the package
 - confirm the plugin is enabled in runtime config if the runtime tracks explicit plugin entries
 - confirm `diagnostics.enabled` is `true`
 - confirm diagnostics logs are reachable
@@ -130,6 +135,6 @@ Common problems:
 - OTLP export was expected but `diagnostics-otel` was never enabled
 - the plugin was installed in `dev` but not promoted to `test` or `prod`
 
-## TODO
+Current `main` gap:
 
-- document the exact preferred Moltbox-wrapped commands for runtime diagnostics inspection once the gateway exposes a stable diagnostics command family
+- the telemetry contract is defined, but the concrete package, runtime integration, and stable diagnostics workflow remain in flight

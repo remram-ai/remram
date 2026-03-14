@@ -1,8 +1,12 @@
 # Moltbox Telemetry
 
+Status: in flight
+
 Moltbox Telemetry is the plugin that enables and standardizes runtime telemetry for OpenClaw runtimes inside the Moltbox appliance.
 
 It gives Moltbox a consistent telemetry contract on top of OpenClaw's native diagnostics, status, and usage surfaces without changing routing, fallback policy, or model selection.
+
+This is a next-release platform item on `main`. It is not part of the current tagged appliance release.
 
 ## What Problem It Solves
 
@@ -20,6 +24,13 @@ At a high level it:
 - standardizes the model telemetry fields Moltbox expects to observe
 - aligns those fields with OpenClaw's native diagnostics and `/usage` surfaces
 - keeps telemetry observable through normal OpenClaw diagnostics surfaces
+
+Current architecture model:
+
+- telemetry remains a runtime-local plugin-backed extension
+- the gateway owns orchestration and replay metadata around the runtime mutation
+- service packages stay in `moltbox-services` only when a shared appliance container is genuinely required
+- runtime behavior remains inside the runtime container boundary rather than becoming a second control plane
 
 ## Expected Telemetry Fields
 
@@ -41,15 +52,19 @@ The plugin standardizes:
 - runtime-local plugin install state
 - diagnostics logs and response-side telemetry surfaces
 
+Current `main` gap:
+
+- the platform contract is documented, but the plugin package and runtime integration are still in flight
+
 ## Operator View
 
 Operators install and inspect the plugin through environment-scoped OpenClaw passthrough commands such as:
 
 ```text
-moltbox dev openclaw plugins install moltbox-telemetry
+moltbox dev plugin install moltbox-telemetry
 ```
 
-After install, operators should be able to verify telemetry through chat responses, diagnostics output, and runtime logs.
+After install, operators should be able to verify telemetry through chat responses, diagnostics output, and runtime logs. Native `openclaw plugins info ...` remains the detailed passthrough inspection path when needed.
 
 ## Related Documents
 

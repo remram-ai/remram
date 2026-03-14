@@ -53,7 +53,7 @@ Review unresolved contracts before treating a recipe as final guidance:
 - service lifecycle goes through `moltbox gateway service ...`
 - direct Docker commands are break-glass diagnostics, not the normal operator or builder contract
 - runtime environments are mutable systems
-- pre-deploy snapshots live under `/srv/moltbox-state/runtime-snapshots/`
+- checkpoint snapshots live under `/srv/moltbox-state/runtime-baselines/<runtime>/<checkpoint_id>/snapshot/`
 - checkpointing rebases runtime state into a new baseline
 
 ## Service And Deployment Model

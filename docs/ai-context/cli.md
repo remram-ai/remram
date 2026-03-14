@@ -26,9 +26,14 @@ Important rules:
 - `service` is reserved for shared-service secrets, for example `moltbox service secrets set POSTGRES_PASSWORD`
 - internal names such as `openclaw-dev` are implementation details
 - service lifecycle goes through `moltbox gateway service ...`
+- gateway self-update goes through `moltbox gateway update` and appends `/var/lib/moltbox/history.jsonl`
 - gateway-managed MCP bearer tokens go through `moltbox gateway token <create|list|delete|rotate>`
+- gateway diagnostics and helper surfaces include `moltbox gateway mcp-stdio`, `moltbox gateway docker ping`, and `moltbox gateway docker run <image>`
 - runtime containers can also be deployed through `moltbox gateway service deploy dev|test|prod`
 - that service pipeline consumes definitions from `moltbox-services` and is orchestrated by the gateway
+- managed skill lifecycle is `moltbox <env> skill deploy|list|remove`
+- gateway-managed plugin lifecycle is `moltbox <env> plugin install|list|remove`
+- managed `moltbox <env> skill deploy` currently stages pure skill packages only; plugin-backed packages are not yet supported by that path on `main`
 - scoped secrets follow `moltbox <scope> secrets <command>` where valid scopes are `dev`, `test`, `prod`, and `service`
 - secrets are owned by the gateway control plane even when the CLI scope is a runtime or shared-service scope
 - secrets are stored locally on the appliance under `/var/lib/moltbox/secrets/<scope>/`

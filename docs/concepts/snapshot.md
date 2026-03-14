@@ -1,43 +1,48 @@
 # Snapshot
 
-A Snapshot is a pre-deploy runtime state capture taken before every OpenClaw deployment.
+A Snapshot is a runtime-state capture used for recovery.
 
-Its purpose is recovery and rollback safety.
+On `main`, the durable runtime snapshot that actually exists is the checkpoint snapshot captured during `moltbox <env> checkpoint`.
 
 ## What A Snapshot Captures
 
-A snapshot is intended to preserve the runtime state needed to recover if a deployment corrupts or destabilizes the runtime.
+A snapshot preserves runtime state needed to recover or promote a runtime baseline.
 
 The exact artifact shape is an implementation detail, but the concept is stable:
 
-- capture the runtime state before deployment
-- keep that snapshot available for rollback and recovery
-- do not treat it as source-controlled baseline configuration
+- capture runtime state from the live environment
+- keep that capture in appliance state
+- do not treat it as source-controlled baseline configuration until a checkpoint is intentionally promoted
 
-## Where Snapshots Live
+## Where Snapshots Live Today
 
-Snapshots are appliance-state artifacts stored under:
+Current checkpoint snapshot directories live under:
 
 ```text
-/srv/moltbox-state/runtime-snapshots/
+/srv/moltbox-state/runtime-baselines/<runtime>/<checkpoint_id>/snapshot/
 ```
 
-They are not committed to Git.
+The active checkpoint metadata pointer lives at:
 
-## Retention
+```text
+/srv/moltbox-state/runtime-baselines/<runtime>/current.json
+```
 
-Current retention guidance:
+## Current Contract Boundary
 
-- keep the last 5 snapshots per runtime
-- allow time-based retention up to roughly one year
+A separate standalone pre-mutation snapshot root is still in flight.
+
+That means the implemented `main` contract today is:
+
+- checkpoint snapshots are real
+- replay history is real
+- a separate per-mutation `/srv/moltbox-state/runtime-snapshots/` contract is not yet implemented
 
 ## Snapshot Versus Checkpoint
 
-A [Checkpoint](checkpoint.md) is a promoted runtime baseline.
+A [Checkpoint](checkpoint.md) is the promoted runtime baseline record.
 
-A snapshot is a pre-deploy safety artifact.
-
-Snapshots are operational recovery artifacts only.
+A snapshot is the captured runtime-state input used by checkpoint.
 
 ## Related Concepts
 

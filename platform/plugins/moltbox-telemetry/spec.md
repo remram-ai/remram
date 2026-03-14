@@ -1,10 +1,14 @@
 # Moltbox Telemetry Specification
 
+Status: in flight
+
 ## Purpose
 
 Moltbox Telemetry is the runtime telemetry plugin that enables and standardizes the model-level diagnostics fields Moltbox expects from OpenClaw runtimes.
 
 It is a plugin because it defines the observable telemetry contract for live runtime execution, not just an implementation detail of one plugin package.
+
+This is the documented next-release target on `main`. It is not part of the current tagged appliance release.
 
 ## Scope
 
@@ -25,12 +29,16 @@ Moltbox Telemetry does not own:
 
 ## Implementation Surfaces
 
-Primary evidence and owning inputs:
+Primary evidence and target inputs:
 
-- `remram-skills/skills/moltbox-telemetry/`
+- target plugin package in `remram-skills`
 - `moltbox-runtime/openclaw-*/openclaw.json.template`
 - OpenClaw plugin config under `plugins.entries.moltbox-telemetry`
 - OpenClaw diagnostics config under `diagnostics`
+
+Current `main` gap:
+
+- the telemetry contract is documented, but the plugin package and runtime integration are still incomplete on `main`
 
 ## Architecture Components
 
@@ -284,10 +292,10 @@ The plugin is installed into a runtime through the native OpenClaw plugin lifecy
 Example direction:
 
 ```text
-moltbox dev openclaw plugins install moltbox-telemetry
+moltbox dev plugin install moltbox-telemetry
 ```
 
-Because OpenClaw plugin changes are restart-required, the runtime may need a restart or reload path before the plugin becomes fully active. In the default OpenClaw `hybrid` reload mode, restart-required config changes are handled automatically by the gateway. In other reload modes, operators may need an explicit restart.
+Because OpenClaw plugin changes are restart-required, the runtime may need a restart or reload path before the plugin becomes fully active. In the default OpenClaw `hybrid` reload mode, restart-required config changes are handled automatically by the gateway. In other reload modes, operators may need an explicit restart. Native `openclaw plugins info ...` remains a passthrough inspection surface.
 
 ### Configure
 
@@ -333,7 +341,7 @@ Its deployment affects:
 
 - runtime mutable state
 - runtime deployment-event history
-- runtime snapshots before mutation
+- checkpoint and replay metadata
 - diagnostics visibility for operators
 
 Because it installs through native OpenClaw behavior, a live runtime may differ from the Git baseline after install until a later checkpoint promotes that state intentionally.
@@ -346,8 +354,3 @@ Because it installs through native OpenClaw behavior, a live runtime may differ 
 - if logs are over-redacted or suppressed through logging policy, diagnostics visibility can degrade even when telemetry exists internally
 - if OTLP export is required, operators still need the separate `diagnostics-otel` plugin
 - this plugin must not modify routing or model fallback behavior while standardizing telemetry
-
-## TODO
-
-- document the exact `remram-skills/skills/moltbox-telemetry/` package layout once the plugin lands
-- document any final plugin-specific config schema once the package manifest exists

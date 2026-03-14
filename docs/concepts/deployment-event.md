@@ -14,11 +14,13 @@ Current replay-related paths are:
 - per-runtime replay log: `/srv/moltbox-state/deploy/runtime/<runtime>/replay-log.json`
 - staged replay packages: `/srv/moltbox-state/deploy/runtime/<runtime>/packages/<event_id>/`
 
-`history.jsonl` is the durable historical ledger.
+For gateway self-update, the appliance also keeps a host-level append-only ledger at:
 
-`replay-log.json` is the ordered per-runtime list the gateway uses during runtime redeploy.
+- `/var/lib/moltbox/history.jsonl`
 
-The staged package directory is the replay artifact the gateway validates and copies into the runtime during replay.
+`/srv/moltbox-state/deploy/history.jsonl` is the control-plane deployment ledger.
+
+`/var/lib/moltbox/history.jsonl` is the host-level appliance self-update ledger written during `moltbox gateway update`.
 
 ## Skill Deploy Lifecycle
 
@@ -36,16 +38,18 @@ the gateway performs this sequence:
 4. stage the skill package under the runtime package directory in appliance state
 5. append a structured `skill_install` event to the runtime replay log
 6. redeploy the runtime through the normal control-plane path so replay applies the install
-7. append the deployment record to `history.jsonl`
+7. append the deployment record to `/srv/moltbox-state/deploy/history.jsonl`
 
 The replay log is therefore derived from gateway deploy events, not from container inspection.
 
-## Rollback Lifecycle
+Managed `skill deploy` on `main` stages pure skill packages only. Plugin-backed packages are not yet part of that managed path.
+
+## Skill Remove Lifecycle
 
 For:
 
 ```text
-moltbox <env> skill rollback <skill>
+moltbox <env> skill remove <skill>
 ```
 
 the gateway:
@@ -53,9 +57,9 @@ the gateway:
 1. finds the latest matching replay event in the runtime replay log
 2. removes that replay entry
 3. redeploys the runtime from the baseline plus the remaining replay events
-4. appends a rollback record to `history.jsonl`
+4. appends a removal record to `/srv/moltbox-state/deploy/history.jsonl`
 
-Rollback removes the replay entry but does not erase the historical record from `history.jsonl`.
+Removing a replay entry does not erase the historical deployment record.
 
 ## Replay During Runtime Redeploy
 

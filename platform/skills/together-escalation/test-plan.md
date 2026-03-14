@@ -113,7 +113,7 @@ Each environment should have:
 
 ## Deployment And Runtime Checks
 
-- verify a pre-deploy snapshot exists before runtime mutation
+- verify checkpoint metadata and replay state reconcile after the mutation
 - verify the runtime remains healthy after runtime deploy or reload
 - verify deployment events are captured if runtime deployment-event recording is enabled
 - verify environment-specific secrets are present before promotion

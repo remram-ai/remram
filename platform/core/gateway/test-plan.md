@@ -34,6 +34,9 @@ Verify:
 
 - `moltbox gateway status` returns a meaningful control-plane view
 - `moltbox gateway logs` returns the expected diagnostics surface
+- `moltbox gateway mcp-stdio` returns a valid MCP stdio session
+- `moltbox gateway docker ping` reports Docker reachability
+- `moltbox gateway docker run hello-world` creates the expected test container
 
 ### 3. MCP Token Validation
 
@@ -66,6 +69,7 @@ Verify `moltbox gateway update`:
 - resolves a target artifact
 - updates the running gateway safely
 - writes authoritative deployment metadata
+- appends `/var/lib/moltbox/history.jsonl`
 
 After update, verify newly added CLI surfaces are available from the appliance host binary.
 
@@ -74,6 +78,9 @@ After update, verify newly added CLI surfaces are available from the appliance h
 Verify:
 
 - `moltbox dev reload` works
+- `moltbox dev skill deploy <skill>` works for a pure skill package
+- `moltbox dev skill list` reports the deployed skill
+- `moltbox dev skill remove <skill>` removes the replayed skill
 - the target runtime remains healthy
 - environment-scoped operations do not leak across environments
 
@@ -122,6 +129,16 @@ For a deployment action, verify the following reconcile:
 ## Deployment And Runtime Checks
 
 - inspect deployment records after service changes
-- confirm snapshots exist before runtime-mutating operations
+- confirm checkpoint metadata and replay state reconcile after runtime mutation
 - confirm runtime deployment events are tracked where expected
 - confirm logs and status surfaces expose enough information for diagnosis
+
+## Repeatable Validation Script
+
+The repeatable CLI validation script for this plan lives at:
+
+```text
+scripts/validate-moltbox-cli.ps1
+```
+
+The script is designed to be rerunnable, creates temporary runtime artifacts, and cleans up afterward. `gateway update` is opt-in because it intentionally mutates appliance release state.

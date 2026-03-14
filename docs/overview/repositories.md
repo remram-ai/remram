@@ -2,68 +2,52 @@
 
 This document describes the repository ownership model for the current Moltbox and RemRam architecture.
 
-The main rule is simple:
+The main rule is:
 
-- `RemRam` repositories own product definitions and portable capability
-- `Moltbox` repositories own appliance behavior and platform operations
+- `remram` repositories own architecture, platform definitions, and portable capability
+- `moltbox` repositories own appliance behavior and operations
 
 ## Core Repositories
 
 ### `remram`
 
-Purpose:
+Owns:
 
 - architecture documentation
 - platform registry documentation
-- ecosystem-level explanation
-
-Owns:
-
-- the Architecture V2 documentation set
-- `platform/`
-- `roadmap/`
-- contributor-facing architecture context
+- roadmap and ecosystem framing
+- audit reports and unresolved architecture notes
 
 Does not own:
 
 - live runtime configuration
 - service definitions
 - gateway implementation
-- skill implementation source
+- skill or plugin implementation source
 
 ### `remram-skills`
 
-Purpose:
-
-- reusable skill and plugin packages
-- deploy recipes for portable runtime capability
-
 Owns:
 
-- plugin source
-- skill source
-- packaging metadata
-- skill-local helper modules
-- skill deployment inputs consumed by the gateway
+- reusable skill packages
+- plugin packages
+- packaging metadata and helper assets
+- deployment inputs consumed by the gateway
 
 Does not own:
 
 - appliance deployment policy
-- baseline runtime configuration
 - service topology
+- baseline runtime source of record
 
 ### `moltbox-gateway`
-
-Purpose:
-
-- the Moltbox control plane
 
 Owns:
 
 - the `moltbox` CLI
-- deployment orchestration
-- service lifecycle coordination
-- runtime deployment-event tracking
+- the gateway control plane
+- service lifecycle orchestration
+- runtime replay and checkpoint orchestration
 - deployment metadata writing
 - Docker interaction on the appliance
 
@@ -71,61 +55,54 @@ Does not own:
 
 - service definitions as source material
 - baseline runtime configuration as source material
-- skill implementation code
+- skill or plugin implementation source
 
 ### `moltbox-runtime`
 
-Purpose:
-
-- baseline configuration for each managed runtime environment
-- Git-backed baseline artifact store for promoted runtime rebases
-
 Owns:
 
-- environment baseline configuration
-- runtime configuration templates
+- baseline configuration for each managed runtime environment
 - promoted checkpoint baselines once they are intentionally adopted
-- Git-stored runtime baseline artifacts produced by checkpointing when they are promoted
 
 Does not own:
 
 - full live runtime state
-- operational snapshots
-- deployment replay history
+- gateway replay history
 - service deployment definitions
 
 ### `moltbox-services`
 
-Purpose:
-
-- service definitions and steady-state service topology
-
 Owns:
 
-- container definitions
-- service deployment topology
-- service-level build and runtime metadata
-- first-class appliance services such as `gateway`, `opensearch`, `ollama`, `caddy`, and the OpenClaw runtime containers
+- steady-state service definitions
+- compose topology and service build metadata
+- first-class appliance services such as `gateway`, `opensearch`, `ollama`, `caddy`, and the runtime containers
 
 Does not own:
 
-- roadmap feature documentation
+- feature documentation
 - skill packages
-- runtime deployment-event history
+- runtime replay history
 
-## Adjacent Ecosystem Repositories
+## Release Model
 
-Repositories such as `remram-cortex` and `remram-app` are adjacent ecosystem projects.
+The repository and appliance release contract is:
 
-They are intentionally out of scope for this platform pass because they do not currently define the core appliance control-plane architecture.
+- repository `main` is the next appliance release line
+- tagged revisions are the release inputs an appliance should run
+- a running appliance should be treated as a tagged release until it is intentionally updated
+
+Current implementation note:
+
+- `moltbox gateway update` applies whatever revision the configured host checkout points at
+- release appliances should therefore pin host checkouts to the intended tag or release branch rather than tracking `main` implicitly
+- `main` remains appropriate for development and next-release integration work
 
 ## Repository Interaction Model
 
-The repositories interact like this:
-
 ```text
 remram
-  -> defines platform items, roadmap artifacts, and architecture
+  -> defines architecture, platform items, and roadmap intent
 
 remram-skills
   -> provides reusable capability packages
@@ -151,6 +128,15 @@ Roadmap item
   -> Gateway deployment and orchestration
 ```
 
+## Runtime Mutation Boundary
+
+The repository split matters most for runtime mutation:
+
+- baseline runtime configuration belongs in `moltbox-runtime`
+- live runtime mutation belongs in appliance state under `/srv/moltbox-state`
+- replay history and checkpoint metadata belong to `moltbox-gateway`
+- checkpoint promotion may intentionally move a rebased runtime baseline back into Git, but that is not the same thing as mirroring live runtime state continuously
+
 ## Host Repository Access
 
 Moltbox hosts pull private platform repositories with GitHub App installation tokens.
@@ -172,28 +158,6 @@ Current GitHub App metadata for this host bootstrap path:
 
 - App ID `3071584`
 - Installation ID `115774577`
-
-## Ownership Boundaries
-
-The most important repository boundaries are:
-
-- `remram` documents what the system is supposed to do
-- `remram-skills` packages reusable capability
-- `moltbox-runtime` defines the baseline starting point for each runtime
-- `moltbox-services` defines what containers exist on the appliance
-- `moltbox-gateway` turns those inputs into a running appliance
-
-This boundary is especially important for runtime mutation:
-
-- baseline runtime configuration belongs in `moltbox-runtime`
-- live runtime mutation belongs in appliance state
-- deployment-event history belongs to the gateway control plane
-- checkpoint promotion may move a rebased runtime baseline back into Git intentionally, but that is different from mirroring live runtime state continuously
-
-## TODO
-
-- document the exact representation of Git-stored runtime baseline artifacts once the checkpoint promotion contract is finalized
-- document the promotion path for checkpoint baselines once the repo/path contract is finalized
 
 ## Related Documents
 

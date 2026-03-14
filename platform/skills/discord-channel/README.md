@@ -1,8 +1,12 @@
 # Discord Channel
 
+Status: in flight
+
 Discord Channel is the skill that lets a runtime participate in Discord without a separate bridge service.
 
 It turns a target environment into a Discord-facing entrypoint for direct messages and allowlisted guild channels.
+
+This is a next-release platform item on `main`. It is not part of the current tagged appliance release.
 
 ## What Problem It Solves
 
@@ -21,12 +25,23 @@ At a high level the skill:
 
 There is no dedicated Discord service container in this skill model.
 
+Current architecture model:
+
+- Discord remains a runtime capability inside the environment container boundary
+- the gateway owns render inputs, secrets, reload orchestration, and operator control
+- service packages stay in `moltbox-services` only when a shared appliance container is genuinely required
+- plugin-backed extensions remain runtime-local rather than becoming a second control plane
+
 ## Main Moving Parts
 
 - runtime channel policy in `channels.yaml.template`
 - agent channel registration in `agents.yaml`
 - environment-specific secrets such as `DISCORD_BOT_TOKEN`
 - gateway render inputs that control enablement and allowlists
+
+Current `main` gap:
+
+- the platform contract is documented, but the runtime templates, gateway render path, and package/runtime wiring are still incomplete
 
 ## Operator View
 

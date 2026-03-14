@@ -13,6 +13,7 @@ All deployment paths should follow these rules:
 - operational state lives under `/srv/moltbox-state`
 - logs live under `/srv/moltbox-logs`
 - deployment metadata is written consistently for every path, including self-update
+- gateway self-update also appends a host-level appliance ledger to `/var/lib/moltbox/history.jsonl`
 
 Operators should invoke these paths through the Moltbox CLI rather than direct Docker commands.
 
@@ -45,7 +46,7 @@ Native OpenClaw passthrough lifecycle:
 moltbox dev openclaw skills list
 ```
 
-Moltbox preserves native OpenClaw passthrough for runtime inspection and debugging, but baseline-managed skill delivery happens through gateway-managed runtime deploy and reload.
+Moltbox preserves native OpenClaw passthrough for runtime inspection and debugging, but gateway-managed runtime mutation happens through the environment-scoped `skill` and `plugin` families plus the runtime deploy and reload paths.
 
 ## Deployment Metadata
 
@@ -137,37 +138,37 @@ Typical flow:
 
 This model updates the baseline starting point for a runtime. It does not claim that the resulting live runtime is identical to the Git repo after native runtime mutations occur.
 
-## 3. Runtime Skill and Plugin Deployment
+## 3. Runtime Skill Deployment
 
-Runtime capability deployment makes skills and plugins available inside a live runtime.
+Runtime skill deployment makes pure skill packages available inside a live runtime.
 
 This model is different from baseline sync.
 
 Primary inputs:
 
-- skill packages and recipes from `remram-skills`
-- the runtime's managed OpenClaw state under `~/.openclaw`
+- skill packages from `remram-skills`
 - the target runtime environment
+- gateway replay state under `/srv/moltbox-state`
 
 Typical operator surfaces:
 
 ```text
-moltbox gateway service deploy dev
-moltbox dev reload
-moltbox dev openclaw skills list
+moltbox dev skill deploy together
+moltbox dev skill list
+moltbox dev skill remove together
 ```
 
 Expected behavior:
 
-- gateway drives the deployment flow
-- gateway stages managed skill folders into the runtime state before the container is treated as healthy
-- OpenClaw loads those skills from its normal local skill locations
-- deployment events are recorded by the gateway per runtime
-- resulting live state is operational state, not an automatic Git mirror
+- the gateway resolves a pure skill package from `remram-skills/skills/<name>/`
+- the gateway stages that package under `/srv/moltbox-state/deploy/runtime/<runtime>/packages/<event_id>/`
+- the gateway appends a replay event
+- the runtime is redeployed through the control plane
+- OpenClaw loads the staged skill from its normal local skill location
 
-This is why `moltbox-runtime` is baseline-only rather than a complete record of live runtime state.
+Managed `skill deploy` on `main` stages pure skill packages only. Packages that rely on `openclaw.plugin.json` are not yet supported by this managed path.
 
-Minimum current passthrough command families that should remain supported through `moltbox <env> openclaw ...` are:
+Native OpenClaw skill inspection still remains reachable through passthrough:
 
 ```text
 openclaw skills list
@@ -176,9 +177,28 @@ openclaw skills info <name>
 openclaw skills check
 ```
 
-If a specific deliverable genuinely needs OpenClaw-native plugin lifecycle commands, document that deliverable as a plugin-backed exception rather than treating plugin install as the default skill path.
+## 4. Runtime Plugin Deployment
 
-## 4. Snapshot Types
+Runtime plugin deployment is also a gateway-managed environment-scoped mutation on `main`.
+
+Typical operator surfaces:
+
+```text
+moltbox dev plugin install semantic-router
+moltbox dev plugin list
+moltbox dev plugin remove semantic-router
+```
+
+Expected behavior:
+
+- the gateway stages or resolves the plugin package input
+- the gateway records replay metadata
+- the runtime is redeployed or reloaded through the control plane
+- resulting live plugin state remains operational state until a later checkpoint intentionally promotes it
+
+Native OpenClaw plugin inspection and debugging must still remain reachable through passthrough when needed.
+
+## 5. Snapshot Types
 
 Snapshots exist at multiple levels:
 
@@ -187,34 +207,17 @@ Snapshots exist at multiple levels:
 
 These snapshot types serve different recovery purposes and may be captured together for the same operation.
 
-## 5. Pre-Deploy Snapshots
+## 6. Current Runtime Snapshot Contract
 
-Before every runtime-mutating OpenClaw operation, the appliance should capture pre-deploy snapshots.
+The implemented durable runtime-state capture on `main` is checkpoint snapshotting.
 
-Purpose:
+Current snapshot root:
 
-- rollback safety
-- recovery if a deployment corrupts runtime state
+- `/srv/moltbox-state/runtime-baselines/<runtime>/<checkpoint_id>/snapshot/`
 
-Canonical root:
+A separate standalone `/srv/moltbox-state/runtime-snapshots/` contract is still in flight and is not part of the implemented `main` behavior today.
 
-- `/srv/moltbox-state/runtime-snapshots/`
-
-Expected policy:
-
-- keep the last 5 snapshots per runtime
-- allow time-based retention up to roughly one year
-
-Pre-deploy snapshots should occur before operations such as:
-
-- plugin installs
-- skill installs
-- runtime reloads
-- checkpoint operations
-
-Snapshots are appliance artifacts. They are not committed to Git.
-
-## 6. Runtime Checkpointing
+## 7. Runtime Checkpointing
 
 Checkpointing promotes a known-good runtime state into a new baseline.
 
@@ -252,13 +255,7 @@ Canonical appliance storage root:
 
 - `/srv/moltbox-state/runtime-baselines/`
 
-TODO:
-
-- document how rebased runtime images are represented in Git once the artifact contract is finalized
-- document the exact promotion workflow from checkpoint artifact to committed runtime baseline
-- document where checkpoint metadata is stored before Git promotion is finalized
-
-## 7. Gateway Self-Update
+## 8. Gateway Self-Update
 
 The gateway is part of the appliance, but it is also the control plane.
 
@@ -276,12 +273,13 @@ Self-update still has to satisfy the same rules as any other deployment path:
 - perform the update safely
 - validate the running gateway
 - write authoritative deployment metadata
+- append a host-level history record to `/var/lib/moltbox/history.jsonl`
 
 Inconsistent gateway provenance is an implementation defect, not an acceptable deployment mode.
 
 There is no separate active `moltbox tools update` lifecycle surface. `moltbox gateway update` is the canonical appliance self-update path for both the gateway container and the host CLI/tooling installed at `~/.local/bin/moltbox`.
 
-## 8. Environment Promotion Workflow
+## 9. Environment Promotion Workflow
 
 Environment promotion is intentionally asymmetric.
 

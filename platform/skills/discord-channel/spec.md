@@ -1,14 +1,18 @@
 # Discord Channel Specification
 
+Status: in flight
+
 ## Purpose
 
 Discord Channel is the runtime-ingress skill that exposes an environment through the built-in OpenClaw Discord channel.
 
 It is environment-owned behavior, not a shared standalone appliance service.
 
+This is the documented next-release target on `main`. It is not part of the current tagged appliance release.
+
 ## Implementation Surfaces
 
-Primary evidence:
+Primary evidence and target surfaces:
 
 - `moltbox-runtime/openclaw-*/channels.yaml.template`
 - `moltbox-runtime/openclaw-*/agents.yaml`
@@ -23,6 +27,10 @@ The skill depends on:
 2. agent channel exposure
 3. environment secret material
 4. runtime lifecycle for applying config changes
+
+Current `main` gap:
+
+- the intended architecture is stable, but the runtime templates, gateway render path, package source, and on-box wiring are not yet complete enough to treat Discord Channel as shipped
 
 ## Lifecycle
 
@@ -93,13 +101,4 @@ Operational touchpoints are:
 - runtime health
 - environment-specific secrets
 
-## Constraints And Edge Cases
-
-- there is no separate `moltbox discord ...` namespace
-- Discord is disabled until explicitly enabled for an environment
-- missing Message Content intent or invalid tokens will break ingress
-- promotion between environments does not automatically transfer Discord secrets or allowlists
-
-## TODO
-
-- document the exact active Moltbox operator flow for editing Discord runtime inputs once the environment configuration write surface is finalized under the current CLI
+There is no separate `moltbox discord ...` namespace.

@@ -23,6 +23,9 @@ moltbox
     status
     update
     logs
+    mcp-stdio
+    docker ping
+    docker run <image>
     token create <NAME>
     token list
     token delete <NAME>
@@ -36,7 +39,11 @@ moltbox
     checkpoint
     reload
     skill deploy <skill>
-    skill rollback <skill>
+    skill list
+    skill remove <skill>
+    plugin install <package>
+    plugin list
+    plugin remove <plugin>
     secrets set <NAME> [VALUE]
     secrets list
     secrets delete <NAME>
@@ -46,7 +53,11 @@ moltbox
     checkpoint
     reload
     skill deploy <skill>
-    skill rollback <skill>
+    skill list
+    skill remove <skill>
+    plugin install <package>
+    plugin list
+    plugin remove <plugin>
     secrets set <NAME> [VALUE]
     secrets list
     secrets delete <NAME>
@@ -56,7 +67,11 @@ moltbox
     checkpoint
     reload
     skill deploy <skill>
-    skill rollback <skill>
+    skill list
+    skill remove <skill>
+    plugin install <package>
+    plugin list
+    plugin remove <plugin>
     secrets set <NAME> [VALUE]
     secrets list
     secrets delete <NAME>
@@ -100,6 +115,9 @@ Runtime operations are scoped to environments:
 moltbox dev reload
 moltbox dev checkpoint
 moltbox dev skill deploy together
+moltbox dev skill list
+moltbox dev skill remove together
+moltbox dev plugin install semantic-router
 moltbox prod openclaw <command>
 ```
 
@@ -160,6 +178,8 @@ Secrets are also gateway-owned. Scoped secret commands follow the control path `
 
 Gateway-owned MCP bearer tokens use the same encrypted secret store through `moltbox gateway token <create|list|delete|rotate>`.
 
+Gateway self-update also appends a host-level appliance ledger entry to `/var/lib/moltbox/history.jsonl`.
+
 ### Runtime Checkpoint Behavior
 
 Checkpoint is an environment-scoped runtime orchestration action:
@@ -208,7 +228,11 @@ the gateway:
 5. appends a replay event
 6. redeploys the runtime through `moltbox gateway service deploy <env>`
 
-Rollback removes the corresponding replay entry and redeploys from the baseline plus the remaining replay events.
+`moltbox <env> skill list` reports runtime-visible skill inventory through the same control-plane surface.
+
+`moltbox <env> skill remove <skill>` removes the corresponding replay entry and redeploys from the baseline plus the remaining replay events.
+
+Managed `skill deploy` on `main` currently stages pure skill packages only. Plugin-backed packages remain outside that managed path until a separate contract is implemented.
 
 ## Service Passthrough Model
 

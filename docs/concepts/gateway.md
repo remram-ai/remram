@@ -17,7 +17,17 @@ The gateway owns:
 - skill deployment orchestration
 - deployment metadata writes
 - deployment replay history
+- runtime baseline metadata
 - operator-facing diagnostics and status surfaces
+
+For runtime mutation state, the gateway is the only source of truth under `/srv/moltbox-state`.
+
+That state currently includes:
+
+- deployment history in `/srv/moltbox-state/deploy/history.jsonl`
+- per-runtime replay logs in `/srv/moltbox-state/deploy/runtime/<runtime>/replay-log.json`
+- staged replay packages in `/srv/moltbox-state/deploy/runtime/<runtime>/packages/`
+- checkpoint metadata in `/srv/moltbox-state/runtime-baselines/<runtime>/current.json`
 
 ## What Gateway Does Not Own
 
@@ -30,6 +40,8 @@ The gateway does not own:
 - skill implementation source
 
 Those concerns live in other repositories and are orchestrated by the gateway rather than authored there.
+
+Runtime containers also do not own the authoritative install registry. They only execute deploys and replay installs that the gateway has already recorded in appliance state.
 
 ## Operator Path
 

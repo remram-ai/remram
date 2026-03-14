@@ -43,6 +43,8 @@ moltbox
     openclaw <command>
     checkpoint
     reload
+    skill deploy <skill>
+    skill rollback <skill>
     secrets set <NAME> [VALUE]
     secrets list
     secrets delete <NAME>
@@ -51,6 +53,8 @@ moltbox
     openclaw <command>
     checkpoint
     reload
+    skill deploy <skill>
+    skill rollback <skill>
     secrets set <NAME> [VALUE]
     secrets list
     secrets delete <NAME>
@@ -59,6 +63,8 @@ moltbox
     openclaw <command>
     checkpoint
     reload
+    skill deploy <skill>
+    skill rollback <skill>
     secrets set <NAME> [VALUE]
     secrets list
     secrets delete <NAME>
@@ -161,16 +167,26 @@ Runtime orchestration stays under the environment namespaces:
 ```text
 moltbox dev reload
 moltbox dev checkpoint
+moltbox dev skill deploy together
+moltbox dev skill rollback together
 moltbox dev openclaw <command>
 
 moltbox test reload
 moltbox test checkpoint
+moltbox test skill deploy together
+moltbox test skill rollback together
 moltbox test openclaw <command>
 
 moltbox prod reload
 moltbox prod checkpoint
+moltbox prod skill deploy together
+moltbox prod skill rollback together
 moltbox prod openclaw <command>
 ```
+
+`moltbox <env> skill deploy <skill>` records gateway-owned deploy state, stages a replay package under `/srv/moltbox-state`, and redeploys the runtime through the control plane.
+
+`moltbox <env> skill rollback <skill>` removes the matching replay entry and redeploys the runtime from the baseline plus any remaining replay events.
 
 Scoped secrets also use the environment namespaces:
 
@@ -258,6 +274,12 @@ It is intended to:
 3. deploy that image
 4. validate runtime health
 5. clear replay history if successful
+
+The active checkpoint metadata path is:
+
+```text
+/srv/moltbox-state/runtime-baselines/<runtime>/current.json
+```
 
 ## Output Model
 

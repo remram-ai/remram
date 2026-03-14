@@ -67,6 +67,8 @@ moltbox gateway service deploy prod
 
 When this path is used, the runtime baseline must be restored and recorded skill or plugin deployment events must be replayed before the environment is treated as healthy.
 
+For runtime replay validation and normal runtime redeploys, this is the correct control-plane path. A plain Docker container restart does not read gateway replay state.
+
 ### 4. Use native service CLIs when needed
 
 Service namespaces are passthrough interfaces to the native service CLIs:
@@ -88,18 +90,28 @@ moltbox test checkpoint
 
 Checkpointing is environment-scoped and stays under the environment namespaces, not under `gateway`.
 
+Checkpoint creates a promoted runtime baseline image, writes baseline metadata under `/srv/moltbox-state/runtime-baselines/<runtime>/current.json`, and clears the replay log for that runtime.
+
 ### 6. Promote across environments deliberately
 
 Expected promotion posture:
 
 1. build and iterate in `dev`
-2. run the relevant platform item `test-plan.md` in `dev`
-3. promote to `test` through the CLI only
-4. run the same test plan in `test`
-5. stop for UAT readiness review
-6. deploy to `prod` only after approval
+2. deploy runtime mutations in `dev` with `moltbox dev skill deploy <skill>`
+3. validate replay in `dev` with `moltbox gateway service deploy dev`
+4. checkpoint `dev` with `moltbox dev checkpoint`
+5. verify the checkpointed baseline and empty replay log in `dev`
+6. promote the checkpointed baseline to `test`
+7. validate runtime behavior in `test`
+8. promote the verified baseline to `prod`
 
 If `dev` to `test` promotion fails, fix the deployment process before treating the platform item as ready.
+
+Operator workflow shorthand:
+
+```text
+dev -> checkpoint -> verify -> promote -> test -> verify -> promote -> prod
+```
 
 ### 7. Investigate with CLI-first diagnostics
 

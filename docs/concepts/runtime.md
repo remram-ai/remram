@@ -21,16 +21,21 @@ Those map internally to:
 The current runtime model is:
 
 ```text
-baseline runtime configuration
-  + skill and plugin deployments
-  + deployment-event replay scripts
-  + runtime mutations
+checkpoint baseline image
+  + gateway replay log
   = current runtime state
 ```
 
 `moltbox-runtime` defines the baseline runtime configuration only.
 
 It does not define the full live runtime state after skill deployment and runtime mutation.
+
+The gateway owns the replay log, staged replay artifacts, and checkpoint metadata under `/srv/moltbox-state`.
+
+The runtime container is a stateless executor for:
+
+- normal startup from the selected baseline image
+- replayed installs during runtime redeploy
 
 ## Why The Runtime Concept Matters
 
@@ -49,9 +54,13 @@ Examples:
 ```text
 moltbox dev reload
 moltbox dev checkpoint
+moltbox dev skill deploy together
+moltbox dev skill rollback together
 moltbox dev openclaw <command>
 
 moltbox test reload
+moltbox test checkpoint
+moltbox test skill deploy together
 moltbox test openclaw <command>
 ```
 
@@ -76,13 +85,24 @@ openclaw skills check
 
 ## Runtime Rebuild Model
 
-If a runtime must be rebuilt or redeployed as a container, the system restores the baseline configuration and then replays recorded [Deployment Events](deployment-event.md), including skill and plugin install replay scripts since the last full runtime container deploy.
+If a runtime must be rebuilt or redeployed as a container, the system restores the selected checkpoint baseline and then replays the ordered events in the gateway replay log.
 
 That replay history is maintained by the gateway control plane in appliance state.
 
-TODO:
+The replay-aware redeploy path is:
 
-- confirm how runtime checkpoint promotion is reflected back into baseline source control and whether that promotion always resets the replay chain
+```text
+moltbox gateway service deploy <env>
+```
+
+Skill deploys follow the same control-plane model:
+
+1. the gateway stages the package in appliance state
+2. the gateway appends a replay event
+3. the runtime is redeployed through the control plane
+4. the runtime executes the install from gateway state
+
+If the exact skill digest is already present in the current checkpoint metadata, `skill deploy` returns a no-op result instead of creating a duplicate replay entry.
 
 ## Related Concepts
 

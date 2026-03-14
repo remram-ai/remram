@@ -1,60 +1,76 @@
 # Checkpoint
 
-A Checkpoint is a promoted runtime baseline.
+A Checkpoint is a promoted runtime baseline image plus gateway metadata describing that baseline.
 
-It captures a runtime state that the system wants to preserve as the new baseline for future rebuilds and replay.
+Checkpointing is how Moltbox rebases a mutable runtime onto a new golden image and clears the replay chain.
 
-## What A Checkpoint Captures
+## Gateway-Owned Checkpoint State
 
-A checkpoint should capture:
+Checkpoint state lives under `/srv/moltbox-state/runtime-baselines/<runtime>/`.
 
-- runtime configuration
-- plugin and skill inventory
-- deployment replay metadata
+Current artifacts are:
 
-Unlike a simple safety snapshot, a checkpoint is intended to represent a new stable baseline.
+- active baseline metadata: `/srv/moltbox-state/runtime-baselines/<runtime>/current.json`
+- captured runtime snapshot: `/srv/moltbox-state/runtime-baselines/<runtime>/<checkpoint_id>/snapshot/`
+- image build context: `/srv/moltbox-state/runtime-baselines/<runtime>/<checkpoint_id>/image/`
 
-## Checkpoint Versus Snapshot
+`current.json` is the control-plane record that selects the baseline image for future runtime redeploys.
 
-A [Snapshot](snapshot.md) is taken automatically before deployment for rollback safety and remains an appliance-only artifact.
+## Checkpoint Behavior
 
-A checkpoint is a deliberate promotion step.
-
-Checkpoints may be committed into source control and treated as new baseline configuration for a runtime.
-
-## Checkpoint In The CLI
-
-Checkpoint operations are addressed directly against environment namespaces.
-
-Example direction:
+For:
 
 ```text
-moltbox dev checkpoint
+moltbox <env> checkpoint
 ```
 
-Checkpoint is intended to:
+the gateway:
 
-1. capture runtime state
-2. build a new base container image
-3. deploy that image
-4. validate runtime health
-5. clear replay history if successful
+1. captures the current runtime container state
+2. builds a promoted runtime image named `moltbox-runtime:<runtime>-<checkpoint_id>`
+3. records checkpoint metadata in `current.json`
+4. clears the runtime replay log
+5. redeploys the runtime from the new image
+6. records the checkpoint operation in deployment history
 
-TODO:
+After a successful checkpoint, future runtime redeploys start from the promoted image with an empty replay list.
 
-- finalize the checkpoint artifact schema
-- finalize where checkpoint data lives before promotion into source control
-- confirm whether checkpointing is synchronous or produces a staged artifact for later promotion
+## Relationship To Replay
 
-## Why Checkpoints Matter
+Replay only covers post-checkpoint mutations.
 
-The runtime model is mutable.
+Before checkpoint:
 
-Checkpointing gives the system a way to promote a known-good runtime state into the new baseline instead of replaying the entire historical chain forever.
+```text
+baseline image + replay log = current runtime state
+```
+
+After checkpoint:
+
+```text
+new baseline image + empty replay log = current runtime state
+```
+
+This prevents replay history from growing forever.
+
+## Promotion Model
+
+Checkpointing is environment-scoped. The normal operator path is:
+
+```text
+dev -> checkpoint -> verify -> promote -> test -> verify -> promote -> prod
+```
+
+`dev` is the place to create and validate the checkpointed baseline. Promotion to `test` and `prod` is a deliberate operator step, not an automatic side effect of checkpoint creation.
+
+## Runtime Containers Remain Stateless Executors
+
+Checkpoint promotion does not make the runtime container the source of truth.
+
+The authoritative baseline selection remains the gateway metadata in `current.json`, and replay remains driven from gateway deploy state.
 
 ## Related Concepts
 
+- [Gateway](gateway.md)
 - [Runtime](runtime.md)
-- [Snapshot](snapshot.md)
 - [Deployment Event](deployment-event.md)
-- [CLI Architecture](../overview/cli-architecture.md)

@@ -1,50 +1,88 @@
 # Deployment Event
 
-A Deployment Event is a recorded deployment operation written by the gateway control plane.
+A Deployment Event is a gateway-owned record of a runtime mutation.
 
-Deployment events are part of the runtime rebuild and replay model.
+Deployment events are the source material for runtime replay. The runtime container is never the source of truth for installed skills or post-baseline mutations.
 
-## What Deployment Events Are For
+## Gateway-Owned State
 
-Deployment events provide the event history needed to reconstruct current runtime state from:
+The gateway records runtime mutation state under `/srv/moltbox-state`.
 
-- a baseline runtime configuration
-- subsequent runtime-affecting operations
+Current replay-related paths are:
 
-That means deployment events are part of the replay path used during rebuild and recovery.
+- deployment history: `/srv/moltbox-state/deploy/history.jsonl`
+- per-runtime replay log: `/srv/moltbox-state/deploy/runtime/<runtime>/replay-log.json`
+- staged replay packages: `/srv/moltbox-state/deploy/runtime/<runtime>/packages/<event_id>/`
 
-In the current runtime model, that replay path includes the install commands or replay scripts needed to reconstruct skill and plugin installs since the last full runtime container deploy.
+`history.jsonl` is the durable historical ledger.
 
-## Where Deployment Events Live
+`replay-log.json` is the ordered per-runtime list the gateway uses during runtime redeploy.
 
-Deployment replay history is:
+The staged package directory is the replay artifact the gateway validates and copies into the runtime during replay.
 
-- stored in appliance state
-- maintained per runtime environment
-- rollback-aware
-- independent from Git repositories
+## Skill Deploy Lifecycle
 
-## Typical Examples
+For a runtime skill deploy such as:
 
-Examples of runtime-affecting deployment events include:
+```text
+moltbox dev skill deploy together
+```
 
-- skill deployment into a runtime
-- plugin-backed capability installation
-- plugin enable, disable, uninstall, or update operations when they change replayable runtime state
-- runtime container redeploy events that reset the replay baseline
-- runtime baseline promotions that reset the replay chain
+the gateway performs this sequence:
 
-The exact event schema belongs to the platform architecture, but the concept is stable.
+1. resolve the deployable skill and compute its package digest
+2. check the current checkpoint metadata for the runtime baseline
+3. if the same skill digest is already present in the baseline, return a no-op result and do not create a replay entry
+4. stage the skill package under the runtime package directory in appliance state
+5. append a structured `skill_install` event to the runtime replay log
+6. redeploy the runtime through the normal control-plane path so replay applies the install
+7. append the deployment record to `history.jsonl`
 
-TODO:
+The replay log is therefore derived from gateway deploy events, not from container inspection.
 
-- finalize the deployment-event schema
-- confirm retention and pruning rules for replay history
-- confirm whether service-only deploys that do not mutate runtime state are tracked separately from runtime replay events
+## Rollback Lifecycle
+
+For:
+
+```text
+moltbox <env> skill rollback <skill>
+```
+
+the gateway:
+
+1. finds the latest matching replay event in the runtime replay log
+2. removes that replay entry
+3. redeploys the runtime from the baseline plus the remaining replay events
+4. appends a rollback record to `history.jsonl`
+
+Rollback removes the replay entry but does not erase the historical record from `history.jsonl`.
+
+## Replay During Runtime Redeploy
+
+When the runtime is redeployed through:
+
+```text
+moltbox gateway service deploy <env>
+```
+
+the gateway:
+
+1. restores the current runtime baseline
+2. reads the runtime replay log
+3. replays events in order
+4. verifies each staged package directory exists
+5. verifies each staged package digest before executing the install
+
+If a staged package is missing or corrupted, replay fails fast.
+
+## Source Of Truth
+
+The source of truth is always gateway state under `/srv/moltbox-state`.
+
+The runtime container only executes installs during replay. It does not own a managed-skill manifest or any other authoritative deployment registry.
 
 ## Related Concepts
 
-- [Runtime](runtime.md)
 - [Gateway](gateway.md)
-- [Snapshot](snapshot.md)
+- [Runtime](runtime.md)
 - [Checkpoint](checkpoint.md)

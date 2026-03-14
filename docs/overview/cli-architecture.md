@@ -35,6 +35,8 @@ moltbox
     openclaw <command>
     checkpoint
     reload
+    skill deploy <skill>
+    skill rollback <skill>
     secrets set <NAME> [VALUE]
     secrets list
     secrets delete <NAME>
@@ -43,6 +45,8 @@ moltbox
     openclaw <command>
     checkpoint
     reload
+    skill deploy <skill>
+    skill rollback <skill>
     secrets set <NAME> [VALUE]
     secrets list
     secrets delete <NAME>
@@ -51,6 +55,8 @@ moltbox
     openclaw <command>
     checkpoint
     reload
+    skill deploy <skill>
+    skill rollback <skill>
     secrets set <NAME> [VALUE]
     secrets list
     secrets delete <NAME>
@@ -93,6 +99,7 @@ Runtime operations are scoped to environments:
 ```text
 moltbox dev reload
 moltbox dev checkpoint
+moltbox dev skill deploy together
 moltbox prod openclaw <command>
 ```
 
@@ -171,6 +178,38 @@ Checkpoint is intended to:
 
 This keeps long-lived runtime mutation manageable by periodically promoting a stable runtime state into a new baseline.
 
+### Gateway-Owned Replay State
+
+Runtime mutation state is owned by the gateway under `/srv/moltbox-state`.
+
+Current runtime control-plane state includes:
+
+- `/srv/moltbox-state/deploy/history.jsonl`
+- `/srv/moltbox-state/deploy/runtime/<runtime>/replay-log.json`
+- `/srv/moltbox-state/deploy/runtime/<runtime>/packages/<event_id>/`
+- `/srv/moltbox-state/runtime-baselines/<runtime>/current.json`
+
+Replay is driven entirely from that state. Runtime containers are not the source of truth for installed skills.
+
+### Skill Deploy Lifecycle
+
+For:
+
+```text
+moltbox <env> skill deploy <skill>
+```
+
+the gateway:
+
+1. resolves the skill and computes its digest
+2. checks the current baseline metadata
+3. skips replay if the same skill digest is already part of the baseline
+4. stages the package in gateway state
+5. appends a replay event
+6. redeploys the runtime through `moltbox gateway service deploy <env>`
+
+Rollback removes the corresponding replay entry and redeploys from the baseline plus the remaining replay events.
+
 ## Service Passthrough Model
 
 The service passthrough namespaces are intentionally thin.
@@ -211,6 +250,8 @@ Documented public runtime service identifiers are:
 - `prod`
 
 Those environment identifiers still map internally to runtime container identities such as `openclaw-dev`, `openclaw-test`, and `openclaw-prod`.
+
+For runtime replay validation and normal control-plane redeploys, operators should use `moltbox gateway service deploy <env>`. A plain `docker restart` only restarts the container and does not re-run gateway replay orchestration.
 
 ## Retired CLI Forms
 

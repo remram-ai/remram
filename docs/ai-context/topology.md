@@ -17,7 +17,7 @@ Host OS
 Ingress path:
 
 ```text
-Internet -> Caddy -> Gateway / Runtime services
+Internet -> Caddy -> Runtime services
 ```
 
 Storage roots:
@@ -39,6 +39,7 @@ Service relationship model:
 - the gateway consumes those definitions and deploys them onto the host Docker engine
 - operators and builders should reason through `moltbox gateway ...` and `moltbox gateway service ...` before dropping to Docker details
 - direct Docker commands are break-glass diagnostics, not the normal management path
+- public HTTPS ingress is runtime-only; `https://moltbox-cli/*` returns `404` by design
 
 Host Git model:
 

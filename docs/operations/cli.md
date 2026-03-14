@@ -18,6 +18,7 @@ moltbox
     status
     update
     logs
+    mcp-stdio
     token create <NAME>
     token list
     token delete <NAME>
@@ -25,11 +26,15 @@ moltbox
     service deploy <service>
     service restart <service>
     service status <service>
+    docker ping
+    docker run <image>
 
   dev
     openclaw <command>
     checkpoint
     reload
+    skill deploy <skill>
+    skill rollback <skill>
     secrets set <NAME> [VALUE]
     secrets list
     secrets delete <NAME>
@@ -38,6 +43,8 @@ moltbox
     openclaw <command>
     checkpoint
     reload
+    skill deploy <skill>
+    skill rollback <skill>
     secrets set <NAME> [VALUE]
     secrets list
     secrets delete <NAME>
@@ -46,6 +53,8 @@ moltbox
     openclaw <command>
     checkpoint
     reload
+    skill deploy <skill>
+    skill rollback <skill>
     secrets set <NAME> [VALUE]
     secrets list
     secrets delete <NAME>
@@ -75,17 +84,27 @@ moltbox gateway update
 moltbox gateway logs
 moltbox gateway service deploy opensearch
 moltbox gateway token create search-agent
+moltbox gateway docker ping
 ```
 
 `moltbox gateway update` is the appliance self-update path. It refreshes the gateway and the host `moltbox` CLI/tooling together; there is no separate active `tools update` command.
 
 Workstation operators and automation reach the CLI over SSH. Internal agents use the token-authenticated MCP HTTP endpoint instead of SSH.
 
+The gateway namespace also exposes lower-level diagnostic and bootstrap commands:
+
+```text
+moltbox gateway mcp-stdio
+moltbox gateway docker ping
+moltbox gateway docker run <image>
+```
+
 Runtime environments:
 
 ```text
 moltbox dev reload
 moltbox test checkpoint
+moltbox dev skill deploy together
 moltbox prod openclaw <command>
 moltbox dev secrets set TOGETHER_API_KEY "tgp_v1_..."
 ```
@@ -111,6 +130,7 @@ moltbox caddy <native command>
 
 - use the CLI as the normal control surface
 - use `dev`, `test`, and `prod` for runtime operations
+- use `moltbox <env> skill deploy|rollback ...` for gateway-managed skill lifecycle
 - use `dev`, `test`, `prod`, and `service` as the valid scopes for `moltbox <scope> secrets ...`
 - use `gateway service ...` for appliance deployment and service lifecycle work
 - use `gateway service deploy dev|test|prod` when redeploying runtime containers through the control plane

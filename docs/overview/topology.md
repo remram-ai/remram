@@ -123,8 +123,8 @@ The container topology depends on machine-scoped storage roots:
 Important subareas include:
 
 - `/srv/moltbox-state/runtime/`
-- `/srv/moltbox-state/runtime-snapshots/`
 - `/srv/moltbox-state/runtime-baselines/`
+- `/srv/moltbox-state/runtime-baselines/<runtime>/<checkpoint>/snapshot/`
 - `/srv/moltbox-state/services/`
 - `/srv/moltbox-state/deploy/`
 
@@ -140,11 +140,7 @@ These storage roots preserve mutable appliance state independently of individual
 - the public CLI uses `dev`, `test`, and `prod` rather than internal runtime container names
 - operators should not need direct Docker commands for normal management
 - runtime state is allowed to outlive individual container instances through appliance storage
-
-## TODO
-
-- document the stable ingress hostnames and port contract once the endpoint documentation is finalized
-- document any optional or future service containers separately from the steady-state core topology
+- Caddy exposes `moltbox-dev`, `moltbox-test`, and `moltbox-prod`; `moltbox-cli` returns `404` by design
 
 ## Related Documents
 

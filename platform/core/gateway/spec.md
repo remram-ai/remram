@@ -53,8 +53,11 @@ Gateway lifecycle and status:
 moltbox gateway status
 moltbox gateway update
 moltbox gateway logs
+moltbox gateway mcp-stdio
 moltbox gateway token create <NAME>
 moltbox gateway token list
+moltbox gateway docker ping
+moltbox gateway docker run <image>
 ```
 
 `moltbox gateway update` is the active self-update surface for both:
@@ -157,7 +160,7 @@ Runtime lifecycle concerns:
 
 - baseline config sync
 - plugin and skill deployment events
-- snapshots before mutation
+- checkpoint snapshot capture
 - checkpoint and rebase orchestration
 
 The gateway keeps these models separate because a runtime can be healthy as a container while still carrying important mutable state.
@@ -185,7 +188,19 @@ Typical environment lifecycle flow:
 4. validate runtime health
 5. record deployment events or metadata where required
 
-Plugin and skill deployment then continue through native OpenClaw lifecycle commands rather than a reimplemented gateway-only plugin API.
+Managed skill deployment is environment-scoped through the Moltbox CLI:
+
+```text
+moltbox <env> skill deploy <skill>
+moltbox <env> skill rollback <skill>
+```
+
+OpenClaw inspection and plugin lifecycle remain native passthrough:
+
+```text
+moltbox <env> openclaw skills list
+moltbox <env> openclaw plugins <command>
+```
 
 ## Snapshot, Replay, And Checkpoint Model
 
@@ -193,14 +208,12 @@ Gateway owns the orchestration of runtime recovery artifacts.
 
 ### Snapshots
 
-Before runtime-mutating operations, the gateway should capture:
+The current gateway implementation materializes runtime-state snapshots during checkpoint:
 
-- container-level snapshots
-- runtime-state snapshots
+- `/srv/moltbox-state/runtime-baselines/<runtime>/<checkpoint>/snapshot/`
+- `/srv/moltbox-state/runtime-baselines/<runtime>/current.json`
 
-Canonical root:
-
-- `/srv/moltbox-state/runtime-snapshots/`
+A separate generic `/srv/moltbox-state/runtime-snapshots/` root is not currently present in gateway code or on the live appliance.
 
 ### Deployment Events
 
@@ -248,5 +261,4 @@ Gateway orchestrates other repositories but should not absorb their ownership:
 
 ## TODO
 
-- document the exact runtime service identifiers exposed through `gateway service ...` once that operator contract is finalized
 - document the final checkpoint promotion workflow once rebased runtime images have a stable Git representation

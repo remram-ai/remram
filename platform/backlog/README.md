@@ -14,9 +14,9 @@ platform/backlog/<candidate> -> platform/<type>/<name>
 Valid target categories are:
 
 - `core`
-- `service`
-- `skill`
-- `plugin`
+- `services`
+- `skills`
+- `plugins`
 
 Optional tagging is allowed if the intended type is already known, but classification is not required until promotion.
 

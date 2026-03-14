@@ -167,19 +167,16 @@ Canonical roots:
 Important state areas include:
 
 - `/srv/moltbox-state/runtime/`
-- `/srv/moltbox-state/runtime-snapshots/`
 - `/srv/moltbox-state/runtime-baselines/`
+- `/srv/moltbox-state/runtime-baselines/<runtime>/<checkpoint>/snapshot/`
 - `/srv/moltbox-state/services/`
 - `/srv/moltbox-state/deploy/`
 
 These locations hold operational state and recovery artifacts. They are not interchangeable with the Git-backed architecture repositories.
 
-Runtime snapshots exist at more than one level:
+The current gateway implementation materializes runtime-state snapshots through checkpointing under `runtime-baselines`.
 
-- container-level snapshots
-- runtime-state snapshots
-
-Those snapshots are operational safety artifacts taken before runtime-mutating operations.
+A separate generic `/srv/moltbox-state/runtime-snapshots/` root is not present on the appliance today.
 
 ## Operator Model
 

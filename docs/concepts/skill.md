@@ -29,16 +29,19 @@ Skills are deployed through the gateway control plane into runtime environments.
 
 The active CLI does not expose a top-level `skill` namespace.
 
-Instead, skill installation is expected to flow through environment-scoped runtime operations and native OpenClaw installation behavior.
+Instead, skill deployment is environment-scoped.
 
 Typical operator direction is:
 
 ```text
-moltbox dev openclaw <command>
-moltbox test openclaw <command>
+moltbox dev skill deploy together
+moltbox dev skill rollback together
+moltbox dev openclaw skills list
+moltbox test openclaw skills info together-escalation
 ```
 
-The gateway may use native OpenClaw installation behavior as part of skill deployment.
+The gateway stages and replays managed skills through `moltbox <env> skill deploy|rollback ...`.
+Native OpenClaw passthrough remains the inspection surface for skill inventory and readiness.
 
 Current OpenClaw skill-inspection commands that should remain reachable through passthrough are:
 

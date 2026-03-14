@@ -31,6 +31,7 @@ moltbox
     status
     update
     logs
+    mcp-stdio
     token create <NAME>
     token list
     token delete <NAME>
@@ -38,6 +39,8 @@ moltbox
     service deploy <service>
     service restart <service>
     service status <service>
+    docker ping
+    docker run <image>
 
   dev
     openclaw <command>
@@ -141,6 +144,16 @@ moltbox gateway token rotate <NAME>
 ```
 
 Workstation automation uses SSH plus the Moltbox CLI directly. MCP is reserved for internal appliance agents and containers.
+
+Gateway diagnostic and bootstrap helpers:
+
+```text
+moltbox gateway mcp-stdio
+moltbox gateway docker ping
+moltbox gateway docker run <image>
+```
+
+These commands are real parts of the current CLI surface, but they are lower-level than the normal operator lifecycle flows.
 
 Service lifecycle operations:
 

@@ -27,6 +27,7 @@ Inside `docs/`, the material is organized into several primary areas:
 - feature documentation
 - system concepts
 - reference material
+- audit reports
 - community and contributor documentation
 - AI bootstrap context
 
@@ -44,6 +45,7 @@ docs/
   operations/    Operator workflows and CLI usage
   concepts/      Core system vocabulary and definitions
   reference/     Technical reference documentation
+  audits/        Point-in-time audit and reconciliation reports
   community/     Contributor and community documentation
   ai-context/    High-signal AI bootstrap summaries and role guides
 

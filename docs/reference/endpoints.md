@@ -41,10 +41,6 @@ Validated ingress routes:
 - `https://moltbox-test`
 - `https://moltbox-prod`
 
-TODO:
-
-- confirm which ingress hostnames and host-port mappings are part of the stable documented contract versus validated appliance defaults
-
 ## Caddy
 
 Caddy health:
@@ -71,9 +67,10 @@ Runtime configuration commonly refers to:
 
 - `http://ollama:11434`
 
-TODO:
+Current documented posture:
 
-- confirm whether Ollama remains internal-only for the documented model or later gains a public ingress or health surface
+- Ollama remains internal-only
+- operators use `moltbox gateway service ...` and `moltbox ollama ...` rather than public ingress
 
 ## Notes
 

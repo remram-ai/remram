@@ -2,12 +2,12 @@
 
 Caddy is the appliance entry-point service.
 
-It is the front door that terminates HTTP or HTTPS traffic and routes requests to the correct internal Moltbox service.
+It is the front door that terminates HTTP or HTTPS traffic and routes runtime requests to the correct internal Moltbox service.
 
 Ingress path:
 
 ```text
-Internet -> Caddy -> Gateway / Runtime services
+Internet -> Caddy -> Runtime services
 ```
 
 ## What Role It Plays
@@ -30,13 +30,13 @@ Caddy centralizes ingress so the appliance can present a cleaner operator surfac
 
 - the `caddy` service definition in `moltbox-services`
 - the `Caddyfile` template in `moltbox-runtime`
-- the gateway and runtime services that sit behind the reverse proxies
+- the runtime services that sit behind the reverse proxies
 - Caddy-managed state for certificates and runtime configuration
 
 ## How It Interacts With Other Components
 
 - forwards `moltbox-dev`, `moltbox-test`, and `moltbox-prod` to the corresponding runtime environments
-- depends on the gateway and runtime services being reachable on the appliance network or host bridge
+- depends on the runtime services being reachable on the appliance network or host bridge
 
 The public control plane is intentionally closed. `moltbox-cli` does not proxy to the gateway through Caddy.
 

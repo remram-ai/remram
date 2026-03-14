@@ -6,7 +6,7 @@ Caddy is done when:
 
 - the service deploys successfully
 - `/healthz` responds
-- gateway ingress works through the expected hostname
+- `moltbox-cli` returns `404` through public ingress
 - each environment route reaches the correct runtime
 - TLS termination works as expected for the appliance posture
 
@@ -34,13 +34,13 @@ Expected result:
 
 - HTTP `200`
 
-### 3. Gateway Route Validation
+### 3. Control-Plane Closure Validation
 
-Verify the appliance hostname for the control plane reaches the gateway target.
+Verify the appliance hostname for the control plane stays closed through public ingress.
 
 Expected result:
 
-- the control-plane route resolves and the gateway remains reachable through ingress
+- `https://moltbox-cli/*` returns `404`
 
 ### 4. Runtime Route Validation
 
@@ -56,7 +56,7 @@ Expected result:
 
 ## Failure Cases To Test
 
-- Caddy is healthy but the `gateway` route fails
+- Caddy is healthy but `moltbox-cli` stops returning `404`
 - one runtime hostname resolves to the wrong backend
 - health endpoint works but TLS routing fails
 - storage mounts for Caddy state are missing or unwritable

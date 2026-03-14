@@ -154,6 +154,7 @@ Typical operator surfaces:
 ```text
 moltbox gateway service deploy dev
 moltbox dev reload
+moltbox dev skill deploy together
 moltbox dev openclaw skills list
 ```
 
@@ -180,39 +181,21 @@ If a specific deliverable genuinely needs OpenClaw-native plugin lifecycle comma
 
 ## 4. Snapshot Types
 
-Snapshots exist at multiple levels:
+The docs historically used "snapshot" for more than one recovery artifact.
 
-1. container-level snapshots
-2. runtime-state snapshots
+In the current implementation, the only materialized runtime-state snapshot is the checkpoint snapshot stored under `runtime-baselines`.
 
-These snapshot types serve different recovery purposes and may be captured together for the same operation.
+## 5. Snapshot Behavior
 
-## 5. Pre-Deploy Snapshots
+Current implemented behavior:
 
-Before every runtime-mutating OpenClaw operation, the appliance should capture pre-deploy snapshots.
+- `moltbox <env> checkpoint` captures runtime state into `/srv/moltbox-state/runtime-baselines/<runtime>/<checkpoint>/snapshot/`
+- checkpoint metadata is written to `/srv/moltbox-state/runtime-baselines/<runtime>/current.json`
+- replay history is cleared only after the checkpoint-backed redeploy succeeds
 
-Purpose:
+A separate generic pre-deploy snapshot root at `/srv/moltbox-state/runtime-snapshots/` is not currently implemented on the appliance.
 
-- rollback safety
-- recovery if a deployment corrupts runtime state
-
-Canonical root:
-
-- `/srv/moltbox-state/runtime-snapshots/`
-
-Expected policy:
-
-- keep the last 5 snapshots per runtime
-- allow time-based retention up to roughly one year
-
-Pre-deploy snapshots should occur before operations such as:
-
-- plugin installs
-- skill installs
-- runtime reloads
-- checkpoint operations
-
-Snapshots are appliance artifacts. They are not committed to Git.
+If a future recovery design adds generic pre-deploy safety snapshots, it should document them as a distinct lifecycle artifact rather than conflating them with checkpoint snapshots.
 
 ## 6. Runtime Checkpointing
 

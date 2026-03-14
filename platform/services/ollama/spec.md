@@ -10,11 +10,12 @@ It is a first-class baseline service because the runtimes depend on it for their
 
 Primary evidence:
 
+- `moltbox-services/services/ollama/service.yaml`
+- `moltbox-services/services/ollama/compose.yml.template`
 - `moltbox-runtime/openclaw-*/openclaw.json.template`
 - `moltbox-runtime/openclaw-*/model-runtime.yml`
 - `moltbox-runtime/openclaw-*/routing.yaml`
-- `moltbox-gateway/commands/src/moltbox_commands/core/components.py`
-- archived operator and implementation material that previously deployed `ollama` as an internal appliance service
+- `moltbox-gateway/internal/orchestrator/manager.go`
 
 ## Architecture Components
 
@@ -93,5 +94,4 @@ Moltbox should not add a second abstraction layer for model inventory management
 
 ## TODO
 
-- document the exact active `moltbox-services` service-definition path once the Ollama service definition is fully converged into the current repo split
 - document the baseline local model inventory contract once the model set is frozen beyond the current `qwen3:8b` posture

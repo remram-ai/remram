@@ -23,6 +23,7 @@ moltbox
     status
     update
     logs
+    mcp-stdio
     token create <NAME>
     token list
     token delete <NAME>
@@ -30,6 +31,8 @@ moltbox
     service deploy <service>
     service restart <service>
     service status <service>
+    docker ping
+    docker run <image>
 
   dev
     openclaw <command>
@@ -148,11 +151,20 @@ moltbox gateway status
 moltbox gateway update
 moltbox gateway service deploy opensearch
 moltbox gateway token create search-agent
+moltbox gateway docker ping
 ```
 
 Container deployment and service lifecycle actions are routed through the gateway service pipeline.
 
 `moltbox gateway update` is also the canonical self-update path for the host `moltbox` CLI/tooling. There is no separate active `tools update` namespace in the Architecture V2 contract.
+
+The gateway namespace also includes implementation-oriented diagnostic and bootstrap commands:
+
+- `moltbox gateway mcp-stdio`
+- `moltbox gateway docker ping`
+- `moltbox gateway docker run <image>`
+
+They are part of the live CLI surface, but they are lower-level than the normal lifecycle workflows.
 
 Workstation automation reaches this namespace over SSH with restricted identities such as `jason-codex`. Internal agents use token-authenticated HTTP MCP against the gateway and do not expose a public ingress route.
 

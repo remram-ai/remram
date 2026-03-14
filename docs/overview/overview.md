@@ -27,17 +27,21 @@ Operators are expected to work through the Moltbox CLI rather than directly thro
 ## System Picture
 
 ```text
-Visual Studio
-  -> MCP plugin
+Workstation
+  -> ssh
     -> Moltbox CLI
       -> gateway
         -> managed services
         -> runtime environments
         -> deployment metadata
         -> appliance state
+
+Internal agent or container
+  -> HTTP MCP + bearer token
+    -> gateway
 ```
 
-The MCP plugin should behave as a thin wrapper around the CLI so the two operator interfaces remain equivalent.
+Workstation operators use SSH plus the Moltbox CLI directly. MCP is reserved for internal appliance agents and containers that need a token-authenticated programmatic control surface.
 
 Steady-state appliance services include:
 
@@ -182,13 +186,13 @@ Those snapshots are operational safety artifacts taken before runtime-mutating o
 The primary operator path is:
 
 ```text
-Visual Studio
-  -> MCP plugin
+Workstation
+  -> ssh
     -> Moltbox CLI
       -> Gateway
 ```
 
-A thin host-level `moltbox` entrypoint may still exist, but it is a convenience wrapper around the gateway control plane rather than a separate management layer.
+Internal agents may call the gateway MCP HTTP endpoint over the appliance network with a bearer token managed by `moltbox gateway token ...`.
 
 ## Related Documents
 

@@ -35,7 +35,19 @@ Verify:
 - `moltbox gateway status` returns a meaningful control-plane view
 - `moltbox gateway logs` returns the expected diagnostics surface
 
-### 3. Service Pipeline Validation
+### 3. MCP Token Validation
+
+Verify:
+
+- `moltbox gateway token create <name>` returns a token value once
+- `moltbox gateway token list` returns token names without secret values
+- unauthenticated `POST /mcp` returns `401`
+- authenticated `POST /mcp` returns a valid MCP response
+- `moltbox gateway token rotate <name>` invalidates the old token and activates the new one
+- `moltbox gateway token delete <name>` removes access
+- token records are stored through the encrypted appliance secret store rather than a separate token database
+
+### 4. Service Pipeline Validation
 
 Verify the gateway service pipeline can:
 
@@ -45,7 +57,7 @@ Verify the gateway service pipeline can:
 
 At minimum, validate against a stable shared service such as `opensearch`.
 
-### 4. Self-Update Validation
+### 5. Self-Update Validation
 
 Verify `moltbox gateway update`:
 
@@ -57,7 +69,7 @@ Verify `moltbox gateway update`:
 
 After update, verify newly added CLI surfaces are available from the appliance host binary.
 
-### 5. Environment Lifecycle Validation
+### 6. Environment Lifecycle Validation
 
 Verify:
 
@@ -65,7 +77,7 @@ Verify:
 - the target runtime remains healthy
 - environment-scoped operations do not leak across environments
 
-### 6. Native OpenClaw Passthrough Validation
+### 7. Native OpenClaw Passthrough Validation
 
 Verify an environment-scoped native command works through Moltbox.
 
@@ -73,7 +85,16 @@ Example class:
 
 - plugin install or plugin inspection
 
-### 7. Metadata Reconciliation
+### 8. SSH Automation Validation
+
+Verify:
+
+- `jason-codex` can run `moltbox <args>` over SSH
+- `jason-codex` cannot open unrestricted shell commands
+- `codex-bootstrap` can run full CLI diagnostics in `dev`
+- `codex-bootstrap` is denied mutating actions in `test` and `prod`
+
+### 9. Metadata Reconciliation
 
 For a deployment action, verify the following reconcile:
 
@@ -88,6 +109,8 @@ For a deployment action, verify the following reconcile:
 - environment reload succeeds mechanically but leaves the runtime unhealthy
 - passthrough commands work in one environment and not another
 - legacy namespaces are still accepted
+- invalid MCP tokens are accepted
+- restricted SSH identities can escape their command wrapper
 
 ## Operator-Visible Success Criteria
 

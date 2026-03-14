@@ -26,6 +26,7 @@ Important rules:
 - `service` is reserved for shared-service secrets, for example `moltbox service secrets set POSTGRES_PASSWORD`
 - internal names such as `openclaw-dev` are implementation details
 - service lifecycle goes through `moltbox gateway service ...`
+- gateway-managed MCP bearer tokens go through `moltbox gateway token <create|list|delete|rotate>`
 - runtime containers can also be deployed through `moltbox gateway service deploy dev|test|prod`
 - that service pipeline consumes definitions from `moltbox-services` and is orchestrated by the gateway
 - scoped secrets follow `moltbox <scope> secrets <command>` where valid scopes are `dev`, `test`, `prod`, and `service`
@@ -36,6 +37,8 @@ Important rules:
 - native OpenClaw plugin and skill CLI families should remain reachable through `moltbox <env> openclaw ...`
 - native passthrough is not a separate deployment model
 - there is no network API for secrets; the CLI invokes local gateway command handlers for `... secrets ...`
+- workstation operators and automation use SSH plus the Moltbox CLI directly
+- MCP is for internal agents and containers over HTTP with bearer token auth
 - retired namespaces such as `runtime`, `tools`, `host`, and top-level `skill` should not appear in active examples
 
 Canonical sources:

@@ -18,6 +18,10 @@ moltbox
     status
     update
     logs
+    token create <NAME>
+    token list
+    token delete <NAME>
+    token rotate <NAME>
     service deploy <service>
     service restart <service>
     service status <service>
@@ -70,9 +74,12 @@ moltbox gateway status
 moltbox gateway update
 moltbox gateway logs
 moltbox gateway service deploy opensearch
+moltbox gateway token create search-agent
 ```
 
 `moltbox gateway update` is the appliance self-update path. It refreshes the gateway and the host `moltbox` CLI/tooling together; there is no separate active `tools update` command.
+
+Workstation operators and automation reach the CLI over SSH. Internal agents use the token-authenticated MCP HTTP endpoint instead of SSH.
 
 Runtime environments:
 
@@ -109,6 +116,7 @@ moltbox caddy <native command>
 - use `gateway service deploy dev|test|prod` when redeploying runtime containers through the control plane
 - secrets are gateway-owned appliance state stored locally under `/var/lib/moltbox/secrets/<scope>/`
 - secrets are encrypted at rest and injected into container environments during gateway-managed deploy or reload
+- gateway MCP bearer tokens are also stored in the encrypted appliance secret store and managed through `moltbox gateway token ...`
 - use native service passthrough namespaces instead of reimplementing service-specific commands in Moltbox
 - treat Docker commands as internal implementation details
 

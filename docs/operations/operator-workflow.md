@@ -3,8 +3,8 @@
 The normal operator path is:
 
 ```text
-Visual Studio
-  -> MCP plugin
+Workstation
+  -> ssh
     -> Moltbox CLI
       -> Gateway
 ```
@@ -12,6 +12,8 @@ Visual Studio
 The gateway is the control plane.
 
 Operators should manage the appliance through the Moltbox CLI rather than direct Docker commands.
+
+Internal agents and containers use the gateway MCP HTTP surface with bearer tokens managed by `moltbox gateway token ...`. That MCP path is not the normal workstation operator interface.
 
 ## Normal Workflow
 
@@ -108,18 +110,27 @@ moltbox opensearch <native command>
 moltbox caddy <native command>
 ```
 
+## SSH Automation
+
+Supported restricted identities:
+
+- `jason-codex` for automation that should be limited to `moltbox <args>`
+- `codex-bootstrap` for break-glass diagnostics, with full CLI access in `dev` and diagnostic-only access in `test` and `prod`
+
+Examples:
+
+```text
+ssh -T -i ~/.ssh/jason-codex jason-codex@moltbox-prime "moltbox dev openclaw health --json"
+ssh -T -i ~/.ssh/codex-bootstrap codex-bootstrap@moltbox-prime "moltbox test openclaw health --json"
+```
+
 ## Host Wrapper
 
 A thin host-level `moltbox` entrypoint may exist on the appliance host.
 
 That wrapper is only a convenience layer around the real control path.
 
-The primary operator model is still MCP tooling invoking the Moltbox CLI and gateway.
-
-TODO:
-
-- document the exact MCP operator flow once the Visual Studio plugin contract is finalized
-- confirm whether host-shell invocation remains a supported primary path or only a local fallback
+The primary operator model is SSH plus the Moltbox CLI invoking the gateway.
 
 ## Docker Boundary
 

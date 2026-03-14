@@ -28,7 +28,8 @@ At a high level, Gateway:
 ## Main Moving Parts
 
 - the `gateway` container itself
-- the `moltbox` CLI and MCP-facing wrapper path
+- the `moltbox` CLI used over SSH from the workstation
+- the internal token-authenticated MCP HTTP surface for appliance agents
 - repository inputs from `moltbox-services`, `moltbox-runtime`, and `remram-skills`
 - appliance state under `/srv/moltbox-state`
 - appliance logs under `/srv/moltbox-logs`

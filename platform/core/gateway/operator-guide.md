@@ -11,10 +11,10 @@ Use it for service lifecycle, gateway lifecycle, environment lifecycle, and nati
 Preferred path:
 
 ```text
-Visual Studio -> MCP plugin -> Moltbox CLI -> Gateway
+Workstation -> ssh -> Moltbox CLI -> Gateway
 ```
 
-The MCP plugin should behave like a thin wrapper around the same CLI commands you would run directly.
+Internal agents and containers may use the gateway MCP HTTP surface over the appliance network with bearer tokens managed by `moltbox gateway token ...`.
 
 ## Common Commands
 
@@ -23,6 +23,7 @@ Gateway status and logs:
 ```text
 moltbox gateway status
 moltbox gateway logs
+moltbox gateway token list
 ```
 
 Gateway update:
@@ -92,7 +93,9 @@ Direct Docker commands remain a diagnostic fallback, not the normal operating co
 
 If Docker is needed to diagnose a failure, treat that as an exception path and return to the gateway surface once the issue is understood.
 
-## TODO
+## SSH Automation
 
-- document the exact host-wrapper posture once the long-term appliance wrapper contract is finalized
-- document the final checkpoint and restore command family once the runtime rebase workflow is fully landed
+Supported restricted identities:
+
+- `jason-codex` for CLI-only automation
+- `codex-bootstrap` for break-glass diagnostics

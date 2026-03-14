@@ -23,6 +23,10 @@ moltbox
     status
     update
     logs
+    token create <NAME>
+    token list
+    token delete <NAME>
+    token rotate <NAME>
     service deploy <service>
     service restart <service>
     service status <service>
@@ -78,6 +82,7 @@ Examples:
 - `service` is a shared-service secret scope used only for `moltbox service secrets ...`
 - `ollama`, `opensearch`, and `caddy` represent managed services
 - `gateway` represents the appliance control plane
+- `gateway token ...` manages bearer tokens for the internal MCP HTTP surface
 
 This keeps the CLI aligned with the way operators think about the appliance.
 
@@ -135,13 +140,18 @@ Examples:
 moltbox gateway status
 moltbox gateway update
 moltbox gateway service deploy opensearch
+moltbox gateway token create search-agent
 ```
 
 Container deployment and service lifecycle actions are routed through the gateway service pipeline.
 
 `moltbox gateway update` is also the canonical self-update path for the host `moltbox` CLI/tooling. There is no separate active `tools update` namespace in the Architecture V2 contract.
 
+Workstation automation reaches this namespace over SSH with restricted identities such as `jason-codex`. Internal agents use token-authenticated HTTP MCP against the gateway and do not expose a public ingress route.
+
 Secrets are also gateway-owned, but they do not use a network secrets API. The CLI invokes local gateway command handlers that read and write the encrypted appliance secret store at `/var/lib/moltbox/secrets/<scope>/`.
+
+Gateway-owned MCP bearer tokens use the same encrypted secret store through `moltbox gateway token <create|list|delete|rotate>`.
 
 ### Runtime Checkpoint Behavior
 

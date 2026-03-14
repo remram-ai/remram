@@ -36,10 +36,14 @@ Those concerns live in other repositories and are orchestrated by the gateway ra
 The primary operator control path is:
 
 ```text
-Visual Studio
-  -> MCP plugin
+Workstation
+  -> ssh
     -> Moltbox CLI
       -> Gateway
+
+Internal agent or container
+  -> HTTP MCP + bearer token
+    -> Gateway
 ```
 
 Operators should interact with the appliance through the Moltbox CLI.
@@ -57,10 +61,10 @@ CLI
 
 There is no network API for secrets. The gateway process reads and writes the secret store directly from the appliance filesystem.
 
-TODO:
+The supported automation identities are:
 
-- confirm the exact long-term contract between the MCP plugin, the CLI, and the gateway, including where authentication, target selection, and remote policy enforcement are documented
-- confirm whether the thin host `moltbox` wrapper remains a required appliance contract or only a convenience layer
+- `jason-codex` for restricted SSH CLI automation
+- `codex-bootstrap` for break-glass diagnostics with tighter limits outside `dev`
 
 ## Gateway In The CLI
 

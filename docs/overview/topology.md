@@ -88,22 +88,26 @@ It terminates and routes appliance traffic to the appropriate internal services.
 At a high level:
 
 ```text
-Visual Studio
-  -> MCP plugin
+Workstation
+  -> ssh
     -> Moltbox CLI
       -> gateway
         -> service deployment and status
         -> runtime deployment events
         -> appliance state
 
+Internal agent or container
+  -> HTTP MCP + bearer token
+    -> gateway
+
 caddy
-  -> routes external traffic to gateway and runtime/service surfaces
+  -> routes external traffic to runtime surfaces only
 
 openclaw environments
   -> use opensearch and ollama as supporting services
 ```
 
-The MCP plugin should remain a thin wrapper around the CLI so both operator entry paths stay equivalent.
+The workstation operator path is SSH plus the Moltbox CLI. MCP remains available for internal appliance agents over the host network and is not part of the public Caddy ingress.
 
 The gateway does not replace the native service CLIs.
 
@@ -131,6 +135,8 @@ These storage roots preserve mutable appliance state independently of individual
 - the appliance host is already the namespace, so container names should stay simple
 - runtime environments are separate containers, not just profiles inside one runtime process
 - the gateway is the only control-plane entrypoint
+- workstation automation uses restricted SSH identities plus `moltbox`
+- internal MCP access requires a bearer token and stays on the appliance network
 - the public CLI uses `dev`, `test`, and `prod` rather than internal runtime container names
 - operators should not need direct Docker commands for normal management
 - runtime state is allowed to outlive individual container instances through appliance storage

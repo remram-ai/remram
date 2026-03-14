@@ -31,6 +31,10 @@ moltbox
     status
     update
     logs
+    token create <NAME>
+    token list
+    token delete <NAME>
+    token rotate <NAME>
     service deploy <service>
     service restart <service>
     service status <service>
@@ -112,6 +116,7 @@ Control-plane operations:
 moltbox gateway status
 moltbox gateway logs
 moltbox gateway update
+moltbox gateway token create search-agent
 ```
 
 `moltbox gateway update` refreshes the appliance self-managed control-plane tooling:
@@ -119,6 +124,17 @@ moltbox gateway update
 - the running `gateway` container
 - the host `moltbox` CLI binary
 - the host-side CLI config used by local gateway-owned commands such as scoped secrets
+
+Gateway token operations manage the bearer tokens used by the internal MCP HTTP surface:
+
+```text
+moltbox gateway token create <NAME>
+moltbox gateway token list
+moltbox gateway token delete <NAME>
+moltbox gateway token rotate <NAME>
+```
+
+Workstation automation uses SSH plus the Moltbox CLI directly. MCP is reserved for internal appliance agents and containers.
 
 Service lifecycle operations:
 
@@ -222,6 +238,8 @@ Rules:
 - the gateway stores encrypted secret files under `/var/lib/moltbox/secrets/<scope>/`
 - secret values are not printed in normal CLI output
 - gateway-managed deploy or reload operations inject scoped secrets into the target container environment
+
+Gateway-managed MCP bearer tokens are stored in the same encrypted secret store under the `service` scope.
 
 ## Checkpoint Notes
 

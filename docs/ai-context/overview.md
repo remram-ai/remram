@@ -12,7 +12,8 @@ At the platform layer, Moltbox is the appliance boundary. It provides:
 Primary operator path:
 
 ```text
-Visual Studio -> MCP plugin -> Moltbox CLI -> gateway
+Workstation -> ssh -> Moltbox CLI -> gateway
+Internal agent/container -> HTTP MCP + bearer token -> gateway
 ```
 
 Core orientation:
@@ -26,6 +27,8 @@ Core orientation:
 - active platform items live in `remram/platform/`, with intake starting in `remram/platform/backlog/`
 - the gateway consumes those inputs and renders or deploys the running appliance
 - operators should reason from the gateway and CLI model first, not from direct Docker commands
+- workstation automation uses restricted SSH identities plus the Moltbox CLI
+- MCP is reserved for internal agents and containers and requires bearer token auth
 
 Host bootstrap note:
 

@@ -34,7 +34,8 @@ Gateway consumes four major input classes:
 1. service definitions from `moltbox-services`
 2. baseline runtime config from `moltbox-runtime`
 3. skill packages and recipes from `remram-skills`
-4. operator intent from the Moltbox CLI or MCP wrapper
+4. operator intent from the Moltbox CLI over SSH
+5. internal agent intent from the token-authenticated MCP HTTP surface
 
 It also depends on:
 
@@ -52,6 +53,8 @@ Gateway lifecycle and status:
 moltbox gateway status
 moltbox gateway update
 moltbox gateway logs
+moltbox gateway token create <NAME>
+moltbox gateway token list
 ```
 
 `moltbox gateway update` is the active self-update surface for both:
@@ -94,18 +97,29 @@ This is how skill and plugin deployment is expected to reach the runtime.
 
 ## Operator Path
 
-Primary control path:
+Primary workstation control path:
 
 ```text
-Visual Studio
-  -> MCP plugin
+Workstation
+  -> ssh
     -> Moltbox CLI
       -> Gateway
 ```
 
-The MCP plugin should behave as a thin wrapper around the CLI so the two operator entrypoints stay equivalent.
+Internal agent path:
+
+```text
+Internal agent or container
+  -> HTTP MCP + bearer token
+    -> Gateway
+```
 
 A thin host-level `moltbox` entrypoint may exist, but it is a convenience wrapper rather than a separate control plane.
+
+Supported restricted SSH identities:
+
+- `jason-codex` for `moltbox <args>` automation
+- `codex-bootstrap` for break-glass diagnostics with tighter restrictions outside `dev`
 
 ## Deployment Metadata Authority
 
@@ -229,9 +243,10 @@ Gateway orchestrates other repositories but should not absorb their ownership:
 - gateway must preserve native OpenClaw lifecycle where the runtime already provides it
 - gateway provenance must stay reconcilable across running artifact, rendered artifact, and deployment metadata
 - there is no separate active `tools update` namespace; gateway self-update owns host CLI/tooling refresh
+- public HTTPS ingress does not expose gateway or MCP routes
+- MCP HTTP requests require `Authorization: Bearer <token>` and tokens are stored through the existing encrypted gateway secret store
 
 ## TODO
 
 - document the exact runtime service identifiers exposed through `gateway service ...` once that operator contract is finalized
 - document the final checkpoint promotion workflow once rebased runtime images have a stable Git representation
-- document the long-term MCP authentication and policy surface once it is written down as a platform contract

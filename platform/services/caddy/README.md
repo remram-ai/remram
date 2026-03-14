@@ -17,8 +17,7 @@ Caddy gives the appliance one stable ingress layer instead of exposing each inte
 In the current platform model it is responsible for:
 
 - TLS termination for appliance hostnames
-- routing traffic to the gateway control plane
-- routing traffic to the environment runtimes
+- routing public traffic to the environment runtimes
 - providing a simple health surface for ingress validation
 
 ## Why It Exists
@@ -36,9 +35,10 @@ Caddy centralizes ingress so the appliance can present a cleaner operator surfac
 
 ## How It Interacts With Other Components
 
-- forwards `moltbox-cli` traffic to `gateway`
 - forwards `moltbox-dev`, `moltbox-test`, and `moltbox-prod` to the corresponding runtime environments
 - depends on the gateway and runtime services being reachable on the appliance network or host bridge
+
+The public control plane is intentionally closed. `moltbox-cli` does not proxy to the gateway through Caddy.
 
 ## Operator View
 

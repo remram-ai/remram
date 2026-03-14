@@ -35,16 +35,15 @@ Current baseline configuration shows:
 - listener on `:80` with `/healthz`
 - internal TLS for appliance hostnames
 - reverse proxy routes for:
-  - `moltbox-cli`
   - `moltbox-dev`
   - `moltbox-test`
   - `moltbox-prod`
 
 Current routing posture:
 
-- `moltbox-cli` proxies to the `gateway` container
 - runtime hostnames proxy to host-facing runtime ports through `host.docker.internal`
-- Caddy sits in front of both the gateway control plane and the runtime environments rather than fronting only one class of backend
+- the public control plane is intentionally closed; `moltbox-cli` returns `404` rather than proxying to the gateway
+- Caddy fronts runtime environments, not the gateway control plane
 
 Persistent Caddy state is stored through mounted service data and config roots.
 
@@ -72,6 +71,7 @@ Expected behavior:
 - respond locally on `/healthz`
 - terminate TLS for appliance hostnames
 - reverse proxy traffic without owning application logic
+- avoid exposing gateway or MCP routes on the public ingress
 
 Caddy is intentionally thin. It should not absorb control-plane or runtime logic that belongs elsewhere.
 

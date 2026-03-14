@@ -9,9 +9,18 @@ These are reference values for the current appliance model.
 Gateway health:
 
 - appliance-local: `http://127.0.0.1:7460/health`
-- ingress: `https://moltbox-cli/health`
 
-Gateway is the control-plane endpoint surfaced through the CLI and operator tooling.
+Gateway is the control-plane endpoint surfaced through the CLI and internal tooling.
+
+Public HTTPS ingress does not expose the control plane. `https://moltbox-cli/*` returns `404` by design.
+
+Gateway MCP:
+
+- appliance-local: `http://127.0.0.1:7460/mcp`
+- internal container network: `http://gateway:7460/mcp`
+- auth: `Authorization: Bearer <token>`
+
+MCP is for internal appliance agents and containers, not the workstation operator path.
 
 ## OpenClaw Runtime Endpoints
 
@@ -70,4 +79,5 @@ TODO:
 
 - endpoint ownership belongs to the appliance topology and service model
 - operator workflow should prefer the CLI over direct endpoint probing for normal operations
+- workstation automation should use SSH plus the Moltbox CLI rather than public HTTPS control-plane endpoints
 - platform docs own the deeper topology contract; this page is the quick technical reference

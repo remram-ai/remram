@@ -102,7 +102,7 @@ Each environment should have:
 - reasoning or coding paths bypass their documented fallback order
 - provider failure occurs in a way that is not fallback-eligible under current OpenClaw rules
 - the skill is present in `dev` but missing in `test` or `prod`
-- deprecated `semantic-router` artifacts reappear in runtime startup, skill inventory, or staged runtime state
+- deprecated legacy runtime artifacts reappear in runtime startup, skill inventory, or staged runtime state
 
 ## Operator-Visible Success Criteria
 

@@ -35,7 +35,7 @@ moltbox
     openclaw <command>
     checkpoint
     reload
-    secrets set <NAME>
+    secrets set <NAME> [VALUE]
     secrets list
     secrets delete <NAME>
 
@@ -43,7 +43,7 @@ moltbox
     openclaw <command>
     checkpoint
     reload
-    secrets set <NAME>
+    secrets set <NAME> [VALUE]
     secrets list
     secrets delete <NAME>
 
@@ -51,12 +51,12 @@ moltbox
     openclaw <command>
     checkpoint
     reload
-    secrets set <NAME>
+    secrets set <NAME> [VALUE]
     secrets list
     secrets delete <NAME>
 
   service
-    secrets set <NAME>
+    secrets set <NAME> [VALUE]
     secrets list
     secrets delete <NAME>
 
@@ -107,7 +107,7 @@ Those internal identifiers remain implementation details and must not appear as 
 Scoped secrets also follow the environment-first model:
 
 ```text
-moltbox dev secrets set TOGETHER_API_KEY
+moltbox dev secrets set TOGETHER_API_KEY "tgp_v1_..."
 moltbox test secrets list
 moltbox prod secrets delete TOGETHER_API_KEY
 ```
@@ -149,7 +149,7 @@ Container deployment and service lifecycle actions are routed through the gatewa
 
 Workstation automation reaches this namespace over SSH with restricted identities such as `jason-codex`. Internal agents use token-authenticated HTTP MCP against the gateway and do not expose a public ingress route.
 
-Secrets are also gateway-owned, but they do not use a network secrets API. The CLI invokes local gateway command handlers that read and write the encrypted appliance secret store at `/var/lib/moltbox/secrets/<scope>/`.
+Secrets are also gateway-owned. Scoped secret commands follow the control path `CLI -> gateway -> encrypted secret store`, and only the gateway process reads or writes `/var/lib/moltbox/secrets/<scope>/`.
 
 Gateway-owned MCP bearer tokens use the same encrypted secret store through `moltbox gateway token <create|list|delete|rotate>`.
 
@@ -192,6 +192,8 @@ moltbox gateway service status <service>
 ```
 
 This pipeline manages appliance services as deployment units.
+
+`moltbox gateway service restart <service>` reconciles the service through the same deploy lifecycle used by `deploy` and does not report success until the target containers are healthy.
 
 Documented shared-service identifiers include:
 

@@ -52,11 +52,11 @@ Together uses the built-in OpenClaw provider id `together` and the canonical mod
 Together credentials flow through the gateway-owned secret system:
 
 ```text
-moltbox dev secrets set TOGETHER_API_KEY
+moltbox dev secrets set TOGETHER_API_KEY "tgp_v1_..."
 moltbox gateway service deploy dev
 ```
 
-The gateway retrieves the encrypted secret, renders it into the runtime service `.env`, and injects `TOGETHER_API_KEY` into the OpenClaw container. Operators should not read or write runtime secrets directly on disk.
+The CLI sends the secret write through the gateway control plane. The gateway retrieves the encrypted secret, renders it into the runtime service `.env`, and injects `TOGETHER_API_KEY` into the OpenClaw container. Operators should not read or write runtime secrets directly on disk.
 
 ## Operator View
 
@@ -83,7 +83,7 @@ The production baseline was validated on the appliance with the following result
 - fallback activates only after the local provider fails
 - a forced Ollama outage recovered to `together/meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8`
 - Together and Ollama both returned the same standard OpenClaw response envelope with `payloads` and `meta`
-- deprecated `semantic-router` baseline artifacts were removed from runtime state and startup
+- stale legacy runtime artifacts stayed absent from runtime state and startup after redeploy
 
 ## Related Documents
 

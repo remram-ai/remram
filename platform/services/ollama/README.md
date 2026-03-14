@@ -10,8 +10,8 @@ Ollama is the default local model service behind the appliance's local-first pos
 
 In the current system it is used to:
 
-- host the primary local routing model
-- back the local stage of Semantic Router
+- host the primary local chat model
+- back the local-first stage of the runtime model chain
 - provide a runtime-local model provider at `http://ollama:11434`
 - provide the current baseline local model example `ollama/qwen3:8b`
 
@@ -30,14 +30,13 @@ That makes Ollama part of the routing strategy, not just a convenience sidecar.
 ## Main Moving Parts
 
 - runtime model policy in `model-runtime.yml`
-- runtime routing policy in `routing.yaml`
 - the OpenClaw provider config pointing at `http://ollama:11434`
 - the gateway and service-layer component model that treats `ollama` as a first-class appliance service
 
 ## How It Interacts With Other Components
 
 - OpenClaw runtimes call it as the local provider
-- Semantic Router uses it as the first routing tier
+- local-first runtime fallback policy uses it as the primary chat provider
 - the gateway exposes it through the service lifecycle and passthrough CLI model
 
 ## Operator View

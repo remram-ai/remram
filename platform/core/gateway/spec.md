@@ -90,10 +90,10 @@ moltbox dev checkpoint
 Gateway intentionally preserves native OpenClaw lifecycle behavior for runtime-local operations:
 
 ```text
-moltbox dev openclaw plugins install semantic-router
+moltbox dev openclaw models status
 ```
 
-This is how skill and plugin deployment is expected to reach the runtime.
+This is how runtime-native inspection and agent operations continue to reach the runtime without a second gateway-only API layer.
 
 ## Operator Path
 

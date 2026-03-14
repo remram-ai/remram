@@ -50,16 +50,16 @@ Operators should interact with the appliance through the Moltbox CLI.
 
 Docker commands are an internal implementation detail and should not be the normal operator interface.
 
-For secrets, the control path is local:
+For secrets, the control path is:
 
 ```text
 CLI
-  -> gateway command handler
-    -> local secret store
+  -> gateway control-plane API
+    -> encrypted secret store
       -> runtime or service env injection
 ```
 
-There is no network API for secrets. The gateway process reads and writes the secret store directly from the appliance filesystem.
+There is no public secrets ingress. The gateway process is the only layer that reads and writes the secret store directly from the appliance filesystem.
 
 The supported automation identities are:
 

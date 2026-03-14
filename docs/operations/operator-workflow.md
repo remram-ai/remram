@@ -55,6 +55,8 @@ moltbox gateway service restart caddy
 moltbox gateway service status ollama
 ```
 
+`moltbox gateway service restart <service>` follows the deploy lifecycle and only reports success after the target service is healthy.
+
 Runtime containers can also be deployed through the same service pipeline:
 
 ```text

@@ -109,7 +109,7 @@ moltbox dev checkpoint
 Native OpenClaw passthrough lifecycle:
 
 ```text
-moltbox dev openclaw plugins install <plugin>
+moltbox dev openclaw models status
 ```
 
 These are complementary surfaces, not competing CLI models.

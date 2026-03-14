@@ -25,7 +25,7 @@ Before enabling it, confirm:
 Set the environment-scoped secret through the gateway-owned CLI flow:
 
 ```text
-moltbox dev secrets set TOGETHER_API_KEY
+moltbox dev secrets set TOGETHER_API_KEY "tgp_v1_..."
 ```
 
 ## Install
@@ -121,4 +121,4 @@ Common problems:
 - reasoning or coding policy points at the wrong model id
 - the provider is configured under the wrong name instead of `together`
 - `dev` works but `test` or `prod` is missing the required key or runtime deploy
-- startup logs still mention `semantic-router`, which indicates stale runtime state survived the last deploy and needs a clean redeploy
+- startup logs still mention removed legacy runtime artifacts, which indicates stale runtime state survived the last deploy and needs a clean redeploy

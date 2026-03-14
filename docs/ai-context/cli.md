@@ -36,7 +36,7 @@ Important rules:
 - native service operations stay native through passthrough namespaces
 - native OpenClaw plugin and skill CLI families should remain reachable through `moltbox <env> openclaw ...`
 - native passthrough is not a separate deployment model
-- there is no network API for secrets; the CLI invokes local gateway command handlers for `... secrets ...`
+- there is no public secrets ingress; `moltbox <scope> secrets ...` still routes through the gateway control plane before the encrypted store is touched
 - workstation operators and automation use SSH plus the Moltbox CLI directly
 - MCP is for internal agents and containers over HTTP with bearer token auth
 - retired namespaces such as `runtime`, `tools`, `host`, and top-level `skill` should not appear in active examples

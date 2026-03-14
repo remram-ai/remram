@@ -214,4 +214,4 @@ Because it is staged into live runtime state during deploy or reload, a runtime 
 - if the runtime build does not expose Together as the provider id `together`, the skill is misconfigured
 - if the role-specific reasoning and coding policy drifts from the OpenClaw model catalog, operators can see inconsistent selection behavior
 - `dev`, `test`, and `prod` do not automatically share Together credentials or staged runtime state
-- legacy `semantic-router` runtime artifacts must stay removed from templates and staged runtime state to avoid stale plugin noise during startup
+- legacy runtime artifacts must stay removed from templates and staged runtime state to avoid stale startup noise and false-positive operator diagnostics

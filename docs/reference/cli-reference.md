@@ -43,7 +43,7 @@ moltbox
     openclaw <command>
     checkpoint
     reload
-    secrets set <NAME>
+    secrets set <NAME> [VALUE]
     secrets list
     secrets delete <NAME>
 
@@ -51,7 +51,7 @@ moltbox
     openclaw <command>
     checkpoint
     reload
-    secrets set <NAME>
+    secrets set <NAME> [VALUE]
     secrets list
     secrets delete <NAME>
 
@@ -59,12 +59,12 @@ moltbox
     openclaw <command>
     checkpoint
     reload
-    secrets set <NAME>
+    secrets set <NAME> [VALUE]
     secrets list
     secrets delete <NAME>
 
   service
-    secrets set <NAME>
+    secrets set <NAME> [VALUE]
     secrets list
     secrets delete <NAME>
 
@@ -152,6 +152,8 @@ moltbox gateway service restart caddy
 moltbox gateway service status ollama
 ```
 
+`moltbox gateway service restart <service>` reconciles the service through the same deploy pipeline as `deploy` and only reports success after health checks pass.
+
 ## Environment Commands
 
 Runtime orchestration stays under the environment namespaces:
@@ -173,10 +175,10 @@ moltbox prod openclaw <command>
 Scoped secrets also use the environment namespaces:
 
 ```text
-moltbox dev secrets set TOGETHER_API_KEY
+moltbox dev secrets set TOGETHER_API_KEY "tgp_v1_..."
 moltbox test secrets list
 moltbox prod secrets delete TOGETHER_API_KEY
-moltbox service secrets set POSTGRES_PASSWORD
+moltbox service secrets set POSTGRES_PASSWORD "super-secret"
 ```
 
 ## Native Service Passthrough
@@ -234,7 +236,7 @@ Rules:
 
 - valid scopes are `dev`, `test`, `prod`, and `service`
 - the CLI surface is `moltbox <scope> secrets <set|list|delete>`
-- the CLI invokes local gateway command handlers; there is no network secrets API
+- scoped secret commands route through the gateway control plane before the encrypted store is touched
 - the gateway stores encrypted secret files under `/var/lib/moltbox/secrets/<scope>/`
 - secret values are not printed in normal CLI output
 - gateway-managed deploy or reload operations inject scoped secrets into the target container environment

@@ -40,6 +40,8 @@ moltbox gateway service restart caddy
 moltbox gateway service status ollama
 ```
 
+`moltbox gateway service restart <service>` reuses the deploy lifecycle and waits for health before it returns success.
+
 Environment lifecycle:
 
 ```text
@@ -50,7 +52,7 @@ moltbox dev checkpoint
 Native runtime passthrough:
 
 ```text
-moltbox dev openclaw plugins install semantic-router
+moltbox dev openclaw models status
 ```
 
 ## How To Use It In Practice

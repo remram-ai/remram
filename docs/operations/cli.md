@@ -30,7 +30,7 @@ moltbox
     openclaw <command>
     checkpoint
     reload
-    secrets set <NAME>
+    secrets set <NAME> [VALUE]
     secrets list
     secrets delete <NAME>
 
@@ -38,7 +38,7 @@ moltbox
     openclaw <command>
     checkpoint
     reload
-    secrets set <NAME>
+    secrets set <NAME> [VALUE]
     secrets list
     secrets delete <NAME>
 
@@ -46,12 +46,12 @@ moltbox
     openclaw <command>
     checkpoint
     reload
-    secrets set <NAME>
+    secrets set <NAME> [VALUE]
     secrets list
     secrets delete <NAME>
 
   service
-    secrets set <NAME>
+    secrets set <NAME> [VALUE]
     secrets list
     secrets delete <NAME>
 
@@ -87,16 +87,16 @@ Runtime environments:
 moltbox dev reload
 moltbox test checkpoint
 moltbox prod openclaw <command>
-moltbox dev secrets set TOGETHER_API_KEY
+moltbox dev secrets set TOGETHER_API_KEY "tgp_v1_..."
 ```
 
 Scoped secrets:
 
 ```text
 moltbox dev secrets list
-moltbox test secrets set TOGETHER_API_KEY
+moltbox test secrets set TOGETHER_API_KEY "tgp_v1_..."
 moltbox prod secrets delete TOGETHER_API_KEY
-moltbox service secrets set POSTGRES_PASSWORD
+moltbox service secrets set POSTGRES_PASSWORD "super-secret"
 ```
 
 Native service passthrough:
@@ -114,11 +114,14 @@ moltbox caddy <native command>
 - use `dev`, `test`, `prod`, and `service` as the valid scopes for `moltbox <scope> secrets ...`
 - use `gateway service ...` for appliance deployment and service lifecycle work
 - use `gateway service deploy dev|test|prod` when redeploying runtime containers through the control plane
+- scoped secrets follow `CLI -> gateway -> encrypted secret store`
 - secrets are gateway-owned appliance state stored locally under `/var/lib/moltbox/secrets/<scope>/`
 - secrets are encrypted at rest and injected into container environments during gateway-managed deploy or reload
 - gateway MCP bearer tokens are also stored in the encrypted appliance secret store and managed through `moltbox gateway token ...`
 - use native service passthrough namespaces instead of reimplementing service-specific commands in Moltbox
 - treat Docker commands as internal implementation details
+
+`moltbox gateway service restart <service>` uses the deploy lifecycle and waits for health before it reports success.
 
 ## Internal Mapping
 

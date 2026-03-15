@@ -9,7 +9,7 @@ These recipes answer a narrower question:
 - how does it deploy
 - what should I test
 
-Use this layer after a roadmap feature has produced a candidate platform deliverable and you need to classify the correct platform item type.
+Use this layer after approved feature work has defined a platform deliverable and you need to place it under the correct platform item type.
 
 The current architecture exposes four implementation shapes in active platform item docs:
 

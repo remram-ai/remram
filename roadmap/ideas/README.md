@@ -1,16 +1,16 @@
 # Ideas
 
-`roadmap/ideas/` holds exploratory concepts that have not yet been shaped into initiatives.
+`roadmap/ideas/` holds exploratory concepts that have not yet been shaped into proposals.
 
 Ideas are the first stage in the planning lifecycle:
 
 ```text
-Idea -> Feature -> Platform Backlog -> Platform Item
+Idea -> Proposal -> Feature
 ```
 
 - Ideas are exploratory concepts.
-- Features are initiative-level capabilities that may produce one or more platform deliverables.
-- Platform candidates move through [platform/backlog](../../platform/backlog/README.md) before promotion into the living [platform registry](../../platform/README.md).
+- Proposals are decision-ready planning artifacts waiting for leadership approval.
+- Approved features continue implementation under [features/](../../features/README.md) and may later produce platform items in the living [platform registry](../../platform/README.md).
 
 Use the idea template when creating a new idea:
 
@@ -19,5 +19,5 @@ Use the idea template when creating a new idea:
 Go next:
 
 - Read [Roadmap](../README.md) for the full planning lifecycle.
-- Move to [Features](../features/README.md) when an idea becomes a coordinated initiative.
-- Use [Platform Registry](../../platform/README.md) when work is ready to become a platform item.
+- Move to [Proposals](../proposals/README.md) when an idea becomes decision-ready.
+- Use [Features](../../features/README.md) once the idea has been approved into active implementation work.

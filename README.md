@@ -4,12 +4,16 @@ Remram is the vision and architecture hub for the Remram ecosystem.
 
 This repository explains what Remram is, why it exists, how the ecosystem fits together, and where contributors should go next. It is the public front door for the project, not the primary home for implementation details.
 
-Active repository documentation lives under `docs/`, strategic planning lives under `roadmap/`, the living capability registry lives under `platform/`, and historical material lives under `archive/`.
+Active repository documentation lives under `docs/`, strategic planning lives under `roadmap/`, approved feature lifecycle work lives under `features/`, governance material lives under `governance/`, canonical format definitions live under `schemas/`, concise technical reference lives under `reference/`, the living capability registry lives under `platform/`, and historical material lives under `archive/`.
 
 ## Repository Structure
 
-- [roadmap/](roadmap/README.md): planning artifacts, including ideas and features
+- [roadmap/](roadmap/README.md): planning artifacts, including ideas and proposals
+- [features/](features/README.md): approved feature lifecycle artifacts and implementation work
 - [platform/](platform/README.md): the registry of active platform items
+- [governance/](governance/README.md): governance and lifecycle documentation
+- [schemas/](schemas/README.md): canonical artifact, state, and context schema definitions
+- [reference/](reference/README.md): concise technical reference material
 - [docs/](docs/README.md): system documentation, architecture explanation, feature documentation, operations, and AI context
 - [archive/](archive/): preserved historical material
 
@@ -17,7 +21,9 @@ Active repository documentation lives under `docs/`, strategic planning lives un
 
 ```text
 Idea
-  -> Feature (initiative in roadmap/)
+  -> Proposal (planning in roadmap/)
+  -> Approved Feature (features/)
+  -> Feature Project (features/<feature>/projects/<project>/)
   -> Platform deliverables (services, skills, plugins, core)
   -> Feature documentation (docs/features/)
 ```
@@ -92,17 +98,22 @@ Within Gateway / Moltbox, orchestration via OpenClaw and operator control are se
 
 - [Documentation Map](docs/README.md)
 - [Roadmap](roadmap/README.md)
+- [Features](features/README.md)
 - [Platform Registry](platform/README.md)
+- [Governance](governance/README.md)
+- [Schemas](schemas/README.md)
+- [Reference](reference/README.md)
 - [Feature Documentation](docs/features/README.md)
 - [AI Context](docs/ai-context/README.md)
 - `archive/` for historical documentation
 
 ## Planning Pipeline
 
-This repository preserves active planning artifacts under:
+This repository preserves lifecycle artifacts under:
 
 - `roadmap/ideas/`
-- `roadmap/features/`
+- `roadmap/proposals/`
+- `features/`
 
 Historical context and superseded planning material remain in `archive/`.
 
@@ -110,8 +121,11 @@ Historical context and superseded planning material remain in `archive/`.
 
 - Want to understand the current documentation system: start with [docs/README.md](docs/README.md)
 - Want a fast AI-assistant bootstrap: start with [docs/ai-context/README.md](docs/ai-context/README.md)
-- Want to understand planning and capability layout: start with [roadmap/README.md](roadmap/README.md) and [platform/README.md](platform/README.md)
+- Want to understand planning and lifecycle layout: start with [roadmap/README.md](roadmap/README.md), [features/README.md](features/README.md), and [platform/README.md](platform/README.md)
 - Want user-facing capability docs once the deliverables exist: use [docs/features/README.md](docs/features/README.md)
+- Want governance and lifecycle rules: use [governance/README.md](governance/README.md)
+- Want canonical artifact and state formats: use [schemas/README.md](schemas/README.md)
+- Want concise command or endpoint lookup: use [reference/README.md](reference/README.md)
 - Want to review earlier material: use `archive/`
 
 ## How To Contribute

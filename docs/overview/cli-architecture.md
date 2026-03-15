@@ -300,6 +300,6 @@ Exception:
 
 - [CLI](../operations/cli.md)
 - [Operator Workflow](../operations/operator-workflow.md)
-- [CLI Reference](../reference/cli-reference.md)
+- [CLI Reference](../../reference/cli-reference.md)
 - [Runtime](../concepts/runtime.md)
 - [Checkpoint](../concepts/checkpoint.md)

@@ -13,4 +13,4 @@ Go next:
 
 - Start with [Overview](../overview/README.md) and [Concepts](../concepts/README.md) if you need the architecture and vocabulary first.
 - Continue to [AI Context](../ai-context/README.md) for agent bootstrap after the human-facing docs.
-- Use [Reference](../reference/README.md) when you need command details after reading the workflow docs.
+- Use [Reference](../../reference/README.md) when you need command details after reading the workflow docs.

@@ -70,7 +70,7 @@ The live appliance therefore does not yet match the updated repo and docs contra
 
 Remaining documentation TODOs outside the CLI/gateway cleanup are:
 
-- `docs/reference/endpoints.md`
+- `reference/endpoints.md`
 - `platform/services/caddy/spec.md`
 - `platform/services/caddy/operator-guide.md`
 - `platform/services/ollama/spec.md`

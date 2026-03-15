@@ -27,7 +27,7 @@ Validation posture:
 Canonical docs:
 
 - [Deployment Models](../../overview/deployment-models.md)
-- [CLI Reference](../../reference/cli-reference.md)
+- [CLI Reference](../../../reference/cli-reference.md)
 - [Snapshot](../../concepts/snapshot.md)
 - [Checkpoint](../../concepts/checkpoint.md)
 - [Roadmap](../../../roadmap/README.md)

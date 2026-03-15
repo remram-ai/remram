@@ -53,4 +53,4 @@ Canonical sources:
 - [Gateway](../concepts/gateway.md)
 - [Service](../concepts/service.md)
 - [CLI](../operations/cli.md)
-- [CLI Reference](../reference/cli-reference.md)
+- [CLI Reference](../../reference/cli-reference.md)

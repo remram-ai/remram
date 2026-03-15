@@ -57,7 +57,7 @@ Work in this repository when the change is primarily about:
 - documentation structure
 - contributor orientation
 - platform item definitions
-- roadmap ideas and features
+- roadmap ideas and proposals, plus approved feature work under `features/`
 
 ## When Another Repository Is The Right Place
 

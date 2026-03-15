@@ -36,7 +36,7 @@ If your change crosses from documentation into implementation, you will usually 
 
 - `docs/` for shared documentation
 - `platform/` for active capability documentation
-- `roadmap/` for ideas and features
+- `roadmap/` for ideas and proposals, and `features/` for approved feature work
 - `archive/` for frozen historical material
 
 ## Next Step

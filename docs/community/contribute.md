@@ -25,10 +25,10 @@ This repository is intentionally open to contributors who are still getting orie
 ## Contribution Rules
 
 - Use the current canonical vocabulary from [Concepts](../concepts/README.md).
-- Use the current CLI grammar from [CLI](../operations/cli.md) and [CLI Reference](../reference/cli-reference.md).
+- Use the current CLI grammar from [CLI](../operations/cli.md) and [CLI Reference](../../reference/cli-reference.md).
 - Do not edit files in `archive/` in place.
 - Put active capability docs in `platform/`, not in `roadmap/`.
-- Put unimplemented ideas and features in `roadmap/`, not in the active architecture docs.
+- Put unimplemented ideas and proposals in `roadmap/`, approved feature work in `features/`, and keep active architecture docs separate.
 - Keep architecture descriptions separate from implementation details when a domain repository should own the code-level contract.
 
 ## Good Contribution Pattern

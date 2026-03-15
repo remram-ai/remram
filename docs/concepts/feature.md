@@ -1,23 +1,23 @@
 # Feature
 
-A Feature is an initiative-level capability definition in the roadmap.
+A Feature is the approved lifecycle container created when a proposal is accepted.
 
-Feature documentation describes what a coordinated initiative is intended to create or enable before individual platform items are introduced.
+Feature artifacts describe the approved capability and hold the project work that implements it.
 
 ## Where Features Live
 
-Feature documents live under:
+Feature artifacts live under:
 
 ```text
-roadmap/features/<name>.md
+features/<feature-name>/
 ```
 
 ## What A Feature Can Produce
 
-A feature may produce one or more platform deliverables through the active delivery pipeline:
+A feature may produce one or more implementation projects and platform deliverables through the active delivery pipeline:
 
 ```text
-Idea -> Feature -> platform/backlog -> platform/<type>/<name>
+Idea -> Proposal -> Feature -> features/<feature>/projects/<project> -> platform/<type>/<name>
 ```
 
 Typical platform item types are:
@@ -41,11 +41,11 @@ Those are deliverables or implementation types that can emerge from a feature.
 
 ## Feature Versus Platform Item
 
-Use `roadmap/features/` for initiative-level capability planning.
+Use `roadmap/proposals/` for pre-approval capability planning.
 
-Use `platform/backlog/` when the initiative has produced a candidate platform deliverable but the type is not yet finalized.
+Use `features/` once a proposal has been approved into active feature work.
 
-Use `platform/` for active or committed platform items.
+Use `platform/` once a feature project has produced a defined platform deliverable under the correct implementation surface.
 
 ## Related Concepts
 

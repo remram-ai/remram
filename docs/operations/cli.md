@@ -194,4 +194,4 @@ Exception:
 
 - [CLI Architecture](../overview/cli-architecture.md)
 - [Operator Workflow](operator-workflow.md)
-- [CLI Reference](../reference/cli-reference.md)
+- [CLI Reference](../../reference/cli-reference.md)

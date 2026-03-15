@@ -7,11 +7,14 @@ Use these files as orientation summaries, not as replacements for the canonical 
 Repository structure and lifecycle:
 
 ```text
-roadmap/   -> ideas and features
-platform/  -> backlog plus active platform items
-docs/      -> architecture, feature docs, concepts, operations, reference, and AI bootstrap
+roadmap/    -> ideas and proposals
+features/   -> approved feature lifecycle work
+platform/   -> active platform items
+governance/ -> lifecycle, roles, tasks, workflows, and policies
+reference/  -> persistent technical reference knowledge
+docs/       -> architecture, feature docs, concepts, operations, and AI bootstrap
 
-Idea -> Feature -> platform/backlog -> platform item -> docs/features/<name>.md
+Idea -> Proposal -> Feature -> Feature Project -> platform item -> docs/features/<name>.md
 ```
 
 Core summaries:
@@ -42,8 +45,10 @@ Canonical sources:
 - [Repositories](../overview/repositories.md)
 - [Feature Documentation](../features/README.md)
 - [Roadmap](../../roadmap/README.md)
+- [Features](../../features/README.md)
+- [Governance](../../governance/README.md)
+- [Reference](../../reference/README.md)
 - [Platform Registry](../../platform/README.md)
-- [Platform Backlog](../../platform/backlog/README.md)
 
 Recommended order:
 

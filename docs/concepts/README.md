@@ -22,5 +22,5 @@ Go next:
 
 - Start with [Overview](../overview/README.md) if you have not read the system architecture yet.
 - Continue to [Operations](../operations/README.md) once the vocabulary is clear.
-- Continue to [Reference](../reference/README.md) when you need command or endpoint lookup.
+- Continue to [Reference](../../reference/README.md) when you need command or endpoint lookup.
 - Continue to [AI Context](../ai-context/README.md) if you are bootstrapping an assistant after reading the core docs.

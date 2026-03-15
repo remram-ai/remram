@@ -7,25 +7,27 @@ Documentation layout:
 - `docs/overview/` describes appliance architecture and system rules
 - `docs/concepts/` defines canonical vocabulary
 - `docs/operations/` explains operator workflows and CLI usage
-- `docs/reference/` holds concise technical reference
+- `reference/` holds concise technical reference
+- `governance/` holds lifecycle, roles, tasks, workflows, and policies
 - `platform/` holds the living platform registry
-- `roadmap/ideas/` and `roadmap/features/` hold active planning artifacts
-- `platform/backlog/` is the intake queue before a platform item type is finalized
+- `roadmap/ideas/` and `roadmap/proposals/` hold active planning artifacts before approval
+- `features/` holds approved feature lifecycle work
 
 How to work:
 
 - overview documents describe the shared appliance model
 - ideas are exploratory concepts
-- features are initiative-level capabilities
+- proposals are pre-approval capability definitions
+- features are approved lifecycle containers
 - platform items describe active capabilities
 - specifications belong either in platform item `spec.md` files or in the owning implementation repo, depending on scope
 - archive material is reference input, not the active source of truth
 
 When documenting a new platform item:
 
-1. start in `roadmap/ideas/` or `roadmap/features/` if the work is still conceptual
-2. use `platform/backlog/` when the initiative has produced a candidate platform deliverable but the type is not yet finalized
-3. create a folder under the correct `platform/<type>/` category once the type is known
+1. start in `roadmap/ideas/` or `roadmap/proposals/` if the work is still conceptual
+2. move into `features/` once the proposal is approved and implementation work begins
+3. create a folder under the correct `platform/<type>/` category once the feature project defines the implementation surface
 4. add `README.md`, `spec.md`, `design.md`, `test-plan.md`, and `operator-guide.md`
 5. align vocabulary with `docs/concepts/`
 6. align command examples with the CLI architecture
@@ -38,4 +40,7 @@ Canonical docs:
 - [Repositories](../../overview/repositories.md)
 - [CLI Architecture](../../overview/cli-architecture.md)
 - [Roadmap](../../../roadmap/README.md)
+- [Features](../../../features/README.md)
+- [Governance](../../../governance/README.md)
+- [Reference](../../../reference/README.md)
 - [Platform Registry](../../../platform/README.md)

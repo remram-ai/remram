@@ -6,6 +6,10 @@ This repository uses a simple documentation split:
 
 - `docs/` contains shared system documentation
 - `roadmap/` contains planning artifacts
+- `features/` contains approved feature lifecycle artifacts
+- `governance/` contains lifecycle and governance documentation
+- `schemas/` contains canonical artifact and state schema definitions
+- `reference/` contains concise technical reference material
 - `platform/` contains the living capability registry
 - `archive/` contains historical documentation
 
@@ -13,7 +17,9 @@ The delivery lifecycle is:
 
 ```text
 Idea
-  -> Feature (initiative in roadmap/)
+  -> Proposal (planning in roadmap/)
+  -> Approved Feature (features/)
+  -> Feature Project (features/<feature>/projects/<project>/)
   -> Platform deliverables (services, skills, plugins, core)
   -> Feature documentation (docs/features/)
 ```
@@ -26,7 +32,6 @@ Inside `docs/`, the material is organized into several primary areas:
 - overview documentation
 - feature documentation
 - system concepts
-- reference material
 - community and contributor documentation
 - AI bootstrap context
 
@@ -35,7 +40,11 @@ Operational documentation also lives under `docs/` as its own layer so operator 
 ## 2. Documentation Folder Map
 
 ```text
-roadmap/         Ideas and features
+roadmap/         Ideas and proposals
+features/        Approved feature lifecycle artifacts
+governance/      Governance and lifecycle documentation
+schemas/         Canonical artifact and state schemas
+reference/       Technical reference material
 platform/        Living platform registry
 
 docs/
@@ -44,7 +53,6 @@ docs/
   overview/      High-level system architecture and overview docs
   operations/    Operator workflows and CLI usage
   concepts/      Core system vocabulary and definitions
-  reference/     Technical reference documentation
   community/     Contributor and community documentation
   ai-context/    High-signal AI bootstrap summaries and role guides
 
@@ -153,7 +161,7 @@ These documents should be short conceptual explanations.
 Location:
 
 ```text
-docs/reference/
+reference/
 ```
 
 Purpose:
@@ -217,7 +225,43 @@ roadmap/
 
 Purpose:
 
-Strategic planning artifacts, including ideas and features.
+Strategic planning artifacts, including ideas and proposals.
+
+### Features
+
+Location:
+
+```text
+features/
+```
+
+Purpose:
+
+Approved feature lifecycle artifacts and feature project work.
+
+### Governance
+
+Location:
+
+```text
+governance/
+```
+
+Purpose:
+
+Lifecycle rules, role definitions, workflow models, and SDLC policies.
+
+### Schemas
+
+Location:
+
+```text
+schemas/
+```
+
+Purpose:
+
+Canonical artifact, state, and context model definitions.
 
 ### Platform Registry
 
@@ -250,6 +294,9 @@ Stores historical documentation and frozen reference material that should not be
 - User-facing capability docs: [Feature Documentation](features/README.md)
 - Vocabulary and definitions: [Concepts](concepts/README.md)
 - Operator: [Operations](operations/README.md)
+- Governance and lifecycle rules: [Governance](../governance/README.md)
+- Canonical artifact and state formats: [Schemas](../schemas/README.md)
+- Technical lookup: [Reference](../reference/README.md)
 - AI assistant bootstrap: [AI Context](ai-context/README.md)
 - architecture audit and unresolved drift: `audits/`
 

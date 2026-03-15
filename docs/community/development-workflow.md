@@ -58,4 +58,4 @@ Before closing a documentation change, verify:
 - [Documentation Map](../README.md)
 - [Contribute](contribute.md)
 - [CLI](../operations/cli.md)
-- [CLI Reference](../reference/cli-reference.md)
+- [CLI Reference](../../reference/cli-reference.md)

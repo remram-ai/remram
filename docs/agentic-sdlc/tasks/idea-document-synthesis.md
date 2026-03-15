@@ -18,7 +18,7 @@ Create the canonical idea artifact.
 
 ## Steps
 
-1. Create the canonical idea document at `/backlog/ideas/<feature-name>.md`.
+1. Create the canonical idea document at `/product/ideas/<feature>.md`.
 2. Populate the document with the feature summary.
 3. Add example workflows.
 4. Add user stories.
@@ -27,7 +27,7 @@ Create the canonical idea artifact.
 
 ## Artifacts Created
 
-- `/backlog/ideas/<feature-name>.md`
+- `/product/ideas/<feature>.md`
 
 ## Tools Used
 

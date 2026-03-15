@@ -11,6 +11,7 @@ Artifacts define what the system produces and how execution state is preserved.
 ## Current Artifact Definitions
 
 - [Concept Materials](concept-materials.md)
+- [Audio Brief](audio-brief.md)
 - [Idea Document](idea-document.md)
 - [Product Proposal](product-proposal.md)
 - [Feature Spec](feature-spec.md) - placeholder

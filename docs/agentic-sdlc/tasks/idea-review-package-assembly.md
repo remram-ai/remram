@@ -10,11 +10,12 @@ Assemble the user-facing review package for stage 1 validation.
 - workflows
 - feature list
 - concept visuals
-- optional audio explanation
+- optional audio briefing
 
 ## Outputs
 
 - stage 1 review package sent to the user
+- [Audio brief](../artifacts/audio-brief.md), when generated
 
 ## Steps
 
@@ -22,12 +23,13 @@ Assemble the user-facing review package for stage 1 validation.
 2. Include workflows.
 3. Include the feature list.
 4. Attach concept visuals.
-5. Optionally include an audio explanation.
+5. Optionally generate an audio briefing with the [Audio Brief Generator](../tools/audio-brief-generator.md).
 6. Send the review message asking the user to confirm the concept.
 
 ## Artifacts Created
 
 - review package content for user approval
+- [Audio brief](../artifacts/audio-brief.md), when generated
 
 ## Tools Used
 

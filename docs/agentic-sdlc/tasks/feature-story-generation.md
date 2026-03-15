@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Convert workflows into structured user stories.
+Convert workflows into structured user stories that keep the problem framed in user-value terms.
 
 ## Inputs
 

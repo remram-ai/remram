@@ -6,7 +6,7 @@ Product artifact
 
 ## Canonical Location
 
-- `/backlog/ideas/<feature-name>/concept/`
+- `/backlog/ideas/<feature>/concept/`
 
 ## Purpose
 
@@ -14,7 +14,7 @@ Capture the concept visuals generated during stage 1 so the user can validate th
 
 ## Typical Contents
 
-- conceptual wireframe images
+- UI wireframe
 - interaction storyboard
 - workflow diagram
 

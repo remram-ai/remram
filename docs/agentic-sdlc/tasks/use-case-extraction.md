@@ -10,14 +10,14 @@ Convert the interview conversation into structured workflows.
 
 ## Outputs
 
-- structured example workflows
+- structured example workflows, potentially multiple per idea
 
 ## Steps
 
 1. Review the interview conversation.
 2. Extract distinct use cases.
 3. Convert those use cases into structured workflows.
-4. Produce example workflow outputs.
+4. Produce one or more concrete example workflows for the idea.
 
 ## Artifacts Created
 

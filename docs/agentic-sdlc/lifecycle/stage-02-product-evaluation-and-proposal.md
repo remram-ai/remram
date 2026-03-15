@@ -12,7 +12,7 @@ Translate an approved idea into a concrete product proposal that defines what sh
 
 Checkpoint 1: Idea Approved
 
-Approved ideas enter the ideas backlog queue at `/backlog/ideas/`. The Product Manager periodically scans that queue for unprocessed ideas.
+Approved ideas enter the product evaluation queue from `/product/ideas/`. The Product Manager periodically scans that queue for unprocessed ideas.
 
 ## Inputs
 

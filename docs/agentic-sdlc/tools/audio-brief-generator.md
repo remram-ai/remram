@@ -22,6 +22,7 @@ Convert summaries, proposals, or reports into audio briefings such as podcast-st
 
 ## Artifact Example
 
+- `/product/ideas/<feature>/brief.mp3`
 - `/product/proposals/<feature>/brief.mp3`
 
 ## Status

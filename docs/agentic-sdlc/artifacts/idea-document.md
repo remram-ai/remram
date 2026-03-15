@@ -6,7 +6,7 @@ Product artifact
 
 ## Canonical Location
 
-- `/backlog/ideas/<feature-name>.md`
+- `/product/ideas/<feature>.md`
 
 ## Purpose
 

@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Classify the incoming request and determine whether it is a feature idea.
+Classify the incoming request and determine whether it should proceed through the full intake workflow.
 
 ## Inputs
 
@@ -11,13 +11,14 @@ Classify the incoming request and determine whether it is a feature idea.
 ## Outputs
 
 - request classification
-- routing decision on whether the request enters the full intake workflow
+- routing decision for the appropriate queue
 
 ## Steps
 
 1. Receive the incoming request.
-2. Classify it as one of: `feature_request`, `bug_report`, `question`, `configuration_change`, `documentation`, `support_request`, or `research`.
-3. Route only `feature_request` into the full intake workflow.
+2. Classify it as one of: `feature request`, `bug report`, `support question`, `configuration change`, or `documentation request`.
+3. Route only `feature request` into the full intake workflow.
+4. Route non-feature requests to the appropriate queue.
 
 ## Artifacts Created
 

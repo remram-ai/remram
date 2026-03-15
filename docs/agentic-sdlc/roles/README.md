@@ -6,9 +6,8 @@ Source note: the workbook sometimes names an executing agent where this doc set 
 
 ## Current Role Documents
 
-- [Intake and Discovery](intake-and-discovery.md)
+- [Customer Success Manager](customer-success-manager.md)
 - [Product Manager](product-manager.md)
 - [Designer](designer.md)
 - [Architect](architect.md)
 - [OpenClaw SME](openclaw-sme.md)
-- [Customer Success Manager](customer-success-manager.md) - placeholder

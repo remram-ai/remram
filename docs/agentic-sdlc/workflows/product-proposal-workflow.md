@@ -18,7 +18,7 @@ Turn an approved idea into a decision-ready product proposal with architecture d
 
 Checkpoint 1: Idea Approved
 
-The Product Manager periodically scans `/backlog/ideas/` for unprocessed approved ideas.
+The Product Manager periodically scans `/product/ideas/` for unprocessed approved ideas.
 
 ## Orchestration
 

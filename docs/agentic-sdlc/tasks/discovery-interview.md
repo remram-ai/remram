@@ -11,15 +11,15 @@ Clarify the feature request and capture the user's intent.
 
 ## Outputs
 
-- clarified discovery notes covering scenario, example usage, expected behavior, edge cases, and success criteria
+- clarified discovery notes covering the user's problem, real usage scenarios, success criteria, success behavior, and failure behavior
 
 ## Steps
 
-1. Ask for the user scenario.
-2. Ask for example usage.
-3. Ask for expected behavior.
-4. Ask for edge cases.
-5. Ask for success criteria.
+1. Ask the user to walk through a real example of when they would use the feature.
+2. Ask what problem they are trying to solve.
+3. Ask what should happen if the system succeeds.
+4. Ask what should happen if the system fails.
+5. Capture enough detail to support one or more example workflows.
 
 ## Artifacts Created
 

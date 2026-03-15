@@ -8,6 +8,21 @@ The chronological entry point is [Lifecycle](./lifecycle/README.md). That lifecy
 - Stage 2 -> `roadmap/proposals/`
 - Stage 3 and later implementation stages -> `features/`
 
+Canonical Stage 1 SDLC namespaces:
+
+- [Lifecycle](./lifecycle/README.md)
+- [Roles](./roles/README.md)
+- [Tasks](./tasks/README.md)
+- [Workflows](./workflows/README.md)
+- [Tools](./tools/README.md)
+- [Policies](./policies/README.md)
+
+Supporting governance namespaces still present from workbook scaffolding:
+
+- [Teams](./teams/README.md) - named in the context model but not yet expanded
+- [Recipes](./recipes/README.md) - referenced by the workbook but still thin
+- [Services](./services/README.md) - implied by tool and runtime boundaries but not yet detailed
+
 Governance areas:
 
 - [Lifecycle](./lifecycle/README.md)

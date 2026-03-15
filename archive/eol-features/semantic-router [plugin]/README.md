@@ -47,5 +47,5 @@ The feature is runtime-specific. `dev`, `test`, and `prod` can carry different i
 - [Specification](spec.md)
 - [Test Plan](test-plan.md)
 - [Operator Guide](operator-guide.md)
-- [Deployment Models](../../docs/platform/deployment-models.md)
-- [Runtime Concept](../../docs/concepts/runtime.md)
+- [Deployment Models](../../../docs/overview/deployment-models.md)
+- [Runtime Concept](../../../docs/concepts/runtime.md)

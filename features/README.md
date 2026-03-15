@@ -78,7 +78,7 @@ Useful template and schema references:
 - [Together Escalation](together-escalation/README.md)
 - [Discord Channel](discord-channel/README.md)
 - [Remram Cortex](remram-cortex/README.md)
-- [Remram Forge](remram-forge/README.md)
+- [Remram Forge](remram-forge/README.md) (private repo-backed feature record)
 
 Go next:
 

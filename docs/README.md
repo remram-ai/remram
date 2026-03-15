@@ -62,6 +62,7 @@ docs/
   features/      User-facing feature documentation built from platform deliverables
   overview/      High-level system architecture and overview docs
   operations/    Operator workflows and CLI usage
+  testing/       Validation plans and contract-focused test documentation
   concepts/      Core system vocabulary and definitions
   community/     Contributor and community documentation
   ai-context/    High-signal AI bootstrap summaries and role guides
@@ -140,6 +141,24 @@ Typical topics:
 - CLI usage
 - operator workflows
 - runtime operations
+
+### Testing
+
+Location:
+
+```text
+docs/testing/
+```
+
+Purpose:
+
+Validation plans and repeatable verification workflows for documented platform contracts.
+
+Typical topics:
+
+- CLI contract validation
+- release gating
+- cross-repo verification plans
 
 ### Concepts
 
@@ -310,6 +329,7 @@ Stores historical documentation and frozen reference material that should not be
 - User-facing capability docs: [Feature Documentation](features/README.md)
 - Vocabulary and definitions: [Concepts](concepts/README.md)
 - Operator: [Operations](operations/README.md)
+- Validation plans: [Testing](testing/README.md)
 - Governance and lifecycle rules: [Forge Governance (private)](https://github.com/remram-ai/remram-forge/blob/main/governance/README.md)
 - Canonical schemas and namespace routing: [Schemas](../schemas/README.md)
 - End-to-end SDLC flow: [Roadmap](../roadmap/README.md), [Forge Governance Lifecycle (private)](https://github.com/remram-ai/remram-forge/blob/main/governance/lifecycle/README.md), [Features](../features/README.md), [Forge Artifact Templates (private)](https://github.com/remram-ai/remram-forge/blob/main/schemas/artifacts/README.md)
@@ -323,4 +343,5 @@ Recommended reading path:
 2. [Overview](overview/README.md)
 3. [Concepts](concepts/README.md)
 4. [Operations](operations/README.md)
-5. [AI Context](ai-context/README.md)
+5. [Testing](testing/README.md)
+6. [AI Context](ai-context/README.md)

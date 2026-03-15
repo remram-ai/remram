@@ -34,7 +34,7 @@ Known intake sources from the stage narrative:
 
 ## Outputs
 
-- [Idea document](../../schemas/artifacts/idea-document.md)
+- [Idea document](../../schemas/artifacts/idea-document.md) stored in `/roadmap/ideas/<idea>.md`
 - [Concept materials](../../schemas/artifacts/concept-materials.md)
 - [Audio brief](../../schemas/artifacts/audio-brief.md), when generated
 - user review package
@@ -123,6 +123,8 @@ Optional artifacts:
 ### Approval
 
 The idea is confirmed and enters the Stage 2 product evaluation queue.
+
+The approved idea remains in `/roadmap/ideas/` and becomes the input artifact scanned by Stage 2.
 
 When approved, `idea.status = approved`.
 

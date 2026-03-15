@@ -23,7 +23,7 @@ Approved ideas enter the product evaluation queue from `/roadmap/ideas/`. The Pr
 
 ## Outputs
 
-- [Product proposal](../../schemas/artifacts/product-proposal.md)
+- [Product proposal](../../schemas/artifacts/product-proposal.md) stored in `/roadmap/proposals/<proposal>.md`
 - executive summary
 - review package for leadership
 - optional audio brief
@@ -71,6 +71,8 @@ The proposal then loops through proposal revision, optional design updates, arch
 ### Approval
 
 The proposal is accepted as written.
+
+In repository terms, approval promotes the work from `roadmap/proposals/` into `features/<feature-name>/`.
 
 Source note: the workbook says the project proceeds to "Feature Definition / Detailed Design," while the lifecycle backbone separately names Stage 3 as project formation and Stage 4 as architecture and solution design. This documentation preserves that mismatch rather than resolving it by invention.
 

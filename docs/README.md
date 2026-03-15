@@ -16,16 +16,23 @@ This repository uses a simple documentation split:
 The delivery lifecycle is:
 
 ```text
-Idea
-  -> Proposal (planning in roadmap/)
+Idea (Stage 1, roadmap/ideas/)
+  -> Proposal (Stage 2, roadmap/proposals/)
   -> Approved Feature (features/)
-  -> Feature Project (features/<feature>/projects/<project>/)
+  -> Feature Project (Stage 3 onward, features/<feature>/projects/<project>/)
   -> Platform deliverables (services, skills, plugins, core)
   -> Feature documentation (docs/features/)
 ```
 
 Platform items are technical deliverables.
 Feature documentation describes the user-facing capability built from those deliverables.
+
+For the SDLC routing itself, the canonical navigation path is:
+
+1. [Roadmap](../roadmap/README.md)
+2. [Governance Lifecycle](../governance/lifecycle/README.md)
+3. [Features](../features/README.md)
+4. [Artifact Schemas](../schemas/artifacts/README.md)
 
 Inside `docs/`, the material is organized into several primary areas:
 
@@ -296,6 +303,7 @@ Stores historical documentation and frozen reference material that should not be
 - Operator: [Operations](operations/README.md)
 - Governance and lifecycle rules: [Governance](../governance/README.md)
 - Canonical schemas and namespace routing: [Schemas](../schemas/README.md)
+- End-to-end SDLC flow: [Roadmap](../roadmap/README.md), [Governance Lifecycle](../governance/lifecycle/README.md), [Features](../features/README.md), [Artifact Schemas](../schemas/artifacts/README.md)
 - Technical lookup: [Reference](../reference/README.md)
 - AI assistant bootstrap: [AI Context](ai-context/README.md)
 - architecture audit and unresolved drift: `audits/`

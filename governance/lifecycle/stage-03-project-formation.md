@@ -2,7 +2,11 @@
 
 ## Purpose
 
-Project formation.
+Create the approved feature container and prepare the work to continue inside the feature lifecycle.
+
+## Repository Handoff
+
+Approved proposals are promoted into `/features/<feature-name>/`.
 
 ## Status
 

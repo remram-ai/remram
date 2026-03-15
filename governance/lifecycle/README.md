@@ -2,6 +2,14 @@
 
 The lifecycle folder captures the chronological SDLC backbone defined in the workbook.
 
+For repository navigation, the first lifecycle handoffs map to directories as follows:
+
+- [Stage 1 - Intake and Idea Formation](stage-01-intake-and-idea-formation.md) -> `roadmap/ideas/`
+- [Stage 2 - Product Evaluation and Proposal](stage-02-product-evaluation-and-proposal.md) -> `roadmap/proposals/`
+- [Stage 3 - Project Formation](stage-03-project-formation.md) and later implementation stages -> `features/`
+
+Use [Roadmap](../../roadmap/README.md) for the planning directories, [Features](../../features/README.md) for the approved feature structure, and [Artifact Schemas](../../schemas/artifacts/README.md) for the canonical file formats used across those stages.
+
 ## Source Note
 
 The workbook is internally inconsistent about early-stage naming. Its chronological backbone names early lifecycle steps such as request intake, clarification, and project formation, while its detailed sections define Stage 1 as intake and idea formation and Stage 2 as product evaluation and proposal.

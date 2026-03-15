@@ -20,16 +20,18 @@ Active repository documentation lives under `docs/`, strategic planning lives un
 ## Delivery Lifecycle
 
 ```text
-Idea
-  -> Proposal (planning in roadmap/)
+Idea (Stage 1, roadmap/ideas/)
+  -> Proposal (Stage 2, roadmap/proposals/)
   -> Approved Feature (features/)
-  -> Feature Project (features/<feature>/projects/<project>/)
+  -> Feature Project (Stage 3 onward, features/<feature>/projects/<project>/)
   -> Platform deliverables (services, skills, plugins, core)
   -> Feature documentation (docs/features/)
 ```
 
 Platform items are technical deliverables.
 Feature documentation describes the user-facing capability built from those deliverables.
+
+The chronological lifecycle definitions live under [governance/lifecycle/](governance/lifecycle/README.md).
 
 ## Release Posture
 
@@ -111,9 +113,11 @@ Within Gateway / Moltbox, orchestration via OpenClaw and operator control are se
 
 This repository preserves lifecycle artifacts under:
 
-- `roadmap/ideas/`
-- `roadmap/proposals/`
-- `features/`
+- `roadmap/ideas/` for Stage 1 idea capture
+- `roadmap/proposals/` for Stage 2 proposal development
+- `features/` once proposal approval creates an active feature
+
+Use [Roadmap](roadmap/README.md) for the planning directories, [Governance Lifecycle](governance/lifecycle/README.md) for the stage definitions, and [Features](features/README.md) for the implementation-facing feature structure.
 
 Historical context and superseded planning material remain in `archive/`.
 
@@ -122,6 +126,7 @@ Historical context and superseded planning material remain in `archive/`.
 - Want to understand the current documentation system: start with [docs/README.md](docs/README.md)
 - Want a fast AI-assistant bootstrap: start with [docs/ai-context/README.md](docs/ai-context/README.md)
 - Want to understand planning and lifecycle layout: start with [roadmap/README.md](roadmap/README.md), [features/README.md](features/README.md), and [platform/README.md](platform/README.md)
+- Want the end-to-end SDLC path from idea to implementation: read [roadmap/README.md](roadmap/README.md), [governance/lifecycle/README.md](governance/lifecycle/README.md), [features/README.md](features/README.md), and [schemas/artifacts/README.md](schemas/artifacts/README.md)
 - Want user-facing capability docs once the deliverables exist: use [docs/features/README.md](docs/features/README.md)
 - Want governance and lifecycle rules: use [governance/README.md](governance/README.md)
 - Want canonical schemas and namespace routing: use [schemas/README.md](schemas/README.md)

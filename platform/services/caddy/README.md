@@ -2,7 +2,7 @@
 
 Caddy is the appliance entry-point service.
 
-It is the front door that terminates HTTP or HTTPS traffic and routes requests to the correct internal Moltbox service.
+It is the front door that terminates HTTP or HTTPS traffic and routes runtime requests to the correct internal Moltbox service.
 
 Ingress path:
 

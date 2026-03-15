@@ -19,6 +19,15 @@ Convert the interview conversation into structured workflows.
 3. Convert those use cases into structured workflows.
 4. Produce one or more concrete example workflows for the idea.
 
+## Example
+
+Workflow 1 - Automatic agent deployment
+
+1. user installs a plugin
+2. plugin registers a new capability
+3. system detects capability
+4. agent deployment is triggered
+
 ## Artifacts Created
 
 - example workflow content used in the idea document and review package

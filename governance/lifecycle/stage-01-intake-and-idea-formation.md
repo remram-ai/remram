@@ -60,21 +60,56 @@ The stage narrative does not add or change execution-environment rules beyond th
 
 The process begins when a user shares an idea or problem they want solved. Requests may be vague or incomplete.
 
+Example requests from the phase document:
+
+- "I wish the system could automatically deploy agents when a new plugin is installed."
+- "I want the CLI to show me the current task queue."
+
 ### Step 2 - Request Pre-Screening
 
 The system classifies the request. Only feature requests proceed through the full intake workflow. Non-feature requests may be routed to another queue.
+
+Known classifications from the phase document:
+
+- `feature request`
+- `bug report`
+- `support question`
+- `configuration change`
+- `documentation request`
 
 ### Step 3 - Discovery Conversation
 
 If the request is a feature idea, the Customer Success Manager runs a structured discovery conversation to understand the problem, capture real usage scenarios, and clarify success criteria.
 
+Typical prompts from the phase document:
+
+- "Can you walk me through a real example of when you would use this?"
+- "What problem are you trying to solve?"
+- "What should happen if the system succeeds?"
+- "What should happen if it fails?"
+
 ### Step 4 - Use Case Extraction
 
 The discovery conversation is converted into concrete workflows. Multiple workflows may be captured for one idea.
 
+Example workflow from the phase document:
+
+Workflow 1 - Automatic agent deployment
+
+1. user installs a plugin
+2. plugin registers a new capability
+3. system detects capability
+4. agent deployment is triggered
+
 ### Step 5 - Feature Story Generation
 
 The workflows are translated into structured user stories so the idea stays framed in user-value terms.
+
+Example format from the phase document:
+
+As a developer
+I want the system to automatically deploy agents when plugins are installed
+So that new capabilities become available immediately
 
 ### Step 6 - Idea Document Creation
 
@@ -86,7 +121,7 @@ A [Designer](../roles/designer.md) may generate conceptual representations such 
 
 ### Step 8 - Idea Review Package
 
-The system assembles a user review package that may include the idea summary, workflows, feature list, conceptual mockups, and an optional [Audio brief](../../schemas/artifacts/design/audio-brief.template.md).
+The system assembles a user review package that may include the idea summary, workflows, feature list, conceptual mockups, and an optional [Audio brief](../../schemas/artifacts/design/audio-brief.template.md) generated with the [Audio Brief Generator](../tools/audio-brief-generator.md).
 
 ### Step 9 - User Feedback Loop
 
@@ -117,6 +152,16 @@ Supporting artifacts:
 Optional artifacts:
 
 - [Audio brief](../../schemas/artifacts/design/audio-brief.template.md)
+
+Legacy source paths (historical reference only):
+/product/ideas/<feature>.md  
+/product/ideas/<feature>/brief.mp3  
+/backlog/ideas/<feature>/concept/
+
+Canonical repository paths:
+/roadmap/ideas/<idea>.md  
+/roadmap/ideas/<idea>/brief.mp3  
+/roadmap/ideas/<idea>/concept/
 
 ## Exit Paths
 

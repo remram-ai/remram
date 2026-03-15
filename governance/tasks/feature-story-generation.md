@@ -18,6 +18,12 @@ Convert workflows into structured user stories that keep the problem framed in u
 2. Convert each workflow into one or more structured user stories.
 3. Format the stories consistently.
 
+## Example
+
+As a developer
+I want the system to automatically deploy agents when plugins are installed
+So that new capabilities become available immediately
+
 ## Artifacts Created
 
 - user stories included in the idea document

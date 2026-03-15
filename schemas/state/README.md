@@ -1,6 +1,6 @@
 # State Schemas
 
-`schemas/state/` holds machine-readable persistent memory and working-state structures.
+`schemas/state/` holds Remram-owned runtime state structures.
 
 Convention:
 
@@ -8,7 +8,6 @@ Convention:
 
 Current schemas:
 
-- [Agent State](agent-state.schema.json)
-- [Project State](project-state.schema.json)
-- [Task State](task-state.schema.json)
 - [Runtime State](runtime-state.schema.json)
+
+Forge-owned orchestration state schemas live in [remram-forge/schemas/state/](https://github.com/remram-ai/remram-forge/blob/main/schemas/state/README.md).

@@ -4,15 +4,16 @@ Remram is the vision and architecture hub for the Remram ecosystem.
 
 This repository explains what Remram is, why it exists, how the ecosystem fits together, and where contributors should go next. It is the public front door for the project, not the primary home for implementation details.
 
-Active repository documentation lives under `docs/`, strategic planning lives under `roadmap/`, approved feature lifecycle work lives under `features/`, governance material lives under `governance/`, canonical format definitions live under `schemas/`, concise technical reference lives under `reference/`, the living capability registry lives under `platform/`, and historical material lives under `archive/`.
+Active repository documentation lives under `docs/`, strategic planning lives under `roadmap/`, approved feature lifecycle work lives under `features/`, Remram-owned architecture and runtime schemas live under `schemas/`, concise technical reference lives under `reference/`, the living capability registry lives under `platform/`, historical material lives under `archive/`, and Forge lifecycle governance plus lifecycle artifact schemas now live in [`remram-forge`](https://github.com/remram-ai/remram-forge).
 
 ## Repository Structure
 
 - [roadmap/](roadmap/README.md): planning artifacts, including ideas and proposals
 - [features/](features/README.md): approved feature lifecycle artifacts and implementation work
 - [platform/](platform/README.md): the registry of active platform items
-- [governance/](governance/README.md): governance and lifecycle documentation
-- [schemas/](schemas/README.md): canonical schema namespaces and format definitions
+- [schemas/](schemas/README.md): Remram-owned architecture and runtime schema namespaces
+- [Forge Governance](https://github.com/remram-ai/remram-forge/blob/main/governance/README.md): lifecycle, governance, and orchestration documentation
+- [Forge Schemas](https://github.com/remram-ai/remram-forge/blob/main/schemas/README.md): lifecycle artifact templates and orchestration state schemas
 - [reference/](reference/README.md): concise technical reference material
 - [docs/](docs/README.md): system documentation, architecture explanation, feature documentation, operations, and AI context
 - [archive/](archive/): preserved historical material
@@ -31,7 +32,7 @@ Idea (Stage 1, roadmap/ideas/)
 Platform items are technical deliverables.
 Feature documentation describes the user-facing capability built from those deliverables.
 
-The chronological lifecycle definitions live under [governance/lifecycle/](governance/lifecycle/README.md).
+The chronological lifecycle definitions live under [Forge Governance Lifecycle](https://github.com/remram-ai/remram-forge/blob/main/governance/lifecycle/README.md).
 
 ## Release Posture
 
@@ -91,6 +92,7 @@ Within Gateway / Moltbox, orchestration via OpenClaw and operator control are se
 ## Repository Links
 
 - [Remram](https://github.com/remram-ai/remram)
+- [Remram Forge](https://github.com/remram-ai/remram-forge)
 - [Moltbox Gateway](https://github.com/remram-ai/moltbox-gateway)
 - [Remram Cortex](https://github.com/remram-ai/remram-cortex)
 - [Remram App](https://github.com/remram-ai/remram-app)
@@ -102,7 +104,8 @@ Within Gateway / Moltbox, orchestration via OpenClaw and operator control are se
 - [Roadmap](roadmap/README.md)
 - [Features](features/README.md)
 - [Platform Registry](platform/README.md)
-- [Governance](governance/README.md)
+- [Forge Governance](https://github.com/remram-ai/remram-forge/blob/main/governance/README.md)
+- [Forge Schemas](https://github.com/remram-ai/remram-forge/blob/main/schemas/README.md)
 - [Schemas](schemas/README.md)
 - [Reference](reference/README.md)
 - [Feature Documentation](docs/features/README.md)
@@ -117,7 +120,7 @@ This repository preserves lifecycle artifacts under:
 - `roadmap/proposals/` for Stage 2 proposal development
 - `features/` once proposal approval creates an active feature
 
-Use [Roadmap](roadmap/README.md) for the planning directories, [Governance Lifecycle](governance/lifecycle/README.md) for the stage definitions, and [Features](features/README.md) for the implementation-facing feature structure.
+Use [Roadmap](roadmap/README.md) for the planning directories, [Forge Governance Lifecycle](https://github.com/remram-ai/remram-forge/blob/main/governance/lifecycle/README.md) for the stage definitions, and [Features](features/README.md) for the implementation-facing feature structure.
 
 Historical context and superseded planning material remain in `archive/`.
 
@@ -126,10 +129,10 @@ Historical context and superseded planning material remain in `archive/`.
 - Want to understand the current documentation system: start with [docs/README.md](docs/README.md)
 - Want a fast AI-assistant bootstrap: start with [docs/ai-context/README.md](docs/ai-context/README.md)
 - Want to understand planning and lifecycle layout: start with [roadmap/README.md](roadmap/README.md), [features/README.md](features/README.md), and [platform/README.md](platform/README.md)
-- Want the end-to-end SDLC path from idea to implementation: read [roadmap/README.md](roadmap/README.md), [governance/lifecycle/README.md](governance/lifecycle/README.md), [features/README.md](features/README.md), and [schemas/artifacts/README.md](schemas/artifacts/README.md) for artifact templates
+- Want the end-to-end SDLC path from idea to implementation: read [roadmap/README.md](roadmap/README.md), [Forge Governance Lifecycle](https://github.com/remram-ai/remram-forge/blob/main/governance/lifecycle/README.md), [features/README.md](features/README.md), and [Forge Schemas](https://github.com/remram-ai/remram-forge/blob/main/schemas/README.md) for artifact templates
 - Want user-facing capability docs once the deliverables exist: use [docs/features/README.md](docs/features/README.md)
-- Want governance and lifecycle rules: use [governance/README.md](governance/README.md)
-- Want canonical schemas and namespace routing: use [schemas/README.md](schemas/README.md)
+- Want governance and lifecycle rules: use [Forge Governance](https://github.com/remram-ai/remram-forge/blob/main/governance/README.md)
+- Want canonical architecture and runtime schemas: use [schemas/README.md](schemas/README.md)
 - Want concise command or endpoint lookup: use [reference/README.md](reference/README.md)
 - Want to review earlier material: use `archive/`
 

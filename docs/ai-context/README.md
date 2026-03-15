@@ -10,7 +10,7 @@ Repository structure and lifecycle:
 roadmap/    -> ideas and proposals
 features/   -> approved feature lifecycle work
 platform/   -> active platform items
-governance/ -> lifecycle, roles, tasks, workflows, and policies
+remram-forge/governance/ -> lifecycle, roles, tasks, workflows, and policies
 reference/  -> persistent technical reference knowledge
 docs/       -> architecture, feature docs, concepts, operations, and AI bootstrap
 
@@ -46,7 +46,7 @@ Canonical sources:
 - [Feature Documentation](../features/README.md)
 - [Roadmap](../../roadmap/README.md)
 - [Features](../../features/README.md)
-- [Governance](../../governance/README.md)
+- [Forge Governance](https://github.com/remram-ai/remram-forge/blob/main/governance/README.md)
 - [Reference](../../reference/README.md)
 - [Platform Registry](../../platform/README.md)
 

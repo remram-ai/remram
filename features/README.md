@@ -57,15 +57,15 @@ Lifecycle routing:
 - Stage 1 captures the idea in `roadmap/ideas/`.
 - Stage 2 evaluates that idea and produces a proposal package in `roadmap/proposals/<proposal>/`.
 - Proposal approval creates `features/<feature-name>/`.
-- [Stage 3 - Project Formation](../governance/lifecycle/stage-03-project-formation.md) and later stages continue from this directory, even though the workbook does not yet fully specify those later stage details.
+- [Stage 3 - Project Formation](https://github.com/remram-ai/remram-forge/blob/main/governance/lifecycle/stage-03-project-formation.md) and later stages continue from this directory, even though the workbook does not yet fully specify those later stage details.
 
 Useful template and schema references:
 
-- [Feature Spec Template](../schemas/artifacts/planning/feature-spec.template.md)
-- [Project Plan Template](../schemas/artifacts/planning/project-plan.template.md)
-- [Test Plan Template](../schemas/artifacts/reporting/test-plan.template.md)
-- [Project State Schema](../schemas/state/project-state.schema.json)
-- [Execution Log Template](../schemas/artifacts/execution/execution-log.template.md)
+- [Feature Spec Template](https://github.com/remram-ai/remram-forge/blob/main/schemas/artifacts/planning/feature-spec.template.md)
+- [Project Plan Template](https://github.com/remram-ai/remram-forge/blob/main/schemas/artifacts/planning/project-plan.template.md)
+- [Test Plan Template](https://github.com/remram-ai/remram-forge/blob/main/schemas/artifacts/reporting/test-plan.template.md)
+- [Project State Schema](https://github.com/remram-ai/remram-forge/blob/main/schemas/state/project-state.schema.json)
+- [Execution Log Template](https://github.com/remram-ai/remram-forge/blob/main/schemas/artifacts/execution/execution-log.template.md)
 
 ## Current Features
 
@@ -74,10 +74,11 @@ Useful template and schema references:
 - [Together Escalation](together-escalation/feature.md)
 - [Discord Channel](discord-channel/feature.md)
 - [Remram Cortex](remram-cortex/feature.md)
+- [Remram Forge](remram-forge/feature.md)
 
 Go next:
 
 - Start with [Roadmap](../roadmap/README.md) when work is still pre-approval.
-- Use [Governance Lifecycle](../governance/lifecycle/README.md) when you need the chronological stage path that leads into and continues beyond this directory.
+- Use [Forge Governance Lifecycle](https://github.com/remram-ai/remram-forge/blob/main/governance/lifecycle/README.md) when you need the chronological stage path that leads into and continues beyond this directory.
 - Use [Platform Registry](../platform/README.md) when feature work produces platform deliverables.
 - Use [Feature Documentation](../docs/features/README.md) when the approved capability is ready for user-facing documentation.

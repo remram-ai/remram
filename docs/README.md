@@ -7,8 +7,9 @@ This repository uses a simple documentation split:
 - `docs/` contains shared system documentation
 - `roadmap/` contains planning artifacts
 - `features/` contains approved feature lifecycle artifacts
-- `governance/` contains lifecycle and governance documentation
-- `schemas/` contains canonical schema namespaces and format definitions
+- `remram-forge/governance/` contains lifecycle and governance documentation
+- `schemas/` contains Remram-owned architecture and runtime schema namespaces
+- `remram-forge/schemas/` contains lifecycle artifact templates and orchestration state schemas
 - `reference/` contains concise technical reference material
 - `platform/` contains the living capability registry
 - `archive/` contains historical documentation
@@ -30,9 +31,9 @@ Feature documentation describes the user-facing capability built from those deli
 For the SDLC routing itself, the canonical navigation path is:
 
 1. [Roadmap](../roadmap/README.md)
-2. [Governance Lifecycle](../governance/lifecycle/README.md)
+2. [Forge Governance Lifecycle](https://github.com/remram-ai/remram-forge/blob/main/governance/lifecycle/README.md)
 3. [Features](../features/README.md)
-4. [Artifact Templates](../schemas/artifacts/README.md)
+4. [Forge Artifact Templates](https://github.com/remram-ai/remram-forge/blob/main/schemas/artifacts/README.md)
 
 Inside `docs/`, the material is organized into several primary areas:
 
@@ -49,8 +50,8 @@ Operational documentation also lives under `docs/` as its own layer so operator 
 ```text
 roadmap/         Ideas and proposals
 features/        Approved feature lifecycle artifacts
-governance/      Governance and lifecycle documentation
-schemas/         Canonical templates and machine schemas
+schemas/         Remram-owned architecture and runtime schemas
+remram-forge/    Lifecycle governance and lifecycle artifact schemas
 reference/       Technical reference material
 platform/        Living platform registry
 
@@ -251,7 +252,7 @@ Approved feature lifecycle artifacts and feature project work.
 Location:
 
 ```text
-governance/
+remram-forge/governance/
 ```
 
 Purpose:
@@ -269,6 +270,12 @@ schemas/
 Purpose:
 
 Canonical schema namespaces and shared format definitions.
+
+Forge-owned lifecycle templates and orchestration state contracts live in:
+
+```text
+remram-forge/schemas/
+```
 
 ### Platform Registry
 
@@ -301,9 +308,9 @@ Stores historical documentation and frozen reference material that should not be
 - User-facing capability docs: [Feature Documentation](features/README.md)
 - Vocabulary and definitions: [Concepts](concepts/README.md)
 - Operator: [Operations](operations/README.md)
-- Governance and lifecycle rules: [Governance](../governance/README.md)
+- Governance and lifecycle rules: [Forge Governance](https://github.com/remram-ai/remram-forge/blob/main/governance/README.md)
 - Canonical schemas and namespace routing: [Schemas](../schemas/README.md)
-- End-to-end SDLC flow: [Roadmap](../roadmap/README.md), [Governance Lifecycle](../governance/lifecycle/README.md), [Features](../features/README.md), [Artifact Templates](../schemas/artifacts/README.md)
+- End-to-end SDLC flow: [Roadmap](../roadmap/README.md), [Forge Governance Lifecycle](https://github.com/remram-ai/remram-forge/blob/main/governance/lifecycle/README.md), [Features](../features/README.md), [Forge Artifact Templates](https://github.com/remram-ai/remram-forge/blob/main/schemas/artifacts/README.md)
 - Technical lookup: [Reference](../reference/README.md)
 - AI assistant bootstrap: [AI Context](ai-context/README.md)
 - architecture audit and unresolved drift: `audits/`

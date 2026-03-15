@@ -8,7 +8,7 @@ Documentation layout:
 - `docs/concepts/` defines canonical vocabulary
 - `docs/operations/` explains operator workflows and CLI usage
 - `reference/` holds concise technical reference
-- `governance/` holds lifecycle, roles, tasks, workflows, and policies
+- `remram-forge/governance/` holds lifecycle, roles, tasks, workflows, and policies
 - `platform/` holds the living platform registry
 - `roadmap/ideas/` and `roadmap/proposals/` hold active planning artifacts before approval
 - `features/` holds approved feature lifecycle work
@@ -41,6 +41,6 @@ Canonical docs:
 - [CLI Architecture](../../overview/cli-architecture.md)
 - [Roadmap](../../../roadmap/README.md)
 - [Features](../../../features/README.md)
-- [Governance](../../../governance/README.md)
+- [Forge Governance](https://github.com/remram-ai/remram-forge/blob/main/governance/README.md)
 - [Reference](../../../reference/README.md)
 - [Platform Registry](../../../platform/README.md)

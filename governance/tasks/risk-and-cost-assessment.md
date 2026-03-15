@@ -19,7 +19,8 @@ Evaluate the proposal's impact, risk, and cost.
 2. Evaluate cross-service impact.
 3. Evaluate infrastructure changes.
 4. Evaluate whether new services are required.
-5. Evaluate token consumption or compute cost.
+5. Evaluate operational cost.
+6. Evaluate token consumption or compute cost.
 
 ## Artifacts Created
 

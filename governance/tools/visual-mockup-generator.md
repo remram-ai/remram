@@ -19,6 +19,7 @@ Generate conceptual UI or workflow mockups for designer-led review flows.
 ## Artifact Example
 
 - `/roadmap/ideas/<idea>/concept/`
+- `/roadmap/proposals/<proposal>/mockups/`
 
 ## Candidate Implementations
 

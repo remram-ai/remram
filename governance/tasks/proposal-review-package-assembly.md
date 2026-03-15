@@ -7,29 +7,31 @@ Assemble the decision package for leadership review.
 ## Inputs
 
 - [Product proposal](../../schemas/artifacts/planning/product-proposal.template.md)
-- executive summary
-- design mockups
+- [Proposal mockups](../../schemas/artifacts/design/proposal-mockups.template.md)
 - architecture commentary
-- assumptions list
+- assumptions
 - open questions
 
 ## Outputs
 
+- [Proposal decision](../../schemas/artifacts/planning/proposal-decision.template.md)
 - leadership review package
 - optional audio brief
 
 ## Steps
 
-1. Attach the proposal document.
-2. Attach the executive summary.
-3. Attach design mockups.
-4. Attach architecture commentary.
-5. Attach the assumptions list.
-6. Attach open questions.
-7. Optionally produce an audio brief.
+1. Create the decision document at `/roadmap/proposals/<proposal>/decision.md` with an initial `pending` status.
+2. Attach the proposal document.
+3. Attach proposal mockups when they exist.
+4. Attach architecture commentary and any supporting architecture sketches.
+5. Attach assumptions and open questions.
+6. Optionally produce an audio brief at `/roadmap/proposals/<proposal>/brief.mp3`.
+7. Present the package for leadership review.
+8. Update the decision document with the decision status, rationale, and review participants.
 
 ## Artifacts Created
 
+- `/roadmap/proposals/<proposal>/decision.md`
 - leadership review package
 - optional proposal briefing audio
 

@@ -32,6 +32,10 @@ New platform items must contain the operational documentation bundle:
 These files describe what the capability is, how it works, how operators run it, and how it is validated.
 Use [platform/templates/](./templates/) when creating a new platform item.
 
+Platform item `test-plan.md` files validate the component itself.
+
+Feature-level master acceptance plans live under `features/<feature>/test-plan.md` and roll up the top-level user or operator goals that those platform items must satisfy together.
+
 Platform items are technical deliverables.
 User-facing capability explanations belong under [docs/features/](../docs/features/README.md) once multiple deliverables form a coherent feature.
 

@@ -47,6 +47,12 @@ Use `features/` once a proposal has been approved into active feature work.
 
 Use `platform/` once a feature project has produced a defined platform deliverable under the correct implementation surface.
 
+Feature-level validation belongs under `features/<feature>/test-plan.md`.
+
+Platform-item validation belongs under `platform/<type>/<name>/test-plan.md`.
+
+The feature-level plan is the master acceptance plan for the overall capability. Platform-item plans prove the lower-level components.
+
 ## Related Concepts
 
 - [Plugin](plugin.md)

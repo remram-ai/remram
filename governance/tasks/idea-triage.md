@@ -11,7 +11,8 @@ Evaluate an approved idea and determine whether it should move forward into desi
 ## Outputs
 
 - triage conclusion on whether the idea proceeds
-- refined understanding of problem statement and scope
+- refined understanding of problem statement, uniqueness, and approximate scope
+- identified gaps that must be resolved before proposal drafting
 
 ## Steps
 
@@ -19,6 +20,7 @@ Evaluate an approved idea and determine whether it should move forward into desi
 2. Review workflows and user stories.
 3. Confirm idea uniqueness.
 4. Determine overall scope.
+5. Record any missing information that must be resolved during proposal development.
 
 ## Artifacts Created
 

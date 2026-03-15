@@ -16,11 +16,17 @@ Convert user needs into a preliminary component map.
 ## Steps
 
 1. Review the user needs captured in the idea.
-2. Determine whether the work requires a plugin.
-3. Determine whether the work requires a skill.
-4. Determine whether the work requires a service.
-5. Determine whether the work is only configuration of an existing capability.
-6. Determine whether multiple components are required.
+2. Review which platform surfaces are involved:
+   - `/platform/core`
+   - `/platform/plugins`
+   - `/platform/services`
+   - `/platform/skills`
+   - `/platform/templates`
+3. Determine whether the work requires a plugin.
+4. Determine whether the work requires a skill.
+5. Determine whether the work requires a service.
+6. Determine whether the work is only configuration of an existing capability.
+7. Determine whether multiple components are required.
 
 ## Artifacts Created
 

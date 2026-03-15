@@ -13,6 +13,7 @@ Identify whether the proposal should reuse, extend, or avoid existing OpenClaw c
 - preliminary component map
 - current proposal direction
 - available knowledge of OpenClaw core, community extensions, and internal plugins
+- `/reference/openclaw/` when relevant reference material exists
 
 ## Focus Areas
 

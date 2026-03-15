@@ -10,5 +10,6 @@ Current templates:
 
 - [Idea Document](idea-document.template.md)
 - [Product Proposal](product-proposal.template.md)
+- [Proposal Decision](proposal-decision.template.md)
 - [Feature Spec](feature-spec.template.md)
 - [Project Plan](project-plan.template.md)

@@ -11,7 +11,7 @@ Idea (`roadmap/ideas/`) -> Proposal (`roadmap/proposals/`) -> Approved Feature (
 ```
 
 - `ideas/` captures Stage 1 intake outputs: exploratory concepts, experiments, and design hypotheses.
-- `proposals/` captures Stage 2 proposal artifacts awaiting leadership approval.
+- `proposals/` captures Stage 2 proposal packages awaiting leadership approval.
 - `features/` at the repository root holds the approved feature lifecycle work created after proposal approval.
 - `platform/` holds active platform items once approved feature work produces a defined implementation surface.
 - `docs/features/` holds the user-facing capability documentation assembled from completed platform deliverables.
@@ -25,10 +25,10 @@ Lifecycle routing:
 Platform items are technical deliverables.
 Feature documentation describes the user-facing capability built from those deliverables.
 
-Use the roadmap templates when creating or promoting planning artifacts:
+Use the roadmap entry points when creating or promoting planning artifacts:
 
 - [Idea Template](./ideas/_template.md)
-- [Proposal Template](./proposals/_template.md)
+- [Proposal Package Pointer](./proposals/_template.md)
 - [Ideas README](./ideas/README.md)
 - [Proposals README](./proposals/README.md)
 

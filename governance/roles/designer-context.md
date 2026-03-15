@@ -23,5 +23,5 @@ Produce design artifacts that communicate the intended experience clearly enough
 ## Outputs
 
 - [Concept materials](../../schemas/artifacts/design/concept-materials.template.md)
-- proposal mockups when requested
+- [Proposal mockups](../../schemas/artifacts/design/proposal-mockups.template.md) when requested
 

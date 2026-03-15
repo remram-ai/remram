@@ -10,4 +10,5 @@ Current templates:
 
 - [Architecture Document](architecture-document.template.md)
 - [Concept Materials](concept-materials.template.md)
+- [Proposal Mockups](proposal-mockups.template.md)
 - [Audio Brief](audio-brief.template.md)

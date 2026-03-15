@@ -2,28 +2,37 @@
 
 Canonical artifact location:
 
-- `/roadmap/proposals/<proposal>.md`
+- `/roadmap/proposals/<proposal>/proposal.md`
 
 ## Executive Summary
 
 [Summarize the proposal and recommendation.]
 
-## Feature Overview
+## Problem Definition
 
-- Proposed feature: [feature-name]
-- Source idea: [idea-name]
-- Intended outcome: [outcome]
+[Describe the problem or opportunity that the proposal addresses.]
 
-## Proposed Architecture
+## User Workflows
 
-[Describe the architecture approach at proposal depth.]
+[Summarize the main workflows that the proposal must support.]
 
-## Implementation Components
+## Capability Decomposition
 
-- [Component or workstream]
-- [Component or workstream]
+[Map the proposal to the platform components or capability surfaces involved.]
 
-## Risks
+## Proposed Implementation
+
+[Describe the conceptual implementation approach.]
+
+## Platform Surfaces Affected
+
+- `/platform/core`
+- `/platform/plugins`
+- `/platform/services`
+- `/platform/skills`
+- `/platform/templates`
+
+## Risk Assessment
 
 - [Risk]
 
@@ -38,7 +47,3 @@ Canonical artifact location:
 ## Open Questions
 
 - [Question]
-
-## Decision Status
-
-- Status: [ready-for-decision, approved, revision-requested, rejected]

@@ -6,10 +6,10 @@ Maintain current knowledge of the OpenClaw ecosystem and guide the SDLC toward t
 
 ## Responsibilities
 
-- track community updates
-- monitor OpenClaw releases
-- maintain indexed capability knowledge
-- advise on extension points
+- review existing OpenClaw capabilities
+- identify community plugins
+- suggest extension points
+- maintain indexed capability knowledge for proposal work
 
 ## Stages Involved
 
@@ -27,3 +27,7 @@ Maintain current knowledge of the OpenClaw ecosystem and guide the SDLC toward t
 
 - provides subject-matter input during proposal development
 - does not own an approval checkpoint in the current workbook
+
+## Reference Material
+
+- `/reference/openclaw/`

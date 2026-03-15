@@ -1,8 +1,8 @@
 # Proposals
 
-`roadmap/proposals/` holds proposal-level planning documents.
+`roadmap/proposals/` holds Stage 2 proposal packages.
 
-This directory is the repository home for Stage 2 proposal outputs.
+This directory is the repository home for proposal-level planning outputs awaiting leadership review.
 
 Proposals are the second stage in the planning lifecycle:
 
@@ -11,13 +11,26 @@ Idea -> Proposal -> Feature
 ```
 
 - Ideas are exploratory concepts captured in `roadmap/ideas/`.
-- Proposals are the decision-ready artifacts created during [Stage 2 - Product Evaluation and Proposal](../../governance/lifecycle/stage-02-product-evaluation-and-proposal.md).
-- The canonical Stage 2 artifact is the [Product Proposal](../../schemas/artifacts/planning/product-proposal.template.md), stored at `/roadmap/proposals/<proposal>.md`.
+- Proposals are the decision-ready packages created during [Stage 2 - Product Evaluation and Proposal](../../governance/lifecycle/stage-02-product-evaluation-and-proposal.md).
+- Each proposal lives in its own folder under `roadmap/proposals/`.
 - Approved proposals become active features in [features/](../../features/README.md).
 
-Use the proposal template when creating or promoting a proposal:
+Canonical Stage 2 proposal package layout:
 
-- [Proposal Template](./_template.md)
+```text
+/roadmap/proposals/<proposal>/
+  proposal.md
+  decision.md
+  mockups/
+  brief.mp3 (optional)
+```
+
+Use the canonical Stage 2 templates when creating or promoting a proposal:
+
+- [Product Proposal Template](../../schemas/artifacts/planning/product-proposal.template.md)
+- [Proposal Decision Template](../../schemas/artifacts/planning/proposal-decision.template.md)
+- [Proposal Mockups Template](../../schemas/artifacts/design/proposal-mockups.template.md)
+- [Local Proposal Pointer](./_template.md)
 
 Go next:
 

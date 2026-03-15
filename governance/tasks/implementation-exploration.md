@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Define how the system could implement the idea.
+Define one or more conceptual ways the system could implement the idea.
 
 ## Inputs
 
@@ -21,6 +21,7 @@ Define how the system could implement the idea.
 3. Identify required skills.
 4. Identify required configuration changes.
 5. Identify integration points.
+6. Keep the exploration at conceptual depth rather than full engineering design.
 
 ## Artifacts Created
 

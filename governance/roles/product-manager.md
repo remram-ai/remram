@@ -7,12 +7,13 @@ Translate an approved idea into a concrete product proposal that is ready for le
 ## Responsibilities
 
 - triage approved ideas
-- decompose needs into components
+- translate user needs into system components
+- assess feasibility against platform surfaces
 - review existing OpenClaw and internal capabilities before proposing new work
 - explore implementation approaches
 - assess risk and cost
-- generate the proposal document
-- assemble the leadership review package
+- generate the formal proposal
+- assemble the proposal review package
 - revise proposals when leadership requests changes
 
 ## Stages Involved
@@ -37,6 +38,6 @@ Translate an approved idea into a concrete product proposal that is ready for le
 
 ## Review and Approval Responsibilities
 
-- prepares the decision package for leadership
+- prepares the proposal and decision package for leadership
 - incorporates scope, architecture, or implementation feedback when revision is requested
 - closes the proposal when leadership rejects it

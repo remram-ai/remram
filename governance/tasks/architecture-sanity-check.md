@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Provide a lightweight architectural review before the proposal is finalized.
+Provide the single-pass architectural sanity check described for Stage 2 before the proposal is finalized.
 
 ## Inputs
 
@@ -20,6 +20,7 @@ Provide a lightweight architectural review before the proposal is finalized.
 2. Flag architectural risks.
 3. Identify major integration concerns.
 4. Suggest simpler implementation patterns where appropriate.
+5. Avoid turning the review into full architecture design.
 
 ## Artifacts Created
 

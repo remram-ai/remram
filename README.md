@@ -12,7 +12,7 @@ Active repository documentation lives under `docs/`, strategic planning lives un
 - [features/](features/README.md): approved feature lifecycle artifacts and implementation work
 - [platform/](platform/README.md): the registry of active platform items
 - [governance/](governance/README.md): governance and lifecycle documentation
-- [schemas/](schemas/README.md): canonical artifact, state, and context schema definitions
+- [schemas/](schemas/README.md): canonical schema namespaces and format definitions
 - [reference/](reference/README.md): concise technical reference material
 - [docs/](docs/README.md): system documentation, architecture explanation, feature documentation, operations, and AI context
 - [archive/](archive/): preserved historical material
@@ -124,7 +124,7 @@ Historical context and superseded planning material remain in `archive/`.
 - Want to understand planning and lifecycle layout: start with [roadmap/README.md](roadmap/README.md), [features/README.md](features/README.md), and [platform/README.md](platform/README.md)
 - Want user-facing capability docs once the deliverables exist: use [docs/features/README.md](docs/features/README.md)
 - Want governance and lifecycle rules: use [governance/README.md](governance/README.md)
-- Want canonical artifact and state formats: use [schemas/README.md](schemas/README.md)
+- Want canonical schemas and namespace routing: use [schemas/README.md](schemas/README.md)
 - Want concise command or endpoint lookup: use [reference/README.md](reference/README.md)
 - Want to review earlier material: use `archive/`
 

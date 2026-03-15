@@ -10,7 +10,7 @@ Produce design artifacts that communicate the intended experience clearly enough
 
 ## Required Inputs
 
-- [Idea document](../../schemas/idea-document.md) or [Product proposal](../../schemas/product-proposal.md)
+- [Idea document](../../schemas/artifacts/idea-document.md) or [Product proposal](../../schemas/artifacts/product-proposal.md)
 - example workflows
 - current review objective
 
@@ -22,6 +22,6 @@ Produce design artifacts that communicate the intended experience clearly enough
 
 ## Outputs
 
-- [Concept materials](../../schemas/concept-materials.md)
+- [Concept materials](../../schemas/artifacts/concept-materials.md)
 - proposal mockups when requested
 

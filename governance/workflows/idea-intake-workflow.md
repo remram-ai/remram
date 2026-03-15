@@ -30,9 +30,9 @@ A new idea, feature request, capability request, or workflow improvement enters 
 
 ## Outputs
 
-- [Idea document](../../schemas/idea-document.md)
-- [Concept materials](../../schemas/concept-materials.md)
-- [Audio brief](../../schemas/audio-brief.md), when generated
+- [Idea document](../../schemas/artifacts/idea-document.md)
+- [Concept materials](../../schemas/artifacts/concept-materials.md)
+- [Audio brief](../../schemas/artifacts/audio-brief.md), when generated
 - review package
 
 ## Loops and Decisions

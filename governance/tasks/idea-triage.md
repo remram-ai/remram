@@ -6,7 +6,7 @@ Evaluate an approved idea and determine whether it should move forward into desi
 
 ## Inputs
 
-- approved [Idea document](../../schemas/idea-document.md)
+- approved [Idea document](../../schemas/artifacts/idea-document.md)
 
 ## Outputs
 

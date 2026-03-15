@@ -34,7 +34,7 @@ The Product Manager periodically scans `/roadmap/ideas/` for unprocessed approve
 
 ## Outputs
 
-- [Product proposal](../../schemas/product-proposal.md)
+- [Product proposal](../../schemas/artifacts/product-proposal.md)
 - executive summary
 - design mockups
 - architecture commentary

@@ -15,7 +15,7 @@ Create the complete product proposal document.
 
 ## Outputs
 
-- [Product proposal](../../schemas/product-proposal.md)
+- [Product proposal](../../schemas/artifacts/product-proposal.md)
 
 ## Steps
 

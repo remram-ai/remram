@@ -8,7 +8,7 @@ This repository uses a simple documentation split:
 - `roadmap/` contains planning artifacts
 - `features/` contains approved feature lifecycle artifacts
 - `governance/` contains lifecycle and governance documentation
-- `schemas/` contains canonical artifact and state schema definitions
+- `schemas/` contains canonical schema namespaces and format definitions
 - `reference/` contains concise technical reference material
 - `platform/` contains the living capability registry
 - `archive/` contains historical documentation
@@ -261,7 +261,7 @@ schemas/
 
 Purpose:
 
-Canonical artifact, state, and context model definitions.
+Canonical schema namespaces and shared format definitions.
 
 ### Platform Registry
 
@@ -295,7 +295,7 @@ Stores historical documentation and frozen reference material that should not be
 - Vocabulary and definitions: [Concepts](concepts/README.md)
 - Operator: [Operations](operations/README.md)
 - Governance and lifecycle rules: [Governance](../governance/README.md)
-- Canonical artifact and state formats: [Schemas](../schemas/README.md)
+- Canonical schemas and namespace routing: [Schemas](../schemas/README.md)
 - Technical lookup: [Reference](../reference/README.md)
 - AI assistant bootstrap: [AI Context](ai-context/README.md)
 - architecture audit and unresolved drift: `audits/`

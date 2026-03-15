@@ -18,12 +18,12 @@ Approved ideas enter the product evaluation queue from `/roadmap/ideas/`. The Pr
 
 - approved idea document
 - workflows and user stories from stage 1
-- [Concept materials](../../schemas/concept-materials.md)
+- [Concept materials](../../schemas/artifacts/concept-materials.md)
 - current knowledge of existing OpenClaw and internal capabilities
 
 ## Outputs
 
-- [Product proposal](../../schemas/product-proposal.md)
+- [Product proposal](../../schemas/artifacts/product-proposal.md)
 - executive summary
 - review package for leadership
 - optional audio brief

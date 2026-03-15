@@ -26,6 +26,6 @@ Create concept and design materials that make the proposed experience legible fo
 
 ## Review and Approval Responsibilities
 
-- supplies [Concept materials](../../schemas/concept-materials.md) and proposal mockups for review packages
+- supplies [Concept materials](../../schemas/artifacts/concept-materials.md) and proposal mockups for review packages
 - does not own the approval gate in the current workbook
 

@@ -10,9 +10,9 @@ Turn an approved idea into a decision-ready product proposal.
 
 ## Required Inputs
 
-- approved [Idea document](../../schemas/idea-document.md)
+- approved [Idea document](../../schemas/artifacts/idea-document.md)
 - stage 1 workflows and user stories
-- stage 1 [Concept materials](../../schemas/concept-materials.md)
+- stage 1 [Concept materials](../../schemas/artifacts/concept-materials.md)
 - capability knowledge needed to review OpenClaw and internal options
 
 ## Focus Areas

@@ -2,35 +2,19 @@
 
 `schemas/` is the canonical location for repository-wide format definitions.
 
-Use this directory when you need the authoritative structure for artifacts, state files, context layers, or other shared data models.
+Use this directory when you need the authoritative structure for artifacts, state files, context layers, runtime payloads, or external data contracts.
 
-## Shared Models
+## Namespace Model
 
-- [Context Model](context-model.md)
+- [artifacts/](artifacts/README.md): structured work artifacts created by humans or agents
+- [org/](org/README.md): structural definitions describing how the system is composed
+- [state/](state/README.md): persistent memory and working-state structures
+- [gateway/](gateway/README.md): runtime and control-plane schemas produced by the Moltbox gateway
+- [external/](external/README.md): third-party schemas that RemRam must conform to
 
-## Artifact Families
+## Current Canonical Schemas
 
-- [Product Artifacts](product-artifacts.md)
-- [Engineering Artifacts](engineering-artifacts.md)
-- [Runtime State Artifacts](runtime-state-artifacts.md)
-
-## Product Artifact Schemas
-
-- [Idea Document](idea-document.md)
-- [Product Proposal](product-proposal.md)
-- [Feature Spec](feature-spec.md)
-- [Architecture Document](architecture-document.md)
-- [Test Plan](test-plan.md)
-- [Concept Materials](concept-materials.md)
-- [Audio Brief](audio-brief.md)
-
-## Execution and State Schemas
-
-- [Project Plan](project-plan.md)
-- [Project State JSON](project-state-json.md)
-- [Agent State JSON](agent-state-json.md)
-- [Task State JSON](task-state-json.md)
-- [Execution Log](execution-log.md)
+The current Stage 1 schema set is now routed under [artifacts/](artifacts/README.md).
 
 Related governance narrative:
 

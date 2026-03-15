@@ -6,7 +6,7 @@ Convert user needs into a preliminary component map.
 
 ## Inputs
 
-- approved [Idea document](../../schemas/idea-document.md)
+- approved [Idea document](../../schemas/artifacts/idea-document.md)
 - workflows and user stories
 
 ## Outputs

@@ -32,7 +32,7 @@ For the SDLC routing itself, the canonical navigation path is:
 1. [Roadmap](../roadmap/README.md)
 2. [Governance Lifecycle](../governance/lifecycle/README.md)
 3. [Features](../features/README.md)
-4. [Artifact Schemas](../schemas/artifacts/README.md)
+4. [Artifact Templates](../schemas/artifacts/README.md)
 
 Inside `docs/`, the material is organized into several primary areas:
 
@@ -50,7 +50,7 @@ Operational documentation also lives under `docs/` as its own layer so operator 
 roadmap/         Ideas and proposals
 features/        Approved feature lifecycle artifacts
 governance/      Governance and lifecycle documentation
-schemas/         Canonical artifact and state schemas
+schemas/         Canonical templates and machine schemas
 reference/       Technical reference material
 platform/        Living platform registry
 
@@ -303,7 +303,7 @@ Stores historical documentation and frozen reference material that should not be
 - Operator: [Operations](operations/README.md)
 - Governance and lifecycle rules: [Governance](../governance/README.md)
 - Canonical schemas and namespace routing: [Schemas](../schemas/README.md)
-- End-to-end SDLC flow: [Roadmap](../roadmap/README.md), [Governance Lifecycle](../governance/lifecycle/README.md), [Features](../features/README.md), [Artifact Schemas](../schemas/artifacts/README.md)
+- End-to-end SDLC flow: [Roadmap](../roadmap/README.md), [Governance Lifecycle](../governance/lifecycle/README.md), [Features](../features/README.md), [Artifact Templates](../schemas/artifacts/README.md)
 - Technical lookup: [Reference](../reference/README.md)
 - AI assistant bootstrap: [AI Context](ai-context/README.md)
 - architecture audit and unresolved drift: `audits/`

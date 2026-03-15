@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Project State",
+  "description": "Persistent execution state for a feature project.",
+  "type": "object",
+  "properties": {
+    "featureName": {
+      "type": "string"
+    },
+    "projectName": {
+      "type": "string"
+    },
+    "lifecycleStage": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "checkpoints": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "activeTasks": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "featureName",
+    "projectName",
+    "status"
+  ],
+  "additionalProperties": true
+}

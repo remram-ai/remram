@@ -34,9 +34,9 @@ Known intake sources from the stage narrative:
 
 ## Outputs
 
-- [Idea document](../../schemas/artifacts/idea-document.md) stored in `/roadmap/ideas/<idea>.md`
-- [Concept materials](../../schemas/artifacts/concept-materials.md)
-- [Audio brief](../../schemas/artifacts/audio-brief.md), when generated
+- [Idea document](../../schemas/artifacts/planning/idea-document.template.md) stored in `/roadmap/ideas/<idea>.md`
+- [Concept materials](../../schemas/artifacts/design/concept-materials.template.md)
+- [Audio brief](../../schemas/artifacts/design/audio-brief.template.md), when generated
 - user review package
 - idea status transitions such as `approved`, `cancelled`, or `pending-user`
 
@@ -78,7 +78,7 @@ The workflows are translated into structured user stories so the idea stays fram
 
 ### Step 6 - Idea Document Creation
 
-The discovery outputs are consolidated into the [Idea document](../../schemas/artifacts/idea-document.md).
+The discovery outputs are consolidated into the [Idea document](../../schemas/artifacts/planning/idea-document.template.md).
 
 ### Step 7 - Conceptual Mock Generation
 
@@ -86,7 +86,7 @@ A [Designer](../roles/designer.md) may generate conceptual representations such 
 
 ### Step 8 - Idea Review Package
 
-The system assembles a user review package that may include the idea summary, workflows, feature list, conceptual mockups, and an optional [Audio brief](../../schemas/artifacts/audio-brief.md).
+The system assembles a user review package that may include the idea summary, workflows, feature list, conceptual mockups, and an optional [Audio brief](../../schemas/artifacts/design/audio-brief.template.md).
 
 ### Step 9 - User Feedback Loop
 
@@ -108,15 +108,15 @@ Not all ideas proceed to approval. The stage may end in approval, cancellation, 
 
 Primary artifact:
 
-- [Idea document](../../schemas/artifacts/idea-document.md)
+- [Idea document](../../schemas/artifacts/planning/idea-document.template.md)
 
 Supporting artifacts:
 
-- [Concept materials](../../schemas/artifacts/concept-materials.md)
+- [Concept materials](../../schemas/artifacts/design/concept-materials.template.md)
 
 Optional artifacts:
 
-- [Audio brief](../../schemas/artifacts/audio-brief.md)
+- [Audio brief](../../schemas/artifacts/design/audio-brief.template.md)
 
 ## Exit Paths
 

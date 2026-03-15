@@ -1,0 +1,41 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Context Model",
+  "description": "Layered organizational definition for agent execution context assembly.",
+  "type": "object",
+  "properties": {
+    "governanceLayer": {
+      "type": "object"
+    },
+    "teamLayer": {
+      "type": "object"
+    },
+    "roleLayer": {
+      "type": "object"
+    },
+    "workflowLayer": {
+      "type": "object"
+    },
+    "taskTemplateLayer": {
+      "type": "object"
+    },
+    "projectContext": {
+      "type": "object"
+    },
+    "stageContext": {
+      "type": "object"
+    },
+    "workingMemory": {
+      "type": "object"
+    },
+    "toolLayer": {
+      "type": "object"
+    }
+  },
+  "required": [
+    "governanceLayer",
+    "roleLayer",
+    "workflowLayer"
+  ],
+  "additionalProperties": true
+}

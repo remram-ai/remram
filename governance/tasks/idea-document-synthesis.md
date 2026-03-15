@@ -14,7 +14,7 @@ Create the canonical idea artifact.
 
 ## Outputs
 
-- [Idea document](../../schemas/artifacts/idea-document.md)
+- [Idea document](../../schemas/artifacts/planning/idea-document.template.md)
 
 ## Steps
 

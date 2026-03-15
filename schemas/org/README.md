@@ -1,5 +1,13 @@
 # Org Schemas
 
-`schemas/org/` is reserved for structural definitions that describe how the system is composed.
+`schemas/org/` holds machine-readable structural definitions that describe how the system is composed.
 
-Planned examples include project, team, agent, role, and workflow definitions.
+Convention:
+
+- machine schemas use `.schema.json`
+
+Current schemas:
+
+- [Context Model](context-model.schema.json)
+
+Future examples may include project, team, agent, role, and workflow definitions.

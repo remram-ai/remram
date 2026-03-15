@@ -11,7 +11,7 @@ Idea -> Proposal -> Feature
 ```
 
 - Ideas are exploratory concepts captured during [Stage 1 - Intake and Idea Formation](../../governance/lifecycle/stage-01-intake-and-idea-formation.md).
-- The canonical Stage 1 artifact is the [Idea Document](../../schemas/artifacts/idea-document.md), stored at `/roadmap/ideas/<idea>.md`.
+- The canonical Stage 1 artifact is the [Idea Document](../../schemas/artifacts/planning/idea-document.template.md), stored at `/roadmap/ideas/<idea>.md`.
 - Proposals are the Stage 2 planning artifacts waiting for leadership approval.
 - Approved features continue implementation under [features/](../../features/README.md) and may later produce platform items in the living [platform registry](../../platform/README.md).
 

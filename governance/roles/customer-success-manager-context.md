@@ -12,8 +12,8 @@ Turn the incoming request into a validated idea artifact that the user explicitl
 
 - current user conversation
 - current request classification
-- draft or active [Idea document](../../schemas/artifacts/idea-document.md), if it already exists
-- existing [Concept materials](../../schemas/artifacts/concept-materials.md), if this is a revision loop
+- draft or active [Idea document](../../schemas/artifacts/planning/idea-document.template.md), if it already exists
+- existing [Concept materials](../../schemas/artifacts/design/concept-materials.template.md), if this is a revision loop
 
 ## Focus Areas
 

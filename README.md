@@ -126,7 +126,7 @@ Historical context and superseded planning material remain in `archive/`.
 - Want to understand the current documentation system: start with [docs/README.md](docs/README.md)
 - Want a fast AI-assistant bootstrap: start with [docs/ai-context/README.md](docs/ai-context/README.md)
 - Want to understand planning and lifecycle layout: start with [roadmap/README.md](roadmap/README.md), [features/README.md](features/README.md), and [platform/README.md](platform/README.md)
-- Want the end-to-end SDLC path from idea to implementation: read [roadmap/README.md](roadmap/README.md), [governance/lifecycle/README.md](governance/lifecycle/README.md), [features/README.md](features/README.md), and [schemas/artifacts/README.md](schemas/artifacts/README.md)
+- Want the end-to-end SDLC path from idea to implementation: read [roadmap/README.md](roadmap/README.md), [governance/lifecycle/README.md](governance/lifecycle/README.md), [features/README.md](features/README.md), and [schemas/artifacts/README.md](schemas/artifacts/README.md) for artifact templates
 - Want user-facing capability docs once the deliverables exist: use [docs/features/README.md](docs/features/README.md)
 - Want governance and lifecycle rules: use [governance/README.md](governance/README.md)
 - Want canonical schemas and namespace routing: use [schemas/README.md](schemas/README.md)

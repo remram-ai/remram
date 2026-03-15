@@ -1,5 +1,14 @@
 # State Schemas
 
-`schemas/state/` is reserved for persistent memory and working-state structures.
+`schemas/state/` holds machine-readable persistent memory and working-state structures.
 
-Planned examples include agent, task, project, and context state definitions.
+Convention:
+
+- machine schemas use `.schema.json`
+
+Current schemas:
+
+- [Agent State](agent-state.schema.json)
+- [Project State](project-state.schema.json)
+- [Task State](task-state.schema.json)
+- [Runtime State](runtime-state.schema.json)

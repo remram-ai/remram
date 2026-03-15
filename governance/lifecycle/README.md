@@ -8,7 +8,7 @@ For repository navigation, the first lifecycle handoffs map to directories as fo
 - [Stage 2 - Product Evaluation and Proposal](stage-02-product-evaluation-and-proposal.md) -> `roadmap/proposals/`
 - [Stage 3 - Project Formation](stage-03-project-formation.md) and later implementation stages -> `features/`
 
-Use [Roadmap](../../roadmap/README.md) for the planning directories, [Features](../../features/README.md) for the approved feature structure, and [Artifact Schemas](../../schemas/artifacts/README.md) for the canonical file formats used across those stages.
+Use [Roadmap](../../roadmap/README.md) for the planning directories, [Features](../../features/README.md) for the approved feature structure, and [Artifact Templates](../../schemas/artifacts/README.md) for the canonical human-authored file formats used across those stages.
 
 ## Source Note
 

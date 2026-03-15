@@ -53,12 +53,12 @@ Lifecycle routing:
 - Proposal approval creates `features/<feature-name>/`.
 - [Stage 3 - Project Formation](../governance/lifecycle/stage-03-project-formation.md) and later stages continue from this directory, even though the workbook does not yet fully specify those later stage details.
 
-Useful schema references:
+Useful template and schema references:
 
-- [Feature Spec](../schemas/artifacts/feature-spec.md)
-- [Project Plan](../schemas/artifacts/project-plan.md)
-- [Project State JSON](../schemas/artifacts/project-state-json.md)
-- [Execution Log](../schemas/artifacts/execution-log.md)
+- [Feature Spec Template](../schemas/artifacts/planning/feature-spec.template.md)
+- [Project Plan Template](../schemas/artifacts/planning/project-plan.template.md)
+- [Project State Schema](../schemas/state/project-state.schema.json)
+- [Execution Log Template](../schemas/artifacts/execution/execution-log.template.md)
 
 Go next:
 

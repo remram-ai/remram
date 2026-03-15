@@ -15,7 +15,7 @@ Assemble the user-facing review package for stage 1 validation.
 ## Outputs
 
 - stage 1 review package sent to the user
-- [Audio brief](../../schemas/artifacts/audio-brief.md), when generated
+- [Audio brief](../../schemas/artifacts/design/audio-brief.template.md), when generated
 
 ## Steps
 
@@ -29,7 +29,7 @@ Assemble the user-facing review package for stage 1 validation.
 ## Artifacts Created
 
 - review package content for user approval
-- [Audio brief](../../schemas/artifacts/audio-brief.md), when generated
+- [Audio brief](../../schemas/artifacts/design/audio-brief.template.md), when generated
 
 ## Tools Used
 

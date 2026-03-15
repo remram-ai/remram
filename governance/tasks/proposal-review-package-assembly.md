@@ -6,7 +6,7 @@ Assemble the decision package for leadership review.
 
 ## Inputs
 
-- [Product proposal](../../schemas/artifacts/product-proposal.md)
+- [Product proposal](../../schemas/artifacts/planning/product-proposal.template.md)
 - executive summary
 - design mockups
 - architecture commentary

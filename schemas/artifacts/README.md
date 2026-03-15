@@ -1,22 +1,14 @@
-# Artifact Schemas
+# Artifact Templates
 
-`schemas/artifacts/` holds structured work artifacts created by humans or agents.
+`schemas/artifacts/` holds human-authored artifact templates.
 
-Current schemas in this namespace:
+All files in this namespace use the `.template.md` convention.
 
-- [Context Model](context-model.md)
-- [Product Artifacts](product-artifacts.md)
-- [Engineering Artifacts](engineering-artifacts.md)
-- [Runtime State Artifacts](runtime-state-artifacts.md)
-- [Idea Document](idea-document.md)
-- [Product Proposal](product-proposal.md)
-- [Feature Spec](feature-spec.md)
-- [Architecture Document](architecture-document.md)
-- [Test Plan](test-plan.md)
-- [Concept Materials](concept-materials.md)
-- [Audio Brief](audio-brief.md)
-- [Project Plan](project-plan.md)
-- [Project State JSON](project-state-json.md)
-- [Agent State JSON](agent-state-json.md)
-- [Task State JSON](task-state-json.md)
-- [Execution Log](execution-log.md)
+Artifact categories:
+
+- [planning/](planning/README.md): idea, proposal, specification, and project planning templates
+- [design/](design/README.md): design and concept communication templates
+- [execution/](execution/README.md): execution-time working templates
+- [reporting/](reporting/README.md): reporting and review templates
+
+Related machine-readable contracts live in [../state/](../state/README.md) and [../org/](../org/README.md).

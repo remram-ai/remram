@@ -12,7 +12,7 @@ Idea -> Proposal -> Feature
 
 - Ideas are exploratory concepts captured in `roadmap/ideas/`.
 - Proposals are the decision-ready artifacts created during [Stage 2 - Product Evaluation and Proposal](../../governance/lifecycle/stage-02-product-evaluation-and-proposal.md).
-- The canonical Stage 2 artifact is the [Product Proposal](../../schemas/artifacts/product-proposal.md), stored at `/roadmap/proposals/<proposal>.md`.
+- The canonical Stage 2 artifact is the [Product Proposal](../../schemas/artifacts/planning/product-proposal.template.md), stored at `/roadmap/proposals/<proposal>.md`.
 - Approved proposals become active features in [features/](../../features/README.md).
 
 Use the proposal template when creating or promoting a proposal:

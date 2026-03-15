@@ -2,19 +2,22 @@
 
 `schemas/` is the canonical location for repository-wide format definitions.
 
-Use this directory when you need the authoritative structure for artifacts, state files, context layers, runtime payloads, or external data contracts.
+Use this directory when you need the authoritative structure for human-authored templates, machine-readable state contracts, organizational models, runtime payloads, or external data contracts.
+
+## Conventions
+
+| Type | Format |
+| --- | --- |
+| Human artifact template | `.template.md` |
+| Machine schema | `.schema.json` |
 
 ## Namespace Model
 
-- [artifacts/](artifacts/README.md): structured work artifacts created by humans or agents
+- [artifacts/](artifacts/README.md): human-authored artifact templates grouped into planning, design, execution, and reporting
 - [org/](org/README.md): structural definitions describing how the system is composed
-- [state/](state/README.md): persistent memory and working-state structures
+- [state/](state/README.md): machine-readable persistent memory and working-state schemas
 - [gateway/](gateway/README.md): runtime and control-plane schemas produced by the Moltbox gateway
 - [external/](external/README.md): third-party schemas that RemRam must conform to
-
-## Current Canonical Schemas
-
-The current Stage 1 schema set is now routed under [artifacts/](artifacts/README.md).
 
 Related governance narrative:
 

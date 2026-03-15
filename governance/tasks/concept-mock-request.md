@@ -6,12 +6,12 @@ Coordinate conceptual design outputs for user validation before deeper design be
 
 ## Inputs
 
-- [Idea document](../../schemas/artifacts/idea-document.md)
+- [Idea document](../../schemas/artifacts/planning/idea-document.template.md)
 - example workflows
 
 ## Outputs
 
-- [Concept materials](../../schemas/artifacts/concept-materials.md)
+- [Concept materials](../../schemas/artifacts/design/concept-materials.template.md)
 
 ## Steps
 

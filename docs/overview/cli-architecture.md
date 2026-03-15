@@ -18,8 +18,10 @@ moltbox <resource> <command>
 For workstation operators, the canonical invocation path is:
 
 ```text
-ssh -T -i ~/.ssh/jason-codex jason-codex@moltbox-prime "moltbox <resource> <command>"
+ssh -T -i ~/.ssh/jason-codex jason-codex@<gateway-host> "moltbox <resource> <command>"
 ```
+
+Replace `<gateway-host>` with the SSH hostname or host alias for the appliance.
 
 The `moltbox` binary is a host-local client. Runtime mutation must happen on the gateway host, not from a workstation-local process pointed at a local Docker or localhost gateway.
 
@@ -125,7 +127,7 @@ moltbox dev checkpoint
 moltbox dev skill deploy together
 moltbox dev skill list
 moltbox dev skill remove together
-moltbox dev plugin install semantic-router
+moltbox dev plugin install moltbox-telemetry
 moltbox prod openclaw <command>
 ```
 
@@ -179,6 +181,8 @@ moltbox gateway token create search-agent
 Container deployment and service lifecycle actions are routed through the gateway service pipeline.
 
 `moltbox gateway update` is also the canonical self-update path for the host `moltbox` CLI/tooling. There is no separate active `tools update` namespace in the Architecture V2 contract.
+
+That self-update path is also the only supported gateway mutation path. `moltbox gateway service deploy gateway` and `moltbox gateway service restart gateway` are intentionally rejected with guidance to use `moltbox gateway update`.
 
 Workstation automation reaches this namespace over SSH with restricted identities such as `jason-codex`. Internal agents use token-authenticated HTTP MCP against the gateway and do not expose a public ingress route.
 
@@ -268,9 +272,8 @@ This pipeline manages appliance services as deployment units.
 
 `moltbox gateway service restart <service>` reconciles the service through the same deploy lifecycle used by `deploy` and does not report success until the target containers are healthy.
 
-Documented shared-service identifiers include:
+Documented shared-service identifiers for `deploy|restart` include:
 
-- `gateway`
 - `opensearch`
 - `ollama`
 - `caddy`
@@ -284,6 +287,8 @@ Documented public runtime service identifiers are:
 - `prod`
 
 Those environment identifiers still map internally to runtime container identities such as `openclaw-dev`, `openclaw-test`, and `openclaw-prod`.
+
+`gateway` remains a valid target for `moltbox gateway service status gateway`, but control-plane self-mutation is handled by `moltbox gateway update`.
 
 For runtime replay validation and normal control-plane redeploys, operators should use `moltbox gateway service deploy <env>`. A plain `docker restart` only restarts the container and does not re-run gateway replay orchestration.
 

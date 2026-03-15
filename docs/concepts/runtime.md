@@ -46,9 +46,9 @@ moltbox dev checkpoint
 moltbox dev skill deploy together
 moltbox dev skill list
 moltbox dev skill remove together
-moltbox dev plugin install semantic-router
+moltbox dev plugin install moltbox-telemetry
 moltbox dev plugin list
-moltbox dev plugin remove semantic-router
+moltbox dev plugin remove moltbox-telemetry
 moltbox dev openclaw <command>
 ```
 

@@ -161,6 +161,13 @@ moltbox gateway token rotate <NAME>
 
 Workstation automation uses SSH plus the Moltbox CLI directly. MCP is reserved for internal appliance agents and containers.
 
+Root helpers:
+
+```text
+moltbox --help
+moltbox --version
+```
+
 Service lifecycle operations:
 
 ```text
@@ -179,6 +186,8 @@ moltbox gateway service status ollama
 
 `moltbox gateway service restart <service>` reconciles the service through the same deploy pipeline as `deploy` and only reports success after health checks pass.
 
+Gateway self-mutation is the exception: use `moltbox gateway update`. `moltbox gateway service deploy gateway` and `moltbox gateway service restart gateway` are rejected with guidance to use the self-update path instead.
+
 ## Environment Commands
 
 Runtime orchestration stays under the environment namespaces:
@@ -189,9 +198,9 @@ moltbox dev checkpoint
 moltbox dev skill deploy together
 moltbox dev skill list
 moltbox dev skill remove together
-moltbox dev plugin install semantic-router
+moltbox dev plugin install moltbox-telemetry
 moltbox dev plugin list
-moltbox dev plugin remove semantic-router
+moltbox dev plugin remove moltbox-telemetry
 moltbox dev openclaw <command>
 
 moltbox test reload
@@ -199,9 +208,9 @@ moltbox test checkpoint
 moltbox test skill deploy together
 moltbox test skill list
 moltbox test skill remove together
-moltbox test plugin install semantic-router
+moltbox test plugin install moltbox-telemetry
 moltbox test plugin list
-moltbox test plugin remove semantic-router
+moltbox test plugin remove moltbox-telemetry
 moltbox test openclaw <command>
 
 moltbox prod reload
@@ -209,9 +218,9 @@ moltbox prod checkpoint
 moltbox prod skill deploy together
 moltbox prod skill list
 moltbox prod skill remove together
-moltbox prod plugin install semantic-router
+moltbox prod plugin install moltbox-telemetry
 moltbox prod plugin list
-moltbox prod plugin remove semantic-router
+moltbox prod plugin remove moltbox-telemetry
 moltbox prod openclaw <command>
 ```
 

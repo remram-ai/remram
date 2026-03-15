@@ -18,13 +18,15 @@ The workstation must reach the CLI over SSH to the gateway host. Do not run a ho
 Canonical workstation form:
 
 ```text
-ssh -T -i ~/.ssh/jason-codex jason-codex@moltbox-prime "moltbox <args>"
+ssh -T -i ~/.ssh/jason-codex jason-codex@<gateway-host> "moltbox <args>"
 ```
+
+Replace `<gateway-host>` with the SSH hostname or host alias for the appliance, for example a local SSH config alias such as `moltbox`.
 
 Example:
 
 ```text
-ssh -T -i ~/.ssh/jason-codex jason-codex@moltbox-prime "moltbox dev plugin install moltbox-telemetry"
+ssh -T -i ~/.ssh/jason-codex jason-codex@<gateway-host> "moltbox dev plugin install moltbox-telemetry"
 ```
 
 Internal agents and containers use the gateway MCP HTTP surface with bearer tokens managed by `moltbox gateway token ...`. That MCP path is not the normal workstation operator interface.
@@ -63,13 +65,15 @@ Do not use internal runtime identifiers such as `openclaw-dev` as top-level comm
 Use the gateway service pipeline for appliance services:
 
 ```text
-moltbox gateway service deploy gateway
+moltbox gateway update
 moltbox gateway service deploy opensearch
 moltbox gateway service restart caddy
 moltbox gateway service status ollama
 ```
 
 `moltbox gateway service restart <service>` follows the deploy lifecycle and only reports success after the target service is healthy.
+
+For control-plane self-mutation, use `moltbox gateway update`. `moltbox gateway service deploy gateway` and `moltbox gateway service restart gateway` are intentionally rejected and point operators back to the canonical self-update path.
 
 Runtime containers can also be deployed through the same service pipeline:
 
@@ -148,8 +152,8 @@ Supported restricted identities:
 Examples:
 
 ```text
-ssh -T -i ~/.ssh/jason-codex jason-codex@moltbox-prime "moltbox dev openclaw health --json"
-ssh -T -i ~/.ssh/codex-bootstrap codex-bootstrap@moltbox-prime "moltbox test openclaw health --json"
+ssh -T -i ~/.ssh/jason-codex jason-codex@<gateway-host> "moltbox dev openclaw health --json"
+ssh -T -i ~/.ssh/codex-bootstrap codex-bootstrap@<gateway-host> "moltbox test openclaw health --json"
 ```
 
 ## Host Wrapper

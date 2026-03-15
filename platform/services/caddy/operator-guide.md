@@ -24,7 +24,6 @@ moltbox caddy <native command>
 
 Caddy sits in front of:
 
-- `gateway`
 - `dev`
 - `test`
 - `prod`
@@ -34,7 +33,7 @@ It is the appliance entry point, not the place where the application logic runs.
 Ingress path:
 
 ```text
-Internet -> Caddy -> Gateway / Runtime services
+Internet -> Caddy -> Runtime services
 ```
 
 ## What To Check
@@ -43,7 +42,7 @@ If ingress is not working:
 
 - confirm `caddy` is healthy
 - confirm the rendered `Caddyfile` contains the expected routes
-- confirm the gateway and runtime targets are healthy behind Caddy
+- confirm the runtime targets are healthy behind Caddy
 - confirm hostname resolution matches the expected appliance names
 
 ## Troubleshooting Basics
@@ -60,7 +59,7 @@ Common failure cases:
 - gateway service pipeline
 - rendered `Caddyfile`
 - Caddy health endpoint
-- downstream gateway and runtime health
+- downstream runtime health
 
 ## TODO
 

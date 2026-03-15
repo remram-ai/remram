@@ -57,6 +57,7 @@ Verify the gateway service pipeline can:
 - report service status
 - deploy a service
 - restart a service
+- reject `moltbox gateway service deploy gateway` and `moltbox gateway service restart gateway` with guidance to use `moltbox gateway update`
 
 At minimum, validate against a stable shared service such as `opensearch`.
 

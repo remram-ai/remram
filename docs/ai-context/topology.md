@@ -17,7 +17,7 @@ Host OS
 Ingress path:
 
 ```text
-Internet -> Caddy -> Gateway / Runtime services
+Internet -> Caddy -> Runtime services
 ```
 
 Storage roots:

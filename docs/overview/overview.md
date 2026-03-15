@@ -96,6 +96,8 @@ That pipeline is valid for both shared appliance services and the public runtime
 - `test`
 - `prod`
 
+For the gateway itself, self-mutation is handled by `moltbox gateway update`. `moltbox gateway service deploy gateway` and `moltbox gateway service restart gateway` are intentionally rejected.
+
 Gateway self-lifecycle:
 
 ```text

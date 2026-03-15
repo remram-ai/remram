@@ -17,8 +17,10 @@ Workstation -> ssh -> Moltbox CLI -> Gateway
 Canonical workstation form:
 
 ```text
-ssh -T -i ~/.ssh/jason-codex jason-codex@moltbox-prime "moltbox <args>"
+ssh -T -i ~/.ssh/jason-codex jason-codex@<gateway-host> "moltbox <args>"
 ```
+
+Replace `<gateway-host>` with the SSH hostname or host alias for the appliance.
 
 Do not run a host-local `moltbox` binary on the workstation and expect runtime mutation to execute correctly there. Runtime operations must be initiated from the gateway host CLI over the SSH wrapper path.
 
@@ -44,6 +46,8 @@ moltbox gateway update
 ```
 
 `moltbox gateway update` writes the control-plane deployment record under `/srv/moltbox-state/deploy/history.jsonl` and appends a host-level appliance history entry to `/var/lib/moltbox/history.jsonl`.
+
+Gateway self-mutation uses `moltbox gateway update`. `moltbox gateway service deploy gateway` and `moltbox gateway service restart gateway` are intentionally rejected.
 
 Service lifecycle:
 

@@ -91,6 +91,7 @@ moltbox
 Gateway:
 
 ```text
+moltbox --version
 moltbox gateway status
 moltbox gateway update
 moltbox gateway logs
@@ -103,6 +104,8 @@ moltbox gateway token create search-agent
 
 `moltbox gateway update` is the appliance self-update path. It refreshes the gateway and the host `moltbox` CLI/tooling together, writes the control-plane deployment record to `/srv/moltbox-state/deploy/history.jsonl`, and appends a host-level self-update record to `/var/lib/moltbox/history.jsonl`. There is no separate active `tools update` command.
 
+Gateway self-mutation goes through `moltbox gateway update` only. `moltbox gateway service deploy gateway` and `moltbox gateway service restart gateway` are intentionally rejected so the control plane is not redeployed in place under the initiating request.
+
 Workstation operators and automation reach the CLI over SSH. Internal agents use the token-authenticated MCP HTTP endpoint instead of SSH.
 
 Runtime environments:
@@ -113,9 +116,9 @@ moltbox test checkpoint
 moltbox dev skill deploy together
 moltbox dev skill list
 moltbox dev skill remove together
-moltbox dev plugin install semantic-router
+moltbox dev plugin install moltbox-telemetry
 moltbox dev plugin list
-moltbox dev plugin remove semantic-router
+moltbox dev plugin remove moltbox-telemetry
 moltbox prod openclaw <command>
 moltbox dev secrets set TOGETHER_API_KEY "tgp_v1_..."
 ```
@@ -145,6 +148,7 @@ moltbox caddy <native command>
 - use `dev`, `test`, and `prod` for runtime operations
 - use `dev`, `test`, `prod`, and `service` as the valid scopes for `moltbox <scope> secrets ...`
 - use `gateway service ...` for appliance deployment and service lifecycle work
+- use `gateway update` for gateway self-mutation; `gateway service deploy|restart gateway` is intentionally rejected
 - use `gateway service deploy dev|test|prod` when redeploying runtime containers through the control plane
 - scoped secrets follow `CLI -> gateway -> encrypted secret store`
 - secrets are gateway-owned appliance state stored locally under `/var/lib/moltbox/secrets/<scope>/`

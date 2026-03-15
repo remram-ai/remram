@@ -48,6 +48,8 @@ The runtime containers are also deployable through the same `gateway service ...
 - `test`
 - `prod`
 
+`gateway` remains a first-class appliance service and a valid `moltbox gateway service status gateway` target, but control-plane self-mutation uses `moltbox gateway update` rather than `gateway service deploy|restart gateway`.
+
 ## Service Versus Runtime
 
 A [Runtime](runtime.md) is the configuration and execution environment for managed runtime behavior.

@@ -92,7 +92,13 @@ Typical flow:
 6. validate health
 7. write authoritative deployment metadata
 
-This model applies to shared services such as `gateway`, `opensearch`, `ollama`, and `caddy`.
+This model applies to shared services such as `opensearch`, `ollama`, and `caddy`.
+
+The gateway is still a first-class appliance service for status and topology purposes, but gateway self-mutation is the special helper-based path:
+
+```text
+moltbox gateway update
+```
 
 It also applies to the runtime containers themselves.
 
@@ -184,9 +190,9 @@ Runtime plugin deployment is also a gateway-managed environment-scoped mutation 
 Typical operator surfaces:
 
 ```text
-moltbox dev plugin install semantic-router
+moltbox dev plugin install moltbox-telemetry
 moltbox dev plugin list
-moltbox dev plugin remove semantic-router
+moltbox dev plugin remove moltbox-telemetry
 ```
 
 Expected behavior:

@@ -66,6 +66,8 @@ moltbox gateway token list
 - the host `moltbox` CLI/tooling installed on the appliance
 - the host-level appliance history ledger at `/var/lib/moltbox/history.jsonl`
 
+It is also the only supported gateway mutation path. `moltbox gateway service deploy gateway` and `moltbox gateway service restart gateway` are intentionally rejected.
+
 ### Gateway Service Pipeline
 
 Container lifecycle is primarily handled through:
@@ -90,9 +92,9 @@ moltbox dev checkpoint
 moltbox dev skill deploy together
 moltbox dev skill list
 moltbox dev skill remove together
-moltbox dev plugin install semantic-router
+moltbox dev plugin install moltbox-telemetry
 moltbox dev plugin list
-moltbox dev plugin remove semantic-router
+moltbox dev plugin remove moltbox-telemetry
 ```
 
 ### Native OpenClaw Passthrough
@@ -183,7 +185,9 @@ Typical service deployment flow:
 5. validate health
 6. write authoritative deployment metadata
 
-This flow is the primary lifecycle path for appliance services such as `gateway`, `opensearch`, `ollama`, and `caddy`.
+This flow is the primary lifecycle path for appliance services such as `opensearch`, `ollama`, and `caddy`.
+
+Gateway self-mutation is handled by the dedicated `moltbox gateway update` helper path instead of `gateway service deploy|restart gateway`.
 
 ## Runtime Lifecycle Flow
 

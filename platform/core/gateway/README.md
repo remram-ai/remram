@@ -45,10 +45,13 @@ moltbox gateway update
 moltbox gateway mcp-stdio
 moltbox gateway docker ping
 moltbox gateway docker run hello-world
+moltbox gateway service status gateway
 moltbox gateway service deploy opensearch
 moltbox dev reload
 moltbox dev skill deploy together
 ```
+
+Gateway self-mutation is handled by `moltbox gateway update`. `moltbox gateway service deploy gateway` and `moltbox gateway service restart gateway` are intentionally rejected.
 
 The gateway is also the path through which environment-scoped native OpenClaw operations are reached.
 

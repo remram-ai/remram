@@ -4,12 +4,12 @@
 
 Caddy is the ingress and routing service for the Moltbox appliance.
 
-It is a first-class appliance service and the normal network entry point for the gateway and runtime surfaces.
+It is a first-class appliance service and the normal network entry point for the runtime surfaces.
 
 Canonical ingress model:
 
 ```text
-Internet -> Caddy -> Gateway / Runtime services
+Internet -> Caddy -> Runtime services
 ```
 
 ## Implementation Surfaces
@@ -26,7 +26,7 @@ The service depends on three main layers:
 
 1. service deployment definition in `moltbox-services`
 2. runtime-owned ingress configuration in `moltbox-runtime`
-3. upstream target services such as `gateway` and the runtime environments
+3. upstream target runtime services
 
 ## Configuration Model
 
@@ -60,7 +60,6 @@ Typical lifecycle is service-oriented:
 
 Required dependencies:
 
-- `gateway` must be reachable on its internal container port
 - environment runtimes must be reachable on the mapped appliance ports
 - appliance network and shared storage roots must exist
 
@@ -77,7 +76,6 @@ Caddy is intentionally thin. It should not absorb control-plane or runtime logic
 
 ## Constraints And Edge Cases
 
-- if the `gateway` service is healthy but Caddy routing is wrong, the appliance can appear down to operators even though the control plane is running
 - if runtime host-port mappings drift, Caddy routes can silently target the wrong backend
 - internal TLS posture is appropriate for appliance-local routing but may need revision if the ingress contract changes later
 

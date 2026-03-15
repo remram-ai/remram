@@ -93,9 +93,12 @@ moltbox gateway logs
 moltbox gateway mcp-stdio
 moltbox gateway docker ping
 moltbox gateway docker run hello-world
+moltbox gateway service status gateway
 moltbox gateway service deploy opensearch
 moltbox gateway service deploy dev
 ```
+
+Gateway self-mutation is handled by `moltbox gateway update`. `moltbox gateway service deploy gateway` and `moltbox gateway service restart gateway` are intentionally rejected.
 
 ## Related Concepts
 

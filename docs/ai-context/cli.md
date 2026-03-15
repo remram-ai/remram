@@ -27,6 +27,7 @@ Important rules:
 - internal names such as `openclaw-dev` are implementation details
 - service lifecycle goes through `moltbox gateway service ...`
 - gateway self-update goes through `moltbox gateway update` and appends `/var/lib/moltbox/history.jsonl`
+- gateway self-mutation is handled by `moltbox gateway update`; `moltbox gateway service deploy|restart gateway` is intentionally rejected
 - gateway-managed MCP bearer tokens go through `moltbox gateway token <create|list|delete|rotate>`
 - gateway diagnostics and helper surfaces include `moltbox gateway mcp-stdio`, `moltbox gateway docker ping`, and `moltbox gateway docker run <image>`
 - runtime containers can also be deployed through `moltbox gateway service deploy dev|test|prod`

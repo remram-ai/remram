@@ -1,11 +1,14 @@
 # Repositories
 
-This document describes the repository ownership model for the current Moltbox and RemRam architecture.
+This document describes the repository ownership model for the current Moltbox and Remram architecture.
 
 The main rule is:
 
-- `remram` repositories own architecture, platform definitions, and portable capability
-- `moltbox` repositories own appliance behavior and operations
+- `remram` owns the public architecture docs, roadmap docs, approved feature records, and platform capability registry
+- `remram-forge` owns the private internal development pipeline: lifecycle governance, decision mechanics, workflow orchestration, and lifecycle-owned templates and state contracts
+- the domain repositories own implementation
+
+All active capability and platform records still live in `remram`. Forge does not replace the platform registry or feature inventory here.
 
 ## Core Repositories
 
@@ -14,16 +17,34 @@ The main rule is:
 Owns:
 
 - architecture documentation
-- platform registry documentation
+- platform registry documentation under `platform/`
 - roadmap and ecosystem framing
+- approved feature records under `features/`
 - audit reports and unresolved architecture notes
 
 Does not own:
 
+- internal lifecycle governance or business-process mechanics
 - live runtime configuration
 - service definitions
 - gateway implementation
-- skill or plugin implementation source
+- skill, plugin, app, or Cortex implementation source
+
+### `remram-forge` (private)
+
+Owns:
+
+- lifecycle governance and stage definitions
+- decision mechanics and workflow orchestration rules
+- lifecycle artifact templates and orchestration state contracts
+- internal development pipeline and business-process documentation
+
+Does not own:
+
+- the public architecture narrative for the platform
+- the platform capability registry
+- user-facing feature documentation
+- appliance implementation
 
 ### `remram-skills`
 
@@ -39,6 +60,31 @@ Does not own:
 - appliance deployment policy
 - service topology
 - baseline runtime source of record
+
+### `remram-cortex`
+
+Owns:
+
+- Cortex implementation
+- memory-service APIs, storage behavior, and long-term knowledge execution details
+
+Does not own:
+
+- the public feature record for Cortex in `remram/features/`
+- the shared platform registry
+
+### `remram-app`
+
+Owns:
+
+- user-facing applications and APIs
+- app-specific product implementation details
+
+Does not own:
+
+- shared platform registry docs
+- appliance control-plane behavior
+- lifecycle governance
 
 ### `moltbox-gateway`
 
@@ -102,10 +148,19 @@ Current implementation note:
 
 ```text
 remram
-  -> defines architecture, platform items, and roadmap intent
+  -> defines architecture, roadmap intent, approved feature records, and platform items
+
+remram-forge (private)
+  -> defines lifecycle rules, internal orchestration, and lifecycle-owned artifact contracts
 
 remram-skills
   -> provides reusable capability packages
+
+remram-cortex
+  -> implements memory services
+
+remram-app
+  -> implements user-facing applications
 
 moltbox-runtime
   -> provides baseline runtime configuration
@@ -120,12 +175,12 @@ moltbox-gateway
 Another useful way to read the flow is:
 
 ```text
-Roadmap item
-  -> Plugin if needed
-  -> Skill
-  -> Runtime baseline
-  -> Service topology if needed
-  -> Gateway deployment and orchestration
+Idea / proposal in remram
+  -> lifecycle rules and templates in remram-forge (private)
+  -> approved feature record in remram/features/
+  -> implementation in the owning domain repo
+  -> platform capability docs in remram/platform/
+  -> user-facing feature docs in remram/docs/features/
 ```
 
 ## Runtime Mutation Boundary

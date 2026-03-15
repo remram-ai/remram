@@ -6,13 +6,15 @@ This repository uses a simple documentation split:
 
 - `docs/` contains shared system documentation
 - `roadmap/` contains planning artifacts
-- `features/` contains approved feature lifecycle artifacts
-- `remram-forge/governance/` contains lifecycle and governance documentation
+- `features/` contains approved feature records plus local enhancement and project artifacts
+- `remram-forge/governance/` contains private internal lifecycle and governance documentation
 - `schemas/` contains Remram-owned architecture and runtime schema namespaces
-- `remram-forge/schemas/` contains lifecycle artifact templates and orchestration state schemas
+- `remram-forge/schemas/` contains private internal lifecycle artifact templates and orchestration state schemas
 - `reference/` contains concise technical reference material
 - `platform/` contains the living capability registry
 - `archive/` contains historical documentation
+
+Public architecture, approved feature records, and active platform capability docs still live here in `remram`. The private Forge repo only owns the internal lifecycle pipeline and lifecycle-owned contracts.
 
 The delivery lifecycle is:
 
@@ -31,9 +33,9 @@ Feature documentation describes the user-facing capability built from those deli
 For the SDLC routing itself, the canonical navigation path is:
 
 1. [Roadmap](../roadmap/README.md)
-2. [Forge Governance Lifecycle](https://github.com/remram-ai/remram-forge/blob/main/governance/lifecycle/README.md)
+2. [Forge Governance Lifecycle (private)](https://github.com/remram-ai/remram-forge/blob/main/governance/lifecycle/README.md)
 3. [Features](../features/README.md)
-4. [Forge Artifact Templates](https://github.com/remram-ai/remram-forge/blob/main/schemas/artifacts/README.md)
+4. [Forge Artifact Templates (private)](https://github.com/remram-ai/remram-forge/blob/main/schemas/artifacts/README.md)
 
 Inside `docs/`, the material is organized into several primary areas:
 
@@ -51,7 +53,7 @@ Operational documentation also lives under `docs/` as its own layer so operator 
 roadmap/         Ideas and proposals
 features/        Approved feature lifecycle artifacts
 schemas/         Remram-owned architecture and runtime schemas
-remram-forge/    Lifecycle governance and lifecycle artifact schemas
+remram-forge/    Private internal lifecycle governance and lifecycle artifact schemas
 reference/       Technical reference material
 platform/        Living platform registry
 
@@ -245,7 +247,7 @@ features/
 
 Purpose:
 
-Approved feature lifecycle artifacts and feature project work.
+Approved feature records plus local enhancement and feature project work.
 
 ### Governance
 
@@ -269,7 +271,7 @@ schemas/
 
 Purpose:
 
-Canonical schema namespaces and shared format definitions.
+Canonical Remram-owned schema namespaces and shared machine-readable definitions.
 
 Forge-owned lifecycle templates and orchestration state contracts live in:
 
@@ -308,9 +310,9 @@ Stores historical documentation and frozen reference material that should not be
 - User-facing capability docs: [Feature Documentation](features/README.md)
 - Vocabulary and definitions: [Concepts](concepts/README.md)
 - Operator: [Operations](operations/README.md)
-- Governance and lifecycle rules: [Forge Governance](https://github.com/remram-ai/remram-forge/blob/main/governance/README.md)
+- Governance and lifecycle rules: [Forge Governance (private)](https://github.com/remram-ai/remram-forge/blob/main/governance/README.md)
 - Canonical schemas and namespace routing: [Schemas](../schemas/README.md)
-- End-to-end SDLC flow: [Roadmap](../roadmap/README.md), [Forge Governance Lifecycle](https://github.com/remram-ai/remram-forge/blob/main/governance/lifecycle/README.md), [Features](../features/README.md), [Forge Artifact Templates](https://github.com/remram-ai/remram-forge/blob/main/schemas/artifacts/README.md)
+- End-to-end SDLC flow: [Roadmap](../roadmap/README.md), [Forge Governance Lifecycle (private)](https://github.com/remram-ai/remram-forge/blob/main/governance/lifecycle/README.md), [Features](../features/README.md), [Forge Artifact Templates (private)](https://github.com/remram-ai/remram-forge/blob/main/schemas/artifacts/README.md)
 - Technical lookup: [Reference](../reference/README.md)
 - AI assistant bootstrap: [AI Context](ai-context/README.md)
 - architecture audit and unresolved drift: `audits/`

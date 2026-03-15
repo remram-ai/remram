@@ -2,25 +2,32 @@
 
 Core repository ownership:
 
-- `remram`: architecture, shared docs, roadmap docs, and platform registry docs
+- `remram`: public architecture docs, roadmap docs, approved feature records, and platform registry docs
+- `remram-forge` (private): internal development pipeline, lifecycle governance, workflow orchestration, and lifecycle-owned templates/state contracts
 - `remram-skills`: reusable skills and plugin packages
+- `remram-cortex`: memory-service implementation
+- `remram-app`: user-facing applications and APIs
 - `moltbox-gateway`: control plane, CLI, deployment orchestration, and Docker interaction on the appliance
 - `moltbox-runtime`: baseline runtime configuration and promoted runtime baselines
 - `moltbox-services`: service definitions and container topology
 
 Boundary rules:
 
-- feature definitions and platform item docs live in `remram`
+- feature records and platform item docs live in `remram`
 - user-facing feature documentation lives in `remram/docs/features/`
+- internal lifecycle governance and business-process mechanics live in private `remram-forge`
 - implementation lives in the owning domain repo
 - service definitions and compose templates live in `moltbox-services`
 - gateway orchestration consumes those service definitions rather than redefining them
 - baseline runtime configuration belongs in `moltbox-runtime`
 - live runtime mutation does not get mirrored directly back into Git
 - gateway writes deployment metadata and deployment-event history
+- when a feature is repo-backed, start with the local feature `README.md` in `remram/features/` and then follow the owning repository for implementation detail
 
 Execution model:
 
+- `remram` defines the public capability map and the approved feature records
+- `remram-forge` defines the private lifecycle model and artifact contracts
 - `moltbox-services` defines what containers exist on the appliance
 - `moltbox-gateway` turns those inputs into a running appliance
 - `moltbox-runtime` provides the baseline starting point for each runtime
@@ -37,6 +44,9 @@ Host repository access:
 Canonical sources:
 
 - [Roadmap](../../roadmap/README.md)
+- [Features](../../features/README.md)
+- [Forge Governance (private)](https://github.com/remram-ai/remram-forge/blob/main/governance/README.md)
+- [Forge Schemas (private)](https://github.com/remram-ai/remram-forge/blob/main/schemas/README.md)
 - [Repositories](../overview/repositories.md)
 - [Topology](../overview/topology.md)
 - [Deployment Models](../overview/deployment-models.md)

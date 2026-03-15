@@ -18,7 +18,7 @@ Idea
 
 Use this directory when a capability is complete enough to explain from the user or operator point of view as one coherent feature.
 
-Not every active feature has a user-facing document here yet. The authoritative approved feature inventory lives under [features/](../../features/README.md). Use this directory only when the capability is mature enough for a narrative feature guide.
+Not every active feature has a user-facing document here yet. The authoritative approved feature inventory lives under [features/](../../features/README.md) as per-feature `README.md` records, with some features pointing to dedicated implementation repositories. Use this directory only when the capability is mature enough for a narrative feature guide.
 
 Use the template when creating a new feature document:
 

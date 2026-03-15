@@ -11,6 +11,7 @@ This repository is intentionally open to contributors who are still getting orie
 - documentation structure
 - platform item definitions in `platform/`
 - idea and feature planning in `roadmap/`
+- approved feature records and local enhancement/project placeholders in `features/`
 - contributor orientation
 
 ## Contribute Elsewhere When The Change Is About
@@ -20,6 +21,7 @@ This repository is intentionally open to contributors who are still getting orie
 - service definitions or container topology
 - skill packages or plugin-backed capability code
 - application code
+- lifecycle governance, lifecycle templates, or orchestration state contracts
 - Cortex implementation
 
 ## Contribution Rules
@@ -29,6 +31,7 @@ This repository is intentionally open to contributors who are still getting orie
 - Do not edit files in `archive/` in place.
 - Put active capability docs in `platform/`, not in `roadmap/`.
 - Put unimplemented ideas and proposals in `roadmap/`, approved feature work in `features/`, and keep active architecture docs separate.
+- If a feature is repo-backed, keep the high-level feature record in `features/` here and put the detailed implementation contract in the owning repository.
 - Keep architecture descriptions separate from implementation details when a domain repository should own the code-level contract.
 
 ## Good Contribution Pattern

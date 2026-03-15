@@ -8,10 +8,10 @@ Documentation layout:
 - `docs/concepts/` defines canonical vocabulary
 - `docs/operations/` explains operator workflows and CLI usage
 - `reference/` holds concise technical reference
-- `remram-forge/governance/` holds lifecycle, roles, tasks, workflows, and policies
+- `remram-forge/governance/` holds the private lifecycle, roles, tasks, workflows, and policies
 - `platform/` holds the living platform registry
 - `roadmap/ideas/` and `roadmap/proposals/` hold active planning artifacts before approval
-- `features/` holds approved feature lifecycle work
+- `features/` holds approved feature records, enhancements, and local project scaffolding
 
 How to work:
 
@@ -26,7 +26,7 @@ How to work:
 When documenting a new platform item:
 
 1. start in `roadmap/ideas/` or `roadmap/proposals/` if the work is still conceptual
-2. move into `features/` once the proposal is approved and implementation work begins
+2. move into `features/` once the proposal is approved and implementation work begins; keep the approved feature record here even if the feature is repo-backed
 3. create a folder under the correct `platform/<type>/` category once the feature project defines the implementation surface
 4. add `README.md`, `spec.md`, `design.md`, `test-plan.md`, and `operator-guide.md`
 5. align vocabulary with `docs/concepts/`
@@ -41,6 +41,6 @@ Canonical docs:
 - [CLI Architecture](../../overview/cli-architecture.md)
 - [Roadmap](../../../roadmap/README.md)
 - [Features](../../../features/README.md)
-- [Forge Governance](https://github.com/remram-ai/remram-forge/blob/main/governance/README.md)
+- [Forge Governance (private)](https://github.com/remram-ai/remram-forge/blob/main/governance/README.md)
 - [Reference](../../../reference/README.md)
 - [Platform Registry](../../../platform/README.md)

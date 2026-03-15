@@ -34,7 +34,7 @@ Use [platform/templates/](./templates/) when creating a new platform item.
 
 Platform item `test-plan.md` files validate the component itself.
 
-Feature-level master acceptance plans live under `features/<feature>/test-plan.md` and roll up the top-level user or operator goals that those platform items must satisfy together.
+When this repository owns the feature-level acceptance contract, the master acceptance plan lives under `features/<feature>/test-plan.md` and rolls up the top-level user or operator goals that those platform items must satisfy together. Repo-backed features may keep that higher-level validation detail in the owning repository instead.
 
 Platform items are technical deliverables.
 User-facing capability explanations belong under [docs/features/](../docs/features/README.md) once multiple deliverables form a coherent feature.

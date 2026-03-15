@@ -8,9 +8,10 @@ Repository structure and lifecycle:
 
 ```text
 roadmap/    -> ideas and proposals
-features/   -> approved feature lifecycle work
+features/   -> approved feature records plus local enhancement and project artifacts
 platform/   -> active platform items
-remram-forge/governance/ -> lifecycle, roles, tasks, workflows, and policies
+remram-forge/governance/ -> private lifecycle, roles, tasks, workflows, and policies
+remram-forge/schemas/ -> private lifecycle templates and orchestration state schemas
 reference/  -> persistent technical reference knowledge
 docs/       -> architecture, feature docs, concepts, operations, and AI bootstrap
 
@@ -46,12 +47,14 @@ Canonical sources:
 - [Feature Documentation](../features/README.md)
 - [Roadmap](../../roadmap/README.md)
 - [Features](../../features/README.md)
-- [Forge Governance](https://github.com/remram-ai/remram-forge/blob/main/governance/README.md)
+- [Forge Governance (private)](https://github.com/remram-ai/remram-forge/blob/main/governance/README.md)
+- [Forge Schemas (private)](https://github.com/remram-ai/remram-forge/blob/main/schemas/README.md)
 - [Reference](../../reference/README.md)
 - [Platform Registry](../../platform/README.md)
 
 Recommended order:
 
 1. Read [Overview](overview.md), [Topology](topology.md), and [Repositories](repositories.md).
-2. Use [Platform Items](features.md) once you need active registry entries.
-3. Use [Roles](roles/README.md) and [Platform Item Type Recipes](recipes/README.md) for task-specific guidance.
+2. Use [Features](../../features/README.md) and [Platform Items](features.md) once you need approved feature records or active registry entries.
+3. If the task touches lifecycle stages, governance, or lifecycle artifact contracts, follow the private Forge docs when you have access.
+4. Use [Roles](roles/README.md) and [Platform Item Type Recipes](recipes/README.md) for task-specific guidance.

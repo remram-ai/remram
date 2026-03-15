@@ -5,7 +5,7 @@ This repository uses a documentation-first workflow for architecture changes.
 ## Normal Workflow
 
 1. Identify the change.
-2. Decide whether it is an overview, concept, operations, reference, platform, or roadmap change.
+2. Decide whether it is an overview, concept, operations, reference, platform, roadmap, or feature-record change.
 3. Update the active documentation in the correct location.
 4. Keep terminology and CLI examples aligned with the current architecture baseline.
 5. Use archive material as reference input, not as the active source of truth.
@@ -14,6 +14,8 @@ This repository uses a documentation-first workflow for architecture changes.
 ## Working Rules
 
 - Active docs live under `docs/`, `platform/`, and `roadmap/`.
+- Approved feature records live under `features/`.
+- Forge-owned lifecycle governance, templates, and orchestration state contracts live in the private `remram-forge` repo, not here.
 - Historical docs live under `archive/`.
 - Active docs should not depend on transitional terminology or legacy command surfaces.
 - If a document is obsolete, archive it instead of editing history in place.

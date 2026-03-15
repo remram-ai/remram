@@ -1,5 +1,9 @@
 # Platform Items
 
+This file indexes active platform capability docs in `platform/`.
+
+Approved feature records live separately under [../../features/](../../features/README.md). Some of those feature records point to dedicated implementation repositories, but the public capability and platform registry still stay in `remram`.
+
 Active documented platform items:
 
 - [gateway](../../platform/core/gateway/README.md)

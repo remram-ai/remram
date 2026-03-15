@@ -18,4 +18,4 @@ Use this directory when you need the authoritative structure for organizational 
 - [gateway/](gateway/README.md): runtime and control-plane schemas produced by the Moltbox gateway
 - [external/](external/README.md): third-party schemas that RemRam must conform to
 
-Forge-owned lifecycle templates and orchestration state schemas live in [remram-forge/schemas/](https://github.com/remram-ai/remram-forge/blob/main/schemas/README.md).
+Forge-owned lifecycle templates and orchestration state schemas live in the private [remram-forge/schemas/](https://github.com/remram-ai/remram-forge/blob/main/schemas/README.md) repo.

@@ -18,13 +18,13 @@ Forge is the operational grammar of the ecosystem:
 
 ## Repository Boundary
 
-The dedicated implementation and lifecycle repository is [`remram-forge`](https://github.com/remram-ai/remram-forge).
+The dedicated implementation and lifecycle repository is the private internal [`remram-forge`](https://github.com/remram-ai/remram-forge) repository.
 
 This folder exists to preserve the approved feature record inside `remram`, not to mirror the full Forge repository.
 
 ## Status
 
-Approved feature with a dedicated repository.
+Approved feature with a dedicated private repository.
 
 Historical proposal and project artifacts for this feature have not yet been reconstructed into this repo's `roadmap/` and `features/` history.
 
@@ -37,9 +37,9 @@ Historical proposal and project artifacts for this feature have not yet been rec
 
 ## Canonical Repository
 
-- [`remram-forge`](https://github.com/remram-ai/remram-forge)
-- [Forge Governance](https://github.com/remram-ai/remram-forge/blob/main/governance/README.md)
-- [Forge Schemas](https://github.com/remram-ai/remram-forge/blob/main/schemas/README.md)
+- [`remram-forge` (private)](https://github.com/remram-ai/remram-forge)
+- [Forge Governance (private)](https://github.com/remram-ai/remram-forge/blob/main/governance/README.md)
+- [Forge Schemas (private)](https://github.com/remram-ai/remram-forge/blob/main/schemas/README.md)
 
 ## Local Remram Artifacts
 
@@ -48,6 +48,6 @@ Historical proposal and project artifacts for this feature have not yet been rec
 
 ## Related Documentation
 
-- [Forge Repository README](https://github.com/remram-ai/remram-forge/blob/main/README.md)
+- [Forge Repository README (private)](https://github.com/remram-ai/remram-forge/blob/main/README.md)
 - [Feature Concept](../../docs/concepts/feature.md)
 - [Platform Registry](../../platform/README.md)

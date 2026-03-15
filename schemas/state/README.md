@@ -10,4 +10,4 @@ Current schemas:
 
 - [Runtime State](runtime-state.schema.json)
 
-Forge-owned orchestration state schemas live in [remram-forge/schemas/state/](https://github.com/remram-ai/remram-forge/blob/main/schemas/state/README.md).
+Forge-owned orchestration state schemas live in the private [remram-forge/schemas/state/](https://github.com/remram-ai/remram-forge/blob/main/schemas/state/README.md) repo.

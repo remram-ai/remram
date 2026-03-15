@@ -17,6 +17,7 @@ Documentation in this repository often describes work owned elsewhere.
 
 The most common adjacent repositories are:
 
+- `remram-forge` (private internal development pipeline)
 - `moltbox-gateway`
 - `moltbox-runtime`
 - `moltbox-services`
@@ -29,6 +30,7 @@ If your change crosses from documentation into implementation, you will usually 
 ## Practical Setup Guidance
 
 - keep `remram` available as the documentation source of truth
+- clone `remram-forge` when the task touches private lifecycle governance, orchestration contracts, or lifecycle schema definitions
 - clone the owning implementation repository only when you need to verify behavior or code
 - prefer reading active implementation sources instead of relying on stale historical notes
 
@@ -36,7 +38,8 @@ If your change crosses from documentation into implementation, you will usually 
 
 - `docs/` for shared documentation
 - `platform/` for active capability documentation
-- `roadmap/` for ideas and proposals, and `features/` for approved feature work
+- `roadmap/` for ideas and proposals, and `features/` for approved feature records plus local enhancement/project scaffolding
+- `remram-forge/` for private internal lifecycle governance, workflows, and lifecycle-owned schemas
 - `archive/` for frozen historical material
 
 ## Next Step

@@ -14,10 +14,12 @@ Each feature holds the approved capability artifacts and one or more implementat
 
 ```text
 features/<feature-name>/
-  feature.md
-  feature-spec.md
-  test-plan.md
+  README.md
+  feature-spec.md (optional)
+  test-plan.md (optional)
   proposal.md (optional, when reconstructed)
+  enhancements/
+    README.md
   projects/
     README.md
     <project-name>/
@@ -48,9 +50,9 @@ Typical runtime-state artifacts inside `_work/` include:
 
 `project-plan.md` lives at the project root, not inside `_work/`.
 
-Feature-level `test-plan.md` files are the master acceptance plans for the feature. They should focus on the top-level user or operator goals that prove the feature meets its intent, and they should reference lower-level platform item test plans where component validation already exists.
+Feature-level `test-plan.md` files are optional master acceptance plans for the feature. They should focus on the top-level user or operator goals that prove the feature meets its intent, and they should reference lower-level platform item test plans where component validation already exists.
 
-Some restored legacy features do not yet have reconstructed proposal or project-history artifacts. In those cases, the feature folder starts with `feature.md`, `feature-spec.md`, `test-plan.md`, and a `projects/README.md` placeholder until the missing lifecycle history is rebuilt.
+Some restored features do not yet have reconstructed proposal or project-history artifacts. In those cases, the feature folder starts with `README.md`, `projects/README.md`, and `enhancements/README.md`, with `feature-spec.md` and `test-plan.md` present only when this repository owns those local lifecycle artifacts.
 
 Lifecycle routing:
 
@@ -69,12 +71,12 @@ Useful template and schema references:
 
 ## Current Features
 
-- [Gateway](gateway/feature.md)
-- [Moltbox Telemetry](moltbox-telemetry/feature.md)
-- [Together Escalation](together-escalation/feature.md)
-- [Discord Channel](discord-channel/feature.md)
-- [Remram Cortex](remram-cortex/feature.md)
-- [Remram Forge](remram-forge/feature.md)
+- [Gateway](gateway/README.md)
+- [Moltbox Telemetry](moltbox-telemetry/README.md)
+- [Together Escalation](together-escalation/README.md)
+- [Discord Channel](discord-channel/README.md)
+- [Remram Cortex](remram-cortex/README.md)
+- [Remram Forge](remram-forge/README.md)
 
 Go next:
 

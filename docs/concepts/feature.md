@@ -2,7 +2,7 @@
 
 A Feature is the approved lifecycle container created when a proposal is accepted.
 
-Feature artifacts describe the approved capability and hold the project work that implements it.
+Feature artifacts describe the approved capability and hold the project work and enhancement backlog that implement or extend it.
 
 ## Where Features Live
 
@@ -11,6 +11,8 @@ Feature artifacts live under:
 ```text
 features/<feature-name>/
 ```
+
+A typical feature folder includes a top-level `README.md`, a `projects/` folder, and an `enhancements/` folder. `feature-spec.md` and `test-plan.md` are optional when this repository owns those local lifecycle artifacts.
 
 ## What A Feature Can Produce
 
@@ -47,11 +49,11 @@ Use `features/` once a proposal has been approved into active feature work.
 
 Use `platform/` once a feature project has produced a defined platform deliverable under the correct implementation surface.
 
-Feature-level validation belongs under `features/<feature>/test-plan.md`.
+Feature-level validation may live under `features/<feature>/test-plan.md` when this repository owns the feature-level acceptance contract.
 
 Platform-item validation belongs under `platform/<type>/<name>/test-plan.md`.
 
-The feature-level plan is the master acceptance plan for the overall capability. Platform-item plans prove the lower-level components.
+Some repo-backed features keep their detailed validation and implementation contracts in a dedicated repository instead of a local feature-level plan. Platform-item plans prove the lower-level components.
 
 ## Related Concepts
 

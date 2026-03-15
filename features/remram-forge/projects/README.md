@@ -2,6 +2,6 @@
 
 Project history for this feature has not yet been reconstructed into the current `features/` lifecycle tree.
 
-The current working baseline is the feature-level summary in [../feature.md](../feature.md), the acceptance scope in [../feature-spec.md](../feature-spec.md), and the master acceptance goals in [../test-plan.md](../test-plan.md).
+Use [../README.md](../README.md), [../enhancements/README.md](../enhancements/README.md), and the dedicated [`remram-forge`](https://github.com/remram-ai/remram-forge) repository as the current working baseline.
 
 The canonical implementation and lifecycle content currently live in [`remram-forge`](https://github.com/remram-ai/remram-forge).

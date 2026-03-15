@@ -31,6 +31,7 @@ Historical proposal and project artifacts for this feature have not yet been rec
 
 - [Feature Spec](feature-spec.md)
 - [Master Test Plan](test-plan.md)
+- [Enhancements](enhancements/README.md)
 - [Projects](projects/README.md)
 
 ## Related Documentation

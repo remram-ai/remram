@@ -15,6 +15,14 @@ Canonical grammar:
 moltbox <resource> <command>
 ```
 
+For workstation operators, the canonical invocation path is:
+
+```text
+ssh -T -i ~/.ssh/jason-codex jason-codex@moltbox-prime "moltbox <resource> <command>"
+```
+
+The `moltbox` binary is a host-local client. Runtime mutation must happen on the gateway host, not from a workstation-local process pointed at a local Docker or localhost gateway.
+
 ## Command Tree
 
 ```text
@@ -173,6 +181,8 @@ Container deployment and service lifecycle actions are routed through the gatewa
 `moltbox gateway update` is also the canonical self-update path for the host `moltbox` CLI/tooling. There is no separate active `tools update` namespace in the Architecture V2 contract.
 
 Workstation automation reaches this namespace over SSH with restricted identities such as `jason-codex`. Internal agents use token-authenticated HTTP MCP against the gateway and do not expose a public ingress route.
+
+That means the normal workstation path is `ssh -> host-side moltbox -> gateway`. Direct workstation execution of a host-local `moltbox` binary is not the control-plane contract for runtime mutation.
 
 Secrets are also gateway-owned. Scoped secret commands follow the control path `CLI -> gateway -> encrypted secret store`, and only the gateway process reads or writes `/var/lib/moltbox/secrets/<scope>/`.
 

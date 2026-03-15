@@ -14,6 +14,14 @@ Preferred path:
 Workstation -> ssh -> Moltbox CLI -> Gateway
 ```
 
+Canonical workstation form:
+
+```text
+ssh -T -i ~/.ssh/jason-codex jason-codex@moltbox-prime "moltbox <args>"
+```
+
+Do not run a host-local `moltbox` binary on the workstation and expect runtime mutation to execute correctly there. Runtime operations must be initiated from the gateway host CLI over the SSH wrapper path.
+
 Internal agents and containers may use the gateway MCP HTTP surface over the appliance network with bearer tokens managed by `moltbox gateway token ...`.
 
 ## Common Commands

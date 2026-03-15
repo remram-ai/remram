@@ -13,6 +13,20 @@ The gateway is the control plane.
 
 Operators should manage the appliance through the Moltbox CLI rather than direct Docker commands.
 
+The workstation must reach the CLI over SSH to the gateway host. Do not run a host-local `moltbox` binary on the workstation and expect runtime mutation to happen correctly there.
+
+Canonical workstation form:
+
+```text
+ssh -T -i ~/.ssh/jason-codex jason-codex@moltbox-prime "moltbox <args>"
+```
+
+Example:
+
+```text
+ssh -T -i ~/.ssh/jason-codex jason-codex@moltbox-prime "moltbox dev plugin install moltbox-telemetry"
+```
+
 Internal agents and containers use the gateway MCP HTTP surface with bearer tokens managed by `moltbox gateway token ...`. That MCP path is not the normal workstation operator interface.
 
 ## Normal Workflow
@@ -142,9 +156,9 @@ ssh -T -i ~/.ssh/codex-bootstrap codex-bootstrap@moltbox-prime "moltbox test ope
 
 A thin host-level `moltbox` entrypoint may exist on the appliance host.
 
-That wrapper is only a convenience layer around the real control path.
+That wrapper is only a convenience layer around the real control path on the host itself.
 
-The primary operator model is SSH plus the Moltbox CLI invoking the gateway.
+The primary operator model is SSH plus the Moltbox CLI invoking the gateway from the gateway host.
 
 ## Docker Boundary
 

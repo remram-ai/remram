@@ -4,10 +4,10 @@
 **Layer:** Cortex
 **Primary Surface / Agent:** Archivist Agent
 **Relevant Hook or Stage (if applicable):** Manual trigger via App or file tool event -> /ingest endpoint
-**Dependencies (if any):** OpenSearch, Reflection pipeline, Dimension registry
+**Dependencies (if any):** OpenSearch, Reflection pipeline, Dimension registry, local artifact store
 **Date:** 2026-03-01
 **Status:** Shaping
-**One-liner:** Import external documents into Cortex and convert them into structured, durable knowledge before user framing.
+**One-liner:** Import external documents and images into Cortex through one parser path and convert them into source-linked durable memory before user framing.
 
 ---
 
@@ -25,13 +25,14 @@ Cortex Import removes this friction by allowing the system to read first, extrac
 
 Cortex Import:
 
-- Accepts an uploaded document (Markdown, PDF, text, or repository snapshot)
-- Parses structure (headings, lists, sections)
-- Extracts atomic knowledge candidates
+- Accepts an uploaded document or image (Markdown, PDF, text, repository snapshot, screenshot, or photo)
+- Stores the original artifact in a local Git-backed artifact store
+- Parses structure and visual content through one Artifact Parser path
+- Extracts bounded source-linked memory candidates with location metadata
 - Detects entities, projects, constraints, and recurring themes
-- Creates low-confidence knowledge objects in Cortex
+- Creates or reinforces low-confidence knowledge objects in Cortex
 - Registers candidate dimensions when appropriate
-- Generates a structural summary for review
+- Generates a structural summary and highlights for review
 - Asks the user for clarification only after structural analysis
 
 The user does not need to pre-structure the input. The system performs first-pass distillation.
@@ -40,15 +41,16 @@ The user does not need to pre-structure the input. The system performs first-pas
 
 ## Example / Scenario
 
-User uploads a project charter.
+User uploads a project charter or architecture screenshot.
 
 System performs:
 
-1.  Structural parsing of headings and sections.
-2.  Extraction of constraints, decisions, and principles.
-3.  Identification of project name and domain.
-4.  Creation of knowledge objects with source tag `external-artifact`.
-5.  Generation of a structured preview:
+1.  Stores the original file in the artifact store.
+2.  Parses headings, sections, or image regions through the Artifact Parser.
+3.  Extracts constraints, decisions, and principles with source locations.
+4.  Identifies project name and domain.
+5.  Creates or reinforces knowledge objects with source tag `external-artifact`.
+6.  Generates a structured preview:
     - "Detected 4 constraints"
     - "Detected 3 decision statements"
     - "Detected new candidate dimension: procurement-model"
@@ -66,11 +68,12 @@ User framing modifies confidence, dimension tagging, and promotion eligibility.
 ## Core Mechanism (High-Level)
 
 1.  Artifact ingestion is triggered manually.
-2.  Archivist Agent parses and extracts structured candidates.
-3.  Candidates are sent to `/ingest` in Cortex.
-4.  Knowledge objects are created with lower initial confidence.
-5.  Dimension registry updated with candidates (not canonical yet).
-6.  User framing adjusts metadata and confidence weights.
+2.  Archivist Agent stores the original artifact and invokes one Artifact Parser path for documents or images.
+3.  The parser emits summary, highlights, and source-linked candidate slices.
+4.  Candidates are sent to `/ingest` in Cortex.
+5.  Knowledge objects are created or reinforced with lower initial confidence.
+6.  Dimension registry updated with candidates (not canonical yet).
+7.  User framing adjusts metadata and confidence weights.
 
 Reflection and Dream cycles later reconcile imported knowledge with existing system state.
 
@@ -79,7 +82,7 @@ Reflection and Dream cycles later reconcile imported knowledge with existing sys
 ## Benefits
 
 - Eliminates cold-start friction for document-heavy users
-- Converts static artifacts into structured knowledge
+- Converts static artifacts into structured, traceable knowledge
 - Enables knowledge compounding across documents
 - Avoids prompt-based manual summarization loops
 - Maintains single knowledge authority in Cortex
@@ -95,6 +98,7 @@ This leverages existing infrastructure:
 - Dimension registry
 - Reflection and Dream reconciliation
 - OpenSearch indexing
+- local Git-backed artifact storage
 
 No modification to OpenClaw runtime is required. The process operates entirely within Cortex authority.
 
@@ -107,14 +111,15 @@ No modification to OpenClaw runtime is required. The process operates entirely w
 - No automatic artifact promotion without review
 - Dimension candidates require Dream validation before canonical promotion
 - Large artifacts must respect token and parsing limits
+- Every imported memory candidate must retain a source location back to the artifact
 
 ---
 
 ## Open Questions
 
 - Should repository ingestion be recursive or shallow by default?
-- Should imported artifacts maintain full-text searchable archive outside knowledge objects?
-- How do we prevent duplication when similar artifacts are re-imported?
+- Which source-location schema should be normalized across pages, sections, offsets, and image regions?
+- How aggressive should REM be when pruning low-value imported artifacts after intake?
 
 ---
 
@@ -131,8 +136,9 @@ No modification to OpenClaw runtime is required. The process operates entirely w
 This idea may be promoted when:
 
 - Archivist Agent responsibilities are clearly scoped
+- Artifact Parser output contract is defined
 - Confidence initialization policy is defined
-- Artifact source tagging schema is finalized
+- Artifact source tagging and location schema are finalized
 - UI review workflow is specified
 
 Until then, it remains an intake artifact.

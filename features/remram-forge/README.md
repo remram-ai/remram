@@ -14,6 +14,7 @@ Forge is the operational grammar of the ecosystem:
 - governance rules and decision posture
 - role mechanics, workflows, and orchestration tasks
 - canonical lifecycle templates and orchestration state schemas
+- full-log loop compression into retained summary, highlights, and feedback
 - the inner loop that feeds better artifacts back into the rest of the platform
 
 ## Repository Boundary
@@ -34,6 +35,7 @@ Historical proposal and project artifacts for this feature have not yet been rec
 - `remram` stays focused on platform architecture, feature definitions, and public-facing documentation
 - downstream implementation repositories can consume one Forge-owned lifecycle model instead of duplicating local process rules
 - lifecycle state contracts for agents, projects, and tasks have one canonical home
+- retro and improve can mine reusable patterns from compressed execution signals instead of preserving every raw log forever
 
 ## Canonical Repository
 

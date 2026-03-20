@@ -13,6 +13,7 @@ Cortex is the conceptual center of long-lived intelligence in the Remram ecosyst
 - durable knowledge instead of transcript dependence
 - bounded retrieval instead of uncontrolled context stuffing
 - reflection and Dream-style reconciliation instead of one-pass accumulation
+- multimodal artifact intake that turns documents and images into source-linked memory
 - a dedicated system boundary for memory services, indexing, promotion, and recall
 
 ## Repository Boundary
@@ -32,7 +33,7 @@ Historical proposal and project artifacts for this feature have not yet been rec
 - users should not have to rebuild important context every time a session changes
 - the platform needs a real memory layer instead of treating raw transcript history as durable truth
 - retrieval should be structured, inspectable, and intentionally governed
-- long-lived knowledge should be able to improve through reflection, contradiction handling, and artifact promotion
+- long-lived knowledge should be able to improve through reflection, contradiction handling, pruning, and artifact promotion
 
 ## Canonical Repository
 

@@ -35,6 +35,20 @@ the gateway:
 
 After a successful checkpoint, future runtime redeploys start from the promoted image with an empty replay list.
 
+## Base Image Updates
+
+Runtime configuration still comes from the `moltbox-runtime` templates rendered during `moltbox gateway service deploy <env>`.
+
+The runtime image used for that redeploy is still selected by the active checkpoint metadata in `current.json`.
+
+If `current.json` points to a promoted `moltbox-runtime:<runtime>-<checkpoint_id>` image, later runtime redeploys continue to boot that checkpoint image even when upstream `ghcr.io/openclaw/openclaw:latest` has moved.
+
+That means template changes alone do not move a checkpointed environment onto a newer upstream OpenClaw base image.
+
+To adopt a newer upstream base image, operators must first update or replace the selected baseline image and then redeploy the environment through `moltbox gateway service deploy <env>`.
+
+After the redeploy, verify the selected image with `moltbox gateway service status <env>` and verify the running runtime version with `moltbox <env> openclaw --version`.
+
 ## Relationship To Replay
 
 Replay only covers post-checkpoint mutations.

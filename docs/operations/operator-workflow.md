@@ -60,7 +60,46 @@ Use `dev`, `test`, and `prod` in the CLI.
 
 Do not use internal runtime identifiers such as `openclaw-dev` as top-level command namespaces.
 
-### 3. Deploy or restart appliance services
+### 3. Open the OpenClaw dashboard
+
+Dashboard ingress routes:
+
+- [https://moltbox-dev/](https://moltbox-dev/)
+- [https://moltbox-test/](https://moltbox-test/)
+- [https://moltbox-prod/](https://moltbox-prod/)
+
+Generate a dashboard tokenized URL from the target runtime:
+
+```text
+moltbox dev openclaw dashboard --no-open
+moltbox test openclaw dashboard --no-open
+moltbox prod openclaw dashboard --no-open
+```
+
+The printed URL may use the runtime-local listener such as `http://127.0.0.1:18789/#token=...`.
+
+Use the token fragment with the ingress route for the target environment instead of the container-local origin.
+
+Dashboard tokens are OpenClaw device-session tokens for the Control UI.
+
+They are not the same as `moltbox gateway token ...`, which manages bearer tokens for the internal gateway MCP endpoint.
+
+If the dashboard reports pairing required, use the runtime device commands:
+
+```text
+moltbox dev openclaw devices list --json
+moltbox dev openclaw devices approve <requestId> --json
+
+moltbox test openclaw devices list --json
+moltbox test openclaw devices approve <requestId> --json
+
+moltbox prod openclaw devices list --json
+moltbox prod openclaw devices approve <requestId> --json
+```
+
+`moltbox <env> openclaw devices approve --latest --json` is also valid when approving the newest pending dashboard request intentionally.
+
+### 4. Deploy or restart appliance services
 
 Use the gateway service pipeline for appliance services:
 
@@ -87,7 +126,7 @@ When this path is used, the runtime baseline must be restored and recorded skill
 
 For runtime replay validation and normal runtime redeploys, this is the correct control-plane path. A plain Docker container restart does not read gateway replay state.
 
-### 4. Use native service CLIs when needed
+### 5. Use native service CLIs when needed
 
 Service namespaces are passthrough interfaces to the native service CLIs:
 
@@ -97,7 +136,7 @@ moltbox opensearch <native command>
 moltbox caddy <native command>
 ```
 
-### 5. Promote stable runtime state
+### 6. Promote stable runtime state
 
 When a runtime state should become the new baseline, checkpoint it:
 
@@ -110,7 +149,7 @@ Checkpointing is environment-scoped and stays under the environment namespaces, 
 
 Checkpoint creates a promoted runtime baseline image, writes baseline metadata under `/srv/moltbox-state/runtime-baselines/<runtime>/current.json`, and clears the replay log for that runtime.
 
-### 6. Promote across environments deliberately
+### 7. Promote across environments deliberately
 
 Expected promotion posture:
 
@@ -131,7 +170,7 @@ Operator workflow shorthand:
 dev -> checkpoint -> verify -> promote -> test -> verify -> promote -> prod
 ```
 
-### 7. Investigate with CLI-first diagnostics
+### 8. Investigate with CLI-first diagnostics
 
 Use the CLI namespaces first:
 

@@ -37,9 +37,15 @@ Validated default host mappings:
 
 Validated ingress routes:
 
-- `https://moltbox-dev`
-- `https://moltbox-test`
-- `https://moltbox-prod`
+- [https://moltbox-dev/](https://moltbox-dev/)
+- [https://moltbox-test/](https://moltbox-test/)
+- [https://moltbox-prod/](https://moltbox-prod/)
+
+OpenClaw dashboard token flow:
+
+- generate a tokenized URL with `moltbox <env> openclaw dashboard --no-open`
+- the printed URL may use the runtime-local listener `http://127.0.0.1:18789/#token=...`
+- keep the `#token=...` fragment and replace the origin with the matching ingress route above
 
 ## Caddy
 

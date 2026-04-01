@@ -108,6 +108,18 @@ Gateway self-mutation goes through `moltbox gateway update` only. `moltbox gatew
 
 Workstation operators and automation reach the CLI over SSH. Internal agents use the token-authenticated MCP HTTP endpoint instead of SSH.
 
+`moltbox gateway token ...` manages bearer tokens for the internal gateway MCP HTTP surface only.
+
+OpenClaw dashboard access uses the environment passthrough surface instead:
+
+```text
+moltbox dev openclaw dashboard --no-open
+moltbox dev openclaw devices list --json
+moltbox dev openclaw devices approve <requestId> --json
+```
+
+Use the same `openclaw dashboard --no-open` and `openclaw devices ...` flow under `test` and `prod` when approving dashboard pairing requests.
+
 Runtime environments:
 
 ```text

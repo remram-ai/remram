@@ -5,6 +5,13 @@
 Anything under `platform/` must represent an actual platform capability that is implemented or actively being implemented.
 Conceptual work stays in [roadmap/](../roadmap/README.md) until approval moves it into [features/](../features/README.md).
 
+Important boundary rule:
+
+- `platform/` is the ecosystem registry
+- detailed live service docs belong in the owning service repo
+- detailed live Gateway/operator docs belong in `moltbox-gateway`
+- local platform entries may be either full local bundles or short pointer bundles when another repo is the detailed authority
+
 The lifecycle is:
 
 ```text
@@ -31,6 +38,10 @@ New platform items must contain the operational documentation bundle:
 
 These files describe what the capability is, how it works, how operators run it, and how it is validated.
 Use [platform/templates/](./templates/) when creating a new platform item.
+
+Exception:
+
+- when a platform item is owned in detail by another repo, the local bundle may be reduced to a concise pointer plus status summary instead of duplicating the full operator contract
 
 Platform item `test-plan.md` files validate the component itself.
 

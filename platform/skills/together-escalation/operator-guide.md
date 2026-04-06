@@ -1,5 +1,11 @@
 # Together Escalation Operator Guide
 
+Status note:
+
+- this document predates the current managed-pet Gateway/OpenClaw correction
+- it is retained as reconstruction material, not as the current live operator guide
+- use `README.md`, `docs/features/together-escalation.md`, and `moltbox-gateway` first
+
 ## Purpose
 
 Use this skill when you want a Moltbox runtime to keep default chat local while recovering to stronger Together-hosted models for chat, reasoning, and coding when fallback is needed.

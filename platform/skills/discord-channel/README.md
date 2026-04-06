@@ -54,8 +54,6 @@ Each environment can have its own Discord bot identity and policy.
 
 ## Related Documents
 
-- [Specification](spec.md)
-- [Test Plan](test-plan.md)
-- [Operator Guide](operator-guide.md)
+- local detailed docs are still under reconstruction for the current managed-pet model
 - [Runtime Concept](../../../docs/concepts/runtime.md)
 - [Platform Topology](../../../docs/overview/topology.md)

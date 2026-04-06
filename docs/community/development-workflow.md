@@ -35,15 +35,22 @@ This repository is the place to stabilize the language and structure before down
 
 When architecture work turns into implementation work in the domain repositories, the expected promotion model is:
 
-1. work on your own branch
-2. iterate in `dev`
-3. run unit tests and the relevant platform item `test-plan.md` in `dev`
-4. promote to `test` through the CLI only
-5. run the same test plan in `test`
-6. stop when the change is ready for UAT
-7. after approval, merge and deploy to `prod`
+1. work in the owning repository on a normal Git branch
+2. keep baseline service inputs, runtime overlays, CLI changes, and skill/plugin changes in their owning repos
+3. run the relevant unit tests and the matching platform item or feature test plan
+4. commit and push the tracked revisions you intend to deploy
+5. update the appliance host from those exact tracked revisions
+6. deploy through the official `moltbox` CLI and service-plane path
+7. prove the change in `test` first when the appliance is involved
+8. only then treat `prod` as promotable
 
-This workflow exists to test both the platform item and the deployment path itself.
+Current Moltbox posture:
+
+- `test` is the proving lane
+- `prod` is a protected managed pet
+- replay and checkpoint are not the normal `test` / `prod` lifecycle
+- snapshot-first recovery replaces the old replay-first rebuild model
+- routine operator work should not require raw Docker or break-glass SSH
 
 ## Documentation Quality Checklist
 

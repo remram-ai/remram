@@ -1,8 +1,8 @@
 # Endpoints
 
-This document records the main endpoint and health-surface references used by the appliance.
+This file is the concise `remram`-side endpoint summary for the current Moltbox appliance.
 
-These are reference values for the current appliance model.
+For the detailed live topology and operator contract, use `moltbox-gateway`.
 
 ## Gateway
 
@@ -10,77 +10,62 @@ Gateway health:
 
 - appliance-local: `http://127.0.0.1:7460/health`
 
-Gateway is the control-plane endpoint surfaced through the CLI and internal tooling.
-
-Public HTTPS ingress does not expose the control plane. `https://moltbox-cli/*` returns `404` by design.
-
 Gateway MCP:
 
 - appliance-local: `http://127.0.0.1:7460/mcp`
 - internal container network: `http://gateway:7460/mcp`
-- auth: `Authorization: Bearer <token>`
 
-MCP is for internal appliance agents and containers, not the workstation operator path.
+Notes:
 
-## OpenClaw Runtime Endpoints
+- MCP is for internal appliance agents and containers
+- workstation operators should use SSH plus `moltbox`, not direct MCP HTTP calls
 
-Each OpenClaw runtime exposes:
+## Public HTTPS Ingress
 
-- health: `http://127.0.0.1:18789/healthz`
-- readiness: `http://127.0.0.1:18789/readyz`
+Current ingress routes:
 
-Validated default host mappings:
+- `https://moltbox-gateway/`
+- `https://moltbox-test/`
+- `https://moltbox-prod/`
 
-- `openclaw-dev` -> host `18790`
-- `openclaw-test` -> host `28789`
-- `openclaw-prod` -> host `38789`
+These are appliance-facing routes behind Caddy.
 
-Validated ingress routes:
+## OpenClaw Runtime Access
 
-- [https://moltbox-dev/](https://moltbox-dev/)
-- [https://moltbox-test/](https://moltbox-test/)
-- [https://moltbox-prod/](https://moltbox-prod/)
+Normal runtime access uses:
 
-OpenClaw dashboard token flow:
+- `moltbox test openclaw ...`
+- `moltbox prod openclaw ...`
 
-- generate a tokenized URL with `moltbox <env> openclaw dashboard --no-open`
-- the printed URL may use the runtime-local listener `http://127.0.0.1:18789/#token=...`
-- keep the `#token=...` fragment and replace the origin with the matching ingress route above
+Dashboard token flow:
 
-## Caddy
+- generate a tokenized URL with `moltbox test openclaw dashboard --no-open` or `moltbox prod openclaw dashboard --no-open`
+- keep the `#token=...` fragment
+- replace any loopback origin in the printed URL with the matching ingress host
 
-Caddy health:
+Direct runtime ports are implementation details, not the preferred operator surface.
 
-- `http://127.0.0.1/healthz`
+## Internal Service Endpoints
 
-Caddy is the steady-state ingress service.
+Stable internal dependency endpoints used by the appliance include:
 
-## OpenSearch
+- Gateway MCP: `http://gateway:7460/mcp`
+- Ollama: `http://ollama:11434`
 
-OpenSearch runs as an internal appliance service.
+Detailed service-local ports, mounts, and container wiring belong to the service authority repo, not this file.
 
-Reference port:
+## Current Notes
 
-- internal `9200/tcp`
+- `searxng` is an internal appliance service that backs `web_search`
+- built-in `web_fetch` does not require a separate appliance endpoint
+- native OpenClaw `browser` runs inside the runtime containers rather than through a separate external browser service
+- OpenSearch is not part of the current target appliance
 
-Health is typically checked by service-level connectivity rather than a public ingress route.
+## Operator Rule
 
-## Ollama
+Prefer the CLI over direct endpoint probing for normal operations:
 
-Ollama is a first-class appliance service but is typically treated as an internal shared dependency rather than a public ingress endpoint.
-
-Runtime configuration commonly refers to:
-
-- `http://ollama:11434`
-
-Current documented posture:
-
-- Ollama remains internal-only
-- operators use `moltbox gateway service ...` and `moltbox ollama ...` rather than public ingress
-
-## Notes
-
-- endpoint ownership belongs to the appliance topology and service model
-- operator workflow should prefer the CLI over direct endpoint probing for normal operations
-- workstation automation should use SSH plus the Moltbox CLI rather than public HTTPS control-plane endpoints
-- platform docs own the deeper topology contract; this page is the quick technical reference
+- `moltbox gateway status`
+- `moltbox service status <service>`
+- `moltbox test|prod openclaw ...`
+- `moltbox test|prod verify ...`

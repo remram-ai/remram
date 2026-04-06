@@ -1,15 +1,13 @@
 # Platform Items
 
-This file indexes active platform capability docs in `platform/`.
+This file indexes the active platform registry and the main ownership rules around it.
 
 Approved feature records live separately under [../../features/](../../features/README.md). Some of those feature records point to dedicated implementation repositories, but the public capability and platform registry still stay in `remram`.
 
-Active documented platform items:
+Active registry entry points:
 
 - [gateway](../../platform/core/gateway/README.md)
-- [caddy](../../platform/services/caddy/README.md)
-- [ollama](../../platform/services/ollama/README.md)
-- [opensearch](../../platform/services/opensearch/README.md)
+- [services category](../../platform/services/README.md)
 - [discord-channel](../../platform/skills/discord-channel/README.md)
 - [together-escalation](../../platform/skills/together-escalation/README.md)
 - [moltbox-telemetry](../../platform/plugins/moltbox-telemetry/README.md)
@@ -35,8 +33,9 @@ Builder guidance:
 
 - platform item docs are not a substitute for the architecture bootstrap in `overview.md`, `topology.md`, `repositories.md`, `cli.md`, and `roles/builders.md`
 - read the relevant platform item docs after the architecture bootstrap, not instead of it
-- if a task touches service lifecycle, deployment orchestration, or rendered service state, read [gateway](../../platform/core/gateway/README.md) and its `spec.md`
-- for service-specific work, also read the matching service item and confirm the repository boundary with `moltbox-services` and `moltbox-gateway`
+- if a task touches service lifecycle, deployment orchestration, or rendered service state, read [gateway](../../platform/core/gateway/README.md) and confirm the repo boundary with `moltbox-gateway`, `moltbox-services`, and `moltbox-runtime`
+- service-specific implementation details now live in the owning service repo rather than in local per-service platform bundles under `remram`
+- use the local platform registry for ecosystem framing and capability status, not as the detailed service authority
 
 Canonical source:
 

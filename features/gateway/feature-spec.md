@@ -9,10 +9,12 @@
 
 - In scope: operator-facing `moltbox` CLI control path
 - In scope: service lifecycle orchestration and status reporting
-- In scope: environment lifecycle actions such as reload and checkpoint
+- In scope: native OpenClaw passthrough on `test` and `prod`
+- In scope: restricted verification surfaces for routine operator checks
 - In scope: authenticated MCP and restricted SSH automation surfaces
+- In scope: snapshot-aware mutation guardrails and recovery workflow
 - Out of scope: service definitions as source material
-- Out of scope: runtime baseline config as source material
+- Out of scope: baseline service config as source material
 - Out of scope: skill or plugin implementation code
 
 ## User Experience
@@ -21,10 +23,11 @@ Operators should be able to manage the appliance through one documented control 
 
 ## Functional Requirements
 
-- gateway writes authoritative deployment metadata
-- `moltbox gateway service ...` manages appliance service lifecycle
-- environment-scoped lifecycle remains available through `dev`, `test`, and `prod`
-- MCP access requires bearer-token authentication
+- gateway writes authoritative deployment and snapshot metadata
+- `moltbox service ...` manages appliance service lifecycle
+- `moltbox test|prod openclaw ...` preserves native runtime lifecycle operations
+- `moltbox test|prod verify ...` supports restricted operator verification
+- MCP access requires authenticated access
 - `moltbox gateway update` refreshes both the running gateway and host CLI tooling
 
 ## Dependencies
@@ -33,15 +36,16 @@ Operators should be able to manage the appliance through one documented control 
 - appliance state under `/srv/moltbox-state`
 - appliance logs under `/srv/moltbox-logs`
 - service definitions from `moltbox-services`
-- baseline runtime config from `moltbox-runtime`
+- final deployable runtime artifacts from `moltbox-runtime`
 - skill packages from `remram-skills`
 
 ## Acceptance Criteria
 
 - operators can manage core appliance lifecycle through documented CLI commands
-- deployment metadata reconciles with running and rendered artifacts
+- deployment and snapshot metadata reconcile with running and rendered artifacts
 - internal agents can reach MCP with authenticated access
 - normal operator workflows do not require undocumented Docker-first recovery paths
+- replay and checkpoint are not part of the normal `test` / `prod` lifecycle
 
 ## Open Questions
 

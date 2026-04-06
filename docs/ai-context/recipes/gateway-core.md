@@ -36,7 +36,7 @@ Gateway owns orchestration, not every source artifact it consumes.
 
 ## OpenClaw Source Of Record
 
-Use local Moltbox docs in this repo for the appliance control-plane contract.
+Use `moltbox-gateway` for the live appliance control-plane contract.
 
 When gateway behavior depends on current upstream OpenClaw behavior, confirm it in:
 
@@ -53,7 +53,7 @@ Gateway/core is a good fit when the deliverable needs to define or change:
 - `moltbox` command surfaces
 - service deployment flow
 - gateway self-update behavior
-- runtime reload orchestration
+- runtime orchestration guardrails around native OpenClaw behavior
 - deployment metadata authority
 - rollback, snapshot, or reconciliation behavior
 
@@ -83,8 +83,10 @@ Primary control-plane surfaces are:
 ```text
 moltbox gateway ...
 moltbox service ...
-moltbox <env> openclaw ...
-moltbox <env> verify ...
+moltbox test openclaw ...
+moltbox test verify ...
+moltbox prod openclaw ...
+moltbox prod verify runtime
 ```
 
 Gateway/core work often affects more than one deployment path:

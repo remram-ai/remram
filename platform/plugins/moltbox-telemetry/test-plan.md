@@ -1,5 +1,11 @@
 # Moltbox Telemetry Test Plan
 
+Status note:
+
+- this document predates the current managed-pet Gateway/OpenClaw correction
+- it is retained as reconstruction material, not as the current active validation contract
+- use `README.md`, the feature record, and the owning Moltbox repos first
+
 Status: in flight
 
 ## Definition Of Done

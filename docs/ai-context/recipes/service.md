@@ -36,7 +36,7 @@ The service definition does not belong in `remram`.
 
 ## OpenClaw Source Of Record
 
-For service lifecycle, the Moltbox architecture docs in this repo are the local source of record.
+For the live service lifecycle contract, use `moltbox-gateway` and the owning service repo.
 
 For the OpenClaw-facing runtime contract, read the current upstream page that matches what the service feeds:
 
@@ -55,7 +55,7 @@ A service is a good fit when the deliverable needs:
 - its own durability and storage posture
 - operator-visible lifecycle commands
 - shared use across multiple runtime environments
-- a native service CLI passthrough when one already exists
+- a native service CLI passthrough only when that passthrough is part of the current public CLI contract
 
 ## Limitations
 
@@ -74,7 +74,7 @@ Assume these limits unless the platform changes:
 2. Place the service definition and baseline config in `moltbox-services`.
 3. Define how gateway deploys, restarts, validates, and reports the service.
 4. If the service needs final promoted runtime artifacts, add those to `moltbox-runtime`.
-5. If the service has a native CLI, preserve that through a thin `moltbox <service> <native command>` passthrough instead of inventing a second abstraction.
+5. If the service has a native CLI and the public contract actually exposes it, preserve that through a thin passthrough instead of inventing a second abstraction.
 6. Document the service in the owning service repo rather than creating a competing copy in `remram`.
 7. State the network endpoint, health model, persistence needs, and upgrade or rollback posture explicitly.
 8. If the service feeds OpenClaw, define the plugin, skill, or runtime-config surface that exposes it to the runtime.
@@ -94,7 +94,7 @@ moltbox service restart <service>
 moltbox service status <service>
 ```
 
-If the service has a native CLI, preserve the passthrough:
+If the service has a native CLI and the current public contract exposes it, preserve the passthrough:
 
 ```text
 moltbox <service> <native command>

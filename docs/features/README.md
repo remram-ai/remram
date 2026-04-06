@@ -28,6 +28,12 @@ Current feature documents:
 
 - [Together AI Escalation](./together-escalation.md)
 
+Current rule:
+
+- feature docs here should explain the user- or operator-visible capability
+- they should not duplicate the full live appliance contract from `moltbox-gateway`
+- they should not duplicate service-owned config detail from `moltbox-services`
+
 Go next:
 
 - Start with [Roadmap](../../roadmap/README.md) if the capability is still being shaped.

@@ -6,7 +6,7 @@ What to know first:
 
 - every implemented platform item bundle includes a `test-plan.md`
 - test plans are the platform-item-level definition of done
-- gateway owns deployment metadata and deployment-event recording
+- gateway owns deployment metadata and snapshot/deployment history
 - runtime validation must distinguish container health from mutable runtime state
 
 How to read platform item test plans:
@@ -23,6 +23,7 @@ Validation posture:
 - verify deployment metadata when lifecycle work occurs
 - verify runtime health and runtime state separately
 - use snapshot and restore behavior when assessing rollback or rebuild behavior
+- use the current Gateway verification surfaces before falling back to raw host inspection
 
 Canonical docs:
 

@@ -54,5 +54,4 @@ Historical proposal and project artifacts for this feature have not yet been rec
 
 - [Cortex Repository](https://github.com/remram-ai/remram-cortex)
 - [Feature Concept](../../docs/concepts/feature.md)
-- [OpenSearch](../../platform/services/opensearch/README.md)
 - [Platform Registry](../../platform/README.md)

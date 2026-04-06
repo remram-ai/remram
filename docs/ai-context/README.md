@@ -4,6 +4,15 @@ This folder provides fast, high-signal bootstrap material for AI assistants work
 
 Use these files as orientation summaries, not as replacements for the canonical docs.
 
+They should stay synchronized with the human-facing path under:
+
+- `README.md`
+- `docs/README.md`
+- `docs/community/`
+- `docs/overview/`
+- `docs/concepts/`
+- `docs/operations/`
+
 If the task touches the live Moltbox appliance, load the `moltbox-gateway` docs first:
 
 - [Moltbox Gateway README](https://github.com/remram-ai/moltbox-gateway/blob/main/README.md)
@@ -24,7 +33,14 @@ docs/       -> architecture, feature docs, concepts, operations, and AI bootstra
 Idea -> Proposal -> Feature -> Feature Project -> platform item -> docs/features/<name>.md
 ```
 
-Core summaries:
+Human-first reading order:
+
+1. `../community/getting-started.md`
+2. `../overview/README.md`
+3. `../concepts/README.md`
+4. `../operations/README.md`
+
+AI bootstrap summaries:
 
 - [Overview](overview.md)
 - [CLI](cli.md)
@@ -58,9 +74,11 @@ Canonical sources:
 - [Reference](../../reference/README.md)
 - [Platform Registry](../../platform/README.md)
 
-Recommended order:
+Recommended AI order:
 
 1. Read [Overview](overview.md), [Topology](topology.md), and [Repositories](repositories.md).
 2. Use [Features](../../features/README.md) and [Platform Items](features.md) once you need approved feature records or active registry entries.
 3. If the task touches lifecycle stages, governance, or lifecycle artifact contracts, follow the private Forge docs when you have access.
 4. Use [Roles](roles/README.md) and [Platform Item Type Recipes](recipes/README.md) for task-specific guidance.
+
+Do not use `docs/audits/` or `archive/` as the starting point unless the task is explicitly historical.

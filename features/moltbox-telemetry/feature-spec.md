@@ -9,7 +9,7 @@
 
 - In scope: standardized runtime telemetry fields for model usage
 - In scope: aligned response-side telemetry and diagnostics visibility
-- In scope: consistent telemetry behavior across `dev`, `test`, and `prod`
+- In scope: consistent telemetry behavior across the current managed runtimes
 - Out of scope: routing policy
 - Out of scope: model fallback logic
 - Out of scope: provider credential policy beyond existing runtime needs
@@ -35,7 +35,7 @@ Operators and higher-level tooling should be able to inspect runtime telemetry t
 ## Acceptance Criteria
 
 - the standardized telemetry field contract is visible in chat responses and diagnostics output
-- the same telemetry contract is usable across `dev`, `test`, and `prod`
+- the same telemetry contract is usable across the current managed runtimes where the feature is enabled
 - latency is visible as `provider_latency_ms`
 - the runtime remains behaviorally unchanged apart from telemetry visibility
 

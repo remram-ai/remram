@@ -2,6 +2,8 @@
 
 This folder contains concise technical reference material.
 
+For the detailed live Moltbox operator contract, use `moltbox-gateway` first. The local reference files are intentionally short summaries and quick lookups.
+
 Documents in this folder:
 
 - [CLI Reference](cli-reference.md) for command forms and namespace rules

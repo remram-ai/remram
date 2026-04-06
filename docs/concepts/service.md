@@ -36,8 +36,6 @@ moltbox service status <service>
 Some services also expose direct native CLI passthrough namespaces, such as:
 
 ```text
-moltbox caddy <native command>
-moltbox opensearch <native command>
 moltbox ollama <native command>
 ```
 

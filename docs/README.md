@@ -368,3 +368,8 @@ Recommended reading path:
 4. [Operations](operations/README.md)
 5. [Testing](testing/README.md)
 6. [AI Context](ai-context/README.md)
+
+Avoid starting in:
+
+- `audits/` unless the task is explicitly an audit or historical reconciliation
+- `archive/` unless the task is explicitly historical

@@ -1,5 +1,11 @@
 # Discord Channel Operator Guide
 
+Status note:
+
+- this document predates the current managed-pet Gateway/OpenClaw correction
+- it is retained as reconstruction material, not as the current live operator guide
+- use `README.md` and the owning Moltbox repos first
+
 Status: in flight
 
 ## Purpose

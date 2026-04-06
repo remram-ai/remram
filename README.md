@@ -152,8 +152,17 @@ Historical context and superseded planning material remain in `archive/`.
 
 ## How To Get Started
 
-- Want to understand the current documentation system: start with [docs/README.md](docs/README.md)
-- Want a fast AI-assistant bootstrap: start with [docs/ai-context/README.md](docs/ai-context/README.md)
+- Human contributor start path:
+  1. [docs/README.md](docs/README.md)
+  2. [docs/community/getting-started.md](docs/community/getting-started.md)
+  3. [docs/overview/README.md](docs/overview/README.md)
+  4. [docs/concepts/README.md](docs/concepts/README.md)
+  5. [docs/operations/README.md](docs/operations/README.md)
+- AI bootstrap start path:
+  1. [docs/ai-context/README.md](docs/ai-context/README.md)
+  2. [docs/ai-context/overview.md](docs/ai-context/overview.md)
+  3. [docs/ai-context/repositories.md](docs/ai-context/repositories.md)
+  4. [docs/ai-context/roles/README.md](docs/ai-context/roles/README.md)
 - Want to understand planning and lifecycle layout: start with [roadmap/README.md](roadmap/README.md), [features/README.md](features/README.md), and [platform/README.md](platform/README.md)
 - Want the end-to-end SDLC path from idea to implementation: read [roadmap/README.md](roadmap/README.md), [Forge Governance Lifecycle (private)](https://github.com/remram-ai/remram-forge/blob/main/governance/lifecycle/README.md), [features/README.md](features/README.md), and [Forge Schemas (private)](https://github.com/remram-ai/remram-forge/blob/main/schemas/README.md) for artifact templates
 - Want user-facing capability docs once the deliverables exist: use [docs/features/README.md](docs/features/README.md)
@@ -161,6 +170,8 @@ Historical context and superseded planning material remain in `archive/`.
 - Want canonical architecture and runtime schemas: use [schemas/README.md](schemas/README.md)
 - Want concise command or endpoint lookup: use [reference/README.md](reference/README.md)
 - Want to review earlier material: use `archive/`
+
+Do not start with `archive/` or `docs/audits/` unless the task is explicitly historical.
 
 ## How To Contribute
 

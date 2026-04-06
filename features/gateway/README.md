@@ -4,28 +4,29 @@
 
 Gateway is the approved feature for the Moltbox appliance control plane.
 
-It gives operators one governed path for deployment, runtime lifecycle, automation access, and appliance self-update.
+It gives operators and automation one governed path for appliance management, runtime access, verification, and recovery-aware deployment.
 
 ## Status
 
 Active feature.
 
-Historical proposal and project artifacts for this feature have not yet been reconstructed from the older documentation set.
+Historical proposal and project artifacts for this feature have not yet been fully reconstructed from the older documentation set.
 
 ## User And Operator Outcome
 
-- operators manage the appliance through `moltbox` instead of undocumented Docker-first workflows
+- operators manage the appliance through `moltbox` instead of ad hoc Docker-first workflows
 - service deployment and restart actions route through one control plane
-- environment lifecycle actions such as reload and checkpoint stay environment-scoped
-- internal automation reaches the appliance through an authenticated MCP surface
+- `test` is the proving lane for runtime changes
+- `prod` is a protected managed pet
+- verification can stay inside restricted SSH roles through dedicated CLI surfaces
+- recovery is snapshot-first rather than replay/checkpoint-first
 
 ## Primary Platform Deliverables
 
 - [Moltbox Gateway](../../platform/core/gateway/README.md)
-- managed targets commonly exercised through the feature:
-  - [Caddy](../../platform/services/caddy/README.md)
-  - [Ollama](../../platform/services/ollama/README.md)
-  - [OpenSearch](../../platform/services/opensearch/README.md)
+- supporting service and runtime authorities:
+  - `moltbox-services`
+  - `moltbox-runtime`
 
 ## Current Lifecycle Artifacts
 

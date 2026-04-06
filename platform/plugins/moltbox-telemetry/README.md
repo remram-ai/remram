@@ -2,74 +2,42 @@
 
 Status: in flight
 
-Moltbox Telemetry is the plugin that enables and standardizes runtime telemetry for OpenClaw runtimes inside the Moltbox appliance.
+Moltbox Telemetry is the plugin-oriented platform item for standardized runtime telemetry across Moltbox environments.
 
-It gives Moltbox a consistent telemetry contract on top of OpenClaw's native diagnostics, status, and usage surfaces without changing routing, fallback policy, or model selection.
-
-This is a next-release platform item on `main`. It is not part of the current tagged appliance release.
+It aims to give operators and downstream tooling one stable telemetry contract for model identity, token usage, context usage, and provider latency.
 
 ## What Problem It Solves
 
-Without a standard telemetry layer, OpenClaw can already emit useful diagnostics and usage data, but Moltbox cannot assume one stable field set across runtimes, plugins, and UI surfaces.
+Without a standard telemetry layer, OpenClaw can emit useful diagnostics and usage data, but Moltbox cannot assume one stable field set across runtimes, plugins, and UI surfaces.
 
-Moltbox Telemetry solves that by ensuring the runtime exposes the same expected response and diagnostics fields for every supported environment.
-
-## What It Does
-
-The plugin is implemented as an OpenClaw plugin.
-
-At a high level it:
-
-- requires OpenClaw diagnostics telemetry to be enabled
-- standardizes the model telemetry fields Moltbox expects to observe
-- aligns those fields with OpenClaw's native diagnostics and `/usage` surfaces
-- keeps telemetry observable through normal OpenClaw diagnostics surfaces
-
-Current architecture model:
+## Current Architecture Direction
 
 - telemetry remains a runtime-local plugin-backed extension
-- the gateway owns orchestration and replay metadata around the runtime mutation
-- service packages stay in `moltbox-services` only when a shared appliance container is genuinely required
-- runtime behavior remains inside the runtime container boundary rather than becoming a second control plane
-
-## Expected Telemetry Fields
-
-The plugin standardizes:
-
-- `model`
-- `provider`
-- `input_tokens`
-- `output_tokens`
-- `total_tokens`
-- `context_pct`
-- `provider_latency_ms`
+- the live appliance no longer uses replay/checkpoint as the normal runtime lifecycle
+- operator rollout should follow the native runtime model plus snapshot-first guardrails
+- baseline service config belongs in `moltbox-services`
+- final deployable runtime artifacts belong in `moltbox-runtime`
+- operator and verification flow belongs in `moltbox-gateway`
 
 ## Main Moving Parts
 
 - the `moltbox-telemetry` plugin package in `remram-skills`
-- runtime baseline OpenClaw config in `moltbox-runtime`
-- OpenClaw diagnostics events such as `model.usage`
 - runtime-local plugin install state
+- service and runtime baseline wiring in the owning Moltbox repos
 - diagnostics logs and response-side telemetry surfaces
 
-Current `main` gap:
+## Current Gap
 
-- the platform contract is documented, but the plugin package and runtime integration are still in flight
+The platform contract is documented, but the plugin package and runtime integration are still in flight.
 
-## Operator View
+## Documentation Posture
 
-Operators install and inspect the plugin through environment-scoped OpenClaw passthrough commands such as:
+This README is the active entry point for the item.
 
-```text
-moltbox dev plugin install moltbox-telemetry
-```
-
-After install, operators should be able to verify telemetry through chat responses, diagnostics output, and runtime logs. Native `openclaw plugins info ...` remains the detailed passthrough inspection path when needed.
+The older local `spec.md`, `operator-guide.md`, and `test-plan.md` files predate the current managed-pet Gateway/OpenClaw correction and should be treated as in-flight reconstruction material until they are rewritten to the current model.
 
 ## Related Documents
 
-- [Specification](spec.md)
-- [Test Plan](test-plan.md)
-- [Operator Guide](operator-guide.md)
+- [Feature Record](../../../features/moltbox-telemetry/README.md)
 - [Deployment Models](../../../docs/overview/deployment-models.md)
 - [Runtime Concept](../../../docs/concepts/runtime.md)

@@ -1,5 +1,11 @@
 # Together Escalation Specification
 
+Status note:
+
+- this document predates the current managed-pet Gateway/OpenClaw correction
+- it is retained as reconstruction material, not as the current live appliance contract
+- use `README.md`, `features/together-escalation/README.md`, `docs/features/together-escalation.md`, and the owning Moltbox repos first
+
 ## Purpose
 
 Together Escalation is the runtime skill that gives Moltbox environments an explicit Together AI fallback policy for the default agent's chat, reasoning, and coding paths.

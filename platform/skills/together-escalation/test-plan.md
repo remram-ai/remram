@@ -1,5 +1,11 @@
 # Together Escalation Test Plan
 
+Status note:
+
+- this document predates the current managed-pet Gateway/OpenClaw correction
+- it is retained as reconstruction material, not as the current active validation contract
+- use the current feature record, feature guide, and owning Moltbox repos first
+
 ## Definition Of Done
 
 Together Escalation is done for an environment when:

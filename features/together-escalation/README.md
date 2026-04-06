@@ -2,29 +2,34 @@
 
 ## Summary
 
-Together Escalation is the approved feature that keeps normal runtime chat local while allowing OpenClaw to recover automatically to Together-hosted models when the local model fails.
+Together Escalation is the approved feature that keeps normal runtime requests local first while allowing OpenClaw to recover to Together-hosted models when the local provider fails.
 
-It is a higher-level runtime capability, not just the skill package that implements part of it.
+It is a higher-level runtime capability, not just one packaging approach.
 
 ## Status
 
 Active feature.
 
-Historical proposal and project artifacts for this feature have not yet been reconstructed from the older documentation set.
+Historical proposal and project artifacts for this feature have not yet been fully reconstructed from the older documentation set.
 
 ## User And Operator Outcome
 
 - normal runtime requests stay local-first by default
 - the runtime can recover automatically when the local provider fails
-- reasoning and coding paths use explicit stronger Together-backed model chains
-- operators manage credentials and deployment through the gateway-owned lifecycle
+- operators manage credentials and rollout through the documented appliance flows
+- the behavior belongs to the service/runtime baseline, not to a separate appliance service
 
 ## Primary Platform Deliverables
 
-- [Together Escalation Skill](../../platform/skills/together-escalation/README.md)
-- supporting platform dependencies:
-  - [Gateway](../../platform/core/gateway/README.md)
-  - [Ollama](../../platform/services/ollama/README.md)
+- native OpenClaw model/provider policy in the current service baseline
+- supporting authorities:
+  - `moltbox-gateway`
+  - `moltbox-services`
+  - `moltbox-runtime`
+
+Historical or optional packaging direction:
+
+- [Together Escalation Skill Record](../../platform/skills/together-escalation/README.md)
 
 ## Current Lifecycle Artifacts
 

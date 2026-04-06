@@ -25,7 +25,7 @@ If the task touches appliance services, gateway orchestration, runtime mutation,
 - [Roadmap](../../../roadmap/README.md)
 - [Platform Item Type Recipes](../recipes/README.md)
 - the relevant owning repo docs, especially the matching service or runtime README
-- [gateway spec](../../../platform/core/gateway/spec.md) for service lifecycle and deployment-pipeline work
+- the current `moltbox-gateway` guides and design docs for service lifecycle and deployment-pipeline work
 
 Pick the primary recipe before implementation:
 
@@ -64,7 +64,7 @@ Review unresolved contracts before treating a recipe as final guidance:
 - the gateway consumes those definitions and turns them into running appliance services on the host Docker engine
 - final deployable runtime artifacts live in `moltbox-runtime`
 - live runtime mutation lives in appliance state under `/srv/moltbox-state`
-- gateway deployment metadata and deployment-event history are authoritative for appliance change tracking
+- gateway deployment metadata, snapshot metadata, and deployment history are authoritative for appliance change tracking
 
 ## Host Git Access Model
 

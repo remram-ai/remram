@@ -8,6 +8,12 @@ Current owner:
 
 - `moltbox-services`
 
+Current rule:
+
+- this directory should not be used as a second detailed service-doc tree
+- when a service belongs to the live Moltbox appliance, the long-form service contract lives in `moltbox-services`
+- `remram` may keep only short registry or transition pointers here
+
 Go next:
 
 - Use [Platform Registry](../README.md) for lifecycle and bundle rules.

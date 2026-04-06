@@ -40,7 +40,7 @@ Choose `skill` when the capability is a portable RemRam package that may combine
 
 Choose `service` when the capability needs a long-running container with its own lifecycle, health checks, networking, and storage posture on the appliance.
 
-Choose `gateway/core` when the capability changes the operator control plane, CLI contract, deployment orchestration, metadata, or snapshot/checkpoint behavior.
+Choose `gateway/core` when the capability changes the operator control plane, CLI contract, deployment orchestration, metadata, or snapshot/recovery behavior.
 
 ## Upstream Source Policy
 

@@ -2,6 +2,8 @@
 
 This folder defines the canonical vocabulary used across the RemRam and Moltbox documentation set.
 
+For detailed current Gateway/Moltbox appliance concepts, use the `moltbox-gateway` docs first. This folder keeps shared vocabulary and short cross-repo summaries.
+
 Documents in this folder:
 
 - [Feature](feature.md)
@@ -11,8 +13,6 @@ Documents in this folder:
 - [Runtime](runtime.md)
 - [Gateway](gateway.md)
 - [Snapshot](snapshot.md)
-- [Checkpoint](checkpoint.md)
-- [Deployment Event](deployment-event.md)
 
 These documents are intentionally short and conceptual.
 

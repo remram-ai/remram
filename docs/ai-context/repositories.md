@@ -1,58 +1,25 @@
 # Repositories
 
-Core repository ownership:
+Core ownership summary:
 
-- `remram`: public architecture docs, roadmap docs, approved feature records, and platform registry docs
-- `remram-forge` (private): internal development pipeline, lifecycle governance, workflow orchestration, and lifecycle-owned templates/state contracts
+- `remram`: ecosystem framing, approved feature records, platform registry, and high-level architecture docs
+- `remram-forge` (private): lifecycle governance, orchestration rules, and lifecycle-owned templates/state contracts
+- `moltbox-gateway`: live Moltbox appliance contract, CLI, control plane, operator docs, and deployment orchestration
+- `moltbox-services`: baseline service definitions, baseline config examples, and service docs
+- `moltbox-runtime`: final deployable runtime artifacts and private/base-specific overlays
 - `remram-skills`: reusable skills and plugin packages
-- `remram-cortex`: memory-service implementation
+- `remram-cortex`: Cortex implementation
 - `remram-app`: user-facing applications and APIs
-- `moltbox-gateway`: control plane, CLI, deployment orchestration, and Docker interaction on the appliance
-- `moltbox-runtime`: baseline runtime configuration and promoted runtime baselines
-- `moltbox-services`: service definitions and container topology
 
-Boundary rules:
+Important boundary rule:
 
-- feature records and platform item docs live in `remram`
-- user-facing feature documentation lives in `remram/docs/features/`
-- internal lifecycle governance and business-process mechanics live in private `remram-forge`
-- implementation lives in the owning domain repo
-- service definitions and compose templates live in `moltbox-services`
-- gateway orchestration consumes those service definitions rather than redefining them
-- baseline runtime configuration belongs in `moltbox-runtime`
-- live runtime mutation does not get mirrored directly back into Git
-- gateway writes deployment metadata and deployment-event history
-- when a feature is repo-backed, start with the local feature `README.md` in `remram/features/` and then follow the owning repository for implementation detail
+- if the task is about how the live Moltbox appliance works, use `moltbox-gateway` as the authority
+- if the task is about service baselines or service docs, use `moltbox-services`
+- if the task is about the final deployable runtime layer, use `moltbox-runtime`
+- if the task is about ecosystem architecture or feature intent across repos, `remram` is still the right place to start
 
-Execution model:
+Start here for appliance truth:
 
-- `remram` defines the public capability map and the approved feature records
-- `remram-forge` defines the private lifecycle model and artifact contracts
-- `moltbox-services` defines what containers exist on the appliance
-- `moltbox-gateway` turns those inputs into a running appliance
-- `moltbox-runtime` provides the baseline starting point for each runtime
-- appliance state under `/srv/moltbox-state` holds mutable live state
-
-Host repository access:
-
-- Moltbox hosts access private repositories through GitHub App installation tokens
-- the host key path is `/home/jpekovitch/.ssh/remram_deploy.pem`
-- bootstrap tooling exchanges App ID `3071584` and Installation ID `115774577` for short-lived tokens
-- host Git uses HTTPS token URLs such as `https://x-access-token:<installation_token>@github.com/remram-ai/<repo>.git`
-- SSH deploy keys are intentionally not used for the host Git path
-
-Canonical sources:
-
-- [Roadmap](../../roadmap/README.md)
-- [Features](../../features/README.md)
-- [Forge Governance (private)](https://github.com/remram-ai/remram-forge/blob/main/governance/README.md)
-- [Forge Schemas (private)](https://github.com/remram-ai/remram-forge/blob/main/schemas/README.md)
-- [Repositories](../overview/repositories.md)
-- [Topology](../overview/topology.md)
-- [Deployment Models](../overview/deployment-models.md)
-- [Feature](../concepts/feature.md)
-- [Plugin](../concepts/plugin.md)
-- [Skill](../concepts/skill.md)
-- [Service](../concepts/service.md)
-- [Runtime](../concepts/runtime.md)
-- [Gateway](../concepts/gateway.md)
+- [Moltbox Gateway README](https://github.com/remram-ai/moltbox-gateway/blob/main/README.md)
+- [Moltbox Gateway Docs](https://github.com/remram-ai/moltbox-gateway/blob/main/docs/README.md)
+- [Moltbox AI Context](https://github.com/remram-ai/moltbox-gateway/blob/main/docs/ai-context/README.md)

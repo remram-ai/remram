@@ -25,9 +25,10 @@ In those cases, use [Service](service.md), [Skill](skill.md), or [Gateway/Core](
 
 Local ownership usually splits like this:
 
-- `remram`: platform item docs and capability contract
+- `remram`: ecosystem framing and cross-repo summaries
 - `remram-skills`: plugin package source and packaging metadata
-- `moltbox-runtime`: baseline config that enables or configures the plugin
+- `moltbox-services`: baseline service config that enables or configures the plugin when that config is part of an OpenClaw service baseline
+- `moltbox-runtime`: final deployable runtime artifact for that plugin-enabled baseline
 - `moltbox-gateway`: deployment orchestration, snapshots, deployment events, and environment passthrough
 
 The plugin itself is not a separate appliance service.
@@ -71,21 +72,18 @@ Assume these limits unless upstream docs say otherwise:
 1. Define the operator-visible capability and the runtime evidence that proves it works.
 2. Confirm the upstream plugin contract, manifest shape, and lifecycle commands in current OpenClaw docs.
 3. Implement the plugin package in `remram-skills`, including `openclaw.plugin.json` in the plugin root.
-   - required manifest keys are `id` and `configSchema`
-   - use manifest fields such as `skills`, `channels`, `providers`, `kind`, and `uiHints` only when the plugin really needs them
-4. Add only the baseline config needed in `moltbox-runtime`, usually under `openclaw.json.template` or another runtime policy file.
-5. Document the platform item in `remram/platform/plugins/<name>/` with `README.md`, `spec.md`, `design.md`, `operator-guide.md`, and `test-plan.md`.
-6. State the runtime mutation impact explicitly: snapshots, deployment events, reload or restart requirements, and checkpoint implications.
+4. Add the baseline config in `moltbox-services` when it is part of the service-owned OpenClaw baseline, and only keep the final deployable artifact in `moltbox-runtime`.
+5. Document the plugin in its owning repo and keep `remram` as the ecosystem pointer rather than the detailed plugin authority.
+6. State the runtime mutation impact explicitly: snapshots, restart or reload requirements, and recovery implications.
 7. Keep the deliverable thin around native OpenClaw behavior rather than rebuilding a parallel plugin framework in Moltbox.
 
 ## Deployment Method
 
-Primary deployment path:
+Primary deployment path uses native OpenClaw lifecycle through the appliance surfaces:
 
 ```text
-moltbox <env> plugin install <package>
-moltbox <env> plugin list
-moltbox <env> plugin remove <plugin>
+moltbox test openclaw plugins ...
+moltbox prod openclaw plugins ...
 ```
 
 Current upstream plugin command family to preserve through passthrough:
@@ -102,16 +100,12 @@ openclaw plugins update <id>
 openclaw plugins update --all
 ```
 
-OpenClaw community plugins are expected to be installable via npm specs, so Moltbox should preserve that install form through passthrough as well when operators need native inspection or debugging.
-
 Expected lifecycle posture:
 
-- gateway records replay and checkpoint metadata around the mutation
+- gateway records snapshot and deployment metadata around the mutation
 - OpenClaw performs the native plugin install
-- plugin config changes are restart-required in current OpenClaw docs; `hybrid` reload mode restarts automatically for critical changes
-- gateway records deployment events for replay and recovery
-
-Promote across `dev`, `test`, and `prod` deliberately. Live plugin state does not automatically copy between environments.
+- plugin config changes follow the current native OpenClaw restart or reload requirements
+- promote across `test` and `prod` deliberately
 
 ## Testing Surfaces
 
@@ -122,7 +116,7 @@ Always test these surfaces:
 - the operator-visible behavior the plugin is meant to add
 - diagnostics and logs that prove the plugin is active
 - failure cases for trust, config, missing dependencies, and environment drift
-- promotion behavior across `dev`, `test`, and `prod`
+- promotion behavior across `test` and `prod`
 
 ## Common Combination Pattern
 

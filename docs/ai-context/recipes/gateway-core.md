@@ -7,7 +7,7 @@ Use this recipe when the deliverable is primarily a Moltbox control-plane change
 - the operator-facing CLI contract changes
 - deployment orchestration changes
 - service lifecycle policy changes
-- runtime snapshot, replay, checkpoint, or metadata behavior changes
+- runtime snapshot or metadata behavior changes
 - the deliverable affects how the appliance is managed as a whole
 
 Current repo example:
@@ -28,8 +28,8 @@ Local ownership usually splits like this:
 
 - `remram`: platform item docs and architecture contract
 - `moltbox-gateway`: CLI, orchestration logic, deployment metadata, snapshots, and appliance control-plane behavior
-- `moltbox-services`: service definitions consumed by the gateway
-- `moltbox-runtime`: baseline runtime inputs consumed by the gateway
+- `moltbox-services`: service definitions and baseline inputs consumed by the gateway
+- `moltbox-runtime`: final deployable runtime artifacts consumed by the gateway
 - `remram-skills`: skill and plugin packages the gateway deploys into runtimes
 
 Gateway owns orchestration, not every source artifact it consumes.
@@ -46,8 +46,6 @@ When gateway behavior depends on current upstream OpenClaw behavior, confirm it 
 - [Configuration](https://docs.openclaw.ai/configuration)
 - [CLI Plugins](https://docs.openclaw.ai/cli/plugins) for passthrough assumptions
 
-Do not freeze upstream gateway semantics into this repo without a local note that the assumption was checked against current docs.
-
 ## Capabilities
 
 Gateway/core is a good fit when the deliverable needs to define or change:
@@ -55,15 +53,15 @@ Gateway/core is a good fit when the deliverable needs to define or change:
 - `moltbox` command surfaces
 - service deployment flow
 - gateway self-update behavior
-- runtime reload and checkpoint orchestration
+- runtime reload orchestration
 - deployment metadata authority
-- rollback, replay, snapshot, or reconciliation behavior
+- rollback, snapshot, or reconciliation behavior
 
 ## Limitations
 
 Assume these limits unless the architecture changes:
 
-- gateway should not absorb ownership of service definitions, runtime baselines, or skill source
+- gateway should not absorb ownership of service definitions, service baselines, or skill source
 - direct Docker commands remain break-glass diagnostics, not the normal operator contract
 - gateway must preserve native OpenClaw lifecycle where that lifecycle already exists
 - internal runtime identifiers stay implementation details rather than top-level CLI namespaces
@@ -73,9 +71,9 @@ Assume these limits unless the architecture changes:
 1. Start with the operator contract. Write the exact `moltbox ...` surface or lifecycle rule that is changing.
 2. Confirm which repository owns the source artifacts and which repository only orchestrates them.
 3. Define the deployment metadata and reconciliation behavior the change requires.
-4. Define snapshot, rollback, replay, and health-validation implications before writing implementation details.
+4. Define snapshot, rollback, and health-validation implications before writing implementation details.
 5. Keep the CLI resource-oriented and avoid leaking container names or Docker-first workflows into the public contract.
-6. Document the platform item in `remram/platform/core/<name>/` with `README.md`, `spec.md`, `design.md`, `operator-guide.md`, and `test-plan.md`.
+6. Document the platform item in the owning repo and update `remram` only when the ecosystem-level guidance changes.
 7. Update the platform docs if the change alters the canonical operator model.
 
 ## Deployment Method
@@ -84,21 +82,19 @@ Primary control-plane surfaces are:
 
 ```text
 moltbox gateway ...
-moltbox gateway service ...
-moltbox <env> reload
-moltbox <env> checkpoint
+moltbox service ...
+moltbox <env> openclaw ...
+moltbox <env> verify ...
 ```
 
 Gateway/core work often affects more than one deployment path:
 
 - service deployment
-- runtime baseline sync
+- runtime baseline promotion
 - runtime mutation tracking
 - gateway self-update
 
-Treat provenance and metadata consistency as part of the deliverable, not as follow-up cleanup.
-
-Runtime containers are also valid `gateway service` deployment targets in the current architecture. When that path is used, replay of recorded skill and plugin deployment events is part of the deploy contract.
+Runtime containers are valid service-plane deployment targets in the current architecture, but native OpenClaw lifecycle remains the normal runtime mutation path.
 
 ## Testing Surfaces
 
@@ -106,10 +102,9 @@ Always test these surfaces:
 
 - CLI contract shape and retired-command failure behavior
 - service deploy, restart, and status flows
-- runtime reload or checkpoint flows
 - native OpenClaw passthrough remaining reachable where required
 - deployment metadata reconciliation against the running artifact
-- cross-environment isolation between `dev`, `test`, and `prod`
+- cross-environment isolation between `test` and `prod`
 - logs and status surfaces for operator diagnosis
 
 ## Common Combination Pattern

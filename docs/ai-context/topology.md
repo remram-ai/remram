@@ -1,5 +1,12 @@
 # Topology
 
+For detailed live Moltbox topology, use the Gateway repo:
+
+- [Moltbox System Overview](https://github.com/remram-ai/moltbox-gateway/blob/main/docs/design/system-overview.md)
+- [Moltbox Runtime / Services Design](https://github.com/remram-ai/moltbox-gateway/blob/main/docs/design/runtime-and-services.md)
+
+## Current Summary
+
 Steady-state appliance topology:
 
 ```text
@@ -7,50 +14,16 @@ Host OS
   -> Docker Engine
     -> gateway
     -> caddy
-    -> opensearch
     -> ollama
-    -> openclaw-dev
+    -> searxng
     -> openclaw-test
     -> openclaw-prod
 ```
 
-Ingress path:
-
-```text
-Internet -> Caddy -> Runtime services
-```
-
-Storage roots:
-
-- `/srv/moltbox-state`
-- `/srv/moltbox-logs`
-
-Key model:
+Key rules:
 
 - the host stays minimal
-- Docker Engine is host infrastructure, not the primary operator surface
-- long-running application logic runs in containers
-- the gateway is the control plane that coordinates service deployment and runtime lifecycle
-- runtime state is mutable and may outlive individual container instances
-
-Service relationship model:
-
-- service definitions and compose templates live in `moltbox-services`
-- the gateway consumes those definitions and deploys them onto the host Docker engine
-- operators and builders should reason through `moltbox gateway ...` and `moltbox gateway service ...` before dropping to Docker details
-- direct Docker commands are break-glass diagnostics, not the normal management path
-- public HTTPS ingress is runtime-only; `https://moltbox-cli/*` returns `404` by design
-
-Host Git model:
-
-- the host keeps a local GitHub App private key at `/home/jpekovitch/.ssh/remram_deploy.pem`
-- bootstrap tooling generates short-lived installation tokens for host-side Git access
-- host repository access uses HTTPS token URLs; SSH deploy keys are not part of the target topology
-
-Canonical sources:
-
-- [Topology](../overview/topology.md)
-- [Repositories](../overview/repositories.md)
-- [Deployment Models](../overview/deployment-models.md)
-- [Gateway](../concepts/gateway.md)
-- [Service](../concepts/service.md)
+- the gateway is the control plane
+- `test` is the proving lane
+- `prod` is a managed pet
+- normal lifecycle work goes through `moltbox`, not raw Docker

@@ -1,228 +1,41 @@
 # Operator Workflow
 
-The normal operator path is:
+This file is now a short cross-repo pointer for readers who start in `remram`.
+
+The authoritative live operator workflow for the Moltbox appliance lives in `moltbox-gateway`:
+
+- [Moltbox Operator Guide](https://github.com/remram-ai/moltbox-gateway/blob/main/docs/guides/operator-guide.md)
+- [Moltbox Service Catalog](https://github.com/remram-ai/moltbox-gateway/blob/main/docs/guides/service-catalog.md)
+- [Moltbox CLI / Gateway Design](https://github.com/remram-ai/moltbox-gateway/blob/main/docs/design/cli-and-gateway.md)
+- [Moltbox Backup / Recovery Design](https://github.com/remram-ai/moltbox-gateway/blob/main/docs/design/backup-and-recovery.md)
+
+## Current Workflow Summary
+
+Normal human and AI operator flow is:
 
 ```text
-Workstation
-  -> ssh
-    -> Moltbox CLI
-      -> Gateway
+workstation or automation
+  -> restricted SSH
+    -> host-side moltbox CLI
+      -> Gateway service plane
+      -> native OpenClaw CLI in test or prod
 ```
 
-The gateway is the control plane.
-
-Operators should manage the appliance through the Moltbox CLI rather than direct Docker commands.
-
-The workstation must reach the CLI over SSH to the gateway host. Do not run a host-local `moltbox` binary on the workstation and expect runtime mutation to happen correctly there.
-
-Canonical workstation form:
-
-```text
-ssh -T -i ~/.ssh/jason-codex jason-codex@<gateway-host> "moltbox <args>"
-```
-
-Replace `<gateway-host>` with the SSH hostname or host alias for the appliance, for example a local SSH config alias such as `moltbox`.
-
-Example:
-
-```text
-ssh -T -i ~/.ssh/jason-codex jason-codex@<gateway-host> "moltbox dev plugin install moltbox-telemetry"
-```
-
-Internal agents and containers use the gateway MCP HTTP surface with bearer tokens managed by `moltbox gateway token ...`. That MCP path is not the normal workstation operator interface.
-
-## Normal Workflow
-
-### 1. Check the control plane
-
-Start with the gateway:
-
-```text
-moltbox gateway status
-moltbox gateway logs
-moltbox gateway service status gateway
-moltbox gateway service status caddy
-moltbox gateway service status opensearch
-moltbox gateway service status ollama
-```
-
-### 2. Work in the target environment
-
-Runtime operations are scoped to the environment:
-
-```text
-moltbox dev reload
-moltbox test checkpoint
-moltbox prod openclaw <command>
-```
-
-Use `dev`, `test`, and `prod` in the CLI.
-
-Do not use internal runtime identifiers such as `openclaw-dev` as top-level command namespaces.
-
-### 3. Open the OpenClaw dashboard
-
-Dashboard ingress routes:
-
-- [https://moltbox-dev/](https://moltbox-dev/)
-- [https://moltbox-test/](https://moltbox-test/)
-- [https://moltbox-prod/](https://moltbox-prod/)
-
-Generate a dashboard tokenized URL from the target runtime:
-
-```text
-moltbox dev openclaw dashboard --no-open
-moltbox test openclaw dashboard --no-open
-moltbox prod openclaw dashboard --no-open
-```
-
-The printed URL may use the runtime-local listener such as `http://127.0.0.1:18789/#token=...`.
-
-Use the token fragment with the ingress route for the target environment instead of the container-local origin.
-
-Dashboard tokens are OpenClaw device-session tokens for the Control UI.
-
-They are not the same as `moltbox gateway token ...`, which manages bearer tokens for the internal gateway MCP endpoint.
-
-If the dashboard reports pairing required, use the runtime device commands:
-
-```text
-moltbox dev openclaw devices list --json
-moltbox dev openclaw devices approve <requestId> --json
-
-moltbox test openclaw devices list --json
-moltbox test openclaw devices approve <requestId> --json
-
-moltbox prod openclaw devices list --json
-moltbox prod openclaw devices approve <requestId> --json
-```
-
-`moltbox <env> openclaw devices approve --latest --json` is also valid when approving the newest pending dashboard request intentionally.
-
-### 4. Deploy or restart appliance services
-
-Use the gateway service pipeline for appliance services:
-
-```text
-moltbox gateway update
-moltbox gateway service deploy opensearch
-moltbox gateway service restart caddy
-moltbox gateway service status ollama
-```
-
-`moltbox gateway service restart <service>` follows the deploy lifecycle and only reports success after the target service is healthy.
-
-For control-plane self-mutation, use `moltbox gateway update`. `moltbox gateway service deploy gateway` and `moltbox gateway service restart gateway` are intentionally rejected and point operators back to the canonical self-update path.
-
-Runtime containers can also be deployed through the same service pipeline:
-
-```text
-moltbox gateway service deploy dev
-moltbox gateway service deploy test
-moltbox gateway service deploy prod
-```
-
-When this path is used, the runtime baseline must be restored and recorded skill or plugin deployment events must be replayed before the environment is treated as healthy.
-
-For runtime replay validation and normal runtime redeploys, this is the correct control-plane path. A plain Docker container restart does not read gateway replay state.
-
-### 5. Use native service CLIs when needed
-
-Service namespaces are passthrough interfaces to the native service CLIs:
-
-```text
-moltbox ollama <native command>
-moltbox opensearch <native command>
-moltbox caddy <native command>
-```
-
-### 6. Promote stable runtime state
-
-When a runtime state should become the new baseline, checkpoint it:
-
-```text
-moltbox dev checkpoint
-moltbox test checkpoint
-```
-
-Checkpointing is environment-scoped and stays under the environment namespaces, not under `gateway`.
-
-Checkpoint creates a promoted runtime baseline image, writes baseline metadata under `/srv/moltbox-state/runtime-baselines/<runtime>/current.json`, and clears the replay log for that runtime.
-
-### 7. Promote across environments deliberately
-
-Expected promotion posture:
-
-1. build and iterate in `dev`
-2. deploy runtime mutations in `dev` with `moltbox dev skill deploy <skill>`
-3. validate replay in `dev` with `moltbox gateway service deploy dev`
-4. checkpoint `dev` with `moltbox dev checkpoint`
-5. verify the checkpointed baseline and empty replay log in `dev`
-6. promote the checkpointed baseline to `test`
-7. validate runtime behavior in `test`
-8. promote the verified baseline to `prod`
-
-If `dev` to `test` promotion fails, fix the deployment process before treating the platform item as ready.
-
-Operator workflow shorthand:
-
-```text
-dev -> checkpoint -> verify -> promote -> test -> verify -> promote -> prod
-```
-
-### 8. Investigate with CLI-first diagnostics
-
-Use the CLI namespaces first:
-
-```text
-moltbox gateway logs
-moltbox dev openclaw <command>
-moltbox opensearch <native command>
-moltbox caddy <native command>
-```
-
-## SSH Automation
-
-Supported restricted identities:
-
-- `jason-codex` for automation that should be limited to `moltbox <args>`
-- `codex-bootstrap` for break-glass diagnostics, with full CLI access in `dev` and diagnostic-only access in `test` and `prod`
-
-Examples:
-
-```text
-ssh -T -i ~/.ssh/jason-codex jason-codex@<gateway-host> "moltbox dev openclaw health --json"
-ssh -T -i ~/.ssh/codex-bootstrap codex-bootstrap@<gateway-host> "moltbox test openclaw health --json"
-```
-
-## Host Wrapper
-
-A thin host-level `moltbox` entrypoint may exist on the appliance host.
-
-That wrapper is only a convenience layer around the real control path on the host itself.
-
-The primary operator model is SSH plus the Moltbox CLI invoking the gateway from the gateway host.
-
-## Docker Boundary
-
-Docker commands are an implementation detail.
-
-They may be useful as a break-glass diagnostic path, but they are not the normal management contract.
-
-## Legacy Command Namespaces
-
-The following are retired:
-
-- `runtime`
-- top-level `service`
-- top-level `skill`
-- `openclaw-dev`
-- `openclaw-test`
-- `openclaw-prod`
-- `tools`
-- `host`
-
-Legacy commands should fail rather than redirect.
-
-For the detailed command catalog, use [CLI Reference](../../reference/cli-reference.md).
-For the architecture behind the command tree, use [CLI Architecture](../overview/cli-architecture.md).
+Current operational rules:
+
+- use `moltbox service ...` for service-plane lifecycle work
+- use `moltbox test openclaw ...` and `moltbox prod openclaw ...` for runtime-native lifecycle work
+- use `moltbox test verify ...` and `moltbox prod verify runtime` for routine diagnostics
+- use snapshot-first recovery rather than replay/checkpoint-era rebuild flows
+- treat `prod` as a protected managed pet
+
+Current managed services:
+
+- `gateway`
+- `caddy`
+- `ollama`
+- `searxng`
+- `test`
+- `prod`
+
+If a local Remram document disagrees with the Gateway repo on live operator workflow, the Gateway repo wins.

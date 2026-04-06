@@ -22,13 +22,12 @@ Validation posture:
 - verify operator-visible behavior first
 - verify deployment metadata when lifecycle work occurs
 - verify runtime health and runtime state separately
-- use snapshots and checkpoint concepts when assessing rollback or rebuild behavior
+- use snapshot and restore behavior when assessing rollback or rebuild behavior
 
 Canonical docs:
 
 - [Deployment Models](../../overview/deployment-models.md)
 - [CLI Reference](../../../reference/cli-reference.md)
 - [Snapshot](../../concepts/snapshot.md)
-- [Checkpoint](../../concepts/checkpoint.md)
 - [Roadmap](../../../roadmap/README.md)
 - [Platform Registry](../../../platform/README.md)

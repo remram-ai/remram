@@ -100,6 +100,30 @@ Within Gateway / Moltbox, orchestration via OpenClaw and operator control are se
 - [Remram App](https://github.com/remram-ai/remram-app)
 - [Remram Skills](https://github.com/remram-ai/remram-skills)
 
+## Moltbox Authority
+
+`moltbox-gateway` is the authoritative source for the Moltbox appliance domain.
+
+Use it first for:
+
+- the live CLI contract
+- operator workflows
+- managed service inventory
+- Gateway/OpenClaw operating model
+- service-plane and runtime mutation rules
+- snapshot and restore posture
+- Gateway-focused AI bootstrap context
+
+Start here:
+
+- [Moltbox Gateway README](https://github.com/remram-ai/moltbox-gateway/blob/main/README.md)
+- [Moltbox Gateway Docs](https://github.com/remram-ai/moltbox-gateway/blob/main/docs/README.md)
+- [Moltbox Operator Guide](https://github.com/remram-ai/moltbox-gateway/blob/main/docs/guides/operator-guide.md)
+- [Moltbox Service Catalog](https://github.com/remram-ai/moltbox-gateway/blob/main/docs/guides/service-catalog.md)
+- [Moltbox AI Context](https://github.com/remram-ai/moltbox-gateway/blob/main/docs/ai-context/README.md)
+
+This repository still owns ecosystem framing, feature records, and platform registry material. It no longer owns the detailed live Gateway/Moltbox operator contract.
+
 ## Start Here
 
 - [Documentation Map](docs/README.md)

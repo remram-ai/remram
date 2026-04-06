@@ -6,11 +6,12 @@ Use this file as the bootstrap for implementation and debugging work.
 
 Read these documents in order before you write code, diagnose runtime behavior, or reason about deployment:
 
-1. [Overview](../overview.md)
-2. [Topology](../topology.md)
-3. [Repositories](../repositories.md)
-4. [CLI](../cli.md)
-5. [Deployment Models](../../overview/deployment-models.md)
+1. [Moltbox Gateway README](https://github.com/remram-ai/moltbox-gateway/blob/main/README.md) if the task touches the live appliance
+2. [Overview](../overview.md)
+3. [Topology](../topology.md)
+4. [Repositories](../repositories.md)
+5. [CLI](../cli.md)
+6. [Deployment Models](../../overview/deployment-models.md)
 
 Do not begin implementation or debugging until you have read the documents above.
 
@@ -23,7 +24,7 @@ If the task touches appliance services, gateway orchestration, runtime mutation,
 - [Platform Items](../features.md)
 - [Roadmap](../../../roadmap/README.md)
 - [Platform Item Type Recipes](../recipes/README.md)
-- the relevant platform item `README.md`, `spec.md`, `design.md`, and `test-plan.md`
+- the relevant owning repo docs, especially the matching service or runtime README
 - [gateway spec](../../../platform/core/gateway/spec.md) for service lifecycle and deployment-pipeline work
 
 Pick the primary recipe before implementation:
@@ -40,27 +41,28 @@ Review unresolved contracts before treating a recipe as final guidance:
 ## What To Know First
 
 - `remram` owns architecture, roadmap, and platform registry docs
-- `moltbox-gateway` owns the control plane, `moltbox` CLI, deployment orchestration, and Docker interaction on the appliance
-- `moltbox-runtime` owns baseline runtime config, not full live runtime state
-- `moltbox-services` owns service definitions and steady-state service topology
+- `moltbox-gateway` owns the live Moltbox appliance/operator contract, the control plane, and the `moltbox` CLI
+- `moltbox-services` owns service definitions, baseline service config, and service-local docs
+- `moltbox-runtime` owns the final deployable runtime layer, not full live runtime state
 - `remram-skills` owns reusable skill and plugin packages
 
 ## Platform Model
 
 - the host stays minimal and provides Docker, storage, and system services
 - long-running application logic runs in containers, not directly on the host OS
-- deployments flow through the gateway
-- service lifecycle goes through `moltbox gateway service ...`
+- deployments flow through the gateway and the official `moltbox` surfaces
+- service lifecycle goes through `moltbox service ...`
 - direct Docker commands are break-glass diagnostics, not the normal operator or builder contract
 - runtime environments are mutable systems
-- checkpoint snapshots live under `/srv/moltbox-state/runtime-baselines/<runtime>/<checkpoint_id>/snapshot/`
-- checkpointing rebases runtime state into a new baseline
+- `test` is the proving lane
+- `prod` is a managed pet
+- snapshot-first recovery replaced replay/checkpoint-era normal operation
 
 ## Service And Deployment Model
 
-- service definitions live in `moltbox-services`
+- service definitions and baseline service inputs live in `moltbox-services`
 - the gateway consumes those definitions and turns them into running appliance services on the host Docker engine
-- baseline runtime configuration lives in `moltbox-runtime`
+- final deployable runtime artifacts live in `moltbox-runtime`
 - live runtime mutation lives in appliance state under `/srv/moltbox-state`
 - gateway deployment metadata and deployment-event history are authoritative for appliance change tracking
 
@@ -74,10 +76,11 @@ Review unresolved contracts before treating a recipe as final guidance:
 
 ## CLI Model
 
-- `moltbox gateway ...` for control-plane work
-- `moltbox gateway service ...` for appliance service lifecycle
-- `moltbox dev|test|prod ...` for environment lifecycle operations
-- `moltbox <service> <native command>` for native service passthrough
+- `moltbox gateway ...` for control-plane status and self-update
+- `moltbox service ...` for appliance service lifecycle
+- `moltbox test openclaw ...` and `moltbox prod openclaw ...` for runtime-native lifecycle operations
+- `moltbox test verify ...` and `moltbox prod verify runtime` for routine runtime diagnostics
+- `moltbox ollama ...` for native service passthrough
 
 ## Canonical Docs
 

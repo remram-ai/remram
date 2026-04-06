@@ -18,20 +18,19 @@ First-class appliance services include:
 
 - `gateway`
 - `caddy`
-- `opensearch`
 - `ollama`
-- `openclaw-dev`
 - `openclaw-test`
 - `openclaw-prod`
+- `searxng`
 
 ## How Services Are Managed
 
-Services are deployed and operated through the gateway service pipeline:
+Services are deployed and operated through the service-plane CLI:
 
 ```text
-moltbox gateway service deploy <service>
-moltbox gateway service restart <service>
-moltbox gateway service status <service>
+moltbox service deploy <service>
+moltbox service restart <service>
+moltbox service status <service>
 ```
 
 Some services also expose direct native CLI passthrough namespaces, such as:
@@ -42,13 +41,12 @@ moltbox opensearch <native command>
 moltbox ollama <native command>
 ```
 
-The runtime containers are also deployable through the same `gateway service ...` pipeline, using the public service targets:
+The OpenClaw runtime containers are deployable through the same service-plane pipeline using the public targets:
 
-- `dev`
 - `test`
 - `prod`
 
-`gateway` remains a first-class appliance service and a valid `moltbox gateway service status gateway` target, but control-plane self-mutation uses `moltbox gateway update` rather than `gateway service deploy|restart gateway`.
+`gateway` remains a first-class appliance service and a valid `moltbox service status gateway` target, but control-plane self-mutation uses `moltbox gateway update` rather than `service deploy|restart gateway`.
 
 ## Service Versus Runtime
 

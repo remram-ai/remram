@@ -16,6 +16,29 @@ This repository uses a simple documentation split:
 
 Public architecture, approved feature records, and active platform capability docs still live here in `remram`. The private Forge repo only owns the internal lifecycle pipeline and lifecycle-owned contracts.
 
+## Moltbox / Gateway Authority Rule
+
+For current Moltbox appliance behavior, treat `moltbox-gateway` as the authority.
+
+That includes:
+
+- the live CLI contract
+- operator workflows
+- service inventory
+- Gateway/OpenClaw lifecycle
+- snapshot and recovery posture
+- Gateway-focused AI bootstrap context
+
+Start there:
+
+- [Moltbox Gateway README](https://github.com/remram-ai/moltbox-gateway/blob/main/README.md)
+- [Moltbox Gateway Docs](https://github.com/remram-ai/moltbox-gateway/blob/main/docs/README.md)
+- [Moltbox Operator Guide](https://github.com/remram-ai/moltbox-gateway/blob/main/docs/guides/operator-guide.md)
+- [Moltbox Service Catalog](https://github.com/remram-ai/moltbox-gateway/blob/main/docs/guides/service-catalog.md)
+- [Moltbox AI Context](https://github.com/remram-ai/moltbox-gateway/blob/main/docs/ai-context/README.md)
+
+The local `docs/operations/`, `docs/overview/`, `docs/concepts/`, and `docs/ai-context/` pages now keep only high-level summaries and pointers for the Moltbox appliance domain.
+
 The delivery lifecycle is:
 
 ```text
@@ -181,7 +204,6 @@ Typical topics:
 - Runtime
 - Gateway
 - Snapshot
-- Checkpoint
 
 These documents should be short conceptual explanations.
 
@@ -326,6 +348,7 @@ Stores historical documentation and frozen reference material that should not be
 
 - New contributor: [Community](community/README.md)
 - Architecture/design work: [Overview](overview/overview.md)
+- Repository boundary rules: [Repository Authority Rules](overview/repository-authority-rules.md)
 - User-facing capability docs: [Feature Documentation](features/README.md)
 - Vocabulary and definitions: [Concepts](concepts/README.md)
 - Operator: [Operations](operations/README.md)

@@ -1,16 +1,21 @@
 # Operations
 
-This folder contains operator-focused documentation for working with the Moltbox appliance through the control plane.
+This folder keeps high-level operator pointers for readers who start in `remram`.
 
-Documents in this folder:
+The authoritative live operator docs for the Moltbox appliance now live in `moltbox-gateway`:
 
-- [Operator Workflow](operator-workflow.md) for the normal operator path and workflow
-- [CLI](cli.md) for the operational command model
+- [Moltbox Gateway README](https://github.com/remram-ai/moltbox-gateway/blob/main/README.md)
+- [Moltbox Operator Guide](https://github.com/remram-ai/moltbox-gateway/blob/main/docs/guides/operator-guide.md)
+- [Moltbox Service Catalog](https://github.com/remram-ai/moltbox-gateway/blob/main/docs/guides/service-catalog.md)
+- [Moltbox CLI / Gateway Design](https://github.com/remram-ai/moltbox-gateway/blob/main/docs/design/cli-and-gateway.md)
 
-Use this folder when you need to understand how the appliance is operated rather than how it is architected internally.
+Local documents in this folder are intentionally short summaries and pointers:
+
+- [Operator Workflow](operator-workflow.md)
+- [CLI](cli.md)
 
 Go next:
 
-- Start with [Overview](../overview/README.md) and [Concepts](../concepts/README.md) if you need the architecture and vocabulary first.
-- Continue to [AI Context](../ai-context/README.md) for agent bootstrap after the human-facing docs.
-- Use [Reference](../../reference/README.md) when you need command details after reading the workflow docs.
+- start with the Gateway operator guide for live appliance work
+- use [Overview](../overview/README.md) here only for ecosystem framing
+- use [AI Context](../ai-context/README.md) here only for Remram-side orientation

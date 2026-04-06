@@ -12,8 +12,8 @@ Use this recipe when the deliverable is primarily a containerized appliance proc
 Current repo examples:
 
 - `ollama`
-- `opensearch`
 - `caddy`
+- `searxng`
 
 ## Do Not Use This Type When
 
@@ -27,10 +27,10 @@ In those cases, use [Plugin](plugin.md), [Skill](skill.md), or [Gateway/Core](ga
 
 Local ownership usually splits like this:
 
-- `remram`: platform item docs and capability contract
-- `moltbox-services`: service definition, container topology, and service metadata
+- `remram`: ecosystem framing and cross-repo summaries
+- `moltbox-services`: service definition, baseline config examples, service metadata, and service docs
 - `moltbox-gateway`: service deployment pipeline, status, restart, rollback posture, and deployment metadata
-- `moltbox-runtime`: runtime config that points clients at the service
+- `moltbox-runtime`: final deployable runtime artifacts when the service needs them
 
 The service definition does not belong in `remram`.
 
@@ -66,16 +66,16 @@ Assume these limits unless the platform changes:
 - runtime health and service health are related but separate
 - a service can be healthy while runtime config that points at it is wrong
 - services still need a plugin, skill, or runtime-config surface if OpenClaw must consume them
-- the default expectation is one shared service serving `dev`, `test`, and `prod`, not one duplicate service per environment
+- the default expectation is one shared service serving the appliance, not one duplicate service per environment
 
 ## Implementation Recipe
 
 1. Define the service contract in operator terms: what the appliance gains and which runtimes consume it.
-2. Place the service definition in `moltbox-services`.
+2. Place the service definition and baseline config in `moltbox-services`.
 3. Define how gateway deploys, restarts, validates, and reports the service.
-4. Add runtime-facing configuration in `moltbox-runtime` for any clients that depend on the service.
+4. If the service needs final promoted runtime artifacts, add those to `moltbox-runtime`.
 5. If the service has a native CLI, preserve that through a thin `moltbox <service> <native command>` passthrough instead of inventing a second abstraction.
-6. Document the platform item in `remram/platform/services/<name>/` with `README.md`, `spec.md`, `design.md`, `operator-guide.md`, and `test-plan.md`.
+6. Document the service in the owning service repo rather than creating a competing copy in `remram`.
 7. State the network endpoint, health model, persistence needs, and upgrade or rollback posture explicitly.
 8. If the service feeds OpenClaw, define the plugin, skill, or runtime-config surface that exposes it to the runtime.
 
@@ -84,14 +84,14 @@ Assume these limits unless the platform changes:
 Primary deployment path:
 
 ```text
-moltbox gateway service deploy <service>
+moltbox service deploy <service>
 ```
 
 Related lifecycle surfaces:
 
 ```text
-moltbox gateway service restart <service>
-moltbox gateway service status <service>
+moltbox service restart <service>
+moltbox service status <service>
 ```
 
 If the service has a native CLI, preserve the passthrough:
@@ -104,14 +104,14 @@ moltbox <service> <native command>
 
 Always test these surfaces:
 
-- gateway service deploy, restart, and status behavior
+- service deploy, restart, and status behavior
 - health checks after deploy
 - runtime connectivity to the service over the appliance network
 - persistent state or mounted volume behavior when applicable
 - native CLI passthrough when one exists
-- negative cases for missing config, missing models or indexes, bad credentials, and runtime-to-service drift
+- negative cases for missing config, bad credentials, missing models or indexes, and runtime-to-service drift
 - promotion and rollback behavior when the service is updated
 
 ## Common Combination Pattern
 
-A deliverable often combines a service with either a skill or runtime config. For example, a model host or retrieval backend is a service, while the runtime policy that selects or calls it belongs to `moltbox-runtime` and sometimes to a [Skill](skill.md).
+A deliverable often combines a service with either a skill or runtime config. For example, a model host or retrieval backend is a service, while the final promoted runtime artifact that points at it belongs in `moltbox-runtime` and sometimes in a [Skill](skill.md).

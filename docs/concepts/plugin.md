@@ -10,8 +10,9 @@ In the current RemRam repository model:
 
 - plugin capability definitions live under `remram/platform/plugins/`
 - plugin package source lives in `remram-skills`
-- runtime config that enables a plugin belongs in `moltbox-runtime`
-- deployment orchestration and replay tracking belong in `moltbox-gateway`
+- baseline service config that enables a plugin belongs in `moltbox-services`
+- final deployable runtime artifacts live in `moltbox-runtime`
+- deployment orchestration and snapshot-aware runtime mutation handling belong in `moltbox-gateway`
 
 ## What A Plugin Can Do
 

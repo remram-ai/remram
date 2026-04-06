@@ -2,45 +2,27 @@
 
 RemRam is the architecture and documentation hub for an ecosystem built around a managed local appliance.
 
-At the platform layer, Moltbox is the appliance boundary. It provides:
+For the live Moltbox appliance contract, load the Gateway repo first:
 
-- a gateway control plane
-- mutable OpenClaw runtime environments
-- supporting services such as Caddy, Ollama, and OpenSearch
-- appliance-scoped state and logs
+- [Moltbox Gateway README](https://github.com/remram-ai/moltbox-gateway/blob/main/README.md)
+- [Moltbox AI Context](https://github.com/remram-ai/moltbox-gateway/blob/main/docs/ai-context/README.md)
+- [Moltbox Operator Guide](https://github.com/remram-ai/moltbox-gateway/blob/main/docs/guides/operator-guide.md)
 
-Primary operator path:
+## Ecosystem Summary
 
-```text
-Workstation -> ssh -> Moltbox CLI -> gateway
-Internal agent/container -> HTTP MCP + bearer token -> gateway
-```
+At a high level:
 
-Core orientation:
+- `remram` owns ecosystem framing, feature records, and platform registry docs
+- `moltbox-gateway` owns the live Moltbox appliance/operator contract
+- `moltbox-services` owns baseline service definitions, baseline config examples, and service docs
+- `moltbox-runtime` owns the final deployable runtime layer
+- `remram-cortex` owns Cortex implementation
 
-- the host stays minimal and primarily provides Docker, storage, and system services
-- the gateway is the only control-plane entrypoint for appliance lifecycle and deployment
-- service definitions live in `moltbox-services`
-- baseline runtime configuration lives in `moltbox-runtime`
-- plugin and skill packages live in `remram-skills`
-- roadmap planning lives in `remram/roadmap/ideas/` and `remram/roadmap/proposals/`, while approved feature work lives in `remram/features/`
-- active platform items live in `remram/platform/`
-- the gateway consumes those inputs and renders or deploys the running appliance
-- operators should reason from the gateway and CLI model first, not from direct Docker commands
-- workstation automation uses restricted SSH identities plus the Moltbox CLI
-- MCP is reserved for internal agents and containers and requires bearer token auth
+Current Moltbox summary:
 
-Host bootstrap note:
-
-- Moltbox hosts pull Git-backed platform inputs with GitHub App installation tokens
-- the private key stays on the host at `/home/jpekovitch/.ssh/remram_deploy.pem`
-- gateway or bootstrap tooling performs the token exchange; SSH deploy keys are intentionally not used
-
-Canonical sources:
-
-- [Overview](../overview/overview.md)
-- [Topology](../overview/topology.md)
-- [Repositories](../overview/repositories.md)
-- [Deployment Models](../overview/deployment-models.md)
-- [Gateway](../concepts/gateway.md)
-- [Service](../concepts/service.md)
+- the host stays minimal
+- the gateway is the control plane
+- the appliance service set is `gateway`, `caddy`, `ollama`, `searxng`, `test`, and `prod`
+- `test` is the proving lane
+- `prod` is a protected managed pet
+- operators should reason from the CLI/service-plane model rather than direct Docker

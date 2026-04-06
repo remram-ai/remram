@@ -9,7 +9,7 @@ It is the right place to start if you want to understand:
 - how platform items are documented
 - how architectural decisions are recorded
 
-It is not the primary implementation home for appliance code, runtime code, service deployment logic, or lifecycle governance.
+It is not the primary implementation home for appliance code, service baselines, deployable runtime bundles, or lifecycle governance.
 
 If you are arriving with an AI assistant or want a faster bootstrap pass before reading the full docs set, start with [AI Context](../ai-context/README.md).
 
@@ -32,7 +32,7 @@ Then deepen as needed:
 - [Runtime](../concepts/runtime.md)
 - [Gateway](../concepts/gateway.md)
 
-If you want active capability docs, then continue into:
+If you want ecosystem-level capability summaries, then continue into:
 
 - [platform/](../../platform/)
 
@@ -56,7 +56,7 @@ Work in this repository when the change is primarily about:
 - system vocabulary
 - documentation structure
 - contributor orientation
-- platform item definitions
+- ecosystem-level feature framing
 - roadmap ideas and proposals, plus approved feature records under `features/`
 
 ## When Another Repository Is The Right Place
@@ -65,8 +65,8 @@ Use the domain repositories when the change is primarily about implementation:
 
 - `remram-forge` for the private internal development pipeline: lifecycle governance, orchestration contracts, and lifecycle schema ownership
 - `moltbox-gateway` for the control plane, CLI, and orchestration behavior
-- `moltbox-runtime` for baseline runtime configuration
-- `moltbox-services` for service definitions and topology
+- `moltbox-services` for service definitions, baseline service config, and service docs
+- `moltbox-runtime` for final deployable runtime artifacts and overlays
 - `remram-skills` for skill packages and deploy recipes
 - `remram-cortex` for long-term memory services
 - `remram-app` for user-facing applications

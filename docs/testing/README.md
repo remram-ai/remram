@@ -6,7 +6,7 @@ Use this folder when you need repeatable verification guidance for CLI behavior,
 
 Documents in this folder:
 
-- [CLI Test Plan](cli-test-plan.md) for the Moltbox CLI contract validation workflow
+- [CLI Test Plan](cli-test-plan.md) as a pointer to the authoritative Gateway-side validation plans
 
 Go next:
 

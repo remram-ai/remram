@@ -4,6 +4,12 @@ This folder provides fast, high-signal bootstrap material for AI assistants work
 
 Use these files as orientation summaries, not as replacements for the canonical docs.
 
+If the task touches the live Moltbox appliance, load the `moltbox-gateway` docs first:
+
+- [Moltbox Gateway README](https://github.com/remram-ai/moltbox-gateway/blob/main/README.md)
+- [Moltbox AI Context](https://github.com/remram-ai/moltbox-gateway/blob/main/docs/ai-context/README.md)
+- [Moltbox Operator Guide](https://github.com/remram-ai/moltbox-gateway/blob/main/docs/guides/operator-guide.md)
+
 Repository structure and lifecycle:
 
 ```text

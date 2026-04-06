@@ -19,8 +19,8 @@ The most common adjacent repositories are:
 
 - `remram-forge` (private internal development pipeline)
 - `moltbox-gateway`
-- `moltbox-runtime`
 - `moltbox-services`
+- `moltbox-runtime`
 - `remram-skills`
 - `remram-cortex`
 - `remram-app`
@@ -29,15 +29,17 @@ If your change crosses from documentation into implementation, you will usually 
 
 ## Practical Setup Guidance
 
-- keep `remram` available as the documentation source of truth
+- keep `remram` available as the ecosystem documentation source of truth
 - clone `remram-forge` when the task touches private lifecycle governance, orchestration contracts, or lifecycle schema definitions
-- clone the owning implementation repository only when you need to verify behavior or code
+- clone `moltbox-gateway` when the task touches appliance behavior, CLI, or operator flow
+- clone `moltbox-services` when the task touches service definitions, baseline service config, or service docs
+- clone `moltbox-runtime` when the task touches final deployable runtime artifacts or overlays
 - prefer reading active implementation sources instead of relying on stale historical notes
 
 ## Repository Layout To Know
 
 - `docs/` for shared documentation
-- `platform/` for active capability documentation
+- `platform/` for ecosystem-level capability summaries and pointers
 - `roadmap/` for ideas and proposals, and `features/` for approved feature records plus local enhancement/project scaffolding
 - `remram-forge/` for private internal lifecycle governance, workflows, and lifecycle-owned schemas
 - `archive/` for frozen historical material

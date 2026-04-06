@@ -2,50 +2,27 @@
 
 A Snapshot is a runtime-state capture used for recovery.
 
-On `main`, the durable runtime snapshot that actually exists is the checkpoint snapshot captured during `moltbox <env> checkpoint`.
+In the current Moltbox model, snapshots are the first restore-point mechanism for appliance and runtime state.
 
 ## What A Snapshot Captures
 
-A snapshot preserves runtime state needed to recover or promote a runtime baseline.
+A snapshot preserves state needed to recover the system after a risky mutation.
 
 The exact artifact shape is an implementation detail, but the concept is stable:
 
-- capture runtime state from the live environment
+- capture state from the live environment
 - keep that capture in appliance state
-- do not treat it as source-controlled baseline configuration until a checkpoint is intentionally promoted
+- use rollback before reaching for rebuild
 
 ## Where Snapshots Live Today
 
-Current checkpoint snapshot directories live under:
+The current appliance uses ZFS snapshots for the covered appliance state paths.
 
-```text
-/srv/moltbox-state/runtime-baselines/<runtime>/<checkpoint_id>/snapshot/
-```
+Those snapshots live in the host storage layer rather than as Git artifacts.
 
-The active checkpoint metadata pointer lives at:
-
-```text
-/srv/moltbox-state/runtime-baselines/<runtime>/current.json
-```
-
-## Current Contract Boundary
-
-A separate standalone pre-mutation snapshot root is still in flight.
-
-That means the implemented `main` contract today is:
-
-- checkpoint snapshots are real
-- replay history is real
-- a separate per-mutation `/srv/moltbox-state/runtime-snapshots/` contract is not yet implemented
-
-## Snapshot Versus Checkpoint
-
-A [Checkpoint](checkpoint.md) is the promoted runtime baseline record.
-
-A snapshot is the captured runtime-state input used by checkpoint.
+Gateway-driven service deploy and restart operations also record snapshot metadata as part of the deploy history.
 
 ## Related Concepts
 
 - [Runtime](runtime.md)
-- [Checkpoint](checkpoint.md)
-- [Deployment Event](deployment-event.md)
+- [Gateway](gateway.md)

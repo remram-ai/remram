@@ -1,28 +1,25 @@
-# Overview
+# Platform Overview
 
-RemRam is the architecture and documentation hub for an ecosystem built around a managed local appliance.
+Remram is the orientation home for the memory-enhanced OpenClaw experiment and its retained projects. The current scope is recorded in [repository scope](../overview/2026-10-04-repository-scope.md); use [repository ownership](../overview/repositories.md) to route changes.
 
-For the live Moltbox appliance contract, load the Gateway repo first:
+## Current responsibilities
 
-- [Moltbox Gateway README](https://github.com/remram-ai/moltbox-gateway/blob/main/README.md)
-- [Moltbox AI Context](https://github.com/remram-ai/moltbox-gateway/blob/main/docs/ai-context/README.md)
-- [Moltbox Operator Guide](https://github.com/remram-ai/moltbox-gateway/blob/main/docs/guides/operator-guide.md)
+- Remram explains the ecosystem and preserves reusable memory, retrieval, reflection, and capability concepts.
+- Moltbox Gateway manages the appliance control plane and current operator contract.
+- Moltbox Services defines service baselines.
+- Moltbox Runtime holds final deployable artifacts.
+- Remram Skills provides reusable skills and plugin packages.
+- Forge remains a separate workflow experiment.
 
-## Ecosystem Summary
+The old Remram App → Gateway → OpenClaw → Cortex product diagram is historical. App and Cortex are retired repositories; the diagram does not require either as an active deployed service. Livonne's product and platform work now lives in the [Livonne organization](https://github.com/livonne-ai).
 
-At a high level:
+## Appliance authority
 
-- `remram` owns ecosystem framing, feature records, and platform registry docs
-- `moltbox-gateway` owns the live Moltbox appliance/operator contract
-- `moltbox-services` owns baseline service definitions, baseline config examples, and service docs
-- `moltbox-runtime` owns the final deployable runtime layer
-- `remram-cortex` owns Cortex implementation
+Read [Gateway's system overview](https://github.com/remram-ai/moltbox-gateway/blob/main/docs/design/system-overview.md), [operator guide](https://github.com/remram-ai/moltbox-gateway/blob/main/docs/guides/operator-guide.md), and [service catalog](https://github.com/remram-ai/moltbox-gateway/blob/main/docs/guides/service-catalog.md) for current appliance responsibilities and supported operations. This cleanup makes no deployment change or new runtime-validation claim.
 
-Current Moltbox summary:
+## Related documents
 
-- the host stays minimal
-- the gateway is the control plane
-- the appliance service set is `gateway`, `caddy`, `ollama`, `searxng`, `test`, and `prod`
-- `test` is the proving lane
-- `prod` is a protected managed pet
-- operators should reason from the CLI/service-plane model rather than direct Docker
+- [Repositories](../overview/repositories.md)
+- [Repository authority rules](../overview/repository-authority-rules.md)
+- [Deployment models](../overview/deployment-models.md)
+- [Topology](../overview/topology.md)

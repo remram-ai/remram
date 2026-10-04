@@ -1,5 +1,7 @@
 # Repo Setup
 
+Current scope, 2026-10-04: Remram and its Moltbox, Skills, and Forge projects remain active. Cortex, ElderClaw, and Remram App are retired repository destinations; earlier architecture and lifecycle records remain historical design material. Use the [current scope and ownership](../overview/2026-10-04-repository-scope.md) before routing new work. Livonne product work belongs in the Livonne organization.
+
 This repository is documentation-first.
 
 You do not need a full appliance environment just to work on the documentation set.
@@ -22,8 +24,6 @@ The most common adjacent repositories are:
 - `moltbox-services`
 - `moltbox-runtime`
 - `remram-skills`
-- `remram-cortex`
-- `remram-app`
 
 If your change crosses from documentation into implementation, you will usually need one or more of those repositories checked out locally as sibling workspaces.
 

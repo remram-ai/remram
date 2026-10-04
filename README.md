@@ -1,182 +1,57 @@
 # Remram
 
-Remram is the vision and architecture hub for the Remram ecosystem.
+Remram is the landing page for the memory-enhanced OpenClaw experiment and the projects that remain in the Remram organization.
 
-This repository explains what Remram is, why it exists, how the ecosystem fits together, and where contributors should go next. It is the public front door for the project, not the primary home for implementation details.
+The focus is local AI experimentation: governed memory and retrieval, reusable capabilities, appliance operations, and agentic workflow design. Remram remains active. Livonne's commercial care, family, community, hardware, and product strategy now belong to the separate Livonne organization.
 
-Active repository documentation lives under `docs/`, strategic planning lives under `roadmap/`, approved feature records and local feature scaffolding live under `features/`, Remram-owned architecture and runtime schemas live under `schemas/`, concise technical reference lives under `reference/`, the living capability registry lives under `platform/`, historical material lives under `archive/`, and Forge lifecycle governance plus lifecycle artifact schemas now live in the private internal [`remram-forge`](https://github.com/remram-ai/remram-forge) repository.
+## Start here
 
-All active capability and platform records still live in `remram`. Forge only holds the internal development pipeline, orchestration rules, and business-process mechanics that should not be public.
+1. Read [repository ownership](docs/overview/repositories.md) to find the right project.
+2. Read [the current scope and retirement record](docs/overview/2026-10-04-repository-scope.md) before reusing older architecture.
+3. Use [Moltbox Gateway](https://github.com/remram-ai/moltbox-gateway) for appliance implementation and the current operator contract.
+4. Use [Forge](https://github.com/remram-ai/remram-forge) for the separate workflow experiment, if you have access.
+5. Use [the documentation map](docs/README.md), [concepts](docs/concepts/README.md), and [platform registry](platform/README.md) for reusable design material.
 
-## Repository Structure
+## Retained projects
 
-- [roadmap/](roadmap/README.md): planning artifacts, including ideas and proposals
-- [features/](features/README.md): approved feature records, enhancement stubs, and implementation-facing project artifacts
-- [platform/](platform/README.md): the registry of active platform items
-- [schemas/](schemas/README.md): Remram-owned architecture and runtime schema namespaces
-- [Forge Governance (private)](https://github.com/remram-ai/remram-forge/blob/main/governance/README.md): internal lifecycle, governance, and orchestration documentation
-- [Forge Schemas (private)](https://github.com/remram-ai/remram-forge/blob/main/schemas/README.md): internal lifecycle artifact templates and orchestration state schemas
-- [reference/](reference/README.md): concise technical reference material
-- [docs/](docs/README.md): system documentation, architecture explanation, feature documentation, operations, and AI context
-- [archive/](archive/): preserved historical material
+| Repository | Responsibility | Access |
+| --- | --- | --- |
+| [remram](https://github.com/remram-ai/remram) | Ecosystem landing page, orientation, concepts, feature records, and capability registry | Public |
+| [moltbox-gateway](https://github.com/remram-ai/moltbox-gateway) | Appliance control plane, CLI, deployment, verification, and recovery | Public |
+| [moltbox-services](https://github.com/remram-ai/moltbox-services) | Service definitions and baseline configuration | Private |
+| [moltbox-runtime](https://github.com/remram-ai/moltbox-runtime) | Final deployable runtime artifacts and overlays | Private |
+| [remram-skills](https://github.com/remram-ai/remram-skills) | Reusable skills and plugin packages | Public |
+| [remram-forge](https://github.com/remram-ai/remram-forge) | Forge reference architecture and the Lobster Reef workflow experiment | Private |
+| [.github](https://github.com/remram-ai/.github) | Organization introduction and project routing | Public |
 
-## Delivery Lifecycle
+Existing visibility is preserved. Public orientation does not make private configuration or workflow repositories public.
 
-```text
-Idea (Stage 1, roadmap/ideas/)
-  -> Proposal (Stage 2, roadmap/proposals/)
-  -> Approved Feature (features/)
-  -> Feature Project (Stage 3 onward, features/<feature>/projects/<project>/)
-  -> Platform deliverables (services, skills, plugins, core)
-  -> Feature documentation (docs/features/)
-```
+## Retired repositories
 
-Platform items are technical deliverables.
-Feature documentation describes the user-facing capability built from those deliverables.
+- [remram-cortex](https://github.com/remram-ai/remram-cortex): retired as an active repository. Its recovered concepts and design depth were re-authored in [Livonne Platform](https://github.com/livonne-ai/livonne-platform) to support Livonne Care and the wider platform. Original code and historical alternatives remain reference material; no implementation port or runtime cutover is claimed.
+- [elderclaw](https://github.com/remram-ai/elderclaw): retired. Selected product, platform, and hardware knowledge moved into the three Livonne repositories.
+- [remram-app](https://github.com/remram-ai/remram-app): retired planning placeholder; it contains no application implementation.
 
-The chronological lifecycle definitions live under [Forge Governance Lifecycle (private)](https://github.com/remram-ai/remram-forge/blob/main/governance/lifecycle/README.md).
+These repositories are ready for owner-managed archiving after their notices are published. Memory concepts may still inform the open Remram experiment; the old Cortex repository is no longer the current implementation destination or a required deployed service.
 
-## Release Posture
+## Livonne destination
 
-For the appliance repositories, `main` describes the next appliance release.
+- [Livonne](https://github.com/livonne-ai/livonne): company, product, strategy, experience, and narratives.
+- [Livonne Platform](https://github.com/livonne-ai/livonne-platform): software concepts and architecture.
+- [Livonne Hardware](https://github.com/livonne-ai/livonne-hardware): physical products and engineering.
 
-Tagged revisions are the release inputs that an appliance should run in steady state.
+Livonne Care is a product expression of the wider Livonne platform. Keep Livonne's commercial requirements and household product promises out of Remram's active experimental scope.
 
-In practice:
+## Repository map
 
-- repository `main` is the next-release integration line
-- an appliance host is a tagged release until it is intentionally updated
-- `moltbox gateway update` applies whatever revision the configured host checkout points at, so release appliances should pin that checkout to the intended tag or release branch
+- [docs/](docs/README.md): orientation, concepts, contributor guidance, and high-level ownership.
+- [platform/](platform/README.md): reusable capability records and design material.
+- [features/](features/README.md): retained feature records; retired records are labeled.
+- [roadmap/](roadmap/README.md): exploratory ideas and proposals, not a commitment to implement all historical plans.
+- [schemas/](schemas/README.md): Remram-owned architecture and runtime schemas.
+- [reference/](reference/README.md): technical reference.
+- [archive/](archive/README.md): historical material.
 
-## What Problem Remram Solves
+## Contributor boundaries
 
-AI systems still struggle with continuity.
-
-They lose important context across sessions, repeat corrected mistakes, depend on oversized prompts, and confuse transcript history with durable knowledge. Remram exists to turn that fragile memory posture into a more disciplined system: local control remains authoritative, cognition is invoked deliberately, retrieval is bounded, mutation is governed, and long-lived knowledge is treated as a first-class architectural concern.
-
-## High-Level Architecture
-
-Remram is easiest to understand as a small ecosystem of cooperating layers:
-
-```text
-People and clients
-        |
-        v
-   Remram App
-        |
-        v
-   Moltbox Gateway
-        |
-        v
-OpenClaw / Orchestration
-        |
-        v
-   Remram Cortex
-        |
-        v
- Durable knowledge, artifacts,
- and long-term memory behavior
-
-Remram Skills sit alongside the system as reusable skills,
-plugin packages, and workflow building blocks.
-```
-
-Within Gateway / Moltbox, orchestration via OpenClaw and operator control are separate concerns. OpenClaw shapes live runs. The Moltbox control plane manages the appliance itself through CLI tools, tests, staged promotion, and human approval.
-
-## Ecosystem Components
-
-- **Remram**: vision, conceptual architecture, ecosystem map, contributor orientation
-- **Moltbox Gateway**: control-plane implementation, Moltbox CLI tooling, deployment orchestration, and appliance operations
-- **Remram Cortex**: long-term knowledge system, retrieval, reflection, and memory services
-- **Remram App**: user-facing APIs and applications
-- **Remram Skills**: reusable skills, plugin packages, and portable capability building blocks
-
-## Repository Links
-
-- [Remram](https://github.com/remram-ai/remram)
-- [Remram Forge (private)](https://github.com/remram-ai/remram-forge)
-- [Moltbox Gateway](https://github.com/remram-ai/moltbox-gateway)
-- [Remram Cortex](https://github.com/remram-ai/remram-cortex)
-- [Remram App](https://github.com/remram-ai/remram-app)
-- [Remram Skills](https://github.com/remram-ai/remram-skills)
-
-## Moltbox Authority
-
-`moltbox-gateway` is the authoritative source for the Moltbox appliance domain.
-
-Use it first for:
-
-- the live CLI contract
-- operator workflows
-- managed service inventory
-- Gateway/OpenClaw operating model
-- service-plane and runtime mutation rules
-- snapshot and restore posture
-- Gateway-focused AI bootstrap context
-
-Start here:
-
-- [Moltbox Gateway README](https://github.com/remram-ai/moltbox-gateway/blob/main/README.md)
-- [Moltbox Gateway Docs](https://github.com/remram-ai/moltbox-gateway/blob/main/docs/README.md)
-- [Moltbox Operator Guide](https://github.com/remram-ai/moltbox-gateway/blob/main/docs/guides/operator-guide.md)
-- [Moltbox Service Catalog](https://github.com/remram-ai/moltbox-gateway/blob/main/docs/guides/service-catalog.md)
-- [Moltbox AI Context](https://github.com/remram-ai/moltbox-gateway/blob/main/docs/ai-context/README.md)
-
-This repository still owns ecosystem framing, feature records, and platform registry material. It no longer owns the detailed live Gateway/Moltbox operator contract.
-
-## Start Here
-
-- [Documentation Map](docs/README.md)
-- [Roadmap](roadmap/README.md)
-- [Features](features/README.md)
-- [Platform Registry](platform/README.md)
-- [Forge Governance (private)](https://github.com/remram-ai/remram-forge/blob/main/governance/README.md)
-- [Forge Schemas (private)](https://github.com/remram-ai/remram-forge/blob/main/schemas/README.md)
-- [Schemas](schemas/README.md)
-- [Reference](reference/README.md)
-- [Feature Documentation](docs/features/README.md)
-- [AI Context](docs/ai-context/README.md)
-- `archive/` for historical documentation
-
-## Planning Pipeline
-
-This repository preserves lifecycle artifacts under:
-
-- `roadmap/ideas/` for Stage 1 idea capture
-- `roadmap/proposals/` for Stage 2 proposal development
-- `features/` once proposal approval creates an active feature
-
-Use [Roadmap](roadmap/README.md) for the planning directories, [Forge Governance Lifecycle (private)](https://github.com/remram-ai/remram-forge/blob/main/governance/lifecycle/README.md) for the stage definitions, and [Features](features/README.md) for the implementation-facing feature structure.
-
-Historical context and superseded planning material remain in `archive/`.
-
-## How To Get Started
-
-- Human contributor start path:
-  1. [docs/README.md](docs/README.md)
-  2. [docs/community/getting-started.md](docs/community/getting-started.md)
-  3. [docs/overview/README.md](docs/overview/README.md)
-  4. [docs/concepts/README.md](docs/concepts/README.md)
-  5. [docs/operations/README.md](docs/operations/README.md)
-- AI bootstrap start path:
-  1. [docs/ai-context/README.md](docs/ai-context/README.md)
-  2. [docs/ai-context/overview.md](docs/ai-context/overview.md)
-  3. [docs/ai-context/repositories.md](docs/ai-context/repositories.md)
-  4. [docs/ai-context/roles/README.md](docs/ai-context/roles/README.md)
-- Want to understand planning and lifecycle layout: start with [roadmap/README.md](roadmap/README.md), [features/README.md](features/README.md), and [platform/README.md](platform/README.md)
-- Want the end-to-end SDLC path from idea to implementation: read [roadmap/README.md](roadmap/README.md), [Forge Governance Lifecycle (private)](https://github.com/remram-ai/remram-forge/blob/main/governance/lifecycle/README.md), [features/README.md](features/README.md), and [Forge Schemas (private)](https://github.com/remram-ai/remram-forge/blob/main/schemas/README.md) for artifact templates
-- Want user-facing capability docs once the deliverables exist: use [docs/features/README.md](docs/features/README.md)
-- Want governance and lifecycle rules: use [Forge Governance (private)](https://github.com/remram-ai/remram-forge/blob/main/governance/README.md)
-- Want canonical architecture and runtime schemas: use [schemas/README.md](schemas/README.md)
-- Want concise command or endpoint lookup: use [reference/README.md](reference/README.md)
-- Want to review earlier material: use `archive/`
-
-Do not start with `archive/` or `docs/audits/` unless the task is explicitly historical.
-
-## How To Contribute
-
-If you are changing vision, ecosystem framing, conceptual architecture, onboarding, roadmap docs, or platform registry docs, this is the right repository.
-
-If you are changing lifecycle governance, lifecycle templates, or orchestration state contracts, you want the private internal [`remram-forge`](https://github.com/remram-ai/remram-forge) repository.
-
-If you are changing runtime behavior, deployment, storage, APIs, or implementation details, you probably want one of the domain repositories instead.
+Read [AGENTS.md](AGENTS.md) before making changes. Detailed appliance and service behavior belongs in its owning repository. Forge remains a separate workflow project, not part of the Livonne migration. Historical diagrams and fixed-stack proposals do not establish the current deployed system. Record what is proposed, implemented, and verified separately.

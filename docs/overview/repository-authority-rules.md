@@ -1,5 +1,7 @@
 # Repository Authority Rules
 
+Current scope, 2026-10-04: Remram and its Moltbox, Skills, and Forge projects remain active. Cortex, ElderClaw, and Remram App are retired repository destinations; earlier architecture and lifecycle records remain historical design material. Use the [current scope and ownership](2026-10-04-repository-scope.md) before routing new work. Livonne product work belongs in the Livonne organization.
+
 This document records the current repository-boundary rules for the Remram ecosystem.
 
 Use it when deciding where a new artifact, document, config file, service definition, or capability package should live.
@@ -93,7 +95,6 @@ Current role:
 Examples:
 
 - `moltbox-runtime` for private Moltbox-only overlays
-- `elderclaw-runtime` for private Elderclaw-only overlays
 
 It is not the primary authority for baseline service definitions or baseline config examples.
 

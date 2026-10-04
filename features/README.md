@@ -1,5 +1,7 @@
 # Features
 
+Current scope, 2026-10-04: Remram and its Moltbox, Skills, and Forge projects remain active. Cortex, ElderClaw, and Remram App are retired repository destinations; earlier architecture and lifecycle records remain historical design material. Use the [current scope and ownership](../docs/overview/2026-10-04-repository-scope.md) before routing new work. Livonne product work belongs in the Livonne organization.
+
 `features/` holds approved feature lifecycle artifacts and the active feature inventory.
 
 This directory begins when leadership approval promotes a proposal into an active feature.
@@ -77,8 +79,11 @@ Useful template and schema references:
 - [Moltbox Telemetry](moltbox-telemetry/README.md)
 - [Together Escalation](together-escalation/README.md)
 - [Discord Channel](discord-channel/README.md)
-- [Remram Cortex](remram-cortex/README.md)
 - [Remram Forge](remram-forge/README.md) (private repo-backed feature record)
+
+## Retired feature records
+
+- [Remram Cortex](remram-cortex/README.md) — historical proposal; dedicated source retired and recovered into Livonne Platform.
 
 Go next:
 

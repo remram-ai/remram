@@ -1,5 +1,7 @@
 # Getting Started
 
+Current scope, 2026-10-04: Remram and its Moltbox, Skills, and Forge projects remain active. Cortex, ElderClaw, and Remram App are retired repository destinations; earlier architecture and lifecycle records remain historical design material. Use the [current scope and ownership](../overview/2026-10-04-repository-scope.md) before routing new work. Livonne product work belongs in the Livonne organization.
+
 This repository is the documentation and architecture home for the RemRam ecosystem.
 
 It is the right place to start if you want to understand:
@@ -68,8 +70,8 @@ Use the domain repositories when the change is primarily about implementation:
 - `moltbox-services` for service definitions, baseline service config, and service docs
 - `moltbox-runtime` for final deployable runtime artifacts and overlays
 - `remram-skills` for skill packages and deploy recipes
-- `remram-cortex` for long-term memory services
-- `remram-app` for user-facing applications
+
+Retired Cortex and App repositories are historical references, not current implementation destinations.
 
 ## Recommended Next Step
 

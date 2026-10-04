@@ -1,25 +1,16 @@
 # Repositories
 
-Core ownership summary:
+Read [the current repository ownership map](../overview/repositories.md) and [scope record](../overview/2026-10-04-repository-scope.md) before routing work.
 
-- `remram`: ecosystem framing, approved feature records, platform registry, and high-level architecture docs
-- `remram-forge` (private): lifecycle governance, orchestration rules, and lifecycle-owned templates/state contracts
-- `moltbox-gateway`: live Moltbox appliance contract, CLI, control plane, operator docs, and deployment orchestration
-- `moltbox-services`: baseline service definitions, baseline config examples, and service docs
-- `moltbox-runtime`: final deployable runtime artifacts and private/base-specific overlays
-- `remram-skills`: reusable skills and plugin packages
-- `remram-cortex`: Cortex implementation
-- `remram-app`: user-facing applications and APIs
+Retained projects are Remram, Moltbox Gateway, Moltbox Services, Moltbox Runtime, Remram Skills, Forge, and the organization introduction. Cortex, ElderClaw, and Remram App are retired repository destinations. Earlier references to them describe historical proposals.
 
-Important boundary rule:
+- Appliance CLI, deployment, verification, and recovery: [Gateway](https://github.com/remram-ai/moltbox-gateway).
+- Service baselines: [Services](https://github.com/remram-ai/moltbox-services).
+- Final deployable artifacts: [Runtime](https://github.com/remram-ai/moltbox-runtime).
+- Portable skills and plugins: [Skills](https://github.com/remram-ai/remram-skills).
+- Separate workflow experiment: [Forge](https://github.com/remram-ai/remram-forge).
+- Livonne products and platform: [Livonne organization](https://github.com/livonne-ai).
 
-- if the task is about how the live Moltbox appliance works, use `moltbox-gateway` as the authority
-- if the task is about service baselines or service docs, use `moltbox-services`
-- if the task is about the final deployable runtime layer, use `moltbox-runtime`
-- if the task is about ecosystem architecture or feature intent across repos, `remram` is still the right place to start
+Keep Services, Runtime, and Forge private. Memory concepts can inform the open experiment without restoring the retired Cortex repository as mandatory implementation authority. Do not perform appliance or website cutovers as part of documentation work.
 
-Start here for appliance truth:
-
-- [Moltbox Gateway README](https://github.com/remram-ai/moltbox-gateway/blob/main/README.md)
-- [Moltbox Gateway Docs](https://github.com/remram-ai/moltbox-gateway/blob/main/docs/README.md)
-- [Moltbox AI Context](https://github.com/remram-ai/moltbox-gateway/blob/main/docs/ai-context/README.md)
+For operational context, start with [Gateway AI Context](https://github.com/remram-ai/moltbox-gateway/blob/main/docs/ai-context/README.md).

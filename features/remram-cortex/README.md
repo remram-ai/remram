@@ -1,5 +1,7 @@
 # Remram Cortex
 
+Retired feature record, 2026-10-04. The dedicated Cortex repository is ready for archiving. Its recovered concepts were re-authored in [Livonne Platform](https://github.com/livonne-ai/livonne-platform) for Livonne Care and the wider platform. The text below preserves the earlier proposal, not an active Remram implementation assignment. See the [scope record](../../docs/overview/2026-10-04-repository-scope.md).
+
 Remram Cortex is the memory engine for Remram.
 
 It is the layer that turns transient conversations into durable knowledge, turns retrieval into a deliberate system capability instead of prompt sprawl, and gives the broader platform a place where reflection, reconciliation, and long-horizon memory can actually live.

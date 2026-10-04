@@ -1,5 +1,7 @@
 # Documentation
 
+Current scope, 2026-10-04: Remram and its Moltbox, Skills, and Forge projects remain active. Cortex, ElderClaw, and Remram App are retired repository destinations; earlier architecture and lifecycle records remain historical design material. Use the [current scope and ownership](overview/2026-10-04-repository-scope.md) before routing new work. Livonne product work belongs in the Livonne organization.
+
 ## 1. Documentation System Overview
 
 This repository uses a simple documentation split:

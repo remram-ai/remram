@@ -1,84 +1,31 @@
 # Repositories
 
-This document describes the repository ownership model for the current Remram ecosystem.
+Status: current ownership map, 2026-10-04.
 
-For the live Moltbox appliance contract, the authoritative docs now live in `moltbox-gateway`:
+Remram remains the landing page for the memory-enhanced OpenClaw experiment. Livonne is a separate product and architecture destination. See the [scope record](2026-10-04-repository-scope.md).
 
-- [Moltbox Gateway README](https://github.com/remram-ai/moltbox-gateway/blob/main/README.md)
-- [Moltbox Gateway Docs](https://github.com/remram-ai/moltbox-gateway/blob/main/docs/README.md)
-- [Moltbox Operator Guide](https://github.com/remram-ai/moltbox-gateway/blob/main/docs/guides/operator-guide.md)
-- [Moltbox Service Catalog](https://github.com/remram-ai/moltbox-gateway/blob/main/docs/guides/service-catalog.md)
+## Retained ownership
 
-## Ownership Summary
+| Repository | Owns |
+| --- | --- |
+| [remram](https://github.com/remram-ai/remram) | Ecosystem framing, reusable concepts, orientation, feature records, and capability registry |
+| [moltbox-gateway](https://github.com/remram-ai/moltbox-gateway) | Appliance CLI, control plane, deployment, verification, operator procedures, and recovery |
+| [moltbox-services](https://github.com/remram-ai/moltbox-services) | Baseline service definitions, configuration examples, and service documentation |
+| [moltbox-runtime](https://github.com/remram-ai/moltbox-runtime) | Final deployable runtime artifacts and private overlays |
+| [remram-skills](https://github.com/remram-ai/remram-skills) | Portable skills and plugin source packages |
+| [remram-forge](https://github.com/remram-ai/remram-forge) | Separate Forge/Lobster Reef workflow research and execution-design material |
+| [.github](https://github.com/remram-ai/.github) | Organization introduction |
 
-- `remram`
-  - ecosystem framing
-  - approved feature records
-  - platform registry
-  - high-level cross-repo architecture docs
-- `remram-forge` (private)
-  - lifecycle governance
-  - orchestration rules
-  - lifecycle-owned templates and state contracts
-- `moltbox-gateway`
-  - live Moltbox appliance/operator contract
-  - `moltbox` CLI
-  - Gateway control plane
-  - service-plane orchestration
-  - deployment/snapshot metadata
-- `moltbox-services`
-  - baseline service definitions
-  - baseline service config examples
-  - service-local docs
-  - thin service wrappers
-- `moltbox-runtime`
-  - final deployable runtime artifacts
-  - private or base-specific runtime overlays when needed
-- `remram-skills`
-  - reusable skills and plugin packages
-- `remram-cortex`
-  - Cortex implementation
-- `remram-app`
-  - user-facing applications and APIs
+Services, Runtime, and Forge retain their existing private visibility.
 
-## Boundary Rule
+## Retired ownership
 
-Use `remram` for:
+`remram-cortex`, `elderclaw`, and `remram-app` are ready for archiving. Do not route new implementation work into them. Original sources and historical evidence remain available.
 
-- ecosystem framing
-- feature intent
-- cross-repo ownership
-- platform registry and capability map
+Cortex's recovered concepts now live in [Livonne Platform](https://github.com/livonne-ai/livonne-platform); ElderClaw's selected knowledge is split across [Company](https://github.com/livonne-ai/livonne), [Platform](https://github.com/livonne-ai/livonne-platform), and [Hardware](https://github.com/livonne-ai/livonne-hardware). This was a scoped knowledge migration, not a port of every file or implementation.
 
-Use `moltbox-gateway` for:
+## Operational boundary
 
-- live appliance behavior
-- operator workflow
-- CLI contract
-- current service inventory
-- Gateway/OpenClaw lifecycle rules
-- snapshot and restore posture
+For current appliance behavior, read [Gateway's operator guide](https://github.com/remram-ai/moltbox-gateway/blob/main/docs/guides/operator-guide.md) and [service catalog](https://github.com/remram-ai/moltbox-gateway/blob/main/docs/guides/service-catalog.md).
 
-## Current Interaction Model
-
-```text
-remram
-  -> defines feature intent and ecosystem map
-
-moltbox-services
-  -> defines appliance service baselines and service docs
-
-moltbox-runtime
-  -> holds the final deployable runtime layer
-
-moltbox-gateway
-  -> turns those inputs into the live managed appliance
-```
-
-## Runtime Mutation Boundary
-
-- baseline service inputs belong in `moltbox-services`
-- final deployable runtime artifacts belong in `moltbox-runtime`
-- live runtime mutation happens through native OpenClaw lifecycle on the appliance
-- appliance snapshots and deployment records belong to `moltbox-gateway`
-- live runtime state does not get mirrored continuously back into Git
+Service baselines belong in Services; promoted deployable artifacts belong in Runtime; the CLI and operational procedures belong in Gateway. Live state is not continuously mirrored back into Git. This documentation cleanup does not change appliance configuration, deployment, or service availability.

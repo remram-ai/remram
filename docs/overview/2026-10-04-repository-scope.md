@@ -28,4 +28,4 @@ The work-context-specific Tango crosswalk was replaced in the current tree with 
 
 ## Website boundary
 
-The current website remains served by [SublimeDelusion/livonne](https://github.com/SublimeDelusion/livonne). The requested organization copy is planned as `livonne-ai/website`. Do not archive the serving repository until the owner confirms that hosting has switched and the replacement is working.
+The current website remains served by [SublimeDelusion/livonne](https://github.com/SublimeDelusion/livonne). The successor publication repository is the public [livonne-ai/livonne-web](https://github.com/livonne-ai/livonne-web), with fully formed output at the root of `main`. Strategy, original media, and source/build inputs belong to private [Company website source](https://github.com/livonne-ai/livonne/tree/main/website). Binary transfer preparation is still in progress; the earlier `livonne-ai/website` proposal is superseded. Do not archive the serving repository until the owner confirms that hosting has switched and the replacement is working.
